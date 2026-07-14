@@ -1,0 +1,15 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "scores": {
+    "detect-ai-patterns": [100, 100],
+    "rewrite-ai-text": [100, 100]
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md from verbose documentation style to concise, action-oriented format. Removed Python script references and batch processing examples. Added explicit JSON output format templates for both detection and rewriting tasks. Listed exact pattern words/phrases to scan for. Removed scripts/ directory and _meta.json as unreferenced by the skill."
+    }
+  ]
+}

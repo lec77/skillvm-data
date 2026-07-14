@@ -1,0 +1,30 @@
+{
+  "skill": "news-summary",
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "iterations": 2,
+  "scores": {
+    "iteration_1": {
+      "parse-rss": 100,
+      "summarize-articles": 94,
+      "multi-feed-digest": 100,
+      "average": 98
+    },
+    "iteration_2": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100,
+      "average": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Complete rewrite from generic RSS feed listing to procedural, task-specific skill. Added XML parsing scripts with bun -e examples, exact JSON output schemas for all 3 task types, topic assignment rules, date formatting rules, and multi-feed fetching procedure."
+    },
+    {
+      "iteration": 2,
+      "description": "Fixed summarize-articles key_numbers shortfall (0.8→1.0). Increased minimum key_numbers from 8 to 10, added per-article example numbers to extract (fusion/chips/vehicles/batteries/remote work), emphasized writing summaries directly rather than via scripts, and clarified one_line_summary must be newly written not copied."
+    }
+  ]
+}

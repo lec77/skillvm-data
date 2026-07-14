@@ -1,0 +1,35 @@
+{
+  "iterations": 4,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "plan-my-day-1.0.0",
+  "scores": {
+    "iteration_1": {
+      "schedule-workday": 100,
+      "prioritize-tasks": 95
+    },
+    "iteration_2": {
+      "schedule-workday": 100,
+      "prioritize-tasks": 95
+    },
+    "iteration_3": {
+      "schedule-workday": 100,
+      "prioritize-tasks": 95
+    },
+    "iteration_4": {
+      "schedule-workday": 100,
+      "prioritize-tasks": 100
+    }
+  },
+  "final_scores": {
+    "schedule-workday": 100,
+    "prioritize-tasks": 100
+  },
+  "changes": [
+    "Rewrote verbose original SKILL.md into concise, schema-focused format with exact JSON output schemas for both task types",
+    "Added explicit classification rules for prioritize-tasks (must_do_today, deferred, should_do, nice_to_have) with concrete criteria",
+    "Clarified that deferred classification ignores effort level (high effort + low impact + far deadline = still deferred)",
+    "Updated skill description/frontmatter to cover both scheduling AND prioritization use cases, ensuring the bare agent loads the skill for both task types"
+  ],
+  "key_insight": "The bare runtime requires models to explicitly load skills via <load-skill>. The original description 'Generate structured daily plans' did not trigger skill loading for the prioritize-tasks task. Broadening the description to include 'categorizing/prioritizing tasks' was the critical fix that raised prioritize-tasks from 95 to 100."
+}

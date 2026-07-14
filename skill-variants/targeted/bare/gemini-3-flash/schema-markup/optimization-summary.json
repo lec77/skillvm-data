@@ -1,0 +1,18 @@
+{
+  "iterations": 1,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "results": {
+    "iteration-1": {
+      "product-schema": 100,
+      "faq-schema": 100
+    }
+  },
+  "changes": [
+    "No changes needed — baseline skill already achieves 100/100 on both tasks"
+  ],
+  "final_scores": {
+    "product-schema": 100,
+    "faq-schema": 100
+  }
+}

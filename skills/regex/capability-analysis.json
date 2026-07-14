@@ -1,0 +1,176 @@
+{
+  "skill_name": "regex",
+  "skill_path": "skills/regex",
+  "total_files": 2,
+  "total_tokens_estimate": 6900,
+  "purposes": [
+    {
+      "id": "validate-input-with-regex",
+      "description": "Validate user input (email, URL, IP, phone, dates, passwords, UUIDs, semver) using correct regular expression patterns.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.regex",
+            "min_level": "L2",
+            "evidence": "Validation patterns use groups, alternation, anchors, and common patterns for email, URL, date. The password pattern uses lookahead (L3-adjacent) but is provided as a template, not generated."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "parse-and-extract-data",
+      "description": "Extract structured data from log lines, code files, and unstructured text using regex patterns across multiple languages (Python, JavaScript, Go, grep/sed).",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.regex",
+            "min_level": "L3",
+            "evidence": "Log parsing patterns use lookahead/lookbehind (e.g., grep -oP '\"level\"\\s*:\\s*\"\\K[^\"]+'), named groups, and complex multi-part patterns for Apache log format."
+          },
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Python examples use re module (stdlib): re.match, re.search, re.findall, re.sub, re.compile, re.VERBOSE, re.MULTILINE, re.DOTALL flags."
+          },
+          {
+            "id": "gen.code.javascript",
+            "min_level": "L1",
+            "evidence": "JavaScript examples use built-in regex literals, String.match, String.matchAll, String.replace, String.split with regex."
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Shell examples use grep -P/-E/-oP with pipes, sed with extended regex and capture groups, perl one-liners."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "search-and-replace-refactoring",
+      "description": "Perform code refactoring and text cleanup operations using regex-based search-and-replace across files.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.regex",
+            "min_level": "L2",
+            "evidence": "Refactoring patterns use word boundaries (\\b), capture group backreferences, and character class replacements."
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L3",
+            "evidence": "Complex pipelines: grep -rlP | xargs sed, perl -pe with /ge modifier for snake_case to camelCase conversion, sed with multiple substitution commands."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "debug-regex-patterns",
+      "description": "Diagnose and fix regex patterns that do not match as expected, understanding greedy vs lazy, escaping, newline handling, and backtracking issues.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.regex",
+            "min_level": "L2",
+            "evidence": "Gotchas section covers greedy vs lazy, escaping special characters, multiline/dotall flags, and catastrophic backtracking avoidance."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Debugging requires analyzing why a pattern fails: identifying greedy over-matching, missing escapes, or wrong flag usage."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "test-regex-programmatically",
+      "description": "Use the bundled regex_tester.py script to validate, test, explain, and generate regex patterns from the command line.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Running the script with various flags (--pattern, --text, --explain, --generate, --json) and parsing its output."
+          },
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "The script uses re, json, pathlib, argparse from stdlib. Agent may need to invoke or extend it."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-5",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:7-18",
+      "purposes": ["validate-input-with-regex", "parse-and-extract-data", "search-and-replace-refactoring", "debug-regex-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:20-58",
+      "purposes": ["validate-input-with-regex", "parse-and-extract-data", "debug-regex-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:60-68",
+      "purposes": ["parse-and-extract-data", "debug-regex-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:69-150",
+      "purposes": ["validate-input-with-regex"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:152-215",
+      "purposes": ["parse-and-extract-data"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:217-297",
+      "purposes": ["parse-and-extract-data"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:299-337",
+      "purposes": ["parse-and-extract-data"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:339-360",
+      "purposes": ["parse-and-extract-data", "search-and-replace-refactoring"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:362-406",
+      "purposes": ["search-and-replace-refactoring"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:408-460",
+      "purposes": ["debug-regex-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:462-472",
+      "purposes": ["debug-regex-patterns", "parse-and-extract-data"],
+      "type": "instruction"
+    },
+    {
+      "location": "scripts/regex_tester.py:1-461",
+      "purposes": ["test-regex-programmatically"],
+      "type": "script"
+    }
+  ],
+  "unmatched_requirements": []
+}

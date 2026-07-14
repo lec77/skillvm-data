@@ -1,0 +1,35 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "skill": "document-pptx",
+  "results": {
+    "iteration_1": {
+      "pptx-create": {
+        "score": 100,
+        "maxScore": 100,
+        "details": {
+          "file-exists": 1,
+          "text-extracted": 1,
+          "title-slide": 1,
+          "problem-slide": 1,
+          "solution-slide": 1,
+          "team-slide": 1
+        }
+      },
+      "pptx-extract": {
+        "score": 100,
+        "maxScore": 100,
+        "details": {
+          "file-exists": 1,
+          "slide-structure": 1,
+          "slide-content": 1,
+          "financial-data": 1,
+          "completeness": 1
+        }
+      }
+    }
+  },
+  "changes_made": "No changes needed - skill achieved perfect scores (100/100) on both tasks in the first iteration.",
+  "session_id": "openclaw_document-pptx/*_qwen3.5-397b_2026-03-14_19-40-48"
+}

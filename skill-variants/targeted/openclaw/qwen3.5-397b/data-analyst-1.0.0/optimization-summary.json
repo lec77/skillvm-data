@@ -1,0 +1,19 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "csv-pivot": 100,
+    "data-clean": 100
+  },
+  "per_iteration": [
+    {
+      "iteration": 1,
+      "scores": { "csv-pivot": 100, "data-clean": 100 },
+      "changes": "Replaced verbose 573-line SKILL.md (containing irrelevant SQL, visualization, charting content) with focused 95-line version. Key changes: (1) removed SQL query patterns, visualization guides, report templates, statistical analysis sections; (2) added explicit guidance on counting issues on unique rows before dedup; (3) emphasized per-row revenue computation (amount × quantity) before aggregation; (4) added specific date format examples with conversion patterns; (5) clarified invalid email detection (missing TLD). Removed unused files: scripts/data-init.sh, scripts/query.sh, WA_Fn-UseC_-Telco-Customer-Churn.csv."
+    },
+    {
+      "iteration": 2,
+      "scores": { "csv-pivot": 100, "data-clean": 100 },
+      "changes": "Verification run — no changes needed. Confirmed consistent 100/100 scores on both tasks."
+    }
+  ]
+}

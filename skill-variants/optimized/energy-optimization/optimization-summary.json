@@ -1,0 +1,61 @@
+{
+  "skill": "energy-optimization",
+  "originalSize": 5646,
+  "optimizedSize": 2958,
+  "sizeReduction": "47.6%",
+  "iterations": 3,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "results": {
+    "iteration1": {
+      "economic-dispatch": {
+        "score": 80,
+        "maxScore": 100,
+        "failedCriteria": ["within-limits"]
+      },
+      "power-flow": {
+        "score": 85,
+        "maxScore": 100,
+        "failedCriteria": ["angles-reasonable"]
+      }
+    },
+    "iteration2": {
+      "economic-dispatch": {
+        "score": 55,
+        "maxScore": 100,
+        "failedCriteria": ["within-limits", "cost-correct"]
+      },
+      "power-flow": {
+        "score": 85,
+        "maxScore": 100,
+        "failedCriteria": ["angles-reasonable"]
+      }
+    },
+    "iteration3": {
+      "economic-dispatch": {
+        "score": 80,
+        "maxScore": 100,
+        "failedCriteria": ["within-limits"]
+      },
+      "power-flow": {
+        "score": 85,
+        "maxScore": 100,
+        "failedCriteria": ["angles-reasonable"]
+      }
+    }
+  },
+  "bestScores": {
+    "economic-dispatch": 80,
+    "power-flow": 85,
+    "average": 82.5
+  },
+  "changes": [
+    "Removed verbose prose explanations, kept only essential formulas and code",
+    "Merged common mistakes table into inline validation notes",
+    "Removed redundant section separators and duplicate explanations",
+    "Consolidated Bus Power Balance section into code comments",
+    "Added explicit validation notes for angle bounds and generator limit clamping",
+    "Kept all code examples, output format specs, and core methodology intact"
+  ],
+  "notes": "The within-limits and angles-reasonable failures are consistent across all iterations and appear to be model-level issues with qwen3.5-397b rather than skill content gaps. The skill already contains explicit clamping code and angle validation instructions."
+}

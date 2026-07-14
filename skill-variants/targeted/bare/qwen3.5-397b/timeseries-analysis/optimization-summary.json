@@ -1,0 +1,12 @@
+{
+  "skill": "timeseries-analysis",
+  "runtime": "bare",
+  "model": "qwen3.5-397b",
+  "iterations": 1,
+  "scores": {
+    "hp-detrending": [100, 100],
+    "anomaly-detection": [100, 100]
+  },
+  "changes": "No changes needed. The original SKILL.md already achieves 100/100 on both tasks across two consecutive runs.",
+  "notes": "qwen3.5-397b is a highly capable model that handles the timeseries-analysis tasks perfectly with the unmodified skill. The skill provides clear HP filter and anomaly detection guidance that the model follows correctly."
+}

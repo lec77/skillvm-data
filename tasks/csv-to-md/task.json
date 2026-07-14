@@ -1,0 +1,61 @@
+{
+  "id": "csv-to-md",
+  "name": "Convert CSV data to formatted Markdown report",
+  "category": "markdown-converter",
+  "gradingType": "automated",
+  "prompt": "Read inventory.csv and create a formatted Markdown document saved as inventory_report.md. The document should include: (1) A title '# Inventory Report', (2) A summary section with total products count, total inventory value (sum of price * stock for all items), number of unique categories, and number of unique suppliers, (3) The full inventory as a Markdown table with all columns, (4) A 'Low Stock Alert' section listing products with stock below 20 (include product name and current stock), (5) A 'Category Breakdown' section with a table showing each category, item count, and total stock for that category.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "csv-to-md.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Output file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "summary",
+            "weight": 0.25,
+            "description": "Summary statistics correct",
+            "testPattern": "10 products|total value|4 categories|5 suppliers"
+          },
+          {
+            "id": "main-table",
+            "weight": 0.25,
+            "description": "Full inventory table present",
+            "testPattern": "all products in table|table has columns|Wireless Mouse row"
+          },
+          {
+            "id": "low-stock",
+            "weight": 0.25,
+            "description": "Low stock alerts correct",
+            "testPattern": "Low Stock|Standing Desk alert|Ergonomic Chair alert"
+          },
+          {
+            "id": "category-breakdown",
+            "weight": 0.2,
+            "description": "Category breakdown correct",
+            "testPattern": "Category Breakdown|Electronics count|Furniture count"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/markdown-converter",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/markdown-converter/csv-to-md/",
+    "importedAt": "2026-07-07T06:18:53.402Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

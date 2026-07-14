@@ -1,0 +1,14 @@
+{
+  "ready": false,
+  "blockers": [
+    "hardcoded-secrets",
+    "vulnerable-dependencies"
+  ],
+  "sections": {
+    "secrets": "secrets_scan.json",
+    "complexity": "complexity_metrics.json",
+    "deps": "dep_audit.json",
+    "perf": "perf_probe.json"
+  },
+  "combined_fingerprint": "df4839e3e71b3e61"
+}

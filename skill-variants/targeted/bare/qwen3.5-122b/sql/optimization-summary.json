@@ -1,0 +1,30 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "sql",
+  "per_task_scores": {
+    "sql-query": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    },
+    "sql-migrate": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with unmodified verbose skill (identical to skills/sql/SKILL.md)",
+      "scores": { "sql-query": 100, "sql-migrate": 100 },
+      "cost": 0.0311
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill: removed PostgreSQL, MySQL, backup/restore, migration script runner sections. Focused on SQLite-only patterns relevant to tasks (CSV import, schema design, normalization, aggregations, window functions, joins, JSON output). Reduced from ~435 lines to ~130 lines.",
+      "scores": { "sql-query": 100, "sql-migrate": 100 },
+      "cost": 0.0303
+    }
+  ]
+}

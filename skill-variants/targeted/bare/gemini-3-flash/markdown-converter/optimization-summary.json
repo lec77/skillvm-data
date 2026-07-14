@@ -1,0 +1,38 @@
+{
+  "iterations": 5,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1": {
+      "html-to-md": 100,
+      "csv-to-md": 92
+    },
+    "iteration_2": {
+      "html-to-md": 100,
+      "csv-to-md": 92
+    },
+    "iteration_3": {
+      "html-to-md": 100,
+      "csv-to-md": 92
+    },
+    "iteration_4": {
+      "html-to-md": 100,
+      "csv-to-md": 92
+    },
+    "iteration_5": {
+      "html-to-md": 100,
+      "csv-to-md": 92
+    }
+  },
+  "final_scores": {
+    "html-to-md": 100,
+    "csv-to-md": 92
+  },
+  "changes": [
+    "Restructured skill with separate HTML and CSV sections",
+    "Added explicit CSV-to-markdown guidance with Python code template",
+    "Emphasized using raw CSV column headers verbatim in table output",
+    "Added instruction to use human-readable labels in summary sections"
+  ],
+  "notes": "csv-to-md consistently scores 92/100 due to gemini-3-flash renaming CSV column headers to title-case (e.g., 'product_id' → 'Product ID') despite explicit instructions and code templates. The test requires both original CSV header names AND capitalized forms due to a quirk in the test's OR logic. This is a model behavior limitation — gemini-3-flash prioritizes aesthetic formatting over verbatim reproduction."
+}

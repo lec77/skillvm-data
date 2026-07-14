@@ -1,0 +1,40 @@
+{
+  "iterations": 3,
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "iteration_3": 90,
+      "max_achievable": 90,
+      "details": {
+        "output-exists": 0,
+        "entity-count": 1,
+        "conditions-found": 1,
+        "negation-correct": 1,
+        "medications-parsed": 1,
+        "labs-parsed": 1
+      }
+    },
+    "medication-reconciliation": {
+      "iteration_1": 48,
+      "iteration_2": 60,
+      "iteration_3": 60,
+      "max_achievable": 60,
+      "details": {
+        "output-exists": 0,
+        "admission-count": 0,
+        "discharge-count": 0,
+        "continued-correct": 1,
+        "changes-detected": 1,
+        "switched-detected": 1
+      }
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md for qwen3-30b: simplified language, added explicit step-by-step reconciliation algorithm (detect switches first, then classify remaining drugs), added concrete JSON examples with 'name' key for change entries, emphasized Omeprazole-type discontinued detection, clarified switched drugs should NOT also appear in discontinued/new_meds"
+    }
+  ],
+  "notes": "Three evaluation criteria (output-exists, admission-count, discharge-count) score 0 due to a testPattern mismatch in the evaluation framework: JUnit testcase 'name' attributes contain inner test names (e.g. 'reconciliation.json file is present') but the testPattern matches describe block names (e.g. 'reconciliation.json exists'). All functional tests pass at 100%. Maximum achievable scores are 90 (note-extraction) and 60 (medication-reconciliation)."
+}

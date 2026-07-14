@@ -1,0 +1,37 @@
+{
+  "skill": "file-organization",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "fileorg-dedup": 100,
+        "fileorg-messy": 29
+      },
+      "changes": "Replaced verbose 434-line SKILL.md with concise 60-line version. Added explicit directory-to-extension mapping table and shell commands using glob patterns (mv *.pdf etc).",
+      "issues": "zsh fails on glob patterns like *.tar when no matching files exist, causing most files to end up in other/ instead of correct categories."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "fileorg-dedup": 100,
+        "fileorg-messy": 100
+      },
+      "changes": "Replaced shell glob patterns with find -exec mv approach to avoid zsh no-match errors. Added explicit warning not to use glob patterns. Verified with confirmation run (also 100/100).",
+      "issues": "None"
+    }
+  ],
+  "finalScores": {
+    "fileorg-dedup": 100,
+    "fileorg-messy": 100
+  },
+  "keyOptimizations": [
+    "Reduced SKILL.md from 434 lines to ~65 lines for qwen3-30b context efficiency",
+    "Replaced generic examples/tips with exact directory names and extension mappings",
+    "Used find -exec instead of shell globs to avoid zsh no-match errors",
+    "Provided concrete md5sum-based duplicate detection command",
+    "Added explicit report format for duplicate groups"
+  ]
+}

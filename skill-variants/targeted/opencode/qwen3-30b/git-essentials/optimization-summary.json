@@ -1,0 +1,55 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "git-essentials",
+  "per_task_scores": {
+    "git-branch-ops": [100, 100, 100, 0, 0],
+    "git-log-analyze": [0, 100, 0, 0, 0]
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md",
+      "scores": {"git-branch-ops": 100, "git-log-analyze": 0},
+      "notes": "git-log-analyze: model stuck in infinite loop repeating same date command, never wrote output file"
+    },
+    {
+      "iteration": 2,
+      "description": "Restructured SKILL.md to be task-oriented with batch git commands, added macOS date notes, emphasized writing output immediately",
+      "scores": {"git-branch-ops": 100, "git-log-analyze": 100},
+      "notes": "Both tasks passed. git-log-analyze fixed by providing batch command template and date format guidance"
+    },
+    {
+      "iteration": 3,
+      "description": "Added stronger CRITICAL instruction to never use glob for .git, use git -C directly",
+      "scores": {"git-branch-ops": 100, "git-log-analyze": 0},
+      "notes": "git-log-analyze: model still used glob first despite instructions, gave up when glob found no .git"
+    },
+    {
+      "iteration": 4,
+      "description": "Made glob prohibition even more prominent with MANDATORY RULES section, added WRONG/CORRECT examples",
+      "scores": {"git-branch-ops": 100, "git-log-analyze": 0},
+      "notes": "Same glob issue - model ignores skill instructions about not using glob"
+    },
+    {
+      "iteration": 5,
+      "description": "Refined FIRST ACTION RULE, emphasized complete JSON with closing braces, added JSON examples, fixed commit counting guidance",
+      "scores": {"git-branch-ops": 0, "git-log-analyze": 0},
+      "notes": "Both tasks collected correct data but wrote malformed JSON (missing closing braces). Model behavior is inconsistent across runs."
+    }
+  ],
+  "best_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "best_iteration": 2,
+  "key_findings": [
+    "qwen3-30b has a strong tendency to use glob to check for .git directories, which always fails since glob cannot see hidden dirs",
+    "The model sometimes gets stuck in infinite loops repeating the same command",
+    "JSON output is frequently truncated (missing closing braces)",
+    "Behavior is highly non-deterministic - same skill produces wildly different scores across runs",
+    "Providing batch git command templates and explicit JSON examples helps when the model follows them",
+    "The model sometimes ignores system prompt instructions (skill content) entirely"
+  ]
+}

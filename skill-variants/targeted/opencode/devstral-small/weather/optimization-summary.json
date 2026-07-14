@@ -1,0 +1,27 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "weather",
+  "results": {
+    "iteration1": {
+      "weather-compare": 100,
+      "weather-travel": 75,
+      "changes": "Rewrote SKILL.md from base: switched from wttr.in to Open-Meteo API, added city coordinates table, explicit curl commands for all task cities, JSON response parsing guide, WMO weather codes, markdown table output format, and travel/packing section with step-by-step instructions."
+    },
+    "iteration2": {
+      "weather-compare": 100,
+      "weather-travel": 93,
+      "changes": "Expanded travel/packing section with explicit temperature difference format (MUST state X°C/Y°F warmer/cooler), detailed per-city packing list template with 3+ items each, and requirement to reference actual temperature data next to each city."
+    },
+    "iteration3": {
+      "weather-compare": 100,
+      "weather-travel": 100,
+      "changes": "Added sun protection items (sunscreen SPF 30+, sunglasses, hat) explicitly to warm destination packing template, and noted tropical rain showers for umbrella recommendation."
+    }
+  },
+  "finalScores": {
+    "weather-compare": 100,
+    "weather-travel": 100
+  }
+}

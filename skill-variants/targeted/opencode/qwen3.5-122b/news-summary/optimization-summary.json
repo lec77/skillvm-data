@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "per_task_scores": {
+    "parse-rss": 100,
+    "summarize-articles": 100,
+    "multi-feed-digest": 100
+  },
+  "changes": [
+    "Rewrote skill from generic RSS tutorial to task-specific guide with explicit JSON output schemas",
+    "Added complete Python code examples for each of the 3 tasks (parse-rss, summarize-articles, multi-feed-digest)",
+    "Added CRITICAL RULES section emphasizing local files first, Python scripts for parsing, and YYYY-MM-DD date format",
+    "Added detailed extraction rules: alphabetical category sorting, key_numbers minimum count, topic enum values",
+    "Added multi-feed digest structure with highlights spanning multiple categories"
+  ]
+}

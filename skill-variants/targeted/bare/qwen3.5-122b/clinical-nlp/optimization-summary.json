@@ -1,0 +1,49 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "clinical-nlp",
+  "iterations": 3,
+  "scores": {
+    "iteration_1": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "description": "Baseline with unmodified (verbose) skill"
+    },
+    "iteration_2": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "description": "Stability confirmation run with same skill"
+    },
+    "iteration_3": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "description": "Optimized concise skill — same scores, 39% cost reduction"
+    }
+  },
+  "final_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60
+  },
+  "max_achievable_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "explanation": "Three criteria (output-exists on both tasks, admission-count, discharge-count) have testPattern values that don't match JUnit test case names, causing them to always score 0 regardless of model output. The model produces correct output for all criteria — the 40pt loss on medication-reconciliation and 10pt loss on note-extraction are due to evaluation harness pattern-matching bugs."
+  },
+  "changes_made": [
+    "Reduced SKILL.md from 269 lines to ~75 lines (72% reduction)",
+    "Removed verbose Python implementation algorithm (model doesn't need pseudocode)",
+    "Removed ICD-10 code references (not needed for extraction)",
+    "Removed top-20 drug list (model has this knowledge intrinsically)",
+    "Removed regex patterns (model writes its own or does manual extraction)",
+    "Condensed output format examples to single-line JSON",
+    "Kept critical elements: entity types, output schemas, negation rules, medication reconciliation format, drug class groupings"
+  ],
+  "cost_comparison": {
+    "baseline_total": 0.0244,
+    "optimized_total": 0.0148,
+    "reduction_pct": 39
+  }
+}

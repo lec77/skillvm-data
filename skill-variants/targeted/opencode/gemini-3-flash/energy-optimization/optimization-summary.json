@@ -1,0 +1,52 @@
+{
+  "iterations": 5,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "skill": "energy-optimization",
+  "scores": {
+    "iteration_1_baseline": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "total": 180,
+      "notes": "Baseline with unmodified skill. power-flow passed all criteria. economic-dispatch: within-limits=0 despite correct values."
+    },
+    "iteration_2_js_examples": {
+      "power-flow": 85,
+      "economic-dispatch": 0,
+      "total": 85,
+      "notes": "Switched to JavaScript examples. Regression: model used broken inline node script for dispatch (output-exists=0). Power-flow angles not in radians."
+    },
+    "iteration_3_python_restored": {
+      "power-flow": 85,
+      "economic-dispatch": 80,
+      "total": 165,
+      "notes": "Restored Python examples. economic-dispatch recovered. Power-flow still failing angles-reasonable (no per-unit conversion)."
+    },
+    "iteration_4_perunit_conversion": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "total": 180,
+      "notes": "Added explicit per-unit conversion guidance (S_base=100). Power-flow now passes all criteria. economic-dispatch within-limits still fails."
+    },
+    "iteration_5_final_validation": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "total": 180,
+      "notes": "Final validation confirms stable scores. within-limits failure verified as benchmark infrastructure issue (test passes manually with identical data)."
+    }
+  },
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80,
+    "total": 180,
+    "max": 200
+  },
+  "changes_made": [
+    "Added explicit per-unit conversion guidance: reactances are per-unit on 100 MVA base, loads in MW, must divide by S_base=100 before solving",
+    "Added S_base=100 to Python code example with P_pu = P_mw / S_base conversion",
+    "Added line flow MW conversion: multiply per-unit flow by S_base",
+    "Added common mistake entry for angles too large (forgot per-unit conversion)",
+    "Kept Python examples (JavaScript inline scripts failed for gemini-3-flash)",
+    "Made algorithm steps more explicit and numbered"
+  ]
+}

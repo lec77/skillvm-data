@@ -1,0 +1,38 @@
+{
+  "iteration_count": 5,
+  "per_task_scores": {
+    "city-distance": {
+      "iteration_1": "TIMEOUT",
+      "iteration_2": 73,
+      "iteration_3": 50,
+      "iteration_4": 50,
+      "iteration_5": 100
+    },
+    "plate-boundary": {
+      "iteration_1": "TIMEOUT",
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Condensed skill from verbose multi-section format to concise Python-only code with ready-to-use scripts. Removed TypeScript examples and K-NN section. Added complete distance matrix and nearest point patterns."
+    },
+    {
+      "iteration": 3,
+      "description": "Added critical rule: ALWAYS read existing input files, NEVER overwrite them. Added instruction to write a single Python script. Model was overwriting cities.csv with hallucinated data."
+    },
+    {
+      "iteration": 4,
+      "description": "Minor wording changes. Model still computed distances in its head instead of running a script, producing 16x16 matrix with wrong values."
+    },
+    {
+      "iteration": 5,
+      "description": "Restructured skill with CRITICAL WORKFLOW section at top: explicit 4-step workflow (read, write .py file, execute with python3, never compute manually). Made script-execution approach the primary instruction. Model followed the workflow and achieved 100/100 on both tasks."
+    }
+  ],
+  "key_insight": "devstral-small tries to compute haversine distances mentally rather than executing code, producing hallucinated values. The fix was to explicitly instruct it to write a Python script file and execute it, rather than computing and writing JSON directly."
+}

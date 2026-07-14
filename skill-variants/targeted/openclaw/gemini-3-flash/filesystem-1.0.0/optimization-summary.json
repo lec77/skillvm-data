@@ -1,0 +1,38 @@
+{
+  "iterations": 4,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "filesystem-1.0.0",
+  "per_task_scores": {
+    "fs-search": {
+      "iteration_1": 100,
+      "iteration_2": 85,
+      "iteration_3": 85,
+      "iteration_4": 100
+    },
+    "fs-batch-rename": {
+      "iteration_1": 70,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original Chinese-language verbose SKILL.md"
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md in English, made concise, added explicit kebab-case rename guidance preserving dots in filenames (regex [^a-z0-9.] instead of [^a-z0-9]), added JSON output guidance. Fixed fs-batch-rename from 70 to 100, but fs-search regressed to 85 due to missing-dot extension keys."
+    },
+    {
+      "iteration": 3,
+      "description": "Added explicit note that file extensions in JSON must include leading dot (e.g., \".ts\" not \"ts\"). Fixed extension format but nested_depth still wrong (3 instead of 4)."
+    },
+    {
+      "iteration": 4,
+      "description": "Added explicit guidance that find -printf %d is 0-based and needs +1 when root directory counts as depth 1. Both tasks now score 100."
+    }
+  ]
+}

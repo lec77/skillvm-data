@@ -1,0 +1,154 @@
+{
+  "skill_name": "manufacturing-optimization",
+  "skill_path": "skills/manufacturing-optimization",
+  "total_files": 1,
+  "total_tokens_estimate": 1200,
+  "purposes": [
+    {
+      "id": "schedule-fjsp",
+      "description": "Assign operations to machines and determine start times to minimize makespan for a flexible job-shop scheduling problem with precedence, machine exclusivity, and downtime constraints",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "reason.logic",
+            "min_level": "L3",
+            "evidence": "Must solve optimization under multiple constraints: precedence, machine exclusivity, and downtime windows"
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L2",
+            "evidence": "Must decompose scheduling into sub-steps: topological ordering, greedy assignment, and tie-breaking"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Must compute earliest start times, end times, and makespan across multiple operations and machines"
+          },
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "Must produce schedule.json with nested assignments array containing op_id, machine, start, end, and makespan"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Must read the input problem JSON with jobs, machines, and downtime"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L1",
+            "evidence": "Must write schedule.json output"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Write and execute a scheduling script instead of reasoning through the assignment mentally",
+          "primitives": [
+            {
+              "id": "gen.code.python",
+              "min_level": "L2",
+              "evidence": "Implement the greedy heuristic and constraint checking in Python"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L2",
+              "evidence": "Execute the script to produce the schedule"
+            },
+            {
+              "id": "tool.file.read",
+              "min_level": "L1",
+              "evidence": "Read the input problem JSON"
+            },
+            {
+              "id": "tool.file.write",
+              "min_level": "L1",
+              "evidence": "Write schedule.json output"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "repair-infeasible-schedule",
+      "description": "Detect and fix constraint violations in an existing schedule by shifting operations forward until precedence, machine exclusivity, and downtime constraints are satisfied",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "reason.logic",
+            "min_level": "L3",
+            "evidence": "Must detect violations across three constraint types and propagate fixes through dependent operations"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Must recompute start/end times after shifting operations"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "validate-schedule",
+      "description": "Check that a proposed schedule satisfies all precedence, machine exclusivity, and downtime constraints",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Must verify three constraint types across all operations: precedence ordering, no machine overlaps, no downtime overlaps"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L1",
+            "evidence": "Must compare start/end times for consecutive operations"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-11",
+      "purposes": ["schedule-fjsp"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:13-26",
+      "purposes": ["schedule-fjsp"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:28-49",
+      "purposes": ["schedule-fjsp"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:51-59",
+      "purposes": ["repair-infeasible-schedule"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:61-82",
+      "purposes": ["validate-schedule"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:84-99",
+      "purposes": ["schedule-fjsp"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:101-107",
+      "purposes": ["schedule-fjsp"],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

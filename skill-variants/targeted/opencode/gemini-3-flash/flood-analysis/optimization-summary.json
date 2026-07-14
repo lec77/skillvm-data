@@ -1,0 +1,27 @@
+{
+  "skill": "flood-analysis",
+  "runtime": "opencode",
+  "model": "gemini-3-flash",
+  "iterations": 1,
+  "max_iterations": 5,
+  "per_task_scores": {
+    "flood-risk": {
+      "iteration_1": 100
+    },
+    "streamflow-stats": {
+      "iteration_1": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose original skill (136 lines, 4124 bytes) with optimized variant (42 lines, 1582 bytes). Removed NWS flood stage meanings table, USGS data aggregation section, redundant code blocks, complete LP3 example. Consolidated severity classification and merged common pitfalls into Critical Rules section.",
+      "result": "Both tasks scored 100/100"
+    }
+  ],
+  "final_scores": {
+    "flood-risk": 100,
+    "streamflow-stats": 100
+  },
+  "session": "opencode_flood-analysis/*_gemini-3-flash_2026-03-21_20-44-23"
+}

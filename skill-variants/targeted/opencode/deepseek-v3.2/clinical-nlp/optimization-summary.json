@@ -1,0 +1,48 @@
+{
+  "skill": "clinical-nlp",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 2,
+  "scores": {
+    "iteration_1_baseline": {
+      "note-extraction": {
+        "score": 0,
+        "maxScore": 100,
+        "details": "Timed out after 300s. Model wrote a large Python script (250+ lines), spent many tool calls on todowrite/glob/read/write/fix cycles."
+      },
+      "medication-reconciliation": {
+        "score": 60,
+        "maxScore": 100,
+        "details": "Model wrote Python script with indentation errors, spent 3 tool calls fixing LSP errors. Final output was correct but 3 criteria have unmatchable testPatterns."
+      }
+    },
+    "iteration_2_optimized": {
+      "note-extraction": {
+        "score": 90,
+        "maxScore": 100,
+        "achievable_max": 90,
+        "details": "Model wrote JSON directly in 4 messages (was 12+ before). 49s vs timeout. All matchable criteria pass. output-exists criterion (10pts) has testPattern that cannot match any test name."
+      },
+      "medication-reconciliation": {
+        "score": 60,
+        "maxScore": 100,
+        "achievable_max": 60,
+        "details": "Model wrote JSON directly in ~49s (was 4m45s). All matchable criteria pass. 3 criteria (output-exists, admission-count, discharge-count = 40pts) have testPatterns that cannot match any test name."
+      }
+    }
+  },
+  "total_improvement": {
+    "before": "60/200 (30%)",
+    "after": "150/200 (75%)",
+    "achievable_max": "150/200 (75%) — 50pts blocked by unmatchable testPattern regexes in task definitions"
+  },
+  "changes_made": [
+    "Reduced skill from ~270 lines to ~60 lines by removing Python code examples, ICD-10 codes, full drug list, and implementation algorithm",
+    "Added explicit instruction to write JSON directly using write tool instead of creating scripts",
+    "Simplified entity type definitions to concise single-line format",
+    "Kept only essential drug classes for switch detection (statins, ACE inhibitors, PPIs)",
+    "Added exact output format specification for reconciliation JSON",
+    "Added key rules section emphasizing direct JSON writing and correct data types"
+  ],
+  "framework_note": "4 test criteria across both tasks have testPattern regexes that match the describe block name but the evaluator only checks testcase names in JUnit XML. These criteria always score 0 regardless of skill quality."
+}

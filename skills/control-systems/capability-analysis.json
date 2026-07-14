@@ -1,0 +1,107 @@
+{
+  "skill_name": "control-systems",
+  "skill_path": "skills/control-systems",
+  "total_files": 1,
+  "total_tokens_estimate": 2000,
+  "purposes": [
+    {
+      "id": "implement-pid-controller",
+      "description": "Implement a discrete-time PID controller with anti-windup, output clamping, and derivative spike protection, then use it to drive a plant to a setpoint",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L1",
+            "evidence": "Single-file PID class with basic math, no third-party libraries required"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Multi-step PID computation: error, integral accumulation with clamping, derivative with dt division, output sum and clamp"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Must implement anti-windup clamping, output saturation, first-step derivative guard, and non-negative speed simultaneously"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "simulate-vehicle-dynamics",
+      "description": "Simulate longitudinal vehicle motion with adaptive cruise control modes (cruise, follow, emergency) using time-headway gap model and PID speed control",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Simulation loop reading JSON scenario files, Euler integration, mode switching logic, JSON output"
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Multi-condition mode selection: emergency if gap < 50% safe, follow if gap < 100% safe, else cruise, with derived desired_speed per mode"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Safe gap = min_gap + speed * headway_time, Euler integration of position/speed, IMC tuning formulas Kp = tau/(K*lambda)"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Read scenario JSON file with simulation parameters"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L1",
+            "evidence": "Write simulation output (temperatures, control signals, errors) to JSON"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "simulate-thermal-plant",
+      "description": "Simulate a first-order thermal plant with PI control (IMC-tuned), disturbance injection, and output recording",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Complete simulation loop with JSON I/O, IMC tuning function, Euler discretization of thermal model"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "IMC tuning: Kp = tau/(K*lambda), Ki = Kp/tau; thermal model: dT/dt = (1/tau)*(-T + ambient + K*u)"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Read scenario.json with plant parameters"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L1",
+            "evidence": "Write thermal_output.json with simulation results"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:6-13", "purposes": ["implement-pid-controller", "simulate-vehicle-dynamics", "simulate-thermal-plant"], "type": "instruction"},
+    {"location": "SKILL.md:16-63", "purposes": ["implement-pid-controller"], "type": "code_example"},
+    {"location": "SKILL.md:66-85", "purposes": ["simulate-vehicle-dynamics"], "type": "code_example"},
+    {"location": "SKILL.md:89-117", "purposes": ["simulate-vehicle-dynamics"], "type": "code_example"},
+    {"location": "SKILL.md:121-143", "purposes": ["implement-pid-controller", "simulate-thermal-plant"], "type": "code_example"},
+    {"location": "SKILL.md:146-164", "purposes": ["simulate-thermal-plant"], "type": "code_example"},
+    {"location": "SKILL.md:168-198", "purposes": ["simulate-thermal-plant"], "type": "code_example"},
+    {"location": "SKILL.md:202-212", "purposes": ["implement-pid-controller", "simulate-vehicle-dynamics", "simulate-thermal-plant"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

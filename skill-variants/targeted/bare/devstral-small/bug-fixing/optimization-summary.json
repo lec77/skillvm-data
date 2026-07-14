@@ -1,0 +1,35 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "scores": {
+    "iteration_0_baseline": {
+      "debug-bsearch": 100,
+      "debug-race": 20,
+      "notes": "Original verbose systematic-debugging skill. Model used broken boolean lock for race condition."
+    },
+    "iteration_1": {
+      "debug-bsearch": 100,
+      "debug-race": 0,
+      "notes": "Rewrote skill with focused bug patterns and mutex example. Model tried mutex but used const instead of let."
+    },
+    "iteration_2": {
+      "debug-bsearch": 100,
+      "debug-race": [100, 20],
+      "notes": "Made mutex pattern more explicit with key points. Inconsistent - model sometimes skips loading the skill."
+    },
+    "iteration_3_final": {
+      "debug-bsearch": [100, 100, 100],
+      "debug-race": [100, 100, 100],
+      "notes": "Made skill description urgent/mandatory so model always loads it. 3/3 runs perfect on both tasks."
+    }
+  },
+  "changes": [
+    "Replaced large multi-file systematic-debugging skill (11 files) with single focused SKILL.md",
+    "Removed all supporting technique files (root-cause-tracing, defense-in-depth, condition-based-waiting, pressure tests, etc.)",
+    "Added exact copy-paste mutex pattern for race conditions with explicit rules",
+    "Added correct binary search template for off-by-one errors",
+    "Made skill description urgently emphasize that boolean locks don't work, forcing model to load the skill",
+    "Reduced skill from ~300 lines of process philosophy to ~60 lines of actionable patterns"
+  ]
+}

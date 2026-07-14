@@ -1,0 +1,53 @@
+{
+  "file": "data_04.csv",
+  "n_rows": 1000,
+  "columns": {
+    "alpha": {
+      "mean": 72.067727,
+      "std": 5.964681,
+      "ci_lower": 71.693324,
+      "ci_upper": 72.422302,
+      "outlier_count": 11
+    },
+    "beta": {
+      "mean": 80.337456,
+      "std": 7.534158,
+      "ci_lower": 79.866475,
+      "ci_upper": 80.817091,
+      "outlier_count": 25
+    },
+    "gamma": {
+      "mean": 88.510731,
+      "std": 8.577115,
+      "ci_lower": 87.966246,
+      "ci_upper": 89.013741,
+      "outlier_count": 10
+    },
+    "delta": {
+      "mean": 96.983824,
+      "std": 9.823005,
+      "ci_lower": 96.346319,
+      "ci_upper": 97.585071,
+      "outlier_count": 19
+    },
+    "epsilon": {
+      "mean": 105.901476,
+      "std": 10.59849,
+      "ci_lower": 105.259971,
+      "ci_upper": 106.519355,
+      "outlier_count": 21
+    }
+  },
+  "correlations": {
+    "alpha_vs_beta": -0.02598,
+    "alpha_vs_gamma": -0.005869,
+    "alpha_vs_delta": 0.002203,
+    "alpha_vs_epsilon": 0.026951,
+    "beta_vs_gamma": -0.005692,
+    "beta_vs_delta": 0.021452,
+    "beta_vs_epsilon": -0.020259,
+    "gamma_vs_delta": 0.067227,
+    "gamma_vs_epsilon": 0.024235,
+    "delta_vs_epsilon": -0.010147
+  }
+}

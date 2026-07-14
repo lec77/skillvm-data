@@ -1,0 +1,35 @@
+{
+  "skill": "energy-optimization",
+  "runtime": "bare",
+  "model": "gemini-3-flash",
+  "iterations": 4,
+  "scores": {
+    "iteration_1_baseline": {
+      "power-flow": 85,
+      "economic-dispatch": 80
+    },
+    "iteration_2": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    },
+    "iteration_3": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    },
+    "iteration_4": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    }
+  },
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Added explicit per-unit conversion (BASE_MVA=100) for DC power flow to produce angles in radians (<1.0). Restructured economic dispatch with double-clamping and explicit output format requirements. Replaced Python examples with per-unit-aware code."
+    }
+  ],
+  "notes": "economic-dispatch capped at 80/100 due to task definition bug: testPattern 'within limits' does not match test name 'all generators within min/max limits' (regex fails because 'min/max' appears between 'within' and 'limits'). The within-limits criterion always scores 0 regardless of actual test result. Maximum achievable: power-flow=100, economic-dispatch=80."
+}

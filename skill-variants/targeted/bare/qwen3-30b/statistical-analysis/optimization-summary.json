@@ -1,0 +1,22 @@
+{
+  "iterations": 2,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "skill": "statistical-analysis",
+  "per_task_scores": {
+    "hypothesis-testing": {
+      "iteration_1": 95,
+      "iteration_2": 100
+    },
+    "regression-analysis": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Updated Power Analysis section: added abs() around Cohen's d for effect_size to ensure it is always positive, added import math, and included a power_analysis dict example with effect_size and required_n_per_group fields. This fixed the power-analysis criterion which was scoring 0.5 due to negative effect_size."
+    }
+  ]
+}

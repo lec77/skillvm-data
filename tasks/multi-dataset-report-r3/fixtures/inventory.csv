@@ -1,0 +1,19 @@
+SKU,Product,Warehouse,Quantity,MinLevel,LastRestock
+SKU001,Centrifuge Pro,Singapore,48,25,2026-09-14
+SKU002,Microplate Reader,Singapore,72,40,2026-10-02
+SKU003,pH Analyzer,Singapore,130,55,2026-08-19
+SKU004,Centrifuge Pro,Frankfurt,29,20,2026-11-05
+SKU005,Microplate Reader,Frankfurt,6,22,2026-07-28
+SKU006,pH Analyzer,Frankfurt,64,30,2026-09-30
+SKU007,Centrifuge Pro,Sao Paulo,41,35,2026-10-17
+SKU008,Microplate Reader,Sao Paulo,57,45,2026-08-08
+SKU009,pH Analyzer,Sao Paulo,92,50,2026-11-12
+SKU010,Centrifuge Pro,Boston,18,15,2026-10-26
+SKU011,Microplate Reader,Boston,3,14,2026-06-22
+SKU012,pH Analyzer,Boston,86,40,2026-09-07
+SKU013,Centrifuge Pro,Toronto,53,30,2026-11-20
+SKU014,Microplate Reader,Toronto,37,25,2026-10-09
+SKU015,pH Analyzer,Toronto,101,60,2026-08-31
+SKU016,Centrifuge Pro,Singapore,25,20,2026-11-27
+SKU017,Microplate Reader,Singapore,8,16,2026-07-15
+SKU018,pH Analyzer,Singapore,78,35,2026-10-21

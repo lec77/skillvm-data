@@ -1,0 +1,11 @@
+{
+  "sources_reconciled": 4,
+  "total_revenue": 348.5,
+  "shipped_events": 4,
+  "ledger_records": 4,
+  "discrepancies": [
+    "out-of-stock-skus"
+  ],
+  "balanced": false,
+  "combined_fingerprint": "736ce596e6023758"
+}

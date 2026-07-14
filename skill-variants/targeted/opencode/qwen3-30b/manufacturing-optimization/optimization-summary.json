@@ -1,0 +1,42 @@
+{
+  "iterations": 5,
+  "per_task_scores": {
+    "fjsp-schedule": {
+      "iteration_1": 0,
+      "iteration_2": 0,
+      "iteration_3": 100,
+      "iteration_4": 0,
+      "iteration_5": 100
+    },
+    "job-makespan": {
+      "iteration_1": 0,
+      "iteration_2": 0,
+      "iteration_3": 100,
+      "iteration_4": 0,
+      "iteration_5": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose-style SKILL.md. Both tasks scored 0. Model got stuck calling 'question' tool incorrectly in a loop (job-makespan) and timed out (fjsp-schedule)."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md with complete copy-paste Node.js script. Model copied code but {} empty object literals were corrupted to { (missing closing brace), causing SyntaxError. Model got stuck trying to fix with identical edit strings."
+    },
+    {
+      "iteration": 3,
+      "description": "Replaced {} empty objects with new Array().fill(0), used index-based for loops, var declarations, avoided spread operator. Scored 100/100 on both tasks. But inconsistent - confirmation run showed fjsp-schedule at 0."
+    },
+    {
+      "iteration": 4,
+      "description": "Eliminated multi-line object literals, put everything on single lines, used JSON.parse(JSON.stringify(...)) for object creation. Both scored 0 - model still dropped } from inside JSON.stringify({...})) calls, turning })) into ))."
+    },
+    {
+      "iteration": 5,
+      "description": "Completely eliminated object literals from data construction. Used parallel arrays (opIds, opMachines, opStarts, opEnds) instead of objects. Only object literal usage is inside Object.assign(Object.create(null), ...) for final JSON serialization. Built output JSON string manually. Both tasks scored 100/100."
+    }
+  ],
+  "final_approach": "Parallel arrays avoid the model's systematic } character dropping issue. Object literals are only used in the final JSON.stringify call via Object.assign(Object.create(null), {...}), which the model reproduces reliably."
+}

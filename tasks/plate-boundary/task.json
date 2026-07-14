@@ -1,0 +1,61 @@
+{
+  "id": "plate-boundary",
+  "name": "Find nearest tectonic plate boundary to an earthquake epicenter",
+  "category": "geospatial-analysis",
+  "gradingType": "automated",
+  "prompt": "Read earthquake.json with an earthquake's coordinates and boundaries.csv with tectonic plate boundary points. Using the Haversine formula (Earth radius = 6371 km), find the nearest plate boundary point to the earthquake. Also compute the bearing from the earthquake to the nearest boundary point. Write result.json with: nearest_point (object with id, name, latitude, longitude), distance_km (number), bearing_degrees (0-360, 0=North).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "plate-boundary.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "result.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "nearest-id",
+            "weight": 0.25,
+            "description": "Nearest boundary point ID is 3 (Japan Trench South)",
+            "testPattern": "nearest point ID"
+          },
+          {
+            "id": "distance-correct",
+            "weight": 0.25,
+            "description": "Distance is within 5 km of 226.00 km",
+            "testPattern": "distance correct"
+          },
+          {
+            "id": "bearing-valid",
+            "weight": 0.2,
+            "description": "Bearing is in valid range 0-360 degrees",
+            "testPattern": "bearing valid"
+          },
+          {
+            "id": "all-fields",
+            "weight": 0.2,
+            "description": "result.json has all required fields",
+            "testPattern": "all required fields"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/geospatial-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/geospatial-analysis/plate-boundary/",
+    "importedAt": "2026-07-07T06:18:52.829Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

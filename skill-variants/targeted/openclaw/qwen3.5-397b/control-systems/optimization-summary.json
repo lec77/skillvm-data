@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "cruise-control": 100,
+    "temperature-control": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Restructured skill from reference documentation to directive, copy-paste-ready patterns. Provided complete runnable code for both cruise control (with adaptive mode logic, PID gains, gap tracking) and thermal PI controller (with IMC tuning at lambda_factor=0.5). Removed verbose explanatory text, kept only critical rules section. Made output file names and JSON keys explicit in the patterns.",
+      "scores": {
+        "cruise-control": 100,
+        "temperature-control": 100
+      }
+    }
+  ]
+}

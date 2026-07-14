@@ -1,0 +1,35 @@
+{
+  "skill": "manufacturing-optimization",
+  "runtime": "bare",
+  "model": "gemini-3-flash",
+  "iterations": 2,
+  "scores": {
+    "iteration_0_baseline": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100,
+      "note": "Original verbose skill (107 lines), identical to skills/manufacturing-optimization/SKILL.md"
+    },
+    "iteration_1_compressed": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100,
+      "note": "Compressed to 42 lines — removed repair heuristic, constraint-checking code blocks, tips section; simplified algorithm description"
+    },
+    "iteration_2_stability_check": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100,
+      "note": "Confirmed stability of compressed skill"
+    }
+  },
+  "changes": [
+    "Reduced skill from 107 lines to 42 lines (61% reduction)",
+    "Removed verbose Repair Heuristic section (not needed — greedy approach works)",
+    "Removed standalone Constraint Checking code blocks, replaced with concise validation checklist",
+    "Removed Tips for Good Solutions section, integrated key tiebreaker tip into algorithm",
+    "Compressed problem formulation and output format sections",
+    "Simplified pseudocode to natural language steps"
+  ],
+  "final_scores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  }
+}

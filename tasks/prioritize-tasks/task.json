@@ -1,0 +1,61 @@
+{
+  "id": "prioritize-tasks",
+  "name": "Categorize and prioritize tasks by urgency and impact",
+  "category": "plan-my-day-1.0.0",
+  "gradingType": "automated",
+  "prompt": "Read tasks.json which contains 12 tasks, each with a name, deadline, effort level (low/medium/high), impact level (low/medium/high), and category. Today's date is 2026-03-16. Produce priority_report.json with: (1) must_do_today: array of task names that have deadline=today AND impact=high, (2) should_do: array of task names for tasks that are important but not critically urgent today, (3) nice_to_have: array of task names for lower-priority tasks, (4) deferred: array of task names that can wait — tasks with deadline far in the future and low impact, (5) reasoning: an object mapping each task name to a one-line string explaining why it was placed in its category. Every one of the 12 tasks must appear in exactly one of the four arrays.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "prioritize-tasks.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Output file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "must-do-today",
+            "weight": 0.3,
+            "description": "Must-do-today tasks correctly identified",
+            "testPattern": "must_do_today"
+          },
+          {
+            "id": "deferred",
+            "weight": 0.2,
+            "description": "Deferred tasks correctly identified",
+            "testPattern": "deferred"
+          },
+          {
+            "id": "all-categorized",
+            "weight": 0.25,
+            "description": "All 12 tasks categorized",
+            "testPattern": "all 12 tasks"
+          },
+          {
+            "id": "reasoning",
+            "weight": 0.2,
+            "description": "Reasoning provided for all tasks",
+            "testPattern": "reasoning"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/plan-my-day-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/plan-my-day-1.0.0/prioritize-tasks/",
+    "importedAt": "2026-07-07T06:19:11.461Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

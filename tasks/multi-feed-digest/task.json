@@ -1,0 +1,91 @@
+{
+  "id": "multi-feed-digest",
+  "name": "Fetch multiple RSS feeds from server, categorize and summarize, aggregate highlights",
+  "category": "news-summary",
+  "gradingType": "automated",
+  "prompt": "Give me a news briefing of what's happening in the world today. Save it as digest.json with categorized summaries and top highlights.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "multi-feed-digest.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Digest file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "all-feeds",
+            "weight": 0.15,
+            "description": "All 4 feeds parsed",
+            "testPattern": "all 4 source"
+          },
+          {
+            "id": "articles",
+            "weight": 0.15,
+            "description": "All 16 articles extracted",
+            "testPattern": "16 total"
+          },
+          {
+            "id": "summaries",
+            "weight": 0.15,
+            "description": "Per-category summaries",
+            "testPattern": "per-category"
+          },
+          {
+            "id": "tech-detail",
+            "weight": 0.1,
+            "description": "Tech category details",
+            "testPattern": "tech category"
+          },
+          {
+            "id": "biz-detail",
+            "weight": 0.1,
+            "description": "Business category details",
+            "testPattern": "business category"
+          },
+          {
+            "id": "world-detail",
+            "weight": 0.05,
+            "description": "World category details",
+            "testPattern": "world category"
+          },
+          {
+            "id": "science-detail",
+            "weight": 0.05,
+            "description": "Science category details",
+            "testPattern": "science category"
+          },
+          {
+            "id": "highlights",
+            "weight": 0.1,
+            "description": "Aggregated highlights section",
+            "testPattern": "key highlights"
+          },
+          {
+            "id": "cross-feed",
+            "weight": 0.1,
+            "description": "Highlights span multiple feeds",
+            "testPattern": "from multiple"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/news-summary",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/news-summary/multi-feed-digest/",
+    "importedAt": "2026-07-07T06:19:11.457Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

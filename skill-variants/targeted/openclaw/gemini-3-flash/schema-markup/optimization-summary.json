@@ -1,0 +1,43 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "schema-markup",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline with original verbose skill (v1.1.0, 180 lines + 399 lines references)",
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      },
+      "cost": {
+        "faq-schema": 0.0081,
+        "product-schema": 0.0091
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Compressed to v2.0.0-gemini-3-flash (67 lines, no references). Removed consultation framework, irrelevant schema types, validation tools, implementation guidance. Inlined Product and FAQPage JSON-LD templates with explicit rules for enumerations, numeric values, and accurate extraction.",
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      },
+      "cost": {
+        "faq-schema": 0.0086,
+        "product-schema": 0.0087
+      }
+    }
+  ],
+  "changes": [
+    "Replaced verbose v1.1.0 (579 lines across 2 files) with concise v2.0.0-gemini-3-flash (67 lines, single file)",
+    "Removed Initial Assessment, Core Principles, validation tools, implementation guidance, task-specific questions, and related skills sections",
+    "Removed references/schema-examples.md (399 lines of examples not needed for the two task types)",
+    "Retained only Product and FAQPage schema types with inline JSON-LD templates",
+    "Added explicit rules: full schema.org URLs for enumerations, numeric values for prices/ratings, accurate text extraction"
+  ],
+  "finalScores": {
+    "faq-schema": 100,
+    "product-schema": 100
+  }
+}

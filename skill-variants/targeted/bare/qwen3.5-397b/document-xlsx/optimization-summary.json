@@ -1,0 +1,28 @@
+{
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "document-xlsx",
+  "iterations": 3,
+  "scores": {
+    "iteration1_baseline": {
+      "document-xlsx": 93,
+      "xlsx-analyze": 100
+    },
+    "iteration2_optimized": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    },
+    "iteration3_confirmation": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    }
+  },
+  "changes": [
+    "Added rule #6 requiring bold headers, currency format '$#,##0', and column widths of 15 as mandatory formatting",
+    "Added a 'Reading/Analyzing XLSX Files' section with openpyxl read + JSON output pattern for the xlsx-analyze task",
+    "Rewrote the worked example to include currency formatting, column widths, and dynamic last_data_row calculation",
+    "Added explicit warning against applying red fill to formula cells (only numeric data cells)",
+    "Removed bundled template script reference (scripts/create_xlsx.py) to simplify — inline example is sufficient",
+    "Removed unused files: scripts/create_xlsx.py, recalc.py, LICENSE.txt"
+  ]
+}

@@ -1,0 +1,1 @@
+export function tick(dt: number) { return dt }

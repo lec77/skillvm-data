@@ -1,0 +1,159 @@
+{
+  "skill_name": "schema-markup",
+  "skill_path": "skills/schema-markup",
+  "total_files": 2,
+  "total_tokens_estimate": 3350,
+  "purposes": [
+    {
+      "id": "implement-json-ld-schema",
+      "description": "Generate correct JSON-LD structured data markup for web pages (Organization, Article, Product, FAQPage, HowTo, BreadcrumbList, LocalBusiness, Event, SoftwareApplication) following schema.org vocabulary and Google guidelines.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "JSON-LD output is nested JSON (1-5KB range) with @context, @type, @graph, nested objects for author/publisher/offers/aggregateRating. Multiple schema types combined via @graph array."
+          },
+          {
+            "id": "gen.code.html",
+            "min_level": "L2",
+            "evidence": "Schema must be placed in <script type=\"application/ld+json\"> tags in HTML <head> or end of <body>. Next.js implementation uses dangerouslySetInnerHTML."
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "Output must conform to schema.org vocabulary with exact property names (@type, @context, @id, mainEntity), correct value types (ISO 8601 dates, fully qualified URLs, schema.org enumerations)."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "audit-existing-schema",
+      "description": "Assess existing schema markup on a page for errors, missing required properties, content mismatches, and optimization opportunities for rich results.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Must identify missing required properties, invalid values, and mismatches between schema and visible page content. Cross-reference against the common schema types table for required vs recommended fields."
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Read product-marketing-context.md and existing HTML files to check for current schema markup before implementing."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-6",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:8-25",
+      "purposes": ["audit-existing-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:27-48",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:50-66",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:68-106",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:108-124",
+      "purposes": ["audit-existing-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:126-162",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:164-180",
+      "purposes": ["audit-existing-schema", "implement-json-ld-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "references/schema-examples.md:1-18",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "instruction"
+    },
+    {
+      "location": "references/schema-examples.md:19-42",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:44-65",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:67-100",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:102-134",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:136-160",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:162-191",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:193-227",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:229-260",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:262-298",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:300-339",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:341-372",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "references/schema-examples.md:374-399",
+      "purposes": ["implement-json-ld-schema"],
+      "type": "code_example"
+    }
+  ],
+  "unmatched_requirements": []
+}

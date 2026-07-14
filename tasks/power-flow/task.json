@@ -1,0 +1,67 @@
+{
+  "id": "power-flow",
+  "name": "DC Power Flow Analysis",
+  "category": "energy-optimization",
+  "gradingType": "automated",
+  "prompt": "Read network.json describing a 5-bus DC power system. Compute DC power flow: (1) set bus 0 (slack) angle to 0, (2) generator at bus 3 produces 60 MW, (3) solve for bus voltage angles using DC power flow equations P_ij = (theta_i - theta_j) / x_ij, (4) compute line flows. Write power_flow.json with: bus_angles (array of 5 angles in radians), line_flows (array of 6 flow values in MW, positive = from→to direction), generation (array: bus 0 slack output, bus 3 = 60).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "power-flow.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "slack-angle-zero",
+            "weight": 0.1,
+            "description": "Slack bus angle is zero",
+            "testPattern": "slack bus angle is zero"
+          },
+          {
+            "id": "power-balance",
+            "weight": 0.25,
+            "description": "Total generation equals total load",
+            "testPattern": "power balance"
+          },
+          {
+            "id": "line-limits",
+            "weight": 0.2,
+            "description": "All line flows within limits",
+            "testPattern": "line flows within limits"
+          },
+          {
+            "id": "angles-reasonable",
+            "weight": 0.15,
+            "description": "Bus angles are reasonable",
+            "testPattern": "angles are reasonable"
+          },
+          {
+            "id": "gen-values",
+            "weight": 0.2,
+            "description": "Generation values are correct",
+            "testPattern": "generation values"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/energy-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/energy-optimization/power-flow/",
+    "importedAt": "2026-07-07T06:18:52.804Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

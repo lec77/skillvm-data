@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "lab-harmonize": 0,
+      "lab-quality-report": 100
+    },
+    "iteration_2_optimized": {
+      "lab-harmonize": 100,
+      "lab-quality-report": 100
+    },
+    "iteration_3_confirmation": {
+      "lab-harmonize": 100,
+      "lab-quality-report": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md for devstral-small: (1) Added CRITICAL directive to always write and execute a Python script instead of computing manually, (2) Condensed verbose explanations into concise tables and code, (3) Provided a complete copy-paste Python script template with csv module (no pandas dependency), (4) Emphasized using EXACT output filenames from the task prompt, (5) Simplified quality report section with clear field names"
+    }
+  ]
+}

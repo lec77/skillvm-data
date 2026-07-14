@@ -1,0 +1,45 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "pdf-merge-info": 75,
+        "pdf-text-extract": 0
+      },
+      "issues": [
+        "Model did not load skill via <load-skill> for pdf-text-extract task - tried nonexistent CLI commands and stopped after 3 turns",
+        "pdf-merge-info: title extraction failed (0/25) - used isupper() heuristic that doesn't match mixed-case titles like 'Document A - Introduction'",
+        "Model used PyPDF2 extract_text() which has poor text extraction vs pdfplumber"
+      ]
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "pdf-merge-info": 100,
+        "pdf-text-extract": 100
+      },
+      "changes": [
+        "Rewrote skill description to be more compelling and explicitly mention PDF text extraction, merging, and JSON output",
+        "Added explicit pdfplumber-based text extraction patterns instead of PyPDF2",
+        "Added title/author extraction pattern that parses first lines rather than checking isupper()",
+        "Added number parsing patterns for dollar amounts and percentages",
+        "Added step-by-step workflow: extract all text first, examine, then parse",
+        "Emphasized installing pypdf and pdfplumber as first step"
+      ]
+    }
+  ],
+  "confirmation_run": {
+    "scores": {
+      "pdf-merge-info": 100,
+      "pdf-text-extract": 100
+    }
+  },
+  "final_scores": {
+    "pdf-merge-info": 100,
+    "pdf-text-extract": 100
+  }
+}

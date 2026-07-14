@@ -1,0 +1,36 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "filesystem-1.0.0",
+  "scores": {
+    "iteration1_baseline": {
+      "fs-search": 8,
+      "fs-batch-rename": "timeout"
+    },
+    "iteration2_english_rewrite": {
+      "fs-search": 100,
+      "fs-batch-rename": 20
+    },
+    "iteration3_heredoc_approach": {
+      "fs-search": 100,
+      "fs-batch-rename": 0
+    },
+    "iteration4_heredoc_v2": {
+      "fs-search": 70,
+      "fs-batch-rename": 0
+    },
+    "iteration5_no_regex": {
+      "fs-search": 85,
+      "fs-batch-rename": 100
+    }
+  },
+  "changes": [
+    "Rewrote skill from Chinese to English for better model comprehension",
+    "Replaced verbose bash/find/grep examples with complete Python scripts",
+    "Added explicit instructions to write .py files and run them, not use python3 -c",
+    "Removed all regex patterns - qwen3-30b cannot serialize regex with special characters into JSON tool arguments",
+    "Replaced regex-based kebab-case conversion with character-by-character string processing (isalnum check)",
+    "Added critical rules section emphasizing script-based approach and output file placement"
+  ]
+}

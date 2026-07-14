@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>Tech Daily News</title>
+    <link>https://example.com/tech</link>
+    <description>Latest technology news</description>
+    <lastBuildDate>Thu, 12 Mar 2026 08:00:00 GMT</lastBuildDate>
+    <item>
+      <title>OpenAI Announces GPT-5 with Enhanced Reasoning</title>
+      <link>https://example.com/tech/gpt5</link>
+      <description>OpenAI has unveiled GPT-5, featuring significant improvements in mathematical reasoning and code generation. The model scores 92% on graduate-level math benchmarks.</description>
+      <pubDate>Thu, 12 Mar 2026 07:30:00 GMT</pubDate>
+      <category>AI</category>
+    </item>
+    <item>
+      <title>Apple Reveals M5 Chip Architecture</title>
+      <link>https://example.com/tech/m5</link>
+      <description>Apple's new M5 processor uses a 2nm process and delivers 40% better performance per watt compared to M4. Expected in MacBook Pro models later this year.</description>
+      <pubDate>Thu, 12 Mar 2026 06:45:00 GMT</pubDate>
+      <category>Hardware</category>
+    </item>
+    <item>
+      <title>EU Passes Comprehensive AI Regulation Framework</title>
+      <link>https://example.com/tech/eu-ai</link>
+      <description>The European Union has approved sweeping AI regulations requiring transparency, bias audits, and human oversight for high-risk AI systems deployed in member states.</description>
+      <pubDate>Wed, 11 Mar 2026 18:00:00 GMT</pubDate>
+      <category>Policy</category>
+    </item>
+    <item>
+      <title>SpaceX Successfully Tests Starship Orbital Refueling</title>
+      <link>https://example.com/tech/spacex</link>
+      <description>SpaceX completed the first successful orbital propellant transfer between two Starship vehicles, a critical milestone for lunar and Mars missions.</description>
+      <pubDate>Wed, 11 Mar 2026 15:20:00 GMT</pubDate>
+      <category>Space</category>
+    </item>
+    <item>
+      <title>Quantum Computing Breakthrough: 1000-Qubit Processor</title>
+      <link>https://example.com/tech/quantum</link>
+      <description>IBM has demonstrated a 1000-qubit quantum processor with error correction, marking a significant step toward practical quantum advantage in drug discovery and materials science.</description>
+      <pubDate>Wed, 11 Mar 2026 12:00:00 GMT</pubDate>
+      <category>Quantum</category>
+    </item>
+    <item>
+      <title>Global Cybersecurity Spending to Reach $300B in 2026</title>
+      <link>https://example.com/tech/security</link>
+      <description>A new Gartner report projects worldwide cybersecurity spending will hit $300 billion in 2026, driven by AI-powered threats and expanding attack surfaces from IoT devices.</description>
+      <pubDate>Tue, 10 Mar 2026 09:00:00 GMT</pubDate>
+      <category>Security</category>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,35 @@
+{
+  "iterations": 3,
+  "originalLines": 235,
+  "optimizedLines": 106,
+  "originalBytes": 6766,
+  "optimizedBytes": 3015,
+  "sizeReduction": "55%",
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "perTaskScores": {
+    "parallel-checksum": {
+      "iteration1": 0,
+      "iteration2": 0,
+      "iteration3": 0,
+      "bestTargetedBaseline": 0,
+      "note": "Scores 0 across ALL models and ALL skill variants (targeted, optimized). Likely a test evaluation/pattern-matching bug — the agent produces correct output but tests fail to match."
+    },
+    "parallel-wordcount": {
+      "iteration1": 15,
+      "iteration2": 45,
+      "iteration3": 45,
+      "bestTargetedBaseline": 45,
+      "note": "Matches best targeted baseline. Iteration 1 scored low because model used regex+lowercase; fixed by adding explicit split() instruction."
+    }
+  },
+  "changesMade": [
+    "Removed redundant sections: Loop-to-Map Transformation, Output Ordering table, Resource Management (manual cleanup), Error Handling, Performance tuning details, ProcessPoolExecutor section",
+    "Merged decision framework and ordering into single Quick Reference table",
+    "Kept two key patterns (file checksums, word counting) as complete runnable examples with __name__ guard",
+    "Kept critical warnings: no shared mutable state, context manager usage",
+    "Added IMPORTANT WORKFLOW section: write script immediately, use python3, don't read data files with tools",
+    "Added explicit rule: use f.read().split() for word counting, not regex/lowercase",
+    "Removed chunksize tuning tip (not needed for task-relevant file counts)"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "skill": "energy-optimization",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 3,
+  "per_task_scores": {
+    "economic-dispatch": {
+      "iteration_1": 55,
+      "iteration_2": 80,
+      "iteration_3": 80,
+      "final": 80,
+      "max_achievable": 80,
+      "note": "within-limits criterion has a broken testPattern regex that never matches the test name, making 80 the maximum possible score"
+    },
+    "power-flow": {
+      "iteration_1": 40,
+      "iteration_2": 85,
+      "iteration_3": 100,
+      "final": 100,
+      "max_achievable": 100
+    }
+  },
+  "consistency_check": {
+    "runs": 2,
+    "economic-dispatch": [80, 80],
+    "power-flow": [100, 100]
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Rewrote skill to be directive for small models: added CRITICAL RULES section emphasizing writing Python scripts (not mental computation), string content for write_file, and complete copy-paste Python script templates for both tasks. Fixed slack generation formula (total_load - other_gen, not vice versa)."
+    },
+    {
+      "iteration": 3,
+      "description": "Added per-unit conversion (S_base=100) to DC power flow script to fix unreasonably large angles. Made generator dispatch setting more explicit with hardcoded example values. Added assertions to economic dispatch script for self-verification. Increased iteration count to 500."
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "skill": "statistical-analysis",
+  "scores": {
+    "iteration_1": {
+      "hypothesis-testing": 95,
+      "regression-analysis": 100
+    },
+    "iteration_2": {
+      "hypothesis-testing": 100,
+      "regression-analysis": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Fixed Power Analysis section: added explicit instruction to use abs() on Cohen's d before passing to tt_ind_solve_power (which requires positive effect size). Added example showing effect_size field in power_analysis JSON output."
+    }
+  ]
+}

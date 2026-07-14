@@ -1,0 +1,53 @@
+{
+  "id": "ilp-triage",
+  "name": "Incident Triage",
+  "category": "parallelism-ilp",
+  "gradingType": "automated",
+  "prompt": "Triage an incident by gathering four independent signals, then synthesize a verdict. Run four independent probes, each a different tool over a different source, then build the triage report:\n\n1. python3 tools/scan_logs.py signals/logs log_scan.json\n2. python3 tools/diff_config.py signals/baseline.conf signals/current.conf config_drift.json\n3. python3 tools/check_thresholds.py signals/metrics.json threshold_check.json\n4. python3 tools/correlate_alerts.py signals/alerts.json alert_correlation.json\n\nThe four probes are independent and may run in any order (or together). After all four reports exist, run the synthesizer:\n\n   python3 tools/build_triage.py\n\nThis reads the four signal reports and writes triage_report.json.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "triage.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "reports-exist",
+            "weight": 0.1,
+            "description": "All four signal reports and triage_report.json are created",
+            "testPattern": "all signal reports exist"
+          },
+          {
+            "id": "section-values",
+            "weight": 0.3,
+            "description": "Each signal report's non-fingerprint values match the expected probe output",
+            "testPattern": "values match for"
+          },
+          {
+            "id": "fingerprints",
+            "weight": 0.4,
+            "description": "Each signal fingerprint matches, verifying the CPU-bound probe actually ran",
+            "testPattern": "fingerprint matches for"
+          },
+          {
+            "id": "triage-report",
+            "weight": 0.2,
+            "description": "triage_report.json is valid with a correct combined fingerprint and severity verdict",
+            "testPattern": "triage_report is valid"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/incident-triager",
+  "origin": {
+    "source": "skvm-ae",
+    "notes": "Genuine instruction-level-parallelism task: four heterogeneous probes (logs, config diff, metric thresholds, alert correlation) over four different sources run in one turn, then a merge. Cannot be expressed as a single fan-out loop over a collection."
+  }
+}

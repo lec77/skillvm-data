@@ -1,0 +1,34 @@
+{
+  "iterations": 2,
+  "maxIterations": 5,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "document-pdf",
+  "results": {
+    "iteration1": {
+      "session": "openclaw_document-pdf/*_gemini-3-flash_2026-03-18_20-40-46",
+      "scores": {
+        "document-pdf": 85,
+        "pdf-create": 100
+      },
+      "notes": "pdf-create perfect. document-pdf lost 15 points on summary-quality (LLM judge scored 0.5/1.0 — summary lacked formatted markdown tables and detailed recommendations)."
+    },
+    "iteration2": {
+      "session": "openclaw_document-pdf/*_gemini-3-flash_2026-03-18_20-42-56",
+      "scores": {
+        "document-pdf": 100,
+        "pdf-create": 100
+      },
+      "notes": "Both tasks perfect. All criteria passed."
+    }
+  },
+  "changes": [
+    "Created targeted SKILL.md with concise pdfplumber extraction and reportlab creation patterns",
+    "Added markdown summary writing guide with explicit structure (tables, key findings, recommendations)",
+    "Added --break-system-packages fallback for pip install in externally-managed environments"
+  ],
+  "finalScores": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  }
+}

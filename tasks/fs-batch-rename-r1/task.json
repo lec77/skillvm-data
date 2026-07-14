@@ -1,0 +1,49 @@
+{
+  "id": "fs-batch-rename-r1",
+  "name": "Batch rename files to kebab-case",
+  "category": "filesystem-1.0.0",
+  "gradingType": "automated",
+  "prompt": "Rename all files in the messy_files/ directory to kebab-case: lowercase everything, replace spaces, underscores, parentheses, brackets, and other special characters with hyphens, collapse consecutive hyphens into one, and remove leading/trailing hyphens from the name (keep the extension). For example: \"Summary (Draft).txt\" becomes \"summary-draft.txt\", \"metrics[v3].csv\" becomes \"metrics-v3.csv\". After renaming, produce rename_log.json in the current directory: an object mapping each original filename to its new filename.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "fs-batch-rename.test.ts",
+        "criteria": [
+          {
+            "id": "rename-log",
+            "weight": 0.3,
+            "description": "rename_log.json exists with correct mappings",
+            "testPattern": "rename_log.json exists|has all 12 mappings|maps old names to new"
+          },
+          {
+            "id": "renamed-files",
+            "weight": 0.4,
+            "description": "All files correctly renamed on disk",
+            "testPattern": "renamed files exist|kebab-case naming"
+          },
+          {
+            "id": "originals-removed",
+            "weight": 0.3,
+            "description": "No original messy-named files remain",
+            "testPattern": "no original files remain"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/filesystem-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/filesystem-1.0.0/fs-batch-rename/",
+    "importedAt": "2026-07-07T06:18:52.811Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

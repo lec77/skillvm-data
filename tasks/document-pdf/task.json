@@ -1,0 +1,81 @@
+{
+  "id": "document-pdf",
+  "name": "Extract and summarize a PDF",
+  "category": "document-pdf",
+  "gradingType": "hybrid",
+  "prompt": "Extract all text and tables from sample.pdf. Save the extracted data as `pdf_extract.json` containing: (1) a `regional_revenue` array with objects for each region (North, South, East, West, Total) including Q1, Q2, Q3, YTD Total, and YoY Change fields, and (2) a `product_breakdown` array with objects for each product line including name, revenue, and percentage. Also write `summary.md` with a structured markdown summary of the key findings, including the tables in markdown format and any recommendations from the report.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 0.7,
+      "payload": {
+        "testFile": "pdf-extract.test.ts",
+        "criteria": [
+          {
+            "id": "json-valid",
+            "weight": 0.142857,
+            "description": "pdf_extract.json exists and is valid JSON",
+            "testPattern": "exists and is valid JSON"
+          },
+          {
+            "id": "regions-present",
+            "weight": 0.142857,
+            "description": "All 4 regions are present in extracted data",
+            "testPattern": "all 4 regions"
+          },
+          {
+            "id": "north-q1",
+            "weight": 0.142857,
+            "description": "North region Q1 revenue is 1250",
+            "testPattern": "North region Q1"
+          },
+          {
+            "id": "total-ytd",
+            "weight": 0.142857,
+            "description": "Total YTD revenue is 18160",
+            "testPattern": "Total YTD"
+          },
+          {
+            "id": "products",
+            "weight": 0.142857,
+            "description": "Product breakdown has 4 products",
+            "testPattern": "4 products"
+          },
+          {
+            "id": "west-ytd",
+            "weight": 0.142857,
+            "description": "West region YTD is 6350",
+            "testPattern": "West region YTD"
+          },
+          {
+            "id": "summary-md",
+            "weight": 0.142857,
+            "description": "summary.md exists with markdown tables",
+            "testPattern": "contains markdown table"
+          }
+        ]
+      }
+    },
+    {
+      "method": "llm-judge",
+      "id": "summary-quality",
+      "name": "Structured summary with tables and recommendations",
+      "weight": 0.3,
+      "maxScore": 1,
+      "rubric": "Context: The agent was asked to extract text and tables from a Q3 2025 Regional Sales Report PDF and produce pdf_extract.json with structured data and summary.md with a markdown summary. The PDF contains regional revenue (North/South/East/West) across Q1-Q3 with YTD totals and YoY changes, plus a product line breakdown (Core Platform, Enterprise Add-ons, New Product Line, Services).\n\nScoring:\n1: Well-structured markdown summary with formatted tables showing regional revenue and product breakdown, mentions 12% YoY growth, regional highlights (West +18%, East -5%), and includes actionable recommendations\n0.5: Some structure but missing tables or recommendations, or data is partially extracted\n0: No meaningful summary produced or data is mostly missing"
+    }
+  ],
+  "skill": "../../skills/document-pdf",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/document-pdf/document-pdf/",
+    "importedAt": "2026-07-07T06:18:41.478Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

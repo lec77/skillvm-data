@@ -1,0 +1,51 @@
+{
+  "skill": "bug-fixing",
+  "runtime": "openclaw",
+  "model": "qwen3.5-122b",
+  "iterations": 3,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline - original verbose skill with 10 supporting files",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Removed 10 unnecessary files, compressed SKILL.md from 296 lines to 38 lines",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 20
+      },
+      "notes": "debug-race failure was model variance (broken mutex implementation), not skill regression"
+    },
+    {
+      "iteration": 2,
+      "description": "Re-run of iteration 1 to confirm variance hypothesis",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    },
+    {
+      "iteration": 3,
+      "description": "Confirmation run - consistent 100/100",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    }
+  ],
+  "changes": [
+    "Removed 10 unnecessary files: test-academic.md, test-pressure-1.md, test-pressure-2.md, test-pressure-3.md, CREATION-LOG.md, condition-based-waiting-example.ts, find-polluter.sh, condition-based-waiting.md, defense-in-depth.md, root-cause-tracing.md",
+    "Compressed SKILL.md from 296 lines (~10KB) to 38 lines (~1KB) - removed verbose examples, rationalizations table, red flags section, and supporting technique references",
+    "Retained core 4-phase debugging process in concise format"
+  ],
+  "finalScores": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  },
+  "tokenReduction": "~46K input tokens → ~28K input tokens (estimated 39% reduction)"
+}

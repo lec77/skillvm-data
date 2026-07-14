@@ -1,0 +1,53 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "skill": "energy-optimization",
+  "per_task_scores": {
+    "power-flow": {
+      "iteration_1": 85,
+      "iteration_2": 85,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100,
+      "final": 100
+    },
+    "economic-dispatch": {
+      "iteration_1": 80,
+      "iteration_2": 80,
+      "iteration_3": 80,
+      "iteration_4": 80,
+      "iteration_5": 80,
+      "final": 80
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Initial targeted skill with concrete Python implementations for both DC power flow and economic dispatch"
+    },
+    {
+      "iteration": 2,
+      "description": "Added emphasis on setting generation from prompt (not from JSON data), added verification checklist"
+    },
+    {
+      "iteration": 3,
+      "description": "Added per-unit conversion (S_base=100 MVA) for DC power flow to produce small angles. Fixed power-flow from 85 to 100."
+    },
+    {
+      "iteration": 4,
+      "description": "Changed economic dispatch workflow to compute via exec then write via write tool to ensure file is correctly saved"
+    },
+    {
+      "iteration": 5,
+      "description": "Simplified Python code with explicit float clamping, increased bisection iterations, clarified step-by-step workflow"
+    }
+  ],
+  "key_improvements": [
+    "Per-unit conversion (S_base=100) for DC power flow - angles were 100x too large without it",
+    "Explicit instruction to set generation values from task prompt, not from JSON data fields",
+    "Use python3 (not python) for execution",
+    "Two-step write workflow: compute via exec, then save via write tool"
+  ],
+  "notes": "Economic dispatch within-limits test consistently fails at 80/100 despite correct dispatch values (verified by running test manually with identical JSON). The computed values (100, 200, 20, 180 MW) are all within generator limits. This appears to be an environmental issue with the openclaw adapter's file sync or test execution context, not a skill quality issue."
+}

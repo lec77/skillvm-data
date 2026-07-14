@@ -1,0 +1,21 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "weather",
+  "per_task_scores": {
+    "weather-compare": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    },
+    "weather-travel": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    }
+  },
+  "changes_made": [
+    "No changes needed - the original wttr.in-based skill already achieves 100/100 on both tasks consistently across 2 runs. qwen3.5-122b correctly follows the skill instructions to fetch real weather data via curl and present it in well-formatted comparison tables."
+  ],
+  "final_skill_variant": "original (unchanged)",
+  "notes": "The model reliably uses wttr.in with the format codes from the skill, parses the output, and produces markdown tables with all required metrics (temperature, humidity, wind speed, conditions). Both weather-compare and weather-travel tasks pass all evaluation criteria including API call verification, metric presence, and LLM-judge quality assessments."
+}

@@ -1,0 +1,47 @@
+{
+  "skill": "clinical-nlp",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration_1_baseline": {
+      "medication-reconciliation": 13,
+      "note-extraction": 90
+    },
+    "iteration_2": {
+      "medication-reconciliation": 60,
+      "note-extraction": 0
+    },
+    "iteration_3": {
+      "medication-reconciliation": 0,
+      "note-extraction": 90
+    },
+    "iteration_4": {
+      "medication-reconciliation": 40,
+      "note-extraction": 90
+    },
+    "iteration_5_final": {
+      "medication-reconciliation": 60,
+      "note-extraction": 90
+    }
+  },
+  "best_scores": {
+    "medication-reconciliation": 60,
+    "note-extraction": 90
+  },
+  "changes": [
+    "Reduced skill from 270 lines to ~80 lines — shorter context improves qwen3-30b tool calling reliability",
+    "Removed Python regex examples and implementation algorithm — model uses file tools, not Python scripts",
+    "Removed ICD-10 codes, top-20 drug list, and other reference noise",
+    "Added explicit instruction to read files first and never guess content",
+    "Added instruction to not write Python scripts — extract entities by direct analysis",
+    "Split skill into Task A (entity extraction) and Task B (medication reconciliation) to prevent task confusion",
+    "Added compact JSON examples matching exact expected output structure",
+    "Added instruction to write only the requested output file",
+    "Simplified drug class list to essential entries for switch detection"
+  ],
+  "notes": {
+    "scoring_ceiling": "Three test criteria (output-exists, admission-count, discharge-count) have regex patterns that don't match bun test JUnit testcase names, making them structurally unachievable (always score 0). Maximum achievable: note-extraction 90/100, medication-reconciliation 60/100.",
+    "model_challenges": "qwen3-30b has intermittent tool calling issues (malformed JSON for read_file), causing non-deterministic behavior. When files are read successfully, reconciliation accuracy is high."
+  }
+}

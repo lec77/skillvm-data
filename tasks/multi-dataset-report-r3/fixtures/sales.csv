@@ -1,0 +1,21 @@
+Date,Product,Region,Revenue,Units,Discount
+2026-08-04,Centrifuge Pro,APAC,5200,4,0.05
+2026-08-12,Microplate Reader,EMEA,3800,3,0.10
+2026-08-20,pH Analyzer,LATAM,1450,9,0.00
+2026-08-28,Centrifuge Pro,NA,5600,5,0.05
+2026-09-05,Microplate Reader,APAC,4100,4,0.15
+2026-09-14,pH Analyzer,EMEA,1250,7,0.05
+2026-09-22,Centrifuge Pro,LATAM,4900,3,0.00
+2026-09-30,Microplate Reader,NA,4400,6,0.10
+2026-10-05,pH Analyzer,APAC,1600,11,0.05
+10/13/2026,Centrifuge Pro,EMEA,5350,4,0.00
+2026-10-21,Microplate Reader,LATAM,3600,3,0.15
+2026-10-29,pH Analyzer,NA,1750,12,0.05
+2026-11-06,Centrifuge Pro,APAC,5800,6,0.10
+2026-11-15,Microplate Reader,EMEA,4250,5,0.00
+2026-11-23,pH Analyzer,LATAM,1350,8,0.05
+2026-12-01,Centrifuge Pro,NA,6100,7,0.15
+2026-12-09,Microplate Reader,APAC,3950,4,0.05
+2026-12-15,pH Analyzer,EMEA,1580,10,0.00
+2026-09-05,Microplate Reader,APAC,4100,4,0.15
+2026-12-01,Centrifuge Pro,NA,6100,7,0.15

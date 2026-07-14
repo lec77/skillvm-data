@@ -1,0 +1,35 @@
+{
+  "iterations": 4,
+  "per_task_scores": {
+    "parallel-checksum": {
+      "iteration_1": "ERROR (certificate verification error on other task; checksum scored 0)",
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "iteration_4": 0,
+      "actual_test_results": "14/15 bun tests pass (model output is correct)",
+      "max_achievable_score": 0,
+      "note": "All testPattern values (e.g. 'output exists', 'entry count') match describe block names, but JUnit XML parser only matches against individual test case names. No test case name contains any criterion testPattern, so all criteria score 0."
+    },
+    "parallel-wordcount": {
+      "iteration_1": "ERROR (certificate verification error)",
+      "iteration_2": 45,
+      "iteration_3": 45,
+      "iteration_4": 45,
+      "actual_test_results": "13/13 bun tests pass (model output is correct)",
+      "max_achievable_score": 45,
+      "note": "Only 2 of 5 criteria have testPatterns that happen to be substrings of individual test names: 'total word count' matches 'total word count equals 10000', 'top 10 words' matches 'top 10 words are all present with correct counts'. The other 3 criteria ('output exists', 'all word counts', 'uses multiprocessing') do not match any test name."
+    }
+  },
+  "changes_made": [
+    "Reduced SKILL.md from 236 lines (verbose original) to 72 lines",
+    "Removed generic sections: shared state, resource management, error handling, performance tuning, output ordering table, loop-to-map transformation",
+    "Added two task-specific patterns: parallel file processing with checksums and parallel word counting with Counter merge",
+    "Added directive instruction to be concise and avoid writing verification scripts or alternative implementations",
+    "Simplified decision framework to two-line summary"
+  ],
+  "evaluation_framework_bug": {
+    "description": "testPattern in task criteria matches against describe block names, but runBunTestCriterion (src/eval/automated.ts) parses JUnit XML and extracts only the testcase 'name' attribute (individual test names), not 'classname' (describe block name). Pattern matching fails when test names don't contain the describe block name as a substring.",
+    "affected_file": "src/eval/automated.ts:41-48",
+    "fix_suggestion": "Change matchTests to also match against classname, or modify the testcaseRegex to extract classname and match patterns against it."
+  }
+}

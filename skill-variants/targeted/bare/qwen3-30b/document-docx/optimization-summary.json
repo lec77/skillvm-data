@@ -1,0 +1,34 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "scores": {
+    "iteration1_baseline": {
+      "docx-create": 90,
+      "docx-extract": 0
+    },
+    "iteration2_simplified_skill": {
+      "docx-create": 90,
+      "docx-extract": 100
+    },
+    "iteration3_consistency_check": {
+      "docx-create": 90,
+      "docx-extract": 100
+    },
+    "iteration4_wrap_none_fix": {
+      "docx-create": 90,
+      "docx-extract": 100
+    },
+    "iteration5_python_docx_extraction": {
+      "docx-create": 100,
+      "docx-extract": 100
+    }
+  },
+  "changes": [
+    "Rewrote SKILL.md from 197 lines to ~70 lines, removing all irrelevant workflows (redlining, tracked changes, image conversion, OOXML editing)",
+    "Added explicit instruction to always write output files to disk (fixed docx-extract scoring 0 because model never wrote invoice_data.json)",
+    "Replaced pandoc text extraction with python-docx extraction script (fixed docx-create content criterion failing because pandoc wraps lines at 72 chars, breaking 'March 2026' across lines)",
+    "Removed ooxml.md, ooxml/ directory (60+ XSD schemas), scripts/ directory, and LICENSE.txt — none referenced by final SKILL.md",
+    "Kept docx-js.md as the only reference document (needed for document creation API)"
+  ]
+}

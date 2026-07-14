@@ -1,0 +1,51 @@
+id,latitude,longitude,name
+1,41.0,142.0,Japan Trench North
+2,38.0,143.5,Japan Trench Central
+3,35.0,142.0,Japan Trench South
+4,31.0,138.0,Nankai Trough
+5,25.0,127.0,Ryukyu Trench
+6,20.0,122.0,Philippine Trench North
+7,13.0,126.5,Philippine Trench Central
+8,7.0,127.5,Philippine Trench South
+9,0.0,128.0,Molucca Passage
+10,-5.0,130.0,Banda Arc
+11,-8.0,140.0,New Guinea Trench West
+12,-5.0,148.0,New Britain Trench
+13,-10.0,160.0,Solomon Trench
+14,-15.0,168.0,Vanuatu Trench
+15,-22.0,172.0,Tonga Trench North
+16,-25.0,176.0,Tonga Trench
+17,-30.0,178.0,Kermadec Trench North
+18,-36.0,178.0,Kermadec Trench South
+19,-42.0,174.0,New Zealand North
+20,-46.0,168.0,New Zealand South
+21,-52.0,160.0,Macquarie Ridge
+22,-55.0,150.0,Macquarie Ridge South
+23,-55.0,130.0,South Pacific
+24,-55.0,110.0,South Pacific West
+25,-50.0,-80.0,Chile Rise South
+26,-45.0,-76.0,Chile Rise North
+27,-40.0,-74.0,Valdivia Fault
+28,-35.0,-72.0,Chile Trench Central
+29,-28.0,-71.0,Chile Trench North
+30,-20.0,-70.5,Peru Trench South
+31,-12.0,-77.5,Peru Trench Central
+32,-5.0,-81.0,Peru Trench North
+33,2.0,-78.0,Colombia Trench
+34,8.0,-77.0,Middle America Trench South
+35,14.0,-92.0,Middle America Trench Central
+36,18.0,-104.0,Middle America Trench North
+37,22.0,-109.0,Gulf of California
+38,28.0,-113.0,Baja California
+39,34.0,-120.5,California Coast
+40,40.0,-124.5,Cascadia South
+41,44.0,-125.5,Cascadia Central
+42,48.0,-126.0,Cascadia North
+43,52.0,-131.0,Queen Charlotte
+44,55.0,-138.0,Alaska South
+45,57.0,-149.0,Kodiak
+46,57.5,-158.0,Alaska Peninsula
+47,54.0,-165.0,Aleutian West
+48,52.0,-175.0,Aleutian Central
+49,50.0,170.0,Aleutian East
+50,45.0,150.0,Kuril Trench South

@@ -1,0 +1,95 @@
+{
+  "skill_name": "plan-my-day-1.0.0",
+  "skill_path": "skills/plan-my-day-1.0.0",
+  "total_files": 2,
+  "total_tokens_estimate": 830,
+  "purposes": [
+    {
+      "id": "generate-daily-plan",
+      "description": "Produce an energy-optimized, time-blocked daily schedule with top-3 priorities, hour-by-hour blocks, success criteria, and evening check-in template",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "reason.planning",
+            "min_level": "L2",
+            "evidence": "Must decompose the day into time blocks, assign priorities to energy windows, and handle fixed commitments"
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Must satisfy multiple constraints: respect existing appointments, match task difficulty to energy levels, include buffer time, protect personal time"
+          },
+          {
+            "id": "gen.text.prose",
+            "min_level": "L2",
+            "evidence": "Must generate multi-section structured text with consistent formatting across time blocks"
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L3",
+            "evidence": "Must conform to a detailed output schema (exact section names, checkbox format, markdown structure) plus style and content constraints simultaneously"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L2",
+            "evidence": "Must follow the 4-step process: gather context, identify top 3, build time-blocked schedule, apply constraints"
+          },
+          {
+            "id": "gen.text.long",
+            "min_level": "L2",
+            "evidence": "Output template is 1-5KB of structured markdown with multiple sections and closing delimiters"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-7",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:9-17",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:19-24",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:26-31",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:33-57",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:59-118",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:120-128",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:130-136",
+      "purposes": ["generate-daily-plan"],
+      "type": "instruction"
+    },
+    {
+      "location": "_meta.json:1-6",
+      "purposes": [],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

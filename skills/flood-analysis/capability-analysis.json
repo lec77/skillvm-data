@@ -1,0 +1,89 @@
+{
+  "skill_name": "flood-analysis",
+  "skill_path": "skills/flood-analysis",
+  "total_files": 1,
+  "total_tokens_estimate": 1031,
+  "purposes": [
+    {
+      "id": "aggregate-streamflow-data",
+      "description": "Convert 15-minute USGS streamflow readings to daily maximum discharge values using pandas resampling.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires pandas for CSV parsing with parse_dates, set_index, and resample('D').max()."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write and execute Python script to process CSV data."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "classify-flood-severity",
+      "description": "Classify flood events by NWS severity levels (action, minor, moderate, major) and count flood days above the action threshold.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Standard library-level logic: nested if/elif comparisons against threshold dictionary values."
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L1",
+            "evidence": "Simple if-then deduction: compare peak flow against ordered thresholds to determine severity category."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L1",
+            "evidence": "Flood day counting must use the action threshold specifically, not minor/moderate/major."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "estimate-return-periods",
+      "description": "Estimate flood return periods (10-yr, 50-yr, 100-yr) using the Log-Pearson Type III distribution with frequency factors.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires numpy (np.log10, np.mean, np.std) and scipy.stats.skew for LP3 statistical analysis."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Multi-step: log-transform peaks, compute sample mean/std/skew, look up K factors, compute quantile as 10^(mean + K*std)."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Must use sample std (ddof=1) not population std, sample skewness (bias=False), and one peak per year."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write and execute Python script for numerical computation."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": ["aggregate-streamflow-data", "classify-flood-severity", "estimate-return-periods"], "type": "instruction"},
+    {"location": "SKILL.md:5-8", "purposes": ["aggregate-streamflow-data", "classify-flood-severity", "estimate-return-periods"], "type": "instruction"},
+    {"location": "SKILL.md:9-33", "purposes": ["aggregate-streamflow-data"], "type": "code_example"},
+    {"location": "SKILL.md:34-65", "purposes": ["classify-flood-severity"], "type": "code_example"},
+    {"location": "SKILL.md:66-125", "purposes": ["estimate-return-periods"], "type": "code_example"},
+    {"location": "SKILL.md:126-136", "purposes": ["aggregate-streamflow-data", "classify-flood-severity", "estimate-return-periods"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

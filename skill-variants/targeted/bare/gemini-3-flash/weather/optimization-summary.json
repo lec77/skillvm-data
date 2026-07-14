@@ -1,0 +1,20 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "weather",
+  "iterations": 1,
+  "finalScores": {
+    "weather-compare": 100,
+    "weather-travel": 100
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "scores": {
+        "weather-compare": 100,
+        "weather-travel": 100
+      },
+      "changes": "Initial skill creation: concise, prescriptive SKILL.md with explicit RULES section (always use wttr.in, use ?format=j1 for JSON, markdown tables with | chars, degree symbols). Included JSON field reference for current_condition parsing, multi-city comparison table template, and travel weather section with comparison language and packing advice guidance."
+    }
+  ]
+}

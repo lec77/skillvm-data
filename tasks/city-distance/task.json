@@ -1,0 +1,73 @@
+{
+  "id": "city-distance",
+  "name": "Compute full distance matrix and closest city pairs using Haversine formula",
+  "category": "geospatial-analysis",
+  "gradingType": "automated",
+  "prompt": "Read cities.csv with 15 world cities and their coordinates. Using the Haversine formula (R=6371 km): (1) compute the full 15×15 distance matrix, (2) find the 3 closest pairs of cities. Write distances.json with: matrix (15×15 array of distances in km, rows/columns in CSV order), closest_pairs (array of 3 objects: {city1, city2, distance_km} sorted by distance ascending).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "city-distance.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "distances.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "matrix-size",
+            "weight": 0.1,
+            "description": "Matrix is 15×15",
+            "testPattern": "matrix is 15x15"
+          },
+          {
+            "id": "diagonal-zero",
+            "weight": 0.15,
+            "description": "Diagonal entries are all zero",
+            "testPattern": "diagonal zero"
+          },
+          {
+            "id": "symmetry",
+            "weight": 0.15,
+            "description": "Matrix is symmetric",
+            "testPattern": "matrix symmetric"
+          },
+          {
+            "id": "closest-pair",
+            "weight": 0.25,
+            "description": "Closest pair is London-Paris (~343.56 km)",
+            "testPattern": "closest pair"
+          },
+          {
+            "id": "distances-positive",
+            "weight": 0.1,
+            "description": "All off-diagonal distances are positive",
+            "testPattern": "distances positive"
+          },
+          {
+            "id": "second-closest",
+            "weight": 0.15,
+            "description": "Second closest pair is Mumbai-Dubai (~1935 km)",
+            "testPattern": "second closest"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/geospatial-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/geospatial-analysis/city-distance/",
+    "importedAt": "2026-07-07T06:18:52.827Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "document-pptx",
+  "iterations": 1,
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "changes": [
+    "Reduced SKILL.md from 483 lines to ~90 lines (81% compression)",
+    "Removed html2pptx workflow, OOXML editing, template-based creation, design guidance",
+    "Focused on python-pptx for both creation and extraction",
+    "Added clear code examples for: creating slides, extracting text, extracting structured JSON",
+    "Removed all supporting files: html2pptx.md, ooxml.md, scripts/, ooxml/ (not referenced by optimized skill)",
+    "Kept only SKILL.md and LICENSE.txt"
+  ]
+}

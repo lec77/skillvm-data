@@ -1,0 +1,67 @@
+{
+  "id": "lab-harmonize",
+  "name": "Harmonize mixed-unit lab data to US conventional units",
+  "category": "lab-unit-harmonization",
+  "gradingType": "automated",
+  "prompt": "Read lab_data.csv with patient lab results containing mixed units and formatting issues. Harmonize all values to US conventional units (Serum_Creatinine in mg/dL, Glucose in mg/dL, Hemoglobin in g/dL). Steps: (1) parse numeric formats (handle scientific notation, European decimals with comma, whitespace), (2) for each value check if it's within the expected range for that analyte — Serum_Creatinine range 0.2-20.0 mg/dL, Glucose range 30-500 mg/dL, Hemoglobin range 3-20 g/dL — if outside range, apply the appropriate conversion factor (Serum_Creatinine: multiply by 0.0113 to convert from µmol/L; Glucose: divide by 0.0555 to convert from mmol/L; Hemoglobin: multiply by 0.1 to convert from g/L), (3) format all values to 2 decimal places. Write harmonized_labs.csv with the same columns but all values standardized.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "lab-harmonize.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "harmonized_labs.csv exists and is parseable",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "row-count",
+            "weight": 0.1,
+            "description": "Output has exactly 20 patient rows",
+            "testPattern": "row count"
+          },
+          {
+            "id": "creatinine-range",
+            "weight": 0.2,
+            "description": "All Serum_Creatinine values in 0.2-20.0 mg/dL range",
+            "testPattern": "creatinine range"
+          },
+          {
+            "id": "glucose-range",
+            "weight": 0.2,
+            "description": "All Glucose values in 30-500 mg/dL range",
+            "testPattern": "glucose range"
+          },
+          {
+            "id": "hemoglobin-range",
+            "weight": 0.2,
+            "description": "All Hemoglobin values in 3-20 g/dL range",
+            "testPattern": "hemoglobin range"
+          },
+          {
+            "id": "spot-checks",
+            "weight": 0.2,
+            "description": "Spot-check conversions for P001 and P011",
+            "testPattern": "spot.check"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/lab-unit-harmonization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/lab-unit-harmonization/lab-harmonize/",
+    "importedAt": "2026-07-07T06:18:53.398Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

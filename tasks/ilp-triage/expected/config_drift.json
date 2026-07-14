@@ -1,0 +1,17 @@
+{
+  "keys_compared": 4,
+  "drift_count": 2,
+  "drift": [
+    {
+      "key": "feature_x",
+      "from": "off",
+      "to": "on"
+    },
+    {
+      "key": "timeout_ms",
+      "from": "3000",
+      "to": "500"
+    }
+  ],
+  "fingerprint": "5e27eb33d20ed254"
+}

@@ -1,0 +1,61 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "markdown-converter",
+  "baseline": {
+    "csv-to-md": 75,
+    "html-to-md": 100,
+    "notes": "csv-to-md used markitdown first (wasted steps), then python3 -c (zsh quoting errors), hit max steps"
+  },
+  "iterations_detail": [
+    {
+      "iteration": 1,
+      "csv-to-md": 0,
+      "html-to-md": 100,
+      "notes": "Added decision tree (markitdown vs direct) and script file guidance. csv-to-md: API failure (0 output tokens) then timeout (stuck retrying python3 -c with zsh quoting errors)"
+    },
+    {
+      "iteration": 2,
+      "csv-to-md": 0,
+      "html-to-md": 100,
+      "notes": "Made CRITICAL section more prominent about not using python3 -c. Model still used python3 -c and got stuck in loop"
+    },
+    {
+      "iteration": 3,
+      "csv-to-md": 85,
+      "html-to-md": 100,
+      "notes": "Simplified skill further. Model used write tool for markdown directly (no script). Summary had wrong total value ($3,169.63 vs $46,993.75 — summed prices not price*stock) and wrong supplier count (4 vs 5). Main table missing some test assertions."
+    },
+    {
+      "iteration": 4,
+      "csv-to-md": 69,
+      "html-to-md": 100,
+      "notes": "Added emphasis on using Python for computation. Model wrote analysis script but computed wrong values (counted columns as products, summed stock as value), then hallucinated fake table data instead of using actual CSV data."
+    },
+    {
+      "iteration": 5,
+      "csv-to-md": 0,
+      "html-to-md": 100,
+      "notes": "More detailed Python script instructions. Model ignored all guidance, stuck in loop retrying identical broken python3 -c command 30 times."
+    }
+  ],
+  "final_scores": {
+    "csv-to-md": 85,
+    "html-to-md": 100
+  },
+  "changes_made": [
+    "Added CRITICAL section warning against python3 -c inline execution (shell quoting breaks on $ in f-strings)",
+    "Added decision tree: use markitdown for binary formats, write Python scripts for CSV/JSON/XML",
+    "Added step-by-step workflow: write tool → script.py → bash python3 script.py",
+    "Removed Azure Document Intelligence details, stdin piping, plugin options (not needed for tasks)",
+    "Added quality checklist for output verification"
+  ],
+  "key_findings": [
+    "devstral-small consistently ignores instructions about avoiding python3 -c — it's the model's default approach",
+    "When it does follow the write tool guidance, it often computes values in its head instead of programmatically, leading to arithmetic errors",
+    "html-to-md works perfectly (100/100) across all iterations — markitdown handles HTML conversion well",
+    "Shorter, simpler skills work better than detailed ones for this model",
+    "The model has a strong tendency to get stuck in retry loops when a command fails, never trying a different approach"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "iteration_count": 1,
+  "max_iterations": 5,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "geospatial-analysis",
+  "per_task_scores": {
+    "city-distance": {
+      "score": 100,
+      "max_score": 100
+    },
+    "plate-boundary": {
+      "score": 100,
+      "max_score": 100
+    }
+  },
+  "changes_made": [
+    "Reduced skill from 149 lines (original) to 67 lines (~55% reduction)",
+    "Removed Python implementation — only TypeScript needed for bare runtime",
+    "Removed K-Nearest Neighbors section (not needed by any task)",
+    "Removed verbose mathematical notation — kept only code implementations",
+    "Added distanceMatrix helper with symmetric optimization (compute once, assign both [i][j] and [j][i])",
+    "Added nearestPoint helper returning index and distance",
+    "Condensed pitfalls into concise bullet rules",
+    "Added explicit JSON output reminder"
+  ]
+}

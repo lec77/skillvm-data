@@ -1,0 +1,70 @@
+{
+  "skill_name": "markdown-converter",
+  "skill_path": "skills/markdown-converter",
+  "total_files": 2,
+  "total_tokens_estimate": 550,
+  "purposes": [
+    {
+      "id": "convert-file-to-markdown",
+      "description": "Convert a document file (PDF, Word, PowerPoint, Excel, HTML, CSV, JSON, XML, images, audio, ZIP, YouTube, EPub) to Markdown format using the markitdown CLI",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Must run 'uvx markitdown input.pdf -o output.md' as a single command"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Must construct the correct shell command with appropriate flags (-o, -x, -d, -e)"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-8",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:10-25",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:27-30",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:32-42",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:44-62",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:64-68",
+      "purposes": ["convert-file-to-markdown"],
+      "type": "instruction"
+    },
+    {
+      "location": "_meta.json:1-6",
+      "purposes": [],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

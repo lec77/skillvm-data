@@ -1,0 +1,61 @@
+{
+  "id": "summarize-articles",
+  "name": "Summarize and categorize news articles",
+  "category": "news-summary",
+  "gradingType": "automated",
+  "prompt": "Read stories.json containing 5 news articles. Create a news digest in digest.json with: (1) article_count: number of articles, (2) date_range: object with 'earliest' and 'latest' dates in YYYY-MM-DD format, (3) summaries: array of objects with 'title', 'source', 'one_line_summary' (max 20 words), and 'topic' (one of: 'Energy', 'Technology', 'Transportation', 'Business'), (4) key_numbers: array of notable statistics/numbers mentioned across all articles as objects with 'value' (string) and 'context' (string describing what the number refers to), extract at least 8 key numbers, (5) top_story: title of the most significant story (use editorial judgment).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "summarize-articles.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Digest file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "structure",
+            "weight": 0.15,
+            "description": "Digest structure correct",
+            "testPattern": "article_count|date_range|has summaries|has key_numbers"
+          },
+          {
+            "id": "summaries",
+            "weight": 0.3,
+            "description": "Article summaries correct",
+            "testPattern": "5 summaries|each has required fields|topics valid|one_line under 20"
+          },
+          {
+            "id": "key-numbers",
+            "weight": 0.3,
+            "description": "Key statistics extracted",
+            "testPattern": "at least 8|has fusion number|has chip number|has waymo number|has battery number"
+          },
+          {
+            "id": "editorial",
+            "weight": 0.2,
+            "description": "Top story selected",
+            "testPattern": "top_story is a valid title"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/news-summary",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/news-summary/summarize-articles/",
+    "importedAt": "2026-07-07T06:19:11.460Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

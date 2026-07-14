@@ -1,0 +1,18 @@
+{
+  "skill": "plan-my-day-1.0.0",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 1,
+  "scores": {
+    "prioritize-tasks": 100,
+    "schedule-workday": 100
+  },
+  "changes": [
+    "Replaced verbose markdown-focused SKILL.md with concise JSON-oriented version",
+    "Added explicit JSON output schemas for both priority_report.json and daily_plan.json",
+    "Added concrete prioritization rules (must_do_today, deferred, etc.) with clear criteria",
+    "Added scheduling constraints (buffer >= 15%, HH:MM format, no overlaps)",
+    "Removed markdown output template that didn't match task expectations",
+    "Removed _meta.json (not referenced by SKILL.md)"
+  ]
+}

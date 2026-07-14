@@ -1,0 +1,31 @@
+{
+  "iterations": 3,
+  "model": "deepseek-v3.2",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1": {
+      "docx-extract": 100,
+      "docx-create": 90,
+      "notes": "Baseline. docx-create lost 10 points on 'content' criterion (0.5/1.0) — text extraction likely missed paragraph content"
+    },
+    "iteration_2": {
+      "docx-extract": 100,
+      "docx-create": 0,
+      "notes": "Model fluke — deepseek-v3.2 read docx-js.md but stopped without executing code (106 output tokens). Not caused by skill change."
+    },
+    "iteration_3": {
+      "docx-extract": 100,
+      "docx-create": 100,
+      "notes": "All criteria at 1.0. Text extraction fix confirmed effective."
+    }
+  },
+  "changes_made": [
+    "Rewrote 'Text extraction' section in SKILL.md: replaced pandoc-only guidance with python-docx script that iterates BOTH doc.paragraphs AND doc.tables, with CRITICAL warning that doc.paragraphs excludes table text",
+    "Added step 4 to 'Creating a new Word document' workflow: explicit pointer to use python-docx for text extraction after document creation",
+    "Added pandoc plain-text alternative with -t plain flag"
+  ],
+  "final_scores": {
+    "docx-extract": 100,
+    "docx-create": 100
+  }
+}

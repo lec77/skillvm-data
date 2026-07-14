@@ -1,0 +1,27 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "per_task_scores": {
+    "sql-query": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 100
+    },
+    "sql-migrate": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose multi-database skill (PostgreSQL/MySQL/SQLite) with SQLite-focused skill. Added step-by-step workflow, CSV import patterns, normalization guide, query patterns, and JSON output instructions."
+    },
+    {
+      "iteration": 2,
+      "description": "Drastically shortened skill to prevent gemini-3-flash from continuing/completing the skill text instead of working on the task. Added explicit directive at end: 'Now start working on the user's task.' Reduced from ~200 lines to ~30 lines of content."
+    }
+  ]
+}

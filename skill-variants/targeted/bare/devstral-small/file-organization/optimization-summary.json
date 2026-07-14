@@ -1,0 +1,64 @@
+{
+  "skill": "file-organization",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 5,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "fileorg-messy": 100,
+        "fileorg-dedup": 0
+      },
+      "changes": "Replaced 434-line verbose skill with concise 35-line version adapted from successful opencode/devstral-small variant. Used skill name 'file-organizer' which matched description, causing model to attempt <load-skill> XML tag emission."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "fileorg-messy": 100,
+        "fileorg-dedup": 100
+      },
+      "changes": "Changed skill name to 'ref' with non-matching description to prevent model from attempting skill loading via XML tags (devstral-small corrupts XML tags causing bare agent to terminate). Put critical category mappings and md5sum instructions in description field visible in system prompt."
+    },
+    {
+      "iteration": 3,
+      "scores": {
+        "fileorg-messy": [100, 100],
+        "fileorg-dedup": [0, 0]
+      },
+      "changes": "Embedded full for-loop/case command in description. Simplified description for duplicates to 'run md5sum dir/* or md5 -r dir/*, group by hash'. Model ignored duplicate instructions and used incorrect find/awk pipeline that dropped first file per group."
+    },
+    {
+      "iteration": 4,
+      "scores": {
+        "fileorg-messy": [100, 86],
+        "fileorg-dedup": [0, 0]
+      },
+      "changes": "Restructured description with ORGANIZE and DUPLICATES sections. Model still used awk 'a[$1]++' which drops first occurrence of each hash, listing only partial duplicate groups."
+    },
+    {
+      "iteration": 5,
+      "scores": {
+        "fileorg-messy": [100, 86],
+        "fileorg-dedup": [100, 100]
+      },
+      "changes": "Added explicit step-by-step duplicate detection instructions: run md5 -r * | sort, read output, group manually. Added CRITICAL note to include BOTH/ALL filenames and NOT use awk/uniq to filter. This fixed the dedup task completely."
+    }
+  ],
+  "finalScores": {
+    "fileorg-messy": "100 (occasionally 86 when model uses glob instead of for-loop)",
+    "fileorg-dedup": "100 (consistent across runs)"
+  },
+  "keyOptimizations": [
+    "Used non-matching skill name 'ref' to prevent devstral-small from attempting <load-skill> XML emission which it corrupts, causing bare agent termination",
+    "Put complete for-loop/case command in description field (visible in system prompt without skill loading)",
+    "Explicit step-by-step duplicate detection with CRITICAL note to not use awk/uniq filtering",
+    "Reduced skill from 434 lines to ~25 lines for small model context efficiency",
+    "Used md5 -r (macOS native) instead of md5sum for compatibility"
+  ],
+  "keyFindings": {
+    "primaryIssue": "devstral-small corrupts <load-skill> XML tags on bare runtime, causing agent to terminate after one text-only response with no tool calls",
+    "workaround": "Non-matching skill name prevents load attempts. All critical instructions in description field (always visible in system prompt)",
+    "messyVariance": "Model sometimes uses glob patterns (mv *.pdf) instead of the for-loop, which can fail for some edge cases, scoring 86 instead of 100"
+  }
+}

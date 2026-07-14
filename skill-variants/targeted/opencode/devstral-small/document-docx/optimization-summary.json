@@ -1,0 +1,30 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "document-docx",
+  "per_task_scores": {
+    "docx-create": {
+      "iteration_1": 0,
+      "iteration_2": 80,
+      "iteration_3": 100,
+      "confirmation": 100
+    },
+    "docx-extract": {
+      "iteration_1": 5,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "confirmation": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Complete rewrite of SKILL.md for SLM optimization. Replaced verbose 197-line skill with focused 148-line version. Removed docx-js.md and ooxml.md reference files (too complex for devstral-small). Added bundled scripts: extract_text.py and extract_docx_to_json.py. Provided a complete copy-paste-ready JavaScript example for document creation. Added explicit CRITICAL rules for common SLM mistakes (headingLevel vs heading, unicode bullets, file path issues)."
+    },
+    {
+      "iteration": 3,
+      "description": "Added --wrap=none flag to pandoc text extraction command. Pandoc's default line wrapping was splitting multi-word phrases across lines (e.g., 'Design Complete' -> 'Design\\nComplete'), causing test failures. Added explicit instruction to ALWAYS use --wrap=none."
+    }
+  ]
+}

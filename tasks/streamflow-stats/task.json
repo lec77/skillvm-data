@@ -1,0 +1,67 @@
+{
+  "id": "streamflow-stats",
+  "name": "Fit Log-Pearson Type III distribution and estimate flood return periods",
+  "category": "flood-analysis",
+  "gradingType": "automated",
+  "prompt": "Read annual_peaks.csv with 30 years of annual peak streamflow data. Fit a Log-Pearson Type III distribution: (1) compute log10 of all peak flows, (2) calculate mean, standard deviation, and skewness of the log values, (3) use frequency factors to compute flows for 10, 50, and 100-year return periods. Standard frequency factors for skew≈0: K_10=1.282, K_50=2.054, K_100=2.326. Formula: Q = 10^(mean_log + K * std_log). Write return_periods.json with: log_stats (mean, std, skew), return_periods ({rp_10, rp_50, rp_100} as flow values).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "streamflow-stats.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "return_periods.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "log-mean",
+            "weight": 0.2,
+            "description": "Log mean is correct (within 0.05 of 2.95)",
+            "testPattern": "log mean"
+          },
+          {
+            "id": "log-std",
+            "weight": 0.15,
+            "description": "Log standard deviation is correct (within 0.03 of 0.20)",
+            "testPattern": "log std"
+          },
+          {
+            "id": "rp-10",
+            "weight": 0.2,
+            "description": "10-year return period flow is within 10% of expected",
+            "testPattern": "rp_10"
+          },
+          {
+            "id": "rp-50",
+            "weight": 0.2,
+            "description": "50-year return period flow is within 10% of expected",
+            "testPattern": "rp_50"
+          },
+          {
+            "id": "rp-100",
+            "weight": 0.15,
+            "description": "100-year return period flow is within 10% of expected",
+            "testPattern": "rp_100"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/flood-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/flood-analysis/streamflow-stats/",
+    "importedAt": "2026-07-07T06:18:52.820Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

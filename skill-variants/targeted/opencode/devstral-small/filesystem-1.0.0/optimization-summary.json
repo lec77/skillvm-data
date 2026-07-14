@@ -1,0 +1,30 @@
+{
+  "iterations": 1,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "scores": {
+    "iteration_0_baseline": {
+      "fs-batch-rename": 70,
+      "fs-search": 0
+    },
+    "iteration_1": {
+      "fs-batch-rename": 100,
+      "fs-search": 100
+    },
+    "iteration_1_confirmation": {
+      "fs-batch-rename": 100,
+      "fs-search": 100
+    }
+  },
+  "changes": [
+    "Rewrote entire SKILL.md from Chinese to English for better devstral-small comprehension",
+    "Added bundled Python scripts for batch rename and directory analysis tasks",
+    "Added critical rule: save output files to current directory, not inside analyzed directory",
+    "Added critical rule: write tool content must be a string, not an object",
+    "Fixed kebab-case regex to preserve dots in filenames (e.g., v3.1 stays v3.1, not v3-1)",
+    "Added worked examples table for kebab-case conversion edge cases",
+    "Added explicit depth counting rule (root directory = depth 1)",
+    "Removed generic/redundant content (utility tool installation, safety reminders, Chinese text)",
+    "Reduced skill from 342 lines of generic content to ~120 lines of focused, procedural guidance"
+  ]
+}

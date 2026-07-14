@@ -1,0 +1,61 @@
+{
+  "skill": "document-docx",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline with original verbose skill (~50KB total)",
+      "scores": {
+        "docx-create": 0,
+        "docx-extract": 0
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Dramatically reduced skill size from ~50KB to ~6KB. Removed ooxml.md, ooxml/, scripts/, LICENSE.txt. Rewrote SKILL.md with focused create/extract workflows and working code examples. Simplified docx-js.md to essential API only.",
+      "scores": {
+        "docx-create": 80,
+        "docx-extract": 100
+      }
+    },
+    {
+      "iteration": 3,
+      "description": "Added --wrap=none to pandoc command, changed docx install instruction from global to local npm install, added explicit text verification step.",
+      "scores": {
+        "docx-create": 100,
+        "docx-extract": 100
+      }
+    },
+    {
+      "iteration": 4,
+      "description": "Validation run (no changes)",
+      "scores": {
+        "docx-create": 100,
+        "docx-extract": 65
+      }
+    },
+    {
+      "iteration": 5,
+      "description": "Enhanced extraction guidance: added python-docx as primary extraction method with concrete parsing tips (split, float conversion, table row skipping). Reduced reliance on fragile text parsing.",
+      "scores": {
+        "docx-create": 100,
+        "docx-extract": 100
+      }
+    }
+  ],
+  "finalScores": {
+    "docx-create": 100,
+    "docx-extract": 100
+  },
+  "changes": [
+    "Reduced total skill size from ~50KB to ~7KB (SKILL.md + docx-js.md only)",
+    "Removed ooxml.md, ooxml/ directory (schemas, scripts, validation), scripts/ directory (document library), LICENSE.txt",
+    "Rewrote SKILL.md with two focused sections: creating (docx npm) and extracting (pandoc + python-docx)",
+    "Added complete working code example for document creation with headings, bullets, and tables",
+    "Simplified docx-js.md to essential API: Document, Paragraph, TextRun, HeadingLevel, bullet lists, tables",
+    "Added concrete extraction tips: python-docx for structured data, pandoc with --wrap=none for plain text",
+    "Changed docx install from global to local (npm install docx) for reliability"
+  ]
+}

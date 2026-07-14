@@ -1,0 +1,11 @@
+product_id,product_name,category,price,stock,supplier,last_restocked
+P001,Wireless Mouse,Electronics,29.99,150,TechSupply Co,2026-02-15
+P002,USB-C Hub,Electronics,49.99,75,TechSupply Co,2026-02-20
+P003,Standing Desk,Furniture,399.99,12,OfficePro Inc,2026-01-10
+P004,Ergonomic Chair,Furniture,299.99,8,OfficePro Inc,2026-01-15
+P005,Monitor Arm,Accessories,89.99,45,MountIt Ltd,2026-02-01
+P006,Webcam HD,Electronics,79.99,200,TechSupply Co,2026-03-01
+P007,Desk Lamp,Accessories,34.99,60,LightWorks,2026-02-10
+P008,Keyboard Tray,Accessories,59.99,30,MountIt Ltd,2026-01-25
+P009,Whiteboard 4x3,Office Supplies,129.99,20,OfficePro Inc,2026-02-28
+P010,Noise-Cancel Headphones,Electronics,199.99,25,AudioMax,2026-03-05

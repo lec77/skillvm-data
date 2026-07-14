@@ -1,0 +1,41 @@
+{
+  "skill": "schema-markup",
+  "runtime": "openclaw",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration_1_baseline": {
+      "faq-schema": 0,
+      "product-schema": 0,
+      "notes": "Original skill (v1.1.0) with references. Model truncated JSON output — missing final closing brace on both files."
+    },
+    "iteration_2_reduced_skill": {
+      "faq-schema": 0,
+      "product-schema": 0,
+      "notes": "Stripped skill to essentials, removed references directory. Same truncation issue persisted."
+    },
+    "iteration_3_compact_json": {
+      "faq-schema": 0,
+      "product-schema": 0,
+      "notes": "Used minified JSON examples and explicit brace-counting instructions. Model still truncated final brace."
+    },
+    "iteration_4_bash_heredoc": {
+      "faq-schema": 100,
+      "product-schema": 100,
+      "notes": "Instructed model to use bash heredoc (cat > file << 'EOF') instead of write tool. Completely solved truncation. Added JSON validation step."
+    },
+    "iteration_5_confirmation": {
+      "faq-schema": 100,
+      "product-schema": 100,
+      "notes": "Confirmed 100/100 consistency on both tasks."
+    }
+  },
+  "changes": [
+    "Removed references/schema-examples.md (399 lines) to reduce context size",
+    "Rewrote SKILL.md from 180 lines to ~30 lines focused on FAQPage and Product schemas",
+    "Key fix: instructed model to use bash heredoc (cat > file << 'EOF') instead of the write tool to avoid Qwen3-30b's systematic JSON truncation bug",
+    "Added JSON validation step using python3 json.load()",
+    "Provided compact schema examples inline in SKILL.md"
+  ],
+  "root_cause": "Qwen3-30b consistently truncates the final closing brace when writing JSON via the write tool. The model generates correct JSON content but the last character (closing '}') is systematically dropped. Using bash heredoc bypasses this tool-specific truncation issue."
+}

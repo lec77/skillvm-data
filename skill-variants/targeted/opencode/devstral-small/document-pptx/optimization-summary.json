@@ -1,0 +1,19 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "baseline_scores": {
+    "pptx-create": 0,
+    "pptx-extract": 94
+  },
+  "changes": [
+    "Replaced entire 484-line SKILL.md with focused 100-line version targeting python-pptx only",
+    "Removed html2pptx workflow that caused devstral-small to fail (wrong pptxgenjs API, wasted all steps debugging)",
+    "Added explicit python-pptx code patterns for creation, extraction, and editing",
+    "Added concrete examples for parsing numeric data from text (e.g. '$4.2M' -> 4.2)",
+    "Removed html2pptx.md, ooxml.md, scripts/, and ooxml/ directories (unreferenced by simplified skill)",
+    "Added NEVER use pptxgenjs/html2pptx constraint to prevent capability failures"
+  ]
+}

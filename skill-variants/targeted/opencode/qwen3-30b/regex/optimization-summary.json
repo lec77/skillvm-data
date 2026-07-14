@@ -1,0 +1,36 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "regex",
+  "scores": {
+    "iteration1": {
+      "regex-extract": 100,
+      "regex-replace": 82
+    },
+    "iteration2": {
+      "regex-extract": 100,
+      "regex-replace": 95
+    },
+    "iteration3": {
+      "regex-extract": 100,
+      "regex-replace": 92
+    },
+    "iteration4": {
+      "regex-extract": 100,
+      "regex-replace": 95
+    },
+    "iteration5": {
+      "regex-extract": 100,
+      "regex-replace": 100
+    }
+  },
+  "changes": [
+    "Iteration 1: Baseline run with original verbose skill. regex-replace scored 82 due to line-number prefixes in output, missing TODO comment removal, and incorrect const/let usage.",
+    "Iteration 2: Rewrote SKILL.md to be concise and task-focused. Added explicit warnings about line numbers, const/let rules, and debug removal. regex-replace improved to 95 (var-replacement still 83%).",
+    "Iteration 3: Expanded const/let rules with specific examples (const for arrays with .push(), let for reassigned variables). regex-replace dropped to 92 (debug-removal regressed to 67%).",
+    "Iteration 4: Added stronger emphasis on removing ALL debug lines completely and verifying output. Debug removal fixed to 100%, but var-replacement dropped to 83% (model broke for-loop variable).",
+    "Iteration 5: Added concrete before/after code transformation example showing all changes together. Both tasks achieved 100/100."
+  ],
+  "removedFiles": ["scripts/regex_tester.py"]
+}

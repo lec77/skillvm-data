@@ -1,0 +1,29 @@
+{
+  "skill": "schema-markup",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      },
+      "changes": "No changes — baseline run with existing targeted skill"
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      },
+      "changes": "Confirmation run — no changes needed, consistent 100/100"
+    }
+  ],
+  "finalScores": {
+    "product-schema": 100,
+    "faq-schema": 100
+  },
+  "summary": "The existing targeted skill already achieves perfect scores (100/100) on both tasks consistently. No optimization was needed."
+}

@@ -1,0 +1,14 @@
+{
+  "iterations": 1,
+  "per_task_scores": {
+    "schedule-workday": 100,
+    "prioritize-tasks": 100
+  },
+  "changes": [
+    "Replaced verbose generic skill with concise, prescriptive format targeting both task types",
+    "Added exact JSON schema examples for daily_plan.json and priority_report.json",
+    "Added explicit field-level rules (exact task names, non-overlapping blocks, buffer >= 15%)",
+    "Added categorization rules for prioritize-tasks (must_do_today = deadline today + high impact, deferred = far deadline + low impact)",
+    "Removed generic planning advice, decision frameworks, and markdown output format in favor of JSON-focused instructions"
+  ]
+}

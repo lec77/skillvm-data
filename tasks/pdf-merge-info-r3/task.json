@@ -1,0 +1,61 @@
+{
+  "id": "pdf-merge-info-r3",
+  "name": "Merge PDFs and extract document info",
+  "category": "nano-pdf",
+  "gradingType": "automated",
+  "prompt": "There are two PDF files: doc_a.pdf (2 pages) and doc_b.pdf (4 pages). Do the following: (1) Merge them into a single file called merged.pdf with doc_a pages first, then doc_b pages. (2) Extract information about both source documents and the merged result into pdf_info.json with: source_files (array of objects with filename, page_count), merged_page_count (total pages in merged.pdf), merged_filename ('merged.pdf'), doc_a_title (title text from first page of doc_a), doc_b_title (title text from first page of doc_b), doc_a_author (author name from doc_a), doc_b_author (author name from doc_b).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "pdf-merge-info.test.ts",
+        "criteria": [
+          {
+            "id": "merged-exists",
+            "weight": 0.15,
+            "description": "Merged PDF created",
+            "testPattern": "merged\\.pdf exists"
+          },
+          {
+            "id": "info-exists",
+            "weight": 0.05,
+            "description": "Info file created",
+            "testPattern": "pdf_info\\.json exists"
+          },
+          {
+            "id": "page-counts",
+            "weight": 0.3,
+            "description": "Page counts correct",
+            "testPattern": "merged_page_count|doc_a pages|doc_b pages"
+          },
+          {
+            "id": "titles",
+            "weight": 0.25,
+            "description": "Document titles extracted",
+            "testPattern": "doc_a_title|doc_b_title"
+          },
+          {
+            "id": "authors",
+            "weight": 0.25,
+            "description": "Author names extracted",
+            "testPattern": "doc_a_author|doc_b_author"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/nano-pdf",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/nano-pdf/pdf-merge-info/",
+    "importedAt": "2026-07-07T06:19:03.897Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

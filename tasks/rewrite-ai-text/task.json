@@ -1,0 +1,61 @@
+{
+  "id": "rewrite-ai-text",
+  "name": "Rewrite AI-generated text to sound human",
+  "category": "humanize-ai-text",
+  "gradingType": "automated",
+  "prompt": "Read source_text.txt which contains AI-generated text with many telltale AI patterns. Rewrite it to sound natural and human-written, saving the result to rewritten.txt. The rewritten text must: (1) preserve the core meaning about remote work and team communication, (2) remove AI filler phrases like 'It\\'s important to note', 'furthermore', 'delving into', (3) replace AI buzzwords like 'leveraging', 'paramount', 'synergy', 'robust', 'holistic', 'multifaceted', 'nuanced', 'pivotal', 'seamless' with plain language, (4) use shorter, more direct sentences, (5) keep roughly the same length (within 50% of original word count). Also write a changes_summary.json listing: original_word_count, rewritten_word_count, patterns_removed (array of specific AI phrases/words that were eliminated), and readability_improved (boolean, should be true).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "rewrite-ai-text.test.ts",
+        "criteria": [
+          {
+            "id": "files-exist",
+            "weight": 0.1,
+            "description": "Output files created",
+            "testPattern": "rewritten\\.txt exists|changes_summary"
+          },
+          {
+            "id": "patterns-removed",
+            "weight": 0.35,
+            "description": "AI patterns removed from text",
+            "testPattern": "no filler|no buzzword|no delving|no leveraging|no paramount"
+          },
+          {
+            "id": "meaning-preserved",
+            "weight": 0.25,
+            "description": "Core meaning preserved",
+            "testPattern": "mentions remote work|mentions communication|mentions team"
+          },
+          {
+            "id": "length-check",
+            "weight": 0.15,
+            "description": "Reasonable length maintained",
+            "testPattern": "word count|not too short|not too long"
+          },
+          {
+            "id": "summary-correct",
+            "weight": 0.15,
+            "description": "Changes summary accurate",
+            "testPattern": "original_word_count|patterns_removed list|readability_improved"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/humanize-ai-text",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/humanize-ai-text/rewrite-ai-text/",
+    "importedAt": "2026-07-07T06:18:53.397Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

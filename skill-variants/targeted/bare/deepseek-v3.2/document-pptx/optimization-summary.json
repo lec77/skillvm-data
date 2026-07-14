@@ -1,0 +1,28 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "pptx-create": [100, 0],
+      "pptx-extract": [100, 100],
+      "notes": "pptx-create unreliable: html2pptx workflow requires Playwright/Chrome, which fails intermittently on macOS. Model wastes all iterations debugging browser issues."
+    },
+    "iteration_2_optimized": {
+      "pptx-create": [100, 100, 100, 100],
+      "pptx-extract": [100, 100, 100, 100],
+      "notes": "All 8 successful runs scored 100/100. 2 runs hit transient API socket errors (not skill-related)."
+    }
+  },
+  "changes": [
+    "Added python-pptx as primary creation method for text-based presentations — simpler, more reliable, no browser dependency",
+    "Added decision table at top of SKILL.md to guide method selection based on task type",
+    "Added complete python-pptx examples for both creation and extraction workflows",
+    "Removed 18 color palettes, visual design options, geometric patterns, typography treatments (not needed for SLM)",
+    "Removed detailed template-based workflow (inventory, rearrange, replace steps) — moved to brief reference",
+    "Removed thumbnail grid details, slide-to-image conversion details",
+    "Reduced SKILL.md from ~484 lines to ~130 lines (73% reduction)",
+    "Kept html2pptx and OOXML workflows as brief references for advanced use cases"
+  ],
+  "key_insight": "deepseek-v3.2 was following the html2pptx workflow for simple text presentations, which requires Playwright/Chrome and fails intermittently. Switching to python-pptx (which is always available) made creation 100% reliable and 10x faster/cheaper."
+}

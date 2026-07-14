@@ -1,0 +1,60 @@
+{
+  "skill": "filesystem-1.0.0",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "per_task_scores": {
+    "fs-batch-rename": {
+      "iteration_1_baseline": 70,
+      "iteration_2": 70,
+      "iteration_3": 80,
+      "iteration_4": 60,
+      "iteration_5_final": 100
+    },
+    "fs-search": {
+      "iteration_1_baseline": 70,
+      "iteration_2": 85,
+      "iteration_3": 50,
+      "iteration_4": 55,
+      "iteration_5_final": 70
+    }
+  },
+  "best_scores": {
+    "fs-batch-rename": 100,
+    "fs-search": 85
+  },
+  "final_scores": {
+    "fs-batch-rename": 100,
+    "fs-search": 70
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline: original Chinese-language verbose skill (~340 lines)"
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote in English, added task-specific guidance for kebab-case conversion (preserve dots in versions) and directory analysis (count hidden files, extension=last dot). Reduced to ~60 lines."
+    },
+    {
+      "iteration": 3,
+      "description": "Added explicit reference table of example renames. Emphasized writing rename_log.json AFTER renames. Added step-by-step bash commands for directory analysis."
+    },
+    {
+      "iteration": 4,
+      "description": "Noted model was using unreliable bash one-liners. Switched to providing shell commands approach with explicit examples. Results regressed due to model stochasticity."
+    },
+    {
+      "iteration": 5,
+      "description": "Switched to providing complete Python scripts for both tasks with directive to write and execute them. Added IMPORTANT notice to use scripts not manual commands. fs-batch-rename hit 100/100."
+    }
+  ],
+  "key_findings": [
+    "qwen3-30b is highly stochastic - same skill can produce different scores across runs",
+    "Chinese-language skill was ineffective for this model despite Qwen's multilingual training",
+    "Providing complete executable Python scripts is more reliable than bash commands or procedural instructions",
+    "The dot-in-version-number edge case (v3.1) is the hardest part of kebab-case conversion",
+    "File counting errors (missing hidden files, wrong extension grouping) persist even with explicit instructions",
+    "fs-search counts criterion is the most fragile - model sometimes ignores the script and does manual counting"
+  ]
+}

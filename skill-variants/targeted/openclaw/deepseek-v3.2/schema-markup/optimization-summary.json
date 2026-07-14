@@ -1,0 +1,21 @@
+{
+  "skill": "schema-markup",
+  "runtime": "openclaw",
+  "model": "deepseek-v3.2",
+  "iterations": 1,
+  "maxIterations": 5,
+  "finalScores": {
+    "faq-schema": 100,
+    "product-schema": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose original skill (v1.1.0) with targeted v3.0.0 for DeepSeek-V3.2. Key changes: (1) Removed consultation framework and assessment questions irrelevant to extraction tasks. (2) Added explicit formatting rules for enumerations as full URLs, numeric prices/ratings. (3) Added concrete JSON-LD examples for FAQPage and Product schemas matching task patterns. (4) Added validation checklist. (5) Removed references/schema-examples.md file (not needed with inline examples). (6) Emphasized pure JSON output without script tag wrappers.",
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      }
+    }
+  ]
+}

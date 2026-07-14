@@ -1,0 +1,156 @@
+{
+  "skill_name": "systematic-debugging",
+  "skill_path": "skills/bug-fixing",
+  "total_files": 11,
+  "total_tokens_estimate": 11000,
+  "purposes": [
+    {
+      "id": "root-cause-investigation",
+      "description": "Systematically investigate bugs by reading error messages, reproducing issues, checking recent changes, gathering evidence across component boundaries, and tracing data flow backward through the call stack to find the original trigger rather than fixing symptoms.",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.analysis", "min_level": "L3", "evidence": "SKILL.md Phase 1 requires tracing data flow through multi-component systems; root-cause-tracing.md describes 5-level backward trace through call chains across files"},
+          {"id": "reason.planning", "min_level": "L2", "evidence": "SKILL.md Phase 1 Step 4 requires decomposing multi-component systems into layers and planning diagnostic instrumentation at each boundary"},
+          {"id": "follow.procedure", "min_level": "L2", "evidence": "SKILL.md mandates completing Phase 1 before Phase 2, with 5 ordered sub-steps and conditional branching (if not reproducible, gather more data)"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "SKILL.md enforces multiple simultaneous constraints: NO FIXES WITHOUT ROOT CAUSE, must complete each phase before next, single hypothesis rule, never fix multiple things at once"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "pattern-analysis",
+      "description": "Find working examples in the codebase, compare against reference implementations, identify differences between working and broken code, and understand dependencies before attempting fixes.",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.analysis", "min_level": "L2", "evidence": "SKILL.md Phase 2 requires finding working examples, comparing against references, reading every line of reference implementations, and listing all differences"},
+          {"id": "follow.constraint", "min_level": "L1", "evidence": "SKILL.md Phase 2 Step 2: 'Don't skim - read every line' constraint on reference reading"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "hypothesis-testing",
+      "description": "Form a single explicit hypothesis about root cause, test it with the smallest possible change, verify the result, and either proceed to implementation or form a new hypothesis without stacking fixes.",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.logic", "min_level": "L1", "evidence": "SKILL.md Phase 3 requires forming single hypothesis with explicit causal claim ('I think X is the root cause because Y') and testing it"},
+          {"id": "follow.procedure", "min_level": "L2", "evidence": "SKILL.md Phase 3 has 4 steps with conditional branching: if hypothesis works go to Phase 4, if not form new hypothesis, if 3+ failures question architecture"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "Multiple constraints: single hypothesis only, smallest possible change, one variable at a time, don't add more fixes on top"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "fix-implementation",
+      "description": "Create a failing test case that reproduces the bug, implement a single targeted fix addressing the root cause, verify the fix resolves the issue without breaking other tests, and escalate to architectural review after 3+ failed attempts.",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.planning", "min_level": "L3", "evidence": "SKILL.md Phase 4 Step 4-5: conditional escalation path with error recovery (if <3 fixes return to Phase 1, if >=3 question architecture, discuss with partner before more fixes)"},
+          {"id": "follow.procedure", "min_level": "L2", "evidence": "SKILL.md Phase 4 has 5 ordered steps with conditional branches at Step 4 (count fixes attempted) and Step 5 (architectural problem indicators)"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "ONE change at a time, no 'while I'm here' improvements, no bundled refactoring, MUST have failing test before fixing"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "defense-in-depth-validation",
+      "description": "After finding and fixing a bug's root cause, add validation at every layer the data passes through (entry point, business logic, environment guards, debug instrumentation) to make the bug structurally impossible to recur.",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.javascript", "min_level": "L2", "evidence": "defense-in-depth.md provides TypeScript validation examples across 4 layers using Node.js built-ins (fs.existsSync, statSync, process.env, normalize, resolve, tmpdir)"},
+          {"id": "reason.analysis", "min_level": "L2", "evidence": "defense-in-depth.md requires tracing data flow, mapping all checkpoints, and understanding which code paths can bypass each layer"},
+          {"id": "reason.planning", "min_level": "L2", "evidence": "defense-in-depth.md 4-step application process: trace data flow, map checkpoints, add validation at each layer, test each layer for bypass"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "condition-based-waiting",
+      "description": "Replace arbitrary timeouts and sleep calls in tests with polling-based condition checks that wait for the actual condition, eliminating flaky tests caused by race conditions.",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.javascript", "min_level": "L3", "evidence": "condition-based-waiting-example.ts implements async polling utilities with generics, Promises, and domain-specific API types (ThreadManager, LaceEvent)"},
+          {"id": "reason.analysis", "min_level": "L1", "evidence": "condition-based-waiting.md decision flowchart: identify whether test uses setTimeout/sleep, determine if testing timing behavior, choose approach"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "test-pollution-bisection",
+      "description": "Find which test in a suite creates unwanted side effects (files, state) by running tests one-by-one and checking for pollution after each.",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.shell", "min_level": "L2", "evidence": "find-polluter.sh uses loops, command substitution, conditional checks, find piped to sort, and structured output with early exit"},
+          {"id": "tool.exec", "min_level": "L2", "evidence": "find-polluter.sh is a script that executes npm test for each file and parses filesystem state between runs"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "pressure-resistance",
+      "description": "Resist rationalization under time pressure, social pressure, and sunk cost bias by recognizing red flag thought patterns and returning to systematic investigation rather than applying quick fixes.",
+      "current_path": {
+        "primitives": [
+          {"id": "follow.constraint", "min_level": "L3", "evidence": "SKILL.md Red Flags section lists 10 thought patterns that conflict with natural instincts ('Quick fix for now', 'Just try changing X', 'I don't fully understand but this might work') and requires overriding them. Common Rationalizations table reinforces this against training priors."}
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "SKILL.md:6-14", "purposes": ["root-cause-investigation", "pressure-resistance"], "type": "instruction"},
+    {"location": "SKILL.md:16-22", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "SKILL.md:24-45", "purposes": ["root-cause-investigation", "pressure-resistance"], "type": "instruction"},
+    {"location": "SKILL.md:46-120", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "SKILL.md:122-143", "purposes": ["pattern-analysis"], "type": "instruction"},
+    {"location": "SKILL.md:145-168", "purposes": ["hypothesis-testing"], "type": "instruction"},
+    {"location": "SKILL.md:170-213", "purposes": ["fix-implementation"], "type": "instruction"},
+    {"location": "SKILL.md:215-243", "purposes": ["pressure-resistance"], "type": "instruction"},
+    {"location": "SKILL.md:245-257", "purposes": ["pressure-resistance"], "type": "instruction"},
+    {"location": "SKILL.md:259-266", "purposes": ["root-cause-investigation", "pattern-analysis", "hypothesis-testing", "fix-implementation"], "type": "instruction"},
+    {"location": "SKILL.md:268-277", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "SKILL.md:279-289", "purposes": ["root-cause-investigation", "defense-in-depth-validation", "condition-based-waiting"], "type": "instruction"},
+    {"location": "SKILL.md:291-297", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:1-8", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:9-24", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:26-65", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:67-96", "purposes": ["root-cause-investigation"], "type": "code_example"},
+    {"location": "root-cause-tracing.md:98-107", "purposes": ["test-pollution-bisection"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:109-129", "purposes": ["root-cause-investigation", "defense-in-depth-validation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:131-154", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "root-cause-tracing.md:156-170", "purposes": ["root-cause-investigation"], "type": "instruction"},
+    {"location": "defense-in-depth.md:1-19", "purposes": ["defense-in-depth-validation"], "type": "instruction"},
+    {"location": "defense-in-depth.md:20-85", "purposes": ["defense-in-depth-validation"], "type": "code_example"},
+    {"location": "defense-in-depth.md:87-95", "purposes": ["defense-in-depth-validation"], "type": "instruction"},
+    {"location": "defense-in-depth.md:96-123", "purposes": ["defense-in-depth-validation"], "type": "instruction"},
+    {"location": "condition-based-waiting.md:1-8", "purposes": ["condition-based-waiting"], "type": "instruction"},
+    {"location": "condition-based-waiting.md:9-33", "purposes": ["condition-based-waiting"], "type": "instruction"},
+    {"location": "condition-based-waiting.md:34-57", "purposes": ["condition-based-waiting"], "type": "instruction"},
+    {"location": "condition-based-waiting.md:58-82", "purposes": ["condition-based-waiting"], "type": "code_example"},
+    {"location": "condition-based-waiting.md:83-108", "purposes": ["condition-based-waiting"], "type": "instruction"},
+    {"location": "condition-based-waiting.md:109-116", "purposes": ["condition-based-waiting"], "type": "instruction"},
+    {"location": "condition-based-waiting-example.ts:1-44", "purposes": ["condition-based-waiting"], "type": "code_example"},
+    {"location": "condition-based-waiting-example.ts:45-89", "purposes": ["condition-based-waiting"], "type": "code_example"},
+    {"location": "condition-based-waiting-example.ts:90-136", "purposes": ["condition-based-waiting"], "type": "code_example"},
+    {"location": "condition-based-waiting-example.ts:137-159", "purposes": ["condition-based-waiting"], "type": "code_example"},
+    {"location": "find-polluter.sh:1-63", "purposes": ["test-pollution-bisection"], "type": "script"},
+    {"location": "CREATION-LOG.md:1-120", "purposes": [], "type": "dead_content"},
+    {"location": "test-academic.md:1-15", "purposes": [], "type": "dead_content"},
+    {"location": "test-pressure-1.md:1-59", "purposes": ["pressure-resistance"], "type": "dead_content"},
+    {"location": "test-pressure-2.md:1-69", "purposes": ["pressure-resistance"], "type": "dead_content"},
+    {"location": "test-pressure-3.md:1-70", "purposes": ["pressure-resistance"], "type": "dead_content"}
+  ],
+  "unmatched_requirements": [
+    {
+      "location": "SKILL.md:179",
+      "description": "References external skill 'superpowers:test-driven-development' for creating failing test cases in Phase 4 Step 1. This cross-skill dependency is not satisfiable within this skill alone.",
+      "type": "cross_skill_reference"
+    },
+    {
+      "location": "SKILL.md:288",
+      "description": "References external skill 'superpowers:verification-before-completion' for verifying fix worked. This cross-skill dependency is not satisfiable within this skill alone.",
+      "type": "cross_skill_reference"
+    }
+  ]
+}

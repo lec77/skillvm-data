@@ -1,0 +1,26 @@
+{
+  "id": "fileorg-dedup",
+  "name": "Deduplicate a photo library",
+  "category": "file-organization",
+  "gradingType": "automated",
+  "prompt": "Find all duplicate files in the photos/ directory and report them. List each group of duplicates together. Do not delete any files, just report what you find.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "python-grade",
+      "id": "python-grade",
+      "name": "Automated Grade",
+      "weight": 1.0
+    }
+  ],
+  "skill": "../../skills/file-organization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/file-organization/fileorg-dedup/",
+    "importedAt": "2026-07-06T15:55:00.000Z",
+    "notes": "hand-ported: legacy evalDuplicateDetection() rewritten as python-grade grade.py; fixtures materialized from setupDuplicatePhotos()"
+  }
+}

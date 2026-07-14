@@ -1,0 +1,67 @@
+{
+  "id": "facility-placement",
+  "name": "Facility Placement Optimization",
+  "category": "constraint-optimization",
+  "gradingType": "automated",
+  "prompt": "Read grid.json describing a facility placement problem on an 8×8 grid. Place exactly 4 facilities to maximize total population covered. Constraints: (1) facilities cannot be placed on blocked cells, (2) facilities must be at least min_distance=2 apart (Manhattan distance), (3) each facility covers all cells within coverage_radius=2 (Manhattan distance). A cell's population is 'covered' if at least one facility is within radius. Write placement.json with: facilities (array of [row, col] positions), total_covered_population (number), coverage_map (8×8 array where 1=covered, 0=not).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "facility-placement.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "facility-count",
+            "weight": 0.15,
+            "description": "Exactly 4 facilities placed",
+            "testPattern": "exactly 4 facilities"
+          },
+          {
+            "id": "no-blocked",
+            "weight": 0.15,
+            "description": "No facility on a blocked cell",
+            "testPattern": "no facility on blocked cell"
+          },
+          {
+            "id": "min-distance",
+            "weight": 0.2,
+            "description": "All facilities at least min_distance=2 apart",
+            "testPattern": "minimum distance constraint"
+          },
+          {
+            "id": "coverage-correct",
+            "weight": 0.2,
+            "description": "Coverage map matches facility positions and radius",
+            "testPattern": "coverage map is correct"
+          },
+          {
+            "id": "population-good",
+            "weight": 0.2,
+            "description": "Total covered population exceeds reasonable threshold",
+            "testPattern": "covered population is high"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/constraint-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/constraint-optimization/facility-placement/",
+    "importedAt": "2026-07-07T06:18:30.393Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "iterations": 4,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "results": {
+    "iteration_1": {
+      "pptx-create": 0,
+      "pptx-extract": 100,
+      "changes": "Replaced 483-line verbose SKILL.md with focused 113-line version based on python-pptx only. Removed html2pptx, OOXML, template sections. Added structured extraction and number parsing examples."
+    },
+    "iteration_2": {
+      "pptx-create": 100,
+      "pptx-extract": 0,
+      "changes": "Added venv setup instructions (python3 -m venv .venv). Changed text extraction to use python-pptx instead of markitdown. pptx-extract failure was model hallucination of output data."
+    },
+    "iteration_3": {
+      "pptx-create": 100,
+      "pptx-extract": 100,
+      "changes": "Added guidance to check for existing .venv before creating one. Added IMPORTANT note to verify output file contents after running scripts."
+    },
+    "iteration_4": {
+      "pptx-create": 100,
+      "pptx-extract": 100,
+      "changes": "Confirmation run with no changes. Both tasks consistently pass."
+    }
+  },
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "key_changes": [
+    "Reduced SKILL.md from 483 lines to ~130 lines (73% reduction)",
+    "Focused exclusively on python-pptx (removed html2pptx, OOXML, templates)",
+    "Added explicit venv setup instructions critical for opencode runtime",
+    "Added structured JSON extraction pattern with title/bullet separation",
+    "Added number parsing helpers (parse_money, parse_pct) for financial data",
+    "Added verification guidance to prevent model hallucination",
+    "Removed unused files: html2pptx.md, ooxml.md, ooxml/, scripts/"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "skill_name": "weather",
+  "skill_path": "skills/weather",
+  "total_files": 1,
+  "total_tokens_estimate": 580,
+  "purposes": [
+    {
+      "id": "fetch-current-weather",
+      "description": "Retrieve current weather conditions for a given location using wttr.in via curl",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L1", "evidence": "Execute a single curl command against wttr.in, e.g. curl \"wttr.in/London?format=3\" (Commands > Current Weather)"},
+          {"id": "gen.code.shell", "min_level": "L1", "evidence": "Construct a curl command with the correct URL and query parameters for the target city (Commands > Current Weather)"},
+          {"id": "follow.constraint", "min_level": "L1", "evidence": "Must include a city/region/airport code in the query as stated in the Location section"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "fetch-forecast",
+      "description": "Retrieve multi-day weather forecasts for a given location using wttr.in via curl",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L1", "evidence": "Execute curl commands for 3-day or week forecasts, e.g. curl \"wttr.in/London?format=v2\" (Commands > Forecasts)"},
+          {"id": "gen.code.shell", "min_level": "L1", "evidence": "Construct curl command with day-selection query parameter ?0, ?1, ?2 or format=v2 (Commands > Forecasts)"},
+          {"id": "follow.constraint", "min_level": "L1", "evidence": "Must include a location identifier in the query (Location section)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "format-weather-output",
+      "description": "Customize weather output format using wttr.in format codes for specific fields like temperature, wind, humidity",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.shell", "min_level": "L1", "evidence": "Build format strings with codes like %c, %t, %f, %w, %h, %p, %l (Format Options and Format Codes sections)"},
+          {"id": "tool.exec", "min_level": "L1", "evidence": "Execute the formatted curl request and use its output (Quick Responses section)"},
+          {"id": "follow.format", "min_level": "L1", "evidence": "Select appropriate output format: one-liner, JSON (j1), or PNG based on user need (Format Options section)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "answer-weather-question",
+      "description": "Interpret the curl output and present a natural language weather summary to the user",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.text.prose", "min_level": "L1", "evidence": "Compose a short natural language answer from the curl output for questions like 'What's the weather?' or 'Will it rain?' (Quick Responses section)"},
+          {"id": "reason.analysis", "min_level": "L1", "evidence": "Parse and interpret the weather data returned by curl to extract relevant details (implicit in all usage patterns)"}
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-6", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:8-10", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:12-20", "purposes": ["fetch-current-weather", "fetch-forecast", "answer-weather-question"], "type": "instruction"},
+    {"location": "SKILL.md:22-30", "purposes": ["fetch-current-weather", "fetch-forecast"], "type": "instruction"},
+    {"location": "SKILL.md:32-35", "purposes": ["fetch-current-weather", "fetch-forecast", "format-weather-output"], "type": "instruction"},
+    {"location": "SKILL.md:37-49", "purposes": ["fetch-current-weather"], "type": "code_example"},
+    {"location": "SKILL.md:51-62", "purposes": ["fetch-forecast"], "type": "code_example"},
+    {"location": "SKILL.md:64-75", "purposes": ["format-weather-output"], "type": "code_example"},
+    {"location": "SKILL.md:77-86", "purposes": ["format-weather-output"], "type": "instruction"},
+    {"location": "SKILL.md:88-105", "purposes": ["answer-weather-question", "format-weather-output"], "type": "code_example"},
+    {"location": "SKILL.md:107-113", "purposes": ["fetch-current-weather", "fetch-forecast"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

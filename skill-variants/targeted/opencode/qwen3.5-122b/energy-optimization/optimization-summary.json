@@ -1,0 +1,37 @@
+{
+  "iterations": 4,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "scores": {
+    "iteration_1_baseline": {
+      "power-flow": 85,
+      "economic-dispatch": 55
+    },
+    "iteration_2": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    },
+    "iteration_3": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    },
+    "iteration_4_confirmation": {
+      "power-flow": 100,
+      "economic-dispatch": 80
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Major rewrite: added per-unit conversion (Sbase=100 MVA) for DC power flow to fix angle magnitudes; added explicit 'ALWAYS write Python script' instruction to prevent mental computation; restructured skill with CRITICAL RULES section; added clearer algorithm templates with step-by-step comments; added example output with realistic values"
+    },
+    {
+      "iteration": 3,
+      "description": "Minor tweaks: added float() casts for generator limits in lambda iteration to avoid int/float edge cases; increased convergence iterations to 500 and tightened tolerance to 1e-8"
+    }
+  ],
+  "notes": {
+    "power-flow_improvement": "85 → 100. Root cause: model was plugging MW values directly into B*theta=P without per-unit conversion, producing angles of -6 to -11 radians (test requires |theta| < 1.0). Fix: added Sbase=100 MVA per-unit conversion in skill.",
+    "economic-dispatch_cap": "55 → 80 (max achievable). Root cause of initial failure: model computed dispatch values mentally without writing code, getting wildly wrong costs (~224k instead of ~1.3k). Fix: emphasized 'ALWAYS write Python script'. Remaining 20 points lost to task configuration bug: testPattern 'within limits' does not match test name 'all generators within min/max limits' (regex requires adjacent words but 'min/max' sits between them)."
+  }
+}

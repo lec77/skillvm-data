@@ -1,0 +1,32 @@
+{
+  "iterations": 3,
+  "model": "deepseek-v3.2",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "parallel-checksum": {
+      "iteration_1_baseline": 0,
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "max_achievable": 0,
+      "note": "Systemic test infrastructure bug: all 6 testPattern values use describe block names (e.g. 'output exists', 'entry count') but bun JUnit reporter outputs only test names (e.g. 'checksums.json exists'). No pattern matches any test name. ALL models (including claude-opus-4.6) score 0/100 on this task across all runs."
+    },
+    "parallel-wordcount": {
+      "iteration_1_baseline": 15,
+      "iteration_2": 45,
+      "iteration_3": 45,
+      "max_achievable": 45,
+      "note": "Only 2 of 5 testPattern values match test names: 'total word count' matches test 'total word count equals 10000' (weight 0.15), 'top 10 words' matches test 'top 10 words are all present with correct counts' (weight 0.30). Other patterns (output-exists, all-words-match, uses-multiprocessing) use describe names that don't match any test name. Max achievable = (0.15 + 0.30) * 100 = 45. This matches the best score from claude-opus-4.6."
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to be concise and recipe-focused for deepseek-v3.2. Replaced verbose generic documentation with direct code patterns: file checksum pattern (hashlib.sha256 with Pool.map), word count pattern (Counter with Pool.map and f.read().split()), and JSON output pattern. Emphasized simple tokenization (split() not regex), context managers, and if __name__ == '__main__' guard. Reduced from 236 lines to ~70 lines."
+    }
+  ],
+  "analysis": {
+    "skill_impact": "Iteration 2 improved parallel-wordcount from 15 to 45 (max achievable). The baseline skill caused the model to use regex tokenization instead of split(), producing wrong word counts. The optimized skill's explicit 'use f.read().split()' guidance fixed this.",
+    "test_infrastructure_issues": "The python-parallelization task definitions have broken testPattern values that use describe block names instead of test names. The bun JUnit reporter only includes test case names (not describe paths) in testcase name attributes. This caps parallel-checksum at 0/100 and parallel-wordcount at 45/100 for ALL models and runtimes.",
+    "recommendation": "Fix testPattern values in tasks/python-parallelization/parallel-checksum/task.ts and tasks/python-parallelization/parallel-wordcount/task.ts to use test name substrings instead of describe block names."
+  }
+}

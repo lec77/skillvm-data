@@ -1,0 +1,30 @@
+{
+  "iterations": 1,
+  "max_iterations": 3,
+  "original_lines": 107,
+  "optimized_lines": 49,
+  "reduction_percent": 54,
+  "per_task_scores": {
+    "fjsp-schedule": {
+      "score": 100,
+      "max_score": 100,
+      "model": "qwen3.5-397b",
+      "runtime": "openclaw"
+    },
+    "job-makespan": {
+      "score": 100,
+      "max_score": 100,
+      "model": "qwen3.5-397b",
+      "runtime": "openclaw"
+    }
+  },
+  "changes_made": [
+    "Removed verbose 'Repair Heuristic' section (not needed for correct greedy approach)",
+    "Removed standalone 'Constraint Checking' code blocks, replaced with concise validation checklist",
+    "Removed 'Tips for Good Solutions' section, integrated key tip (prefer shorter processing time) into algorithm",
+    "Compressed problem formulation and overview into single concise section",
+    "Simplified pseudocode to natural language algorithm steps",
+    "Removed redundant examples from output format section"
+  ],
+  "files_in_skill_directory": ["SKILL.md", "optimization-summary.json"]
+}

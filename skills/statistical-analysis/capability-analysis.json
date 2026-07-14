@@ -1,0 +1,142 @@
+{
+  "skill_name": "statistical-analysis",
+  "skill_path": "skills/statistical-analysis",
+  "total_files": 1,
+  "total_tokens_estimate": 1500,
+  "purposes": [
+    {
+      "id": "hypothesis-testing",
+      "description": "Conduct statistical hypothesis tests (t-test, paired t-test, ANOVA, chi-square, Pearson correlation) with proper assumption checking (normality, homogeneity of variance) and multiple comparison correction.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires scipy.stats (third-party) for stats.ttest_ind, stats.f_oneway, stats.chi2_contingency, stats.pearsonr, stats.shapiro, stats.levene. Also statsmodels for power analysis."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L1",
+            "evidence": "Agent must select the correct test based on the test selection guide: 2 groups -> t-test, 3+ groups -> ANOVA, categorical -> chi-square, continuous relationships -> correlation/regression."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Interpreting p-values, computing Bonferroni correction (p_adjusted = min(p_raw * n_tests, 1.0)), and understanding significance thresholds."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "regression-analysis",
+      "description": "Build and interpret multiple linear regression models using OLS, including coefficient significance, R-squared, VIF for multicollinearity detection.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses statsmodels.api (third-party): sm.OLS, sm.add_constant, model.summary(), model.rsquared, model.pvalues. Also statsmodels.stats.outliers_influence.variance_inflation_factor."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Interpreting regression output: R-squared, adjusted R-squared, F-statistic, individual coefficient p-values, and VIF > 10 threshold for multicollinearity."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "compute-effect-sizes",
+      "description": "Calculate and interpret effect sizes (Cohen's d, eta-squared, r) to quantify practical significance alongside statistical significance.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Computing Cohen's d with pooled standard deviation using numpy (third-party), eta-squared from sum-of-squares decomposition."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Multi-step calculations: pooled SD = sqrt(((n_a-1)*var_a + (n_b-1)*var_b) / (n_a+n_b-2)), then d = (mean_a - mean_b) / pooled_sd. SS_between/SS_total for eta-squared."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "report-results",
+      "description": "Format statistical results in APA style and as structured JSON output with descriptives, test statistics, p-values, and effect sizes.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "JSON output format has nested structure: descriptives array, anova object, pairwise array with multiple fields per entry. ~1-2KB output."
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "APA reporting format has specific conventions: t(df) = X.XX, p = .XXX, d = X.XX. JSON schema has exact field names and types."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-16",
+      "purposes": ["hypothesis-testing"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:18-36",
+      "purposes": ["hypothesis-testing"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:38-76",
+      "purposes": ["hypothesis-testing"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:78-99",
+      "purposes": ["regression-analysis"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:101-134",
+      "purposes": ["compute-effect-sizes"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:136-144",
+      "purposes": ["hypothesis-testing"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:146-159",
+      "purposes": ["hypothesis-testing"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:161-173",
+      "purposes": ["regression-analysis"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:175-205",
+      "purposes": ["report-results"],
+      "type": "code_example"
+    }
+  ],
+  "unmatched_requirements": []
+}

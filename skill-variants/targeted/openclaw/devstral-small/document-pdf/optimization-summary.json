@@ -1,0 +1,41 @@
+{
+  "iterations": 4,
+  "model": "devstral-small",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "document-pdf": {
+      "iteration_1_baseline": 100,
+      "iteration_2_slim": 0,
+      "iteration_3_explicit_python": 100,
+      "iteration_4_confirmation": 100
+    },
+    "pdf-create": {
+      "iteration_1_baseline": 100,
+      "iteration_2_slim": 100,
+      "iteration_3_explicit_python": 100,
+      "iteration_4_confirmation": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (7KB) plus forms.md, reference.md, and scripts/ directory"
+    },
+    {
+      "iteration": 2,
+      "description": "Removed forms.md, reference.md, scripts/. Rewrote SKILL.md to concise extraction+creation focus only. document-pdf task failed: model tried pdfplumber as CLI instead of writing Python script"
+    },
+    {
+      "iteration": 3,
+      "description": "Added prominent instruction to always write .py files and run with python3. Added explicit 'write a script and run it' framing for both extraction and creation examples. Both tasks now score 100/100"
+    },
+    {
+      "iteration": 4,
+      "description": "Confirmation run - stable 100/100 on both tasks"
+    }
+  ],
+  "final_skill_size_bytes": 1636,
+  "original_skill_size_bytes": 34665,
+  "size_reduction_percent": 95.3,
+  "files_removed": ["forms.md", "reference.md", "scripts/"]
+}

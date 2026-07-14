@@ -1,0 +1,41 @@
+{
+  "skill": "geospatial-analysis",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 4,
+  "scores": {
+    "iteration_1_baseline": {
+      "city-distance": 0,
+      "plate-boundary": 100,
+      "notes": "city-distance: API-level flake — 0 tokens, no model response (not a skill issue)"
+    },
+    "iteration_2_optimized": {
+      "city-distance": 100,
+      "plate-boundary": 100,
+      "notes": "Both tasks perfect after skill optimization"
+    },
+    "iteration_3_confirmation": {
+      "city-distance": 0,
+      "plate-boundary": 100,
+      "notes": "city-distance: API-level flake again — 0 tokens, 1s runtime"
+    },
+    "iteration_4_confirmation": {
+      "city-distance": 100,
+      "plate-boundary": 100,
+      "notes": "Both tasks perfect — confirms optimization is stable"
+    }
+  },
+  "changes": [
+    "Removed Python implementation (opencode uses TypeScript only)",
+    "Added explicit closestPairs helper function with city1/city2/distance_km output format",
+    "Added nearestPoint function returning index and distance",
+    "Streamlined distance matrix to use symmetric optimization (j = i+1)",
+    "Added Key Rules section with JSON output guidance (JSON.stringify, fs.writeFileSync)",
+    "Reduced token count by ~30% while preserving all critical formulas"
+  ],
+  "final_scores": {
+    "city-distance": 100,
+    "plate-boundary": 100
+  },
+  "notes": "Two of four runs had city-distance score 0 due to API-level flakes (deepseek-v3.2 returning empty responses with 0 tokens). When the model responds, both tasks consistently score 100/100."
+}

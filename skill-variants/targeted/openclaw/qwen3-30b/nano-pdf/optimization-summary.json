@@ -1,0 +1,47 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "openclaw",
+  "model": "qwen3-30b",
+  "iterations": 4,
+  "scores": {
+    "iteration_0_baseline": {
+      "pdf-text-extract": 100,
+      "pdf-merge-info": 15,
+      "notes": "Original skill only documented 'nano-pdf edit'. Agent got stuck calling pdfinfo with multiple files in a loop."
+    },
+    "iteration_1": {
+      "pdf-text-extract": 0,
+      "pdf-merge-info": 100,
+      "notes": "Added CLI tool docs (pdftotext, pdfinfo, pdfunite) and Python pypdf examples. Merge task fixed but text extract regressed — agent used shell read on binary PDF, then got stuck in awk/sed loops."
+    },
+    "iteration_2": {
+      "pdf-text-extract": 100,
+      "pdf-merge-info": 100,
+      "notes": "Strengthened guidance to always use Python for extraction, never chain shell pipes. Both tasks pass."
+    },
+    "iteration_2_confirmation": {
+      "pdf-text-extract": 80,
+      "pdf-merge-info": 75,
+      "notes": "Intermittent failures: highlights not fully extracted (text-extract), author from PDF metadata='anonymous' instead of page text (merge-info)."
+    },
+    "iteration_3": {
+      "pdf-text-extract": 100,
+      "pdf-merge-info": 100,
+      "notes": "Added explicit guidance: never use PDF metadata for author/title (often wrong), always read page text. Added complete pypdf example for multi-file merge+extract. Added highlights extraction tips."
+    },
+    "iteration_3_confirmation": {
+      "pdf-text-extract": 100,
+      "pdf-merge-info": 100,
+      "notes": "Confirmed both tasks stable at 100/100."
+    }
+  },
+  "changes_made": [
+    "Expanded skill from edit-only to cover reading, extracting, and merging PDFs",
+    "Added pdftotext, pdfinfo, pdfunite CLI tool documentation with one-file-at-a-time constraint",
+    "Added Python pypdf examples for merge and metadata extraction",
+    "Strong guidance to use Python scripts instead of shell pipe chains for parsing",
+    "Explicit warning: PDF metadata (author/title) is often wrong — read page text instead",
+    "Complete working example for multi-file merge+extract workflow",
+    "Tips for number parsing (strip $ and commas), percentage conversion, and highlight extraction"
+  ]
+}

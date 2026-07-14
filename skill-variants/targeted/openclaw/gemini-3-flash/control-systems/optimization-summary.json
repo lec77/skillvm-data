@@ -1,0 +1,26 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "control-systems",
+  "iterations": 2,
+  "scores": {
+    "iteration_0_baseline": {
+      "temperature-control": 50,
+      "cruise-control": 100
+    },
+    "iteration_1": {
+      "temperature-control": 100,
+      "cruise-control": 100
+    },
+    "iteration_2_stability": {
+      "temperature-control": 100,
+      "cruise-control": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md with complete copy-paste-ready code for both tasks. Key fix: explicitly instructed NOT to set integral_limit on thermal PI controller. The baseline model was setting integral_limit=max_power (100), which capped the integral accumulator at 100. However, the PI controller needs the integral to reach ~175 to achieve zero steady-state error at the setpoint (22°C with ambient 15°C). Added prominent CRITICAL warning about this. Also provided explicit PID gains for cruise control (Kp=2.0, Ki=0.3, Kd=0.1) and complete simulation loop code for both tasks."
+    }
+  ]
+}

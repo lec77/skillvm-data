@@ -1,0 +1,56 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 5,
+  "per_task_scores": {
+    "pdf-text-extract": {
+      "iteration_1": [0, 0],
+      "iteration_2": [0, 0],
+      "iteration_3": [100, 78],
+      "iteration_4": [100, 0, 100],
+      "iteration_5": [100, 0, 0],
+      "best": 100,
+      "notes": "When model successfully loads skill and uses tools, scores 100. ~33-50% of runs, devstral-small enters text-generation loop (65536 tokens, 0 tool calls) instead of making tool calls."
+    },
+    "pdf-merge-info": {
+      "iteration_1": [0],
+      "iteration_2": [0, 0],
+      "iteration_3": [0, 0],
+      "iteration_4": [0, 50, 50],
+      "iteration_5": [0, 50, 75],
+      "best": 75,
+      "notes": "Model successfully merges PDFs and extracts page counts. Titles extracted via text (iteration 5). Authors still extracted from PDF metadata (empty) instead of text content. Text-loop issue affects ~33% of runs."
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "change": "Initial targeted skill with bundled Python scripts (extract_pdf_text.py, merge_pdfs.py, pdf_page_count.py) in scripts/ directory. Detailed workflow instructions for extraction and merging."
+    },
+    {
+      "iteration": 2,
+      "change": "Simplified skill description to reduce model's compulsion to load skill. Shortened SKILL.md body."
+    },
+    {
+      "iteration": 3,
+      "change": "Changed skill name from 'nano-pdf' to 'pdf' to match successful document-pdf pattern. Removed scripts directory. Matched document-pdf skill structure (inline Python examples). This was the breakthrough - model started successfully loading skill and using tools."
+    },
+    {
+      "iteration": 4,
+      "change": "Added table parsing guidance for regional data extraction. Added pypdf merge example. Removed 'merge' from description to reduce skill-loading compulsion for merge tasks."
+    },
+    {
+      "iteration": 5,
+      "change": "Added explicit 'Extract Document Info' section showing how to get titles/authors from TEXT content (not PDF metadata). Emphasized that PDF metadata is often empty."
+    }
+  ],
+  "key_findings": [
+    "devstral-small has a fundamental issue with the bare agent's <load-skill> XML tag mechanism: it garbles the tag ~33-50% of the time, producing text like 'nano-pdf}' or 'load-skill>nano-pdf</skill>' instead of '<load-skill>pdf</load-skill>'",
+    "When skill loading fails, the model enters a text-generation loop (65536 tokens) without making any tool calls",
+    "Changing the skill name from 'nano-pdf' to 'pdf' dramatically improved success rate (matching the successful document-pdf skill pattern)",
+    "Removing bundled scripts and using inline code examples was more effective than providing external scripts",
+    "The model successfully uses pdftotext CLI, pdfplumber, and pypdf when it does engage tool-calling mode",
+    "The text-loop issue appears to be a model-level behavior, not addressable through skill content changes"
+  ]
+}

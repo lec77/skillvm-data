@@ -1,0 +1,21 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "opencode",
+  "skill": "document-pdf",
+  "baseline": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  },
+  "final": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  },
+  "changes": [
+    "Stripped SKILL.md from ~295 lines to ~90 lines, removing irrelevant sections (forms, OCR, watermarks, password protection, command-line tools)",
+    "Removed supplementary files: forms.md, reference.md, LICENSE.txt, scripts/ directory (8 Python scripts)",
+    "Focused content on the two core capabilities needed: text/table extraction (pdfplumber) and PDF creation (reportlab)",
+    "Added reportlab Table/TableStyle example for structured PDF creation",
+    "Kept pypdf section for basic merge/split operations"
+  ]
+}

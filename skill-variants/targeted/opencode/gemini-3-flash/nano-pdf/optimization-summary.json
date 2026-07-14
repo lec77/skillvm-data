@@ -1,0 +1,16 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 100
+  },
+  "changes": [
+    "Rewrote SKILL.md based on successful bare/gemini-3-flash and opencode/qwen3.5-122b targeted skills",
+    "Added explicit Step 1: Always extract text first with pdfplumber before any other operation",
+    "Added CRITICAL warning: do NOT use reader.metadata — parse page text instead for titles, authors, dates",
+    "Provided concrete text parsing patterns (Author: line splitting, first-line-is-title, currency/percent stripping)",
+    "Used PdfWriter.append() for merging (PdfMerger removed in pypdf v6+)",
+    "Added rule: write multi-line .py scripts instead of one-liner python -c to avoid syntax errors",
+    "Included venv reuse guidance for setup efficiency"
+  ]
+}

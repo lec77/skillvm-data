@@ -1,0 +1,49 @@
+{
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "clinical-nlp",
+  "iterations": 3,
+  "scores": {
+    "iteration_1": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "skill_version": "original (verbose with Python code, drug lists, implementation algorithm)"
+    },
+    "iteration_2": {
+      "note-extraction": 0,
+      "medication-reconciliation": 60,
+      "total": 60,
+      "skill_version": "optimized (trimmed, explicit output formats, checklists)",
+      "note": "note-extraction timed out (23min) due to API rate limit contention from concurrent benchmark"
+    },
+    "iteration_3": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "skill_version": "same as iteration 2 (verification run)"
+    }
+  },
+  "final_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "total": 150,
+    "max_possible": 200
+  },
+  "theoretical_maximum": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "total": 150,
+    "explanation": "Four test criteria have testPattern values that don't match any bun-test JUnit XML testcase name attributes. The patterns match describe block names (stored in classname attribute) but matchTests() only searches the name attribute. These criteria always score 0 regardless of model output correctness: output-exists (both tasks, 10pts each), admission-count (15pts), discharge-count (15pts). Total unreachable: 50 points."
+  },
+  "changes_made": [
+    "Removed verbose Python implementation code (regex patterns, algorithm pseudocode)",
+    "Removed 20-item common drug list (unnecessary for task completion)",
+    "Added explicit JSON output format examples for both tasks",
+    "Added extraction and reconciliation checklists",
+    "Emphasized exact key names expected by tests (admission_meds, discharge_meds, changes, etc.)",
+    "Added CRITICAL labels on negation detection and count requirements",
+    "Clarified switch classification rules (switched items should not appear in discontinued/new_meds)",
+    "Structured as two clear task sections rather than a monolithic reference"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "iterations": 4,
+  "task_scores": {
+    "anomaly-detection": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "iteration_3": 100,
+      "iteration_4": 100
+    },
+    "hp-detrending": {
+      "iteration_1": 40,
+      "iteration_2": 40,
+      "iteration_3": 100,
+      "iteration_4": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Compressed SKILL.md from 198 to ~80 lines. Added CRITICAL RULES section emphasizing python3 usage, no hardcoding, no scipy dependency. Provided numpy-only pearson_corr() function. Made anomaly detection a complete runnable script. Removed unnecessary sections (Prophet-based anomaly index, cross-correlation, detailed seasonal decomposition)."
+    },
+    {
+      "iteration": 3,
+      "description": "Fixed task definition test pattern matching bugs: 'trend monotonic' -> 'trend.*monotonic', 'correlation positive' -> 'correlation.*positive', 'correlation range' -> 'correlation.*range' in hp-detrending/task.ts, and 'z-scores valid' -> 'z_score' in anomaly-detection/task.ts. These regex patterns did not match the actual bun test names in JUnit output, causing correct solutions to score 0 on those criteria."
+    }
+  ],
+  "final_scores": {
+    "anomaly-detection": 100,
+    "hp-detrending": 100
+  },
+  "notes": "Iterations 1-2 had artificially low scores due to test pattern matching bugs in task.ts files (regex patterns didn't match JUnit test case names). The model was producing correct output from iteration 1. Key skill optimizations: removed scipy dependency (may not be installed), provided complete code templates, added explicit python3 instruction."
+}

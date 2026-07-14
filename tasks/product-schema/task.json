@@ -1,0 +1,61 @@
+{
+  "id": "product-schema",
+  "name": "Generate JSON-LD Product schema from an HTML product page",
+  "category": "schema-markup",
+  "gradingType": "automated",
+  "prompt": "Read the product page in product-page.html and generate a valid JSON-LD structured data file called schema.json for the product. The schema must use schema.org vocabulary and include: @context (schema.org), @type (Product), name, description, brand (as an Organization with name), sku, offers (with @type Offer, price as a number, priceCurrency, and availability using schema.org URL format like https://schema.org/InStock), and aggregateRating (with @type AggregateRating, ratingValue, and reviewCount). Extract all values from the HTML content.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "product-schema.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.1,
+            "description": "Output file created and valid JSON",
+            "testPattern": "exists|valid JSON"
+          },
+          {
+            "id": "jsonld-structure",
+            "weight": 0.1,
+            "description": "JSON-LD context and type correct",
+            "testPattern": "@context|@type Product"
+          },
+          {
+            "id": "product-fields",
+            "weight": 0.25,
+            "description": "Product name, description, brand, SKU extracted",
+            "testPattern": "name is|description|brand|sku"
+          },
+          {
+            "id": "offers",
+            "weight": 0.3,
+            "description": "Offers with price, currency, availability",
+            "testPattern": "Offer|price is|priceCurrency|availability"
+          },
+          {
+            "id": "aggregate-rating",
+            "weight": 0.25,
+            "description": "AggregateRating with correct values",
+            "testPattern": "AggregateRating|ratingValue|reviewCount"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/schema-markup",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/schema-markup/product-schema/",
+    "importedAt": "2026-07-07T06:19:11.558Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

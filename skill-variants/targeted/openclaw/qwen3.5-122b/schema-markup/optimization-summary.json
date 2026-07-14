@@ -1,0 +1,27 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "schema-markup",
+  "iterations": 1,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      },
+      "changes": [
+        "Replaced verbose generic skill with concise, action-oriented version",
+        "Removed question-asking preamble — skill now instructs immediate action",
+        "Added explicit FAQPage and Product JSON-LD templates with exact structure",
+        "Added critical rules: pure JSON output, price as number, availability as full URL",
+        "Removed irrelevant sections (CMS/WordPress, validation tools, related skills)",
+        "Emphasized extracting ALL items and using exact values from HTML"
+      ]
+    }
+  ],
+  "finalScores": {
+    "faq-schema": 100,
+    "product-schema": 100
+  }
+}

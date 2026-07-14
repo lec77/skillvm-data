@@ -1,0 +1,26 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "results": {
+    "iteration_1_baseline": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 85
+    },
+    "iteration_2_optimized": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    },
+    "iteration_3_confirmation": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    }
+  },
+  "changes": [
+    "Added 'Reading & Analyzing Spreadsheets' section with critical rules for skipping formula/total rows, handling None cells, and correctly counting boolean values",
+    "Added worked example for spreadsheet analysis showing proper data row filtering and approval rate calculation",
+    "Added 'Common Mistakes When Reading' section highlighting formula row inclusion and wrong approval rate calculation",
+    "Removed bundled template script reference (scripts/create_xlsx.py) — inline examples are sufficient",
+    "Removed unused files: scripts/create_xlsx.py, recalc.py, LICENSE.txt"
+  ]
+}

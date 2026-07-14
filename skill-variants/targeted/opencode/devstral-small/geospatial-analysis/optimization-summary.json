@@ -1,0 +1,34 @@
+{
+  "skill": "geospatial-analysis",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline - original verbose skill (identical to skills/geospatial-analysis/SKILL.md)",
+      "scores": {
+        "city-distance": 0,
+        "plate-boundary": 0
+      },
+      "notes": "Model got stuck in infinite text loop repeating 'I'll use the Read tool' without making tool calls. Hit 32K output token limit and 3min timeout on both tasks."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote skill with complete runnable Node.js script patterns. Key changes: (1) Added explicit instruction to write a single Node.js script and run it with node, (2) Provided complete copy-pasteable haversine+bearing functions, (3) Added two task-specific patterns (distance matrix + closest pairs, nearest point + bearing) with full working code, (4) Added clear 4-step workflow (read inputs, write script, run script, verify output), (5) Removed Python code, K-nearest neighbors, and verbose explanations.",
+      "scores": {
+        "city-distance": 100,
+        "plate-boundary": 100
+      },
+      "verification_run": {
+        "city-distance": 100,
+        "plate-boundary": 100
+      }
+    }
+  ],
+  "final_scores": {
+    "city-distance": 100,
+    "plate-boundary": 100
+  },
+  "changes_summary": "Replaced verbose reference-style skill with directive, script-centric skill containing complete runnable code patterns. The small model needed explicit instructions to write a single script file and run it, rather than trying to reason through tool calls step by step."
+}

@@ -1,0 +1,23 @@
+{
+  "iterations": 2,
+  "per_task_scores": {
+    "document-pdf": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    },
+    "pdf-create": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (identical to skills/document-pdf/SKILL.md plus forms.md, reference.md, and scripts/). Both tasks scored 100/100."
+    },
+    {
+      "iteration": 2,
+      "description": "Replaced verbose SKILL.md with a focused version covering only pdfplumber (extraction), pypdf (reading), and reportlab (creation). Removed forms.md, reference.md, and scripts/ directory as they are not referenced by the optimized SKILL.md and irrelevant to the benchmark tasks. Reduced skill size by ~80%. Both tasks still scored 100/100 with lower cost and faster execution."
+    }
+  ]
+}

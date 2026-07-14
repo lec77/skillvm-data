@@ -1,0 +1,36 @@
+{
+  "iterations": 4,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "baseline_scores": {
+    "pptx-create": 90,
+    "pptx-extract": 94
+  },
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Dramatically condensed SKILL.md from 484 to ~100 lines. Replaced complex html2pptx workflow with direct PptxGenJS usage. Added explicit instruction to include ALL slides (including title slide) in extraction output. Removed design-focused content (color palettes, visual details, layout tips) irrelevant for qwen3-30b.",
+      "scores": { "pptx-create": 100, "pptx-extract": 100 }
+    },
+    {
+      "iteration": 2,
+      "description": "Added explicit async/await guidance for writeFile() and emphasized it returns a Promise. Added async IIFE pattern example.",
+      "scores": { "pptx-create": "timeout", "pptx-extract": 94 }
+    },
+    {
+      "iteration": 3,
+      "description": "Restructured creation workflow into numbered steps (install, write script, RUN SCRIPT, extract text) to prevent model from skipping the script execution step.",
+      "scores": { "pptx-create": 100, "pptx-extract": 94 }
+    },
+    {
+      "iteration": 4,
+      "description": "Strengthened slides array instruction: explicitly stated title/cover slide must be the first entry with exact count matching slide_count.",
+      "scores": { "pptx-create": 100, "pptx-extract": 100 }
+    }
+  ],
+  "notes": "Occasional timeouts on pptx-create are due to qwen3-30b stochastically asking confirmation questions instead of proceeding, not skill issues. When the model follows the skill, both tasks achieve 100/100. Removed html2pptx.md (no longer referenced). Kept ooxml.md, scripts/, and ooxml/ directories as they are referenced by SKILL.md."
+}

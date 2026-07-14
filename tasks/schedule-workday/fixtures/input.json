@@ -1,0 +1,20 @@
+{
+  "date": "2026-03-20",
+  "wake_time": "07:00",
+  "end_time": "18:00",
+  "fixed_commitments": [
+    { "name": "Team standup", "start_time": "10:00", "end_time": "10:30" },
+    { "name": "Design review meeting", "start_time": "13:00", "end_time": "14:00" },
+    { "name": "1:1 with manager", "start_time": "16:00", "end_time": "16:30" }
+  ],
+  "tasks": [
+    { "name": "Write quarterly report", "priority": 1, "estimated_minutes": 90, "category": "work" },
+    { "name": "Review pull requests", "priority": 1, "estimated_minutes": 45, "category": "work" },
+    { "name": "Update project roadmap", "priority": 1, "estimated_minutes": 60, "category": "work" },
+    { "name": "Respond to client emails", "priority": 2, "estimated_minutes": 30, "category": "communication" },
+    { "name": "Prepare presentation slides", "priority": 2, "estimated_minutes": 60, "category": "work" },
+    { "name": "Organize desktop files", "priority": 3, "estimated_minutes": 20, "category": "admin" },
+    { "name": "Read industry newsletter", "priority": 3, "estimated_minutes": 25, "category": "learning" },
+    { "name": "Update team wiki", "priority": 2, "estimated_minutes": 40, "category": "documentation" }
+  ]
+}

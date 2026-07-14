@@ -1,0 +1,14 @@
+{
+  "iterations": 1,
+  "per_task_scores": {
+    "flood-risk": {
+      "iteration_1": 100
+    },
+    "streamflow-stats": {
+      "iteration_1": 100
+    }
+  },
+  "changes_made": [
+    "No changes needed — the existing SKILL.md achieved 100/100 on both tasks in the first iteration."
+  ]
+}

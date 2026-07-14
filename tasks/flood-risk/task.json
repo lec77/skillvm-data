@@ -1,0 +1,67 @@
+{
+  "id": "flood-risk",
+  "name": "Detect flood events and classify severity from streamflow data",
+  "category": "flood-analysis",
+  "gradingType": "automated",
+  "prompt": "Read streamflow.csv (columns: date, station_A, station_B, station_C) and thresholds.json. For each station, determine if any flooding occurred by comparing daily flows to flood stage thresholds. Classify the maximum severity reached (none/action/minor/moderate/major). Count total flood days per station (days where flow exceeds the action threshold). Write flood_report.json with keys: stations (array of {name, max_severity, flood_days, peak_flow, peak_date}).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "flood-risk.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "flood_report.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "station-count",
+            "weight": 0.1,
+            "description": "Report contains exactly 3 stations",
+            "testPattern": "station count"
+          },
+          {
+            "id": "station-a-correct",
+            "weight": 0.25,
+            "description": "Station A: moderate severity with 2 flood days",
+            "testPattern": "station A"
+          },
+          {
+            "id": "station-b-correct",
+            "weight": 0.2,
+            "description": "Station B: no flooding with 0 flood days",
+            "testPattern": "station B"
+          },
+          {
+            "id": "station-c-correct",
+            "weight": 0.25,
+            "description": "Station C: minor severity with 5 flood days",
+            "testPattern": "station C"
+          },
+          {
+            "id": "peak-flows",
+            "weight": 0.1,
+            "description": "Peak flows are within expected ranges",
+            "testPattern": "peak flows"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/flood-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/flood-analysis/flood-risk/",
+    "importedAt": "2026-07-07T06:18:52.818Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

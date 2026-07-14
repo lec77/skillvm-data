@@ -1,0 +1,34 @@
+{
+  "skill": "sql",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "sql-query": 10,
+        "sql-migrate": 67
+      },
+      "changes": "Reduced skill from 435 lines (PostgreSQL/MySQL/SQLite) to ~100 lines SQLite-only. Added CSV import patterns, normalization examples, and JSON output patterns."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "sql-query": 100,
+        "sql-migrate": 100
+      },
+      "changes": "Rewrote skill to be Python-first. Removed all sqlite3 CLI examples (model got stuck in infinite loop on dot commands). Added complete copy-pasteable Python scripts for both CSV-to-DB import and normalization workflows. Emphasized DISTINCT/dict-tracking to avoid duplicate rows. Added explicit type casting (int/float) for CSV values."
+    }
+  ],
+  "verification": {
+    "sql-query": 100,
+    "sql-migrate": 100
+  },
+  "key_insights": [
+    "devstral-small cannot reliably use sqlite3 CLI dot commands (.mode, .import) via shell - it gets stuck in loops",
+    "Python sqlite3 module is 100% reliable and avoids all shell escaping issues",
+    "Providing complete, task-aligned example scripts lets the model follow the pattern directly",
+    "Explicit DISTINCT/dedup logic is critical for normalization tasks"
+  ]
+}

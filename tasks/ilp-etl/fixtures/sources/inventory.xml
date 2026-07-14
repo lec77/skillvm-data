@@ -1,0 +1,5 @@
+<inventory>
+  <item sku="A-1" qty="120"/>
+  <item sku="B-2" qty="40"/>
+  <item sku="C-9" qty="0"/>
+</inventory>

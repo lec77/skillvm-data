@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "scores": {
+    "parse-rss": 100,
+    "multi-feed-digest": 100,
+    "summarize-articles": 100
+  },
+  "changes": [
+    "Rewrote SKILL.md with explicit JSON schemas for all three task types (parse-rss, summarize-articles, multi-feed-digest)",
+    "Added exact field names and types expected by test assertions",
+    "Added clear rules for date formatting (YYYY-MM-DD), category sorting, and key_numbers extraction",
+    "Structured skill around three distinct task patterns with concrete examples",
+    "Removed voice summary section (not tested) to reduce noise"
+  ]
+}

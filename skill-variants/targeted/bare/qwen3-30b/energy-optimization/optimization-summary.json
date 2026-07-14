@@ -1,0 +1,70 @@
+{
+  "skill": "energy-optimization",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "results": [
+    {
+      "iteration": 1,
+      "changes": "Baseline (original verbose skill, unmodified)",
+      "scores": {
+        "economic-dispatch": [80],
+        "power-flow": [20]
+      }
+    },
+    {
+      "iteration": 2,
+      "changes": "Rewrote skill with complete copy-paste Python scripts, removed f-strings with nested dict access that caused syntax error loops, added fallback instruction to use cat if read_file fails",
+      "scores": {
+        "economic-dispatch": [0],
+        "power-flow": ["ERROR (certificate)"]
+      },
+      "notes": "economic-dispatch scored 0 due to model getting stuck in f-string syntax error loop. Certificate error on power-flow was transient API issue."
+    },
+    {
+      "iteration": 3,
+      "changes": "Simplified print statements to avoid all f-strings with dictionary key access, removed complex string formatting",
+      "scores": {
+        "economic-dispatch": [80],
+        "power-flow": [45]
+      },
+      "notes": "Power-flow improved: model read network.json successfully, but generators lacked dispatch field in JSON, so bus 3 got 0 MW instead of 60 MW"
+    },
+    {
+      "iteration": 4,
+      "changes": "Added explicit dispatch value handling: skill now instructs model to set gen_dispatch values from the task prompt, not from JSON. Added IMPORTANT note about dispatch values.",
+      "scores": {
+        "economic-dispatch": [80],
+        "power-flow": [0]
+      },
+      "notes": "power-flow scored 0 due to qwen3-30b producing malformed JSON for all tool calls (undefined inputs). This is a nondeterministic model-level issue."
+    },
+    {
+      "iteration": 5,
+      "changes": "Added per-unit conversion (S_base=100 MVA): divide MW by S_base before solving, multiply flows by S_base for MW output. This fixes angles being >1.0 rad.",
+      "scores": {
+        "economic-dispatch": [80, 0],
+        "power-flow": [100, 100]
+      },
+      "notes": "power-flow achieved 100/100 on both runs. economic-dispatch 80/100 is the max achievable score due to test pattern matching bug (testPattern 'within limits' does not match test name 'all generators within min/max limits'). The 0-score ED run was caused by qwen3-30b producing malformed JSON tool calls (nondeterministic model issue)."
+    }
+  ],
+  "final_scores": {
+    "economic-dispatch": {
+      "best": 80,
+      "max_achievable": 80,
+      "notes": "within-limits criterion always scores 0 due to testPattern mismatch in task definition (not a skill issue)"
+    },
+    "power-flow": {
+      "best": 100,
+      "max_achievable": 100
+    }
+  },
+  "key_optimizations": [
+    "Provided complete copy-paste Python scripts instead of abstract functions",
+    "Removed f-strings with nested dictionary access (causes syntax errors in qwen3-30b)",
+    "Added per-unit conversion (S_base=100 MVA) for DC power flow angles",
+    "Explicit instruction to set generator dispatch values from task prompt, not from JSON",
+    "Added fallback instruction to use cat via execute_command if read_file fails"
+  ]
+}

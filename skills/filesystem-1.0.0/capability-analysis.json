@@ -1,0 +1,134 @@
+{
+  "skill_name": "filesystem-1.0.0",
+  "skill_path": "skills/filesystem-1.0.0",
+  "total_files": 2,
+  "total_tokens_estimate": 1468,
+  "purposes": [
+    {
+      "id": "list-directory-contents",
+      "description": "List directory contents with various sorting, filtering, and depth options using ls, find, and tree commands.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic commands: ls -la, ls -lh, ls -lt, ls -R, find with -maxdepth and -type flags."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run a single listing command and use its output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "search-files",
+      "description": "Search for files by name pattern, content keyword, or regex using find, grep, and ripgrep.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Uses grep with -r, --include, --exclude-dir flags; regex patterns with alternation; find with -iname."
+          },
+          {
+            "id": "gen.regex",
+            "min_level": "L1",
+            "evidence": "Simple patterns for content search: character classes, anchors (^, $), alternation (key1|key2)."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run search commands and use output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "batch-file-operations",
+      "description": "Perform batch copy, move, delete, and rename operations on files matching criteria.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Uses find with -exec for batch operations, for loops with variable substitution, rename with regex, pipes for filtering."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Write and execute shell commands with find -exec or for loops."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L1",
+            "evidence": "Safety reminders: list files before batch delete, use rm -i for interactive, backup before operations."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "analyze-directory",
+      "description": "Analyze directory size distribution, file type statistics, and structure depth.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Pipes and command substitution: du with sort, find piped to sed/sort/uniq -c, find piped to cut for distribution."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run analysis commands and interpret output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "search-and-replace-content",
+      "description": "Search for text patterns in files and perform bulk text replacement using grep and sed.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L3",
+            "evidence": "Complex pipeline: find with -exec sed -i for in-place substitution across matched files; requires correct escaping."
+          },
+          {
+            "id": "gen.regex",
+            "min_level": "L1",
+            "evidence": "Simple substitution patterns with sed s/old/new/g."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Execute search-then-replace pipeline."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": ["list-directory-contents", "search-files", "batch-file-operations", "analyze-directory"], "type": "instruction"},
+    {"location": "SKILL.md:5-8", "purposes": ["list-directory-contents", "search-files", "batch-file-operations", "analyze-directory"], "type": "instruction"},
+    {"location": "SKILL.md:9-47", "purposes": ["list-directory-contents", "search-files", "analyze-directory"], "type": "code_example"},
+    {"location": "SKILL.md:48-73", "purposes": ["list-directory-contents"], "type": "code_example"},
+    {"location": "SKILL.md:74-117", "purposes": ["search-files"], "type": "code_example"},
+    {"location": "SKILL.md:118-160", "purposes": ["batch-file-operations"], "type": "code_example"},
+    {"location": "SKILL.md:161-197", "purposes": ["analyze-directory"], "type": "code_example"},
+    {"location": "SKILL.md:198-231", "purposes": ["list-directory-contents", "search-files", "analyze-directory"], "type": "code_example"},
+    {"location": "SKILL.md:232-267", "purposes": ["search-files", "batch-file-operations", "analyze-directory"], "type": "instruction"},
+    {"location": "SKILL.md:268-287", "purposes": ["list-directory-contents", "search-files", "batch-file-operations", "analyze-directory"], "type": "instruction"},
+    {"location": "SKILL.md:288-323", "purposes": ["search-files", "search-and-replace-content", "batch-file-operations"], "type": "code_example"},
+    {"location": "SKILL.md:324-342", "purposes": ["batch-file-operations"], "type": "instruction"},
+    {"location": "_meta.json:1-6", "purposes": [], "type": "dead_content"}
+  ],
+  "unmatched_requirements": []
+}

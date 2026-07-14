@@ -1,0 +1,20 @@
+{
+  "skill": "schema-markup",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 1,
+  "scores": {
+    "iteration1": {
+      "product-schema": 100,
+      "faq-schema": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose original skill (v1.1.0, 180 lines) with concise task-focused version (~70 lines)",
+    "Removed references/schema-examples.md (unreferenced by optimized skill)",
+    "Added explicit critical rules: numeric values, full schema.org URLs, exact filenames",
+    "Added Product and FAQPage templates with inline key points highlighting common pitfalls",
+    "Specified Organization as brand @type to match task expectations",
+    "Added simple 5-step workflow"
+  ]
+}

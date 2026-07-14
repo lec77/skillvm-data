@@ -1,0 +1,30 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "bug-fixing",
+  "per_task_scores": {
+    "iteration_1_baseline": {
+      "debug-bsearch": 100,
+      "debug-race": 100
+    },
+    "iteration_2_optimized": {
+      "debug-bsearch": 100,
+      "debug-race": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original unmodified skill (11 files, verbose SKILL.md with supporting technique docs, test/pressure files, creation log)"
+    },
+    {
+      "iteration": 2,
+      "description": "Removed 10 irrelevant files (test-academic.md, test-pressure-1/2/3.md, CREATION-LOG.md, find-polluter.sh, condition-based-waiting-example.ts, condition-based-waiting.md, defense-in-depth.md, root-cause-tracing.md). Condensed SKILL.md from ~297 lines to ~40 lines focusing on the core 4-phase debugging process. Removed verbose examples, rationalizations table, and references to external skills."
+    }
+  ],
+  "final_scores": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  }
+}

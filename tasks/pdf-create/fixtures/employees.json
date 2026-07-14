@@ -1,0 +1,14 @@
+[
+  { "name": "Alice Chen", "department": "Engineering", "salary": 95000, "startDate": "2021-03-15" },
+  { "name": "Bob Martinez", "department": "Engineering", "salary": 105000, "startDate": "2019-07-01" },
+  { "name": "Carol Singh", "department": "Engineering", "salary": 88000, "startDate": "2022-11-10" },
+  { "name": "David Kim", "department": "Engineering", "salary": 112000, "startDate": "2018-01-20" },
+  { "name": "Eva Novak", "department": "Engineering", "salary": 98000, "startDate": "2020-06-05" },
+  { "name": "Frank Zhao", "department": "Marketing", "salary": 72000, "startDate": "2021-09-12" },
+  { "name": "Grace Okafor", "department": "Marketing", "salary": 68000, "startDate": "2023-02-28" },
+  { "name": "Hiro Tanaka", "department": "Marketing", "salary": 85000, "startDate": "2019-04-15" },
+  { "name": "Isla Petrov", "department": "Marketing", "salary": 77000, "startDate": "2020-08-01" },
+  { "name": "Jake Wilson", "department": "Sales", "salary": 65000, "startDate": "2022-05-20" },
+  { "name": "Karen Li", "department": "Sales", "salary": 78000, "startDate": "2020-01-10" },
+  { "name": "Leo Brown", "department": "Sales", "salary": 71000, "startDate": "2021-11-30" }
+]

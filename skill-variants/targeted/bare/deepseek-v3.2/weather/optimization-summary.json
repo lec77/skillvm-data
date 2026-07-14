@@ -1,0 +1,35 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "skill": "weather",
+  "results": {
+    "iteration1": {
+      "description": "Baseline with original verbose SKILL.md (identical to skills/weather/SKILL.md)",
+      "scores": {
+        "weather-compare": 90,
+        "weather-travel": 100
+      },
+      "notes": "weather-compare lost 10 points on weather-metrics: missing conditions keywords (sunny/cloudy/etc) and pipe-table format"
+    },
+    "iteration2": {
+      "description": "Optimized SKILL.md: added JSON format guidance (j1), explicit pipe-table template with Conditions column, emphasized weatherDesc field",
+      "scores": {
+        "weather-compare": 100,
+        "weather-travel": 100
+      },
+      "notes": "All criteria at 1.0 for both tasks"
+    }
+  },
+  "changes": [
+    "Restructured skill to emphasize JSON output format (j1) for structured data extraction",
+    "Added explicit markdown pipe-table template with Conditions column",
+    "Listed key JSON fields (temp_C, humidity, windspeedKmph, weatherDesc) for reliable extraction",
+    "Added travel comparison section with explicit temperature difference phrasing guidance",
+    "Removed verbose sections (when to use/not use, PNG format, airport codes) to reduce token count"
+  ],
+  "finalScores": {
+    "weather-compare": 100,
+    "weather-travel": 100
+  }
+}

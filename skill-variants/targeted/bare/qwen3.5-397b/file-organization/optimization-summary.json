@@ -1,0 +1,17 @@
+{
+  "iterations": 2,
+  "finalScores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (434 lines, copied from skills/file-organization/SKILL.md). Both tasks scored 100/100."
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill from 434 lines to ~40 lines. Removed examples, pro tips, maintenance advice, clarifying-question instructions, and verbose formatting. Added explicit file-extension-to-directory mapping table and macOS-compatible md5 fallback. Both tasks scored 100/100 across 2 confirmation runs with reduced token cost."
+    }
+  ]
+}

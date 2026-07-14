@@ -1,0 +1,13 @@
+{
+  "skill": "timeseries-analysis",
+  "runtime": "opencode",
+  "model": "qwen3.5-122b",
+  "iterations": 1,
+  "per_task_scores": {
+    "anomaly-detection": { "score": 100, "max_score": 100 },
+    "hp-detrending": { "score": 100, "max_score": 100 }
+  },
+  "changes_made": [
+    "No changes required — baseline targeted skill already achieves 100/100 on both tasks"
+  ]
+}

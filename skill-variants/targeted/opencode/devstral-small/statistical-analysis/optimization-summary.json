@@ -1,0 +1,42 @@
+{
+  "skill": "statistical-analysis",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 2,
+  "results": {
+    "iteration_1": {
+      "description": "Baseline (unmodified verbose skill)",
+      "scores": {
+        "hypothesis-testing": 95,
+        "regression-analysis": 100
+      },
+      "issues": [
+        "power-analysis criterion scored 0.5: power_analysis.effect_size field missing from model output"
+      ]
+    },
+    "iteration_2": {
+      "description": "Added power_analysis with effect_size to JSON output template; added regression output template",
+      "scores": {
+        "hypothesis-testing": 100,
+        "regression-analysis": 100
+      },
+      "issues": []
+    },
+    "iteration_3": {
+      "description": "Confirmation run - verified consistency",
+      "scores": {
+        "hypothesis-testing": 100,
+        "regression-analysis": 100
+      },
+      "issues": []
+    }
+  },
+  "changes_made": [
+    "Added power_analysis section (with effect_size and required_n_per_group) to the ANOVA/hypothesis-testing JSON output template",
+    "Added complete regression output JSON template (correlations, model, coefficients, vif, prediction)"
+  ],
+  "final_scores": {
+    "hypothesis-testing": 100,
+    "regression-analysis": 100
+  }
+}

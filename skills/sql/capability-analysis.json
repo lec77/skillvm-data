@@ -1,0 +1,152 @@
+{
+  "skill_name": "sql",
+  "skill_path": "skills/sql",
+  "total_files": 1,
+  "total_tokens_estimate": 3000,
+  "purposes": [
+    {
+      "id": "design-database-schema",
+      "description": "Create and modify relational database schemas with tables, constraints, foreign keys, indexes, triggers, and enum types across SQLite, PostgreSQL, and MySQL.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.sql",
+            "min_level": "L2",
+            "evidence": "Schema design uses CREATE TABLE with constraints (CHECK, UNIQUE, REFERENCES, ON DELETE CASCADE), foreign keys, CREATE INDEX, CREATE TRIGGER, CREATE TYPE ENUM, and PostgreSQL-specific features (UUID, JSONB, GIN index, partial index)."
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Connection commands use sqlite3, psql, mysql CLI tools with basic flags for connection, file execution, and CSV export."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "write-complex-queries",
+      "description": "Write SQL queries involving joins, aggregations, window functions, CTEs (including recursive), and JSONB operations to answer analytical questions.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.sql",
+            "min_level": "L3",
+            "evidence": "Query patterns include CTEs with window functions (LAG, RANK, SUM OVER, AVG OVER ROWS BETWEEN), recursive CTEs for tree traversal, JSONB operators (@>, ->>), self-joins, and multi-step CTE chains with growth calculations."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Growth percentage calculations within CTEs: (revenue - LAG(revenue)) / NULLIF(LAG(revenue), 0) * 100, and moving average window specifications."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "optimize-query-performance",
+      "description": "Diagnose slow queries using EXPLAIN/EXPLAIN ANALYZE and apply appropriate indexing strategies (composite, covering, partial, GIN).",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.sql",
+            "min_level": "L3",
+            "evidence": "Optimization involves EXPLAIN (ANALYZE, BUFFERS, FORMAT TEXT), creating composite indexes with correct column order, covering indexes with INCLUDE, partial indexes with WHERE, and querying pg_stat_user_indexes for unused indexes."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Interpreting EXPLAIN output: identifying Seq Scan on large tables, Nested Loop with large row counts, high Rows Removed by Filter, and actual vs estimated row discrepancies."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "manage-migrations-and-operations",
+      "description": "Build migration scripts with version tracking, perform backup/restore operations, and import/export data across SQLite, PostgreSQL, and MySQL.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Migration bash script uses loops, command substitution, conditional logic (if/then), and chained commands (psql ... && psql ... || exit). Backup commands use pg_dump, pg_restore, mysqldump, sqlite3 .backup."
+          },
+          {
+            "id": "gen.code.sql",
+            "min_level": "L1",
+            "evidence": "Migration files contain simple ALTER TABLE, CREATE TABLE statements. Schema_migrations tracking table with INSERT/SELECT."
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Migration pattern follows sequential numbered steps: create tracking table, iterate files in order, check if applied, apply and record."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-5",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:7-19",
+      "purposes": ["design-database-schema", "write-complex-queries", "optimize-query-performance", "manage-migrations-and-operations"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:20-74",
+      "purposes": ["design-database-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:76-96",
+      "purposes": ["design-database-schema", "manage-migrations-and-operations"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:98-145",
+      "purposes": ["design-database-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:147-161",
+      "purposes": ["write-complex-queries"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:163-196",
+      "purposes": ["design-database-schema"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:198-279",
+      "purposes": ["write-complex-queries"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:281-333",
+      "purposes": ["manage-migrations-and-operations"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:334-381",
+      "purposes": ["optimize-query-performance"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:383-425",
+      "purposes": ["manage-migrations-and-operations"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:427-435",
+      "purposes": ["design-database-schema", "optimize-query-performance"],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

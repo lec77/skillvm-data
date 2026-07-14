@@ -1,0 +1,20 @@
+{
+  "skill": "regex",
+  "runtime": "openclaw",
+  "model": "deepseek-v3.2",
+  "iterations": 1,
+  "final_scores": {
+    "regex-extract": 100,
+    "regex-replace": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 471-line generic skill with focused 100-line task-oriented skill. Added Critical Rules section emphasizing script-based approach, count verification, numeric types, and query string stripping. Added complete Python recipes for log parsing (with regex for timestamps, levels, IPs, methods, paths, status codes, durations, and optional escaped-quote messages) and code cleanup (line deletion, var-to-let/const replacement, equality operator fixes, whitespace fixes). Removed unreferenced scripts/regex_tester.py.",
+      "scores": {
+        "regex-extract": 100,
+        "regex-replace": 100
+      }
+    }
+  ]
+}

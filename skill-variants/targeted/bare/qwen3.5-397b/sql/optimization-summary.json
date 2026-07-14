@@ -1,0 +1,21 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "sql",
+  "per_task_scores": {
+    "sql-query": {
+      "iteration_1": 100
+    },
+    "sql-migrate": {
+      "iteration_1": 100
+    }
+  },
+  "changes_made": [
+    "No changes needed — the original verbose skill achieved perfect scores (100/100) on both tasks in the first iteration."
+  ],
+  "final_scores": {
+    "sql-query": 100,
+    "sql-migrate": 100
+  }
+}

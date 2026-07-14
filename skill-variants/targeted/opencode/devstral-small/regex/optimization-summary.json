@@ -1,0 +1,46 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "regex",
+  "scores": {
+    "iteration_0_baseline": {
+      "regex-extract": 0,
+      "regex-replace": 95
+    },
+    "iteration_1": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "notes": "Rewrote SKILL.md from 472 lines to ~80 lines. Removed regex_tester.py script. Focused on JS/Node.js log parsing and code cleanup patterns."
+    },
+    "iteration_2": {
+      "regex-extract": 49,
+      "regex-replace": 95,
+      "notes": "Inconsistency: model dropped \\s+ before optional message quotes in regex. Need to make pattern more explicit."
+    },
+    "iteration_3": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "notes": "Reformatted regex pattern with explicit spacing. Added IMPORTANT notes about space before message quotes."
+    },
+    "iteration_4": {
+      "regex-extract": 100,
+      "regex-replace": 100,
+      "notes": "Fixed var->let/const guidance: default to let, only const for arrays/objects and string concat results. Booleans stay let."
+    },
+    "iteration_5": {
+      "regex-extract": 100,
+      "regex-replace": 100,
+      "notes": "Consistency confirmation run."
+    }
+  },
+  "changes": [
+    "Compressed SKILL.md from 472 lines to ~80 lines for devstral-small's limited context",
+    "Removed generic regex reference content (metacharacters, Go, Python, CLI sections)",
+    "Added complete Node.js log parsing example with exact regex pattern",
+    "Added Node.js code cleanup example with specific var->let/const rules",
+    "Removed unused scripts/regex_tester.py (14KB Python script)",
+    "Made regex pattern spacing explicit to prevent model from dropping spaces",
+    "Specified let as default for var replacement, const only for arrays and string concat results"
+  ]
+}

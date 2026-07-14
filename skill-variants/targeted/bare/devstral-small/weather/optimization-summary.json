@@ -1,0 +1,47 @@
+{
+  "skill": "weather",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 4,
+  "scores": {
+    "iteration1": {
+      "description": "Initial targeted skill - identical to original verbose skill with curl commands",
+      "weather-compare": 35,
+      "weather-travel": 28,
+      "notes": "Model generated 65k tokens of rambling text without making any tool calls. Failed to load skill and failed to use execute_command."
+    },
+    "iteration2": {
+      "description": "Rewrote with complete Python scripts using urllib, aggressive content reduction, explicit directive to use execute_command",
+      "weather-compare": 100,
+      "weather-travel": 20,
+      "notes": "Compare task worked perfectly (3 tool calls). Travel task hit same rambling failure - model variance with tool calling."
+    },
+    "iteration3": {
+      "description": "Same skill, variance check run",
+      "weather-compare": 100,
+      "weather-travel": 100,
+      "notes": "Both tasks perfect. Confirms iteration 2 skill is effective, previous failure was model variance."
+    },
+    "iteration4": {
+      "description": "Same skill, additional data point",
+      "weather-compare": 100,
+      "weather-travel": 100,
+      "notes": "Both tasks perfect again. Skill is stable."
+    }
+  },
+  "changes": [
+    "Replaced curl shell commands with complete Python scripts using urllib.request and json",
+    "Added explicit directive: 'ALWAYS use execute_command to run a Python script' in both description and body",
+    "Added anti-pattern warning: 'NEVER just describe what you would do - execute the code'",
+    "Reduced skill from 113 lines to ~55 lines (51% reduction)",
+    "Removed 'When to Use/When NOT to Use' sections, format codes reference, and generic examples",
+    "Added task-specific patterns: multi-city comparison table and travel weather comparison with packing advice",
+    "Used concrete Python scripts that can be copy-pasted directly into execute_command"
+  ],
+  "key_insights": [
+    "devstral-small fails with shell/curl commands - complete Python scripts are much more reliable",
+    "The model occasionally fails to make tool calls at all, generating text loops instead (model variance)",
+    "Putting actionable instructions in the skill description helps since it appears in the system prompt",
+    "Task-aligned code examples dramatically improve reliability over generic reference material"
+  ]
+}

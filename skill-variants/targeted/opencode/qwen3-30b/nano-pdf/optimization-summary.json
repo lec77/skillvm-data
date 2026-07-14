@@ -1,0 +1,50 @@
+{
+  "iterations": 5,
+  "scores": {
+    "iteration_0_baseline": {
+      "pdf-merge-info": 0,
+      "pdf-text-extract": 0
+    },
+    "iteration_1": {
+      "pdf-merge-info": 0,
+      "pdf-text-extract": 0
+    },
+    "iteration_2": {
+      "pdf-merge-info": "timeout",
+      "pdf-text-extract": 0
+    },
+    "iteration_3_best": {
+      "pdf-merge-info": 100,
+      "pdf-text-extract": 0
+    },
+    "iteration_4": {
+      "pdf-merge-info": 50,
+      "pdf-text-extract": 0
+    },
+    "iteration_5": {
+      "pdf-merge-info": 0,
+      "pdf-text-extract": 0
+    }
+  },
+  "best_scores": {
+    "pdf-merge-info": 100,
+    "pdf-text-extract": 0
+  },
+  "final_skill_matches": "iteration_3_best",
+  "changes_made": [
+    "Documented that nano-pdf CLI only supports edit/add, not merge/extract/count",
+    "Added Python workflow using pdfminer (extract_text) and pypdf (PdfReader/PdfWriter)",
+    "Added explicit instruction to ignore LSP false-positive errors for pdfminer/pypdf",
+    "Emphasized writing .py files instead of python3 -c one-liners (for loops cause syntax errors)",
+    "Added guidance to never hardcode values and always parse actual PDF text",
+    "Provided step-by-step workflow: extract text first, print it, then parse it",
+    "Showed correct merge pattern using PdfWriter (not deprecated PdfMerger)"
+  ],
+  "persistent_issues": [
+    "qwen3-30b frequently reads PDFs with the read tool (binary content) instead of using pdfminer as instructed",
+    "Model gets stuck in loops when LSP reports errors, trying to fix imports instead of running the script",
+    "Model sometimes hardcodes/hallucinates data values instead of parsing extracted text",
+    "Model struggles with Python syntax (missing closing braces/brackets in dicts/lists)",
+    "pdf-text-extract task consistently fails because the model doesn't follow the two-step extract-then-parse workflow"
+  ]
+}

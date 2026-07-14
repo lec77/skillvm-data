@@ -1,0 +1,41 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "baseline_scores": {
+    "document-xlsx": 100,
+    "xlsx-analyze": 85
+  },
+  "final_scores": {
+    "document-xlsx": 100,
+    "xlsx-analyze": 100
+  },
+  "per_iteration": [
+    {
+      "iteration": 0,
+      "label": "baseline (original skill, unmodified)",
+      "scores": { "document-xlsx": 100, "xlsx-analyze": 85 },
+      "changes": []
+    },
+    {
+      "iteration": 1,
+      "label": "optimized SKILL.md",
+      "scores": { "document-xlsx": 100, "xlsx-analyze": 100 },
+      "changes": [
+        "Added 'Reading & Analyzing Spreadsheets' section with openpyxl load_workbook example showing how to skip summary/total rows",
+        "Added explicit rule: 'Use openpyxl for ALL operations. Do NOT use pandas.'",
+        "Strengthened 'never use python3 -c' rule",
+        "Added 'Including summary rows in analysis' to Common Mistakes section",
+        "Removed bundled template script reference (inlined template into SKILL.md instead)",
+        "Removed unreferenced files: scripts/create_xlsx.py, recalc.py, LICENSE.txt"
+      ]
+    },
+    {
+      "iteration": 2,
+      "label": "verification run",
+      "scores": { "document-xlsx": 100, "xlsx-analyze": 100 },
+      "changes": []
+    }
+  ],
+  "root_cause": "xlsx-analyze failed approval_rate because model used pandas which included the TOTAL summary row (row 26) in the count, computing 18/25=72% instead of 18/24=75%. Fix: added explicit guidance to use openpyxl and filter out summary rows."
+}

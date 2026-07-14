@@ -1,0 +1,48 @@
+{
+  "iteration_count": 5,
+  "per_task_scores": {
+    "detect-ai-patterns": {
+      "iteration_1": 96,
+      "iteration_2": 96,
+      "iteration_3": 96,
+      "iteration_4": 96,
+      "iteration_5": 96,
+      "max_score": 100,
+      "notes": "Persistent paragraph miscounting by devstral-small (outputs 5 instead of 4). Structure criterion scores 0.75 (3/4 tests pass). All other criteria score 1.0. Multiple instruction variations attempted but model has consistent counting bias."
+    },
+    "rewrite-ai-text": {
+      "iteration_1": 95,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100,
+      "max_score": 100,
+      "notes": "Fixed in iteration 2 by adding word counting guidance and JSON-as-string rule. summary-correct went from 0.667 to 1.0 (original_word_count was 149, corrected to accurate range)."
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Complete SKILL.md rewrite: removed Python script references (not usable by agent), added explicit accuracy rules for paragraph counting, word counting, and JSON string writing. Added comprehensive pattern replacement tables with plain-language alternatives. Streamlined for smaller model."
+    },
+    {
+      "iteration": 3,
+      "description": "Strengthened paragraph counting guidance: added explicit note about trailing blank lines, common off-by-one error warning, and verification step."
+    },
+    {
+      "iteration": 4,
+      "description": "Made paragraph counting even more explicit with concrete example and directive to list each paragraph's opening words."
+    },
+    {
+      "iteration": 5,
+      "description": "Replaced prose instructions with algorithmic paragraph counting steps (split on double-newline, filter empty, count). Added worked example showing trailing newline does not add a paragraph."
+    }
+  ],
+  "files_removed": [
+    "scripts/detect.py",
+    "scripts/transform.py",
+    "scripts/compare.py",
+    "scripts/patterns.json",
+    "_meta.json"
+  ]
+}

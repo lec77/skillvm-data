@@ -1,0 +1,35 @@
+{
+  "iterations": 3,
+  "final_scores": {
+    "sql-query": 100,
+    "sql-migrate": 100
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "description": "Baseline with original verbose skill (434 lines)",
+      "scores": { "sql-query": 100, "sql-migrate": 100 },
+      "notes": "Both tasks pass with original unmodified skill"
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill to ~150 lines: removed PostgreSQL, MySQL, backup/restore sections; focused on SQLite patterns, schema design, CSV import, normalization, JSON output",
+      "scores": { "sql-query": 77, "sql-migrate": 100 },
+      "notes": "sql-query failed basic-queries (0.33): model output top_customer as object instead of string, product_ranking as objects instead of string array"
+    },
+    {
+      "iteration": 3,
+      "description": "Added explicit JSON output format guidance: use simplest types (plain strings/numbers for single values, string arrays for rankings, objects only when multiple fields needed per item)",
+      "scores": { "sql-query": 100, "sql-migrate": 100 },
+      "notes": "Both tasks pass. Skill reduced from 434 to ~155 lines. Cost reduced ~35% for sql-query, ~60% for sql-migrate"
+    }
+  ],
+  "changes_made": [
+    "Removed PostgreSQL, MySQL, backup/restore, migration script sections (not needed for SQLite-only tasks)",
+    "Added CSV import with proper types section (critical for numeric type tests)",
+    "Added composite primary key pattern (needed for sql-migrate assignments table)",
+    "Added data normalization pattern section (needed for sql-migrate)",
+    "Added explicit JSON output format conventions (simplest types: plain strings/numbers for scalars, string arrays for rankings)",
+    "Added Python JSON output examples showing correct patterns for each data shape"
+  ]
+}

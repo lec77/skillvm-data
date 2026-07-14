@@ -1,0 +1,21 @@
+{
+  "buses": [
+    {"id": 0, "type": "slack", "load": 0},
+    {"id": 1, "type": "PQ", "load": 50},
+    {"id": 2, "type": "PQ", "load": 40},
+    {"id": 3, "type": "PV", "gen_max": 80, "load": 30},
+    {"id": 4, "type": "PQ", "load": 60}
+  ],
+  "lines": [
+    {"from": 0, "to": 1, "reactance": 0.1, "limit": 80},
+    {"from": 0, "to": 2, "reactance": 0.15, "limit": 60},
+    {"from": 1, "to": 2, "reactance": 0.12, "limit": 50},
+    {"from": 1, "to": 3, "reactance": 0.08, "limit": 70},
+    {"from": 2, "to": 4, "reactance": 0.1, "limit": 55},
+    {"from": 3, "to": 4, "reactance": 0.14, "limit": 60}
+  ],
+  "generators": [
+    {"bus": 0, "min": 0, "max": 200},
+    {"bus": 3, "min": 10, "max": 80}
+  ]
+}

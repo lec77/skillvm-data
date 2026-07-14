@@ -1,0 +1,23 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "document-pdf",
+  "tasks": {
+    "document-pdf": {
+      "score": 100,
+      "maxScore": 100
+    },
+    "pdf-create": {
+      "score": 100,
+      "maxScore": 100
+    }
+  },
+  "changes": [
+    "Stripped verbose SKILL.md down to focused extraction (pdfplumber) and creation (reportlab) patterns",
+    "Removed irrelevant sections: merge, split, rotate, watermark, OCR, password, CLI tools",
+    "Added CRITICAL warning about reportlab doc.build() single-call requirement",
+    "Added structured table extraction pattern with dict(zip(headers, row))",
+    "Removed forms.md, reference.md, scripts/, LICENSE.txt (unreferenced by final SKILL.md)"
+  ]
+}

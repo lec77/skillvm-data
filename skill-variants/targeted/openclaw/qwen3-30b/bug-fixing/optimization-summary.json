@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "model": "qwen3-30b",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1": {
+      "debug-bsearch": [100, 100],
+      "debug-race": [100, 100]
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 297-line original SKILL.md with concise 85-line version. Removed all 10 unreferenced supporting files. Key changes: (1) direct autonomous action instructions (no questions), (2) line-number stripping warning, (3) two worked examples covering both task types (off-by-one and race condition with mutex pattern), (4) minimal-change and complete-file rules."
+    }
+  ]
+}

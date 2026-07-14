@@ -1,0 +1,165 @@
+{
+  "skill_name": "pptx",
+  "skill_path": "skills/document-pptx",
+  "total_files": 56,
+  "total_tokens_estimate": 75000,
+  "purposes": [
+    {
+      "id": "read-extract-text",
+      "description": "Extract text content from an existing .pptx file by converting to markdown using markitdown",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L1", "evidence": "SKILL.md:18-19 runs `python -m markitdown path-to-file.pptx` as a single command"},
+          {"id": "follow.procedure", "min_level": "L1", "evidence": "SKILL.md:16-19 single-step: convert document to markdown"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "read-raw-xml-analysis",
+      "description": "Unpack a .pptx file and read raw XML to analyze comments, speaker notes, layouts, animations, typography, and colors",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L2", "evidence": "SKILL.md:27-28 runs unpack.py script then grep commands across XML files (lines 43-45)"},
+          {"id": "tool.file.read", "min_level": "L2", "evidence": "SKILL.md:42-45 requires reading multiple XML files: theme1.xml, slide1.xml, searching across all XML files"},
+          {"id": "reason.analysis", "min_level": "L2", "evidence": "SKILL.md:42-45 requires analyzing XML for typography patterns, color schemes, and font usage across multiple files"},
+          {"id": "follow.procedure", "min_level": "L1", "evidence": "SKILL.md:42-45 three sequential steps: read theme, sample slide, search patterns"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "create-from-scratch",
+      "description": "Create a new PowerPoint presentation from scratch using the html2pptx workflow: design HTML slides, convert to PPTX via html2pptx.js, add charts/tables via PptxGenJS, validate visually",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.file.read", "min_level": "L1", "evidence": "SKILL.md:151 MANDATORY read of html2pptx.md before proceeding"},
+          {"id": "gen.code.html", "min_level": "L2", "evidence": "SKILL.md:152-156 create HTML files with flex layout, proper dimensions 720pt x 405pt, CSS styling, placeholder classes"},
+          {"id": "gen.code.javascript", "min_level": "L3", "evidence": "SKILL.md:157-159 write JavaScript using pptxgenjs and html2pptx libraries, PptxGenJS chart/table APIs; html2pptx.md:92-141 sharp/react-icons rasterization"},
+          {"id": "gen.text.prose", "min_level": "L2", "evidence": "SKILL.md:51-57 design principles require analyzing subject matter, choosing palettes, stating design approach before coding"},
+          {"id": "reason.planning", "min_level": "L2", "evidence": "SKILL.md:50-57 multi-step workflow: analyze content, choose design, create HTML per slide, convert, validate, iterate"},
+          {"id": "reason.spatial", "min_level": "L2", "evidence": "html2pptx.md:18-21 precise layout dimensions; SKILL.md:96-143 geometric patterns, asymmetric columns, coordinate-based positioning"},
+          {"id": "tool.exec", "min_level": "L3", "evidence": "SKILL.md:151-169 chain: read docs, create HTML files, run JS conversion, run thumbnail.py, inspect, iterate on errors"},
+          {"id": "tool.file.write", "min_level": "L3", "evidence": "SKILL.md:152-157 write multiple HTML files and a JavaScript conversion file in sequence"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "SKILL.md:59-64 multiple constraints: web-safe fonts only, no CSS gradients, text must be in p/h/ul/ol tags, no # prefix in PptxGenJS colors; html2pptx.md:38-48"},
+          {"id": "follow.procedure", "min_level": "L2", "evidence": "SKILL.md:150-169 four-step workflow with conditional iteration on visual validation failures"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "edit-existing-presentation",
+      "description": "Edit slides in an existing PowerPoint by unpacking to OOXML, modifying XML, validating, and repacking",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.file.read", "min_level": "L2", "evidence": "SKILL.md:176 MANDATORY read of ooxml.md; then reading unpacked XML files for slide content"},
+          {"id": "gen.text.structured", "min_level": "L3", "evidence": "ooxml.md:18-58 generate/edit valid XML with correct element ordering, namespace prefixes, EMU coordinates; large structured output"},
+          {"id": "tool.exec", "min_level": "L3", "evidence": "SKILL.md:177-181 chain: unpack.py, edit XML, validate.py after each edit, pack.py; data flows between steps"},
+          {"id": "tool.file.write", "min_level": "L2", "evidence": "Editing XML files in the unpacked directory, potentially multiple slide files"},
+          {"id": "reason.analysis", "min_level": "L2", "evidence": "ooxml.md:405-427 must analyze existing XML structure, find bugs in relationships, detect orphaned references"},
+          {"id": "follow.procedure", "min_level": "L2", "evidence": "SKILL.md:175-181 five-step workflow with mandatory validation after each edit"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "ooxml.md:8-13 schema compliance constraints: element ordering, whitespace preservation, dirty attributes, Unicode escaping"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "create-from-template",
+      "description": "Create a presentation using an existing template: extract text, analyze layout via thumbnails, build outline, rearrange slides, extract inventory, generate replacement text, apply replacements",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L3", "evidence": "SKILL.md:188-393 seven-step workflow chaining: markitdown, thumbnail.py, rearrange.py, inventory.py, replace.py with data flowing between steps"},
+          {"id": "tool.file.read", "min_level": "L2", "evidence": "SKILL.md:189,259 must read template-content.md and text-inventory.json fully; also read thumbnail images for visual analysis"},
+          {"id": "tool.file.write", "min_level": "L3", "evidence": "SKILL.md:195-206 write template-inventory.md, outline.md, and replacement-text.json files in sequence"},
+          {"id": "gen.text.structured", "min_level": "L2", "evidence": "SKILL.md:305-373 generate replacement JSON with nested paragraph objects including formatting properties (bullet, alignment, font, color)"},
+          {"id": "gen.text.prose", "min_level": "L2", "evidence": "SKILL.md:306-307 generate appropriate replacement content for placeholder text, matching content to shape sizes"},
+          {"id": "reason.planning", "min_level": "L3", "evidence": "SKILL.md:214-243 analyze template, match layout structure to content, handle conditional layout selection, create outline with template mapping"},
+          {"id": "reason.analysis", "min_level": "L2", "evidence": "SKILL.md:193-212 analyze thumbnail grids to identify layout patterns, placeholder locations, design consistency"},
+          {"id": "reason.logic", "min_level": "L2", "evidence": "SKILL.md:218-228 multi-constraint layout selection: match column count to content count, avoid mismatched placeholders"},
+          {"id": "follow.procedure", "min_level": "L3", "evidence": "SKILL.md:187-394 seven sequential steps with verification, conditional branching on validation errors"},
+          {"id": "follow.constraint", "min_level": "L2", "evidence": "SKILL.md:307-328 multiple constraints: only reference existing shapes, proper paragraph formatting, no bullet symbols in text, bullets auto left-aligned"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "generate-thumbnails",
+      "description": "Create visual thumbnail grids of PowerPoint slides for analysis and quality checking",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L1", "evidence": "SKILL.md:413 single command: python scripts/thumbnail.py with options for cols and output prefix"},
+          {"id": "follow.format", "min_level": "L1", "evidence": "SKILL.md:417-422 output format options: cols range 3-6, grid limits per column count"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "convert-slides-to-images",
+      "description": "Convert PowerPoint slides to individual JPEG/PNG images via PDF intermediate using LibreOffice and pdftoppm",
+      "current_path": {
+        "primitives": [
+          {"id": "tool.exec", "min_level": "L2", "evidence": "SKILL.md:444-452 two-step command chain: soffice converts to PDF, pdftoppm converts PDF pages to images"},
+          {"id": "follow.procedure", "min_level": "L1", "evidence": "SKILL.md:443-452 two sequential steps with options for resolution and page range"}
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-5", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:7-11", "purposes": ["read-extract-text", "read-raw-xml-analysis", "create-from-scratch", "edit-existing-presentation", "create-from-template"], "type": "instruction"},
+    {"location": "SKILL.md:13-19", "purposes": ["read-extract-text"], "type": "instruction"},
+    {"location": "SKILL.md:21-45", "purposes": ["read-raw-xml-analysis"], "type": "instruction"},
+    {"location": "SKILL.md:47-143", "purposes": ["create-from-scratch"], "type": "instruction"},
+    {"location": "SKILL.md:144-169", "purposes": ["create-from-scratch"], "type": "instruction"},
+    {"location": "SKILL.md:171-181", "purposes": ["edit-existing-presentation"], "type": "instruction"},
+    {"location": "SKILL.md:182-401", "purposes": ["create-from-template"], "type": "instruction"},
+    {"location": "SKILL.md:408-438", "purposes": ["generate-thumbnails"], "type": "instruction"},
+    {"location": "SKILL.md:440-465", "purposes": ["convert-slides-to-images"], "type": "instruction"},
+    {"location": "SKILL.md:467-470", "purposes": ["create-from-scratch", "edit-existing-presentation", "create-from-template"], "type": "instruction"},
+    {"location": "SKILL.md:472-484", "purposes": ["create-from-scratch", "edit-existing-presentation", "create-from-template", "convert-slides-to-images"], "type": "instruction"},
+    {"location": "html2pptx.md:1-181", "purposes": ["create-from-scratch"], "type": "instruction"},
+    {"location": "html2pptx.md:183-300", "purposes": ["create-from-scratch"], "type": "instruction"},
+    {"location": "html2pptx.md:302-625", "purposes": ["create-from-scratch"], "type": "instruction"},
+    {"location": "ooxml.md:1-110", "purposes": ["edit-existing-presentation"], "type": "instruction"},
+    {"location": "ooxml.md:112-271", "purposes": ["edit-existing-presentation"], "type": "instruction"},
+    {"location": "ooxml.md:273-427", "purposes": ["edit-existing-presentation"], "type": "instruction"},
+    {"location": "LICENSE.txt:1-31", "purposes": [], "type": "dead_content"},
+    {"location": "scripts/html2pptx.js", "purposes": ["create-from-scratch"], "type": "script"},
+    {"location": "scripts/inventory.py", "purposes": ["create-from-template"], "type": "script"},
+    {"location": "scripts/rearrange.py", "purposes": ["create-from-template"], "type": "script"},
+    {"location": "scripts/replace.py", "purposes": ["create-from-template"], "type": "script"},
+    {"location": "scripts/thumbnail.py", "purposes": ["generate-thumbnails", "create-from-scratch", "create-from-template"], "type": "script"},
+    {"location": "ooxml/scripts/unpack.py", "purposes": ["read-raw-xml-analysis", "edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/scripts/pack.py", "purposes": ["edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/scripts/validate.py", "purposes": ["edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/scripts/validation/base.py", "purposes": ["edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/scripts/validation/pptx.py", "purposes": ["edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/scripts/validation/docx.py", "purposes": [], "type": "dead_content"},
+    {"location": "ooxml/scripts/validation/redlining.py", "purposes": [], "type": "dead_content"},
+    {"location": "ooxml/scripts/validation/__init__.py", "purposes": ["edit-existing-presentation"], "type": "script"},
+    {"location": "ooxml/schemas/", "purposes": ["edit-existing-presentation"], "type": "dead_content"}
+  ],
+  "unmatched_requirements": [
+    {
+      "location": "SKILL.md:155",
+      "description": "Rasterize gradients and icons as PNG using Sharp and react-icons requires image processing knowledge not captured by any primitive (visual asset generation via SVG-to-PNG pipeline)",
+      "notes": "Closest primitive is gen.code.javascript L3 but the actual requirement is understanding SVG rasterization workflows"
+    },
+    {
+      "location": "SKILL.md:161-168",
+      "description": "Visual validation by reading thumbnail images and identifying layout issues (text cutoff, overlap, contrast) requires visual/image understanding capability not in the primitives vocabulary",
+      "notes": "No primitive covers image comprehension or visual QA inspection"
+    },
+    {
+      "location": "SKILL.md:207-210",
+      "description": "Visual analysis of thumbnail grids to identify slide layout patterns, placeholder locations, and design consistency requires image understanding",
+      "notes": "Same visual comprehension gap as thumbnail validation"
+    },
+    {
+      "location": "SKILL.md:51-57",
+      "description": "Creative design reasoning: analyzing subject matter to choose appropriate color palettes, visual tone, and design approach requires aesthetic/design judgment not captured by any primitive",
+      "notes": "No primitive covers creative or aesthetic reasoning"
+    }
+  ]
+}

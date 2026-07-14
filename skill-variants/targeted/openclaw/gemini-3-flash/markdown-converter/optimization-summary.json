@@ -1,0 +1,44 @@
+{
+  "iterations": 5,
+  "perTaskScores": {
+    "html-to-md": {
+      "iteration1": 100,
+      "iteration2": 100,
+      "iteration3": 100,
+      "iteration4": 100,
+      "iteration5": 100,
+      "final": 100
+    },
+    "csv-to-md": {
+      "iteration1": 85,
+      "iteration2": 92,
+      "iteration3": 92,
+      "iteration4": 92,
+      "iteration5": 92,
+      "final": 92
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original skill (identical to verbose)"
+    },
+    {
+      "iteration": 2,
+      "description": "Added CSV conversion guidance: use Python scripts for calculations instead of mental arithmetic, preserve all columns and row identifiers. Fixed total value computation (was $24,142 instead of correct $46,993.75)."
+    },
+    {
+      "iteration": 3,
+      "description": "Reinforced instruction to write Python script for data processing and preserve original CSV column headers."
+    },
+    {
+      "iteration": 4,
+      "description": "Added instruction to use Title Case for column headers to satisfy test requirement for 'Price' (capital P). Model complied but lost lowercase 'product_id'."
+    },
+    {
+      "iteration": 5,
+      "description": "Changed strategy: instructed model to copy exact CSV header row as-is for table headers, and use human-readable labels (e.g., 'Price times Stock') in summary text. Remaining 8-point gap is due to test bug where || operator in Jest assertions doesn't create OR logic — both sides always execute, requiring both 'price' and 'Price' to be present simultaneously."
+    }
+  ],
+  "notes": "The csv-to-md test 'table has columns' has a structural issue: `expect(md).toContain('price') || expect(md).toContain('Price')` requires BOTH strings to be present (not either/or), since expect().toContain() returns void. Achieving 100 requires the output to contain both lowercase CSV headers AND capitalized versions. The 92 score represents functionally correct output with proper calculations and complete data."
+}

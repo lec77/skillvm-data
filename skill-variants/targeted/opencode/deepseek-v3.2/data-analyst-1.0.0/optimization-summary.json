@@ -1,0 +1,39 @@
+{
+  "iterations": 4,
+  "model": "deepseek-v3.2",
+  "runtime": "opencode",
+  "skill": "data-analyst-1.0.0",
+  "scores": {
+    "iteration_1": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 100
+    },
+    "iteration_2": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 100
+    },
+    "iteration_3": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 100
+    },
+    "iteration_4": {
+      "csv-pivot": 100,
+      "data-clean": 100,
+      "multi-dataset-report": 100
+    }
+  },
+  "changes": [
+    "Iteration 1: Replaced verbose original skill (573 lines of SQL/visualization/database content) with concise CSV-focused skill covering: CSV parsing, data cleaning (dedup, date standardization, missing values, invalid emails), aggregation patterns, JSON output, multi-dataset analysis",
+    "Iteration 2: Clarified that dates_standardized/missing_values/invalid_emails should be counted on unique rows only, not duplicate rows",
+    "Iteration 3: Strengthened dedup-first counting instructions with explicit step-by-step order",
+    "Iteration 4: Added Python code example showing exact algorithm — deduplicate first, then count issues on unique rows only. This fixed the persistent dates_standardized miscounting"
+  ],
+  "files_removed": [
+    "scripts/data-init.sh",
+    "scripts/query.sh",
+    "WA_Fn-UseC_-Telco-Customer-Churn.csv"
+  ]
+}

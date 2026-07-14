@@ -1,0 +1,44 @@
+{
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "document-docx",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline with unmodified verbose skill",
+      "scores": {
+        "docx-create": 90,
+        "docx-extract": 100
+      },
+      "total": 190,
+      "notes": "docx-create lost 10 points on 'content' criterion (body paragraph text partially mismatched). Skill was the full verbose version with redlining, image conversion, and other irrelevant workflows."
+    },
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md for SLM: inlined docx-js patterns, removed editing/redlining/image workflows, added explicit extraction examples with JSON parsing guidance",
+      "scores": {
+        "docx-create": 100,
+        "docx-extract": 100
+      },
+      "total": 200,
+      "notes": "Perfect scores on both runs. Confirmed with a second run. Key changes: (1) Removed all editing/redlining/image conversion content not tested by tasks, (2) Inlined critical docx-js code patterns directly in SKILL.md instead of referencing external file, (3) Added explicit table creation pattern, (4) Added structured data extraction workflow with python-docx example including numeric conversion guidance, (5) Added CRITICAL RULES section for common docx-js pitfalls."
+    }
+  ],
+  "changes_made": [
+    "Removed docx-js.md reference file (inlined key patterns into SKILL.md)",
+    "Removed ooxml.md reference file (editing workflows not needed)",
+    "Removed ooxml/ directory (schemas and scripts for editing)",
+    "Removed scripts/ directory (document.py, utilities.py for editing)",
+    "Removed LICENSE.txt",
+    "Rewrote SKILL.md from 197 lines to ~140 lines focused on creation and extraction",
+    "Inlined docx-js minimal working example with headings, paragraphs, bullets, tables",
+    "Added explicit text extraction workflow after document creation",
+    "Added structured data extraction workflow with python-docx and JSON output",
+    "Added CRITICAL RULES section for common SLM pitfalls (no \\n, no unicode bullets, ShadingType.CLEAR)"
+  ],
+  "final_scores": {
+    "docx-create": 100,
+    "docx-extract": 100
+  }
+}

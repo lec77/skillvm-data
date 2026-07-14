@@ -1,0 +1,21 @@
+{
+  "iterations": 2,
+  "scores": {
+    "iteration1_baseline": {
+      "docx-create": 80,
+      "docx-extract": 100
+    },
+    "iteration2_optimized": {
+      "docx-create": 100,
+      "docx-extract": 100
+    }
+  },
+  "changes": [
+    "Slimmed SKILL.md from ~200 lines (editing/redlining/ooxml workflows) to ~60 lines focused on creation and extraction only",
+    "Added --wrap=none to pandoc text extraction commands to prevent line-wrapping that split table cells and long text across lines",
+    "Slimmed docx-js.md from ~350 lines to ~100 lines with only essential API patterns (headings, text, bullet lists, tables)",
+    "Removed ooxml.md (~600 lines), ooxml/ directory (30+ XSD schemas), and scripts/ directory (Python editing tools) - not needed for creation/extraction tasks",
+    "Added quick example in SKILL.md showing complete document creation workflow",
+    "Added python-docx alternative for structured data extraction"
+  ]
+}

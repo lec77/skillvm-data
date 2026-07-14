@@ -1,0 +1,67 @@
+{
+  "id": "fjsp-schedule-r2",
+  "name": "Flexible Job-Shop Scheduling with Downtime",
+  "category": "manufacturing-optimization",
+  "gradingType": "automated",
+  "prompt": "Read jobs.json which describes a flexible job-shop scheduling problem. There are 3 machines (0,1,2) and 3 jobs, each with 3 operations. Each operation lists which machines can process it and the duration on each machine. Operations within a job must be processed in order (precedence). Each machine can process only one operation at a time. Some machines have scheduled downtime windows. Find a feasible schedule that minimizes makespan. Write results to schedule.json with keys: assignments (array of objects with op_id, machine, start, end), makespan (number).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "fjsp-schedule.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "schedule.json file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "all-ops-scheduled",
+            "weight": 0.15,
+            "description": "All 9 operations are scheduled",
+            "testPattern": "all 9 operations scheduled"
+          },
+          {
+            "id": "precedence-valid",
+            "weight": 0.25,
+            "description": "Precedence constraints satisfied",
+            "testPattern": "precedence constraints"
+          },
+          {
+            "id": "no-machine-conflict",
+            "weight": 0.25,
+            "description": "No machine conflicts",
+            "testPattern": "no machine conflicts"
+          },
+          {
+            "id": "no-downtime-violation",
+            "weight": 0.15,
+            "description": "No downtime window violations",
+            "testPattern": "no downtime violations"
+          },
+          {
+            "id": "makespan-reasonable",
+            "weight": 0.1,
+            "description": "Makespan is reasonable (< 45)",
+            "testPattern": "makespan is reasonable"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/manufacturing-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/manufacturing-optimization/fjsp-schedule/",
+    "importedAt": "2026-07-07T06:18:53.400Z",
+    "notes": "content variant r2 of fjsp-schedule \u2014 same task type, same structure, different job durations, machine eligibility and downtime windows"
+  }
+}

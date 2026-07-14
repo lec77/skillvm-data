@@ -1,0 +1,50 @@
+{
+  "skill": "data-analyst-1.0.0",
+  "runtime": "bare",
+  "model": "qwen3.5-122b",
+  "iterations": 5,
+  "scores": {
+    "iteration_1": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85
+    },
+    "iteration_2": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85
+    },
+    "iteration_3": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85
+    },
+    "iteration_4": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85
+    },
+    "iteration_5": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85
+    }
+  },
+  "final_scores": {
+    "csv-pivot": 100,
+    "multi-dataset-report": 100,
+    "data-clean": 85,
+    "average": 95
+  },
+  "changes": [
+    "Replaced verbose 573-line generic SKILL.md with focused 100-line CSV analysis guide",
+    "Removed SQL templates, visualization guides, report templates, and other irrelevant content",
+    "Added concrete pandas code patterns for aggregation, pivoting, groupby, and JSON output",
+    "Added explicit revenue calculation guidance (amount*quantity vs direct column)",
+    "Added multi-dataset analysis patterns (low stock detection, churn/retention calculation)",
+    "Added prominent data cleaning report section with exact counting methodology",
+    "Removed unreferenced files: scripts/data-init.sh, scripts/query.sh, WA_Fn-UseC_-Telco-Customer-Churn.csv",
+    "Iteratively refined data cleaning report counting instructions across 5 iterations"
+  ],
+  "notes": "data-clean task loses 15 points on report-accuracy criterion: model consistently counts dates_standardized=7 (all rows) instead of 5 (unique rows only). The task prompt says 'counted before dedup' which the model interprets literally despite skill guidance to count on deduplicated rows. This appears to be a fundamental tension between the task prompt wording and the test expectation."
+}

@@ -1,0 +1,61 @@
+{
+  "id": "dlp-log",
+  "name": "Log Parsing",
+  "category": "parallelism-dlp",
+  "gradingType": "automated",
+  "prompt": "You have 20 server access log files (log_01.log through log_20.log) in your workspace.\n\nTwo scripts are provided:\n- parse_log.py: processes a single log file and produces a _report.json\n- summarize_logs.py: reads all log_*_report.json files and writes log_summary.json\n\nProcess all 20 log files with parse_log.py, then run summarize_logs.py to generate the final summary.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "log_report.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "report-files-exist",
+            "weight": 0.2,
+            "description": "All 20 per-file report JSON files exist",
+            "testPattern": "all 20 report files exist"
+          },
+          {
+            "id": "error-rate-accuracy",
+            "weight": 0.2,
+            "description": "error_rate matches expected value for every log file",
+            "testPattern": "error_rate accuracy for log_"
+          },
+          {
+            "id": "status-codes",
+            "weight": 0.2,
+            "description": "total_requests and per-status-code counts match for every log file",
+            "testPattern": "status_codes match for log_"
+          },
+          {
+            "id": "response-time-ci",
+            "weight": 0.2,
+            "description": "Response-time bootstrap confidence intervals match for every log file",
+            "testPattern": "response_time CI for log_"
+          },
+          {
+            "id": "summary-valid",
+            "weight": 0.2,
+            "description": "log_summary.json exists with files_processed, overall_error_rate, and aggregate_status_codes",
+            "testPattern": "log_summary\\.json exists and is valid"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/server-log-quality-auditor",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/dlp-log",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

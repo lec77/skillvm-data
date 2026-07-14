@@ -1,0 +1,35 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "results": {
+    "iteration_1_baseline": {
+      "skill_version": "original verbose (unmodified copy)",
+      "docx-extract": 100,
+      "docx-create": 90,
+      "notes": "docx-create lost 10pts on 'content' criterion: pandoc wrapped 'March 2026' across lines"
+    },
+    "iteration_2_optimized": {
+      "skill_version": "focused optimized skill",
+      "docx-extract": 100,
+      "docx-create": 100,
+      "notes": "Both tasks perfect score"
+    },
+    "iteration_3_confirmation": {
+      "skill_version": "same as iteration 2",
+      "docx-extract": 100,
+      "docx-create": 100,
+      "notes": "Confirmed consistency"
+    }
+  },
+  "changes_made": [
+    "Replaced verbose SKILL.md (196 lines, 23KB) with focused version (170 lines, 8KB)",
+    "Removed all tracked changes, redlining, comments, and raw XML documentation (not needed for tasks)",
+    "Removed ooxml.md, docx-js.md, scripts/, ooxml/, LICENSE.txt supporting files",
+    "Added critical fix: pandoc text extraction now uses '--wrap=none' to prevent line wrapping at 72 chars",
+    "Added '-t plain' flag guidance for plain text extraction",
+    "Kept inline docx-js creation patterns and python-docx extraction patterns",
+    "Added '--wrap=none' to Common Mistakes to Avoid section"
+  ],
+  "key_fix": "The main issue was pandoc wrapping text at 72 characters by default, breaking 'March 2026' across two lines. Adding '--wrap=none' to pandoc commands fixed the content extraction test."
+}

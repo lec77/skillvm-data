@@ -1,0 +1,36 @@
+{
+  "iterations": 5,
+  "per_task_scores": {
+    "sql-query": {
+      "iteration_1": 30,
+      "iteration_2": 25,
+      "iteration_3": 25,
+      "iteration_4": 58,
+      "iteration_5": 100,
+      "best": 100
+    },
+    "sql-migrate": {
+      "iteration_1": 35,
+      "iteration_2": 30,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 57,
+      "best": 100
+    }
+  },
+  "changes_made": [
+    "Replaced verbose generic SQL reference with focused SQLite-specific workflow",
+    "Added explicit CSV header stripping with tail -n +2 (macOS sqlite3 does not auto-skip headers)",
+    "Added Python script pattern for JSON output (write to .py file, run with python3, never write Python into .json files)",
+    "Replaced dict comprehensions with explicit for-loops (qwen3-30b generates broken comprehension syntax)",
+    "Added staging table normalization pattern with CAST for text-to-numeric conversion",
+    "Added explicit verification steps (count rows, check schema, cat output JSON)"
+  ],
+  "key_failure_modes_addressed": [
+    "macOS sqlite3 does not support --skip 1 flag and does not auto-skip CSV headers for existing tables",
+    "qwen3-30b generates broken dict comprehensions: [{key: val for r in rows] missing closing brace",
+    "qwen3-30b writes Python code directly into .json output files instead of creating .py scripts",
+    "qwen3-30b uses abbreviated column names (name, project) instead of exact CSV headers (employee_name, project_name)",
+    "qwen3-30b gets stuck in edit loops when trying to fix syntax errors it cannot see"
+  ]
+}

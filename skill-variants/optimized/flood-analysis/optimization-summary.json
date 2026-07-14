@@ -1,0 +1,22 @@
+{
+  "iterations": 1,
+  "max_iterations": 3,
+  "original_size_bytes": 4124,
+  "optimized_size_bytes": 1582,
+  "size_reduction_pct": 61.6,
+  "scores": {
+    "iteration_1": {
+      "flood-risk": 100,
+      "streamflow-stats": 100
+    }
+  },
+  "changes": [
+    "Removed NWS flood stage meanings table (not needed for classification)",
+    "Removed USGS data aggregation section (daily max code)",
+    "Removed redundant 'Complete Example' code block",
+    "Consolidated severity classification into compact code snippet",
+    "Merged common pitfalls into concise 'Critical Rules' section",
+    "Removed K-factor table rows for 2/5/25-year (tasks only test 10/50/100)",
+    "Reduced from 136 lines to 42 lines"
+  ]
+}

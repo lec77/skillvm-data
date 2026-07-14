@@ -1,0 +1,15 @@
+{
+  "iterations": 1,
+  "results": {
+    "iteration_0": {
+      "faq-schema": { "score": 100, "maxScore": 100 },
+      "product-schema": { "score": 100, "maxScore": 100 }
+    }
+  },
+  "changes": [
+    "No changes needed — the original skill already achieves 100/100 on both tasks with qwen3.5-397b on openclaw."
+  ],
+  "finalSkill": "SKILL.md (unchanged from verbose original)",
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw"
+}

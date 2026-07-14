@@ -1,0 +1,85 @@
+{
+  "skill_name": "geospatial-analysis",
+  "skill_path": "skills/geospatial-analysis",
+  "total_files": 1,
+  "total_tokens_estimate": 1200,
+  "purposes": [
+    {
+      "id": "compute-haversine-distance",
+      "description": "Compute great-circle distance between two lat/lon points using the Haversine formula",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.spatial", "min_level": "L3", "evidence": "Haversine formula is spherical geometry (SKILL.md:8-54), explicitly listed as L3 example in primitive definition"},
+          {"id": "reason.arithmetic", "min_level": "L2", "evidence": "Multi-step trigonometric computation: degree-to-radian conversion, sin²/cos products, arcsin (SKILL.md:13-14)"},
+          {"id": "gen.code.javascript", "min_level": "L1", "evidence": "TypeScript haversine implementation with basic Math methods (SKILL.md:29-39)"},
+          {"id": "gen.code.python", "min_level": "L2", "evidence": "Python implementation importing math standard library module (SKILL.md:44-53)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "compute-bearing",
+      "description": "Compute initial bearing (azimuth) between two geographic points, normalized to 0-360 degrees",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.spatial", "min_level": "L3", "evidence": "Spherical bearing calculation using atan2 on lat/lon coordinates (SKILL.md:56-82)"},
+          {"id": "reason.arithmetic", "min_level": "L2", "evidence": "Multi-step: radian conversion, trig operations, atan2, modulo normalization (SKILL.md:61-65, 78)"},
+          {"id": "gen.code.javascript", "min_level": "L1", "evidence": "TypeScript bearing function (SKILL.md:69-79)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "compute-distance-matrix",
+      "description": "Compute all pairwise great-circle distances for a set of N geographic points",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.spatial", "min_level": "L3", "evidence": "Repeated haversine over N×N point pairs (SKILL.md:84-101)"},
+          {"id": "reason.logic", "min_level": "L1", "evidence": "Nested iteration with diagonal-skip condition i !== j (SKILL.md:94)"},
+          {"id": "gen.code.javascript", "min_level": "L1", "evidence": "TypeScript distanceMatrix function with array construction and nested loops (SKILL.md:88-100)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "find-nearest-point",
+      "description": "Find the closest geographic point to a query point from a set of candidates",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.spatial", "min_level": "L3", "evidence": "Nearest-neighbor search using haversine distance over lat/lon points (SKILL.md:107-123)"},
+          {"id": "reason.logic", "min_level": "L1", "evidence": "Simple min-tracking loop with if-then update (SKILL.md:118-120)"},
+          {"id": "gen.code.javascript", "min_level": "L1", "evidence": "TypeScript nearestPoint generic function (SKILL.md:111-123)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "find-k-nearest-neighbors",
+      "description": "Find the K closest geographic points to a query point, sorted by distance",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.spatial", "min_level": "L3", "evidence": "K-nearest search over geographic coordinates using haversine (SKILL.md:126-141)"},
+          {"id": "reason.logic", "min_level": "L1", "evidence": "Map-sort-slice pattern for top-K selection (SKILL.md:137-139)"},
+          {"id": "gen.code.javascript", "min_level": "L1", "evidence": "TypeScript kNearest generic function with chained array methods (SKILL.md:131-140)"}
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:6-19", "purposes": ["compute-haversine-distance"], "type": "instruction"},
+    {"location": "SKILL.md:21-25", "purposes": ["compute-haversine-distance", "compute-bearing"], "type": "instruction"},
+    {"location": "SKILL.md:27-40", "purposes": ["compute-haversine-distance"], "type": "code_example"},
+    {"location": "SKILL.md:42-54", "purposes": ["compute-haversine-distance"], "type": "code_example"},
+    {"location": "SKILL.md:56-65", "purposes": ["compute-bearing"], "type": "instruction"},
+    {"location": "SKILL.md:67-80", "purposes": ["compute-bearing"], "type": "code_example"},
+    {"location": "SKILL.md:82", "purposes": ["compute-bearing"], "type": "instruction"},
+    {"location": "SKILL.md:84-101", "purposes": ["compute-distance-matrix"], "type": "code_example"},
+    {"location": "SKILL.md:103-105", "purposes": ["compute-distance-matrix"], "type": "instruction"},
+    {"location": "SKILL.md:107-123", "purposes": ["find-nearest-point"], "type": "code_example"},
+    {"location": "SKILL.md:126-141", "purposes": ["find-k-nearest-neighbors"], "type": "code_example"},
+    {"location": "SKILL.md:143-149", "purposes": ["compute-haversine-distance", "compute-bearing", "compute-distance-matrix"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

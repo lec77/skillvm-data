@@ -1,0 +1,43 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "skill": "document-docx",
+  "iterations": 1,
+  "results": [
+    {
+      "iteration": 0,
+      "label": "baseline (unoptimized, identical to original)",
+      "scores": {
+        "docx-create": 90,
+        "docx-extract": 100
+      },
+      "changes": []
+    },
+    {
+      "iteration": 1,
+      "label": "optimized",
+      "scores": {
+        "docx-create": 100,
+        "docx-extract": 100
+      },
+      "changes": [
+        "Replaced verbose original SKILL.md with concise version based on optimized variant",
+        "Added --wrap=none to all pandoc commands to prevent line wrapping that broke text extraction tests",
+        "Added explicit plain text extraction command: pandoc file.docx -t plain --wrap=none -o output.txt",
+        "Added --wrap=none to Common Mistakes to Avoid section",
+        "Removed unreferenced files: docx-js.md, ooxml.md, ooxml/ directory, scripts/ directory",
+        "Focused skill content on creation (docx-js) and extraction (pandoc + python-docx) workflows only",
+        "Removed redlining, OOXML editing, and image conversion sections not needed for tasks"
+      ]
+    }
+  ],
+  "finalScores": {
+    "docx-create": 100,
+    "docx-extract": 100
+  },
+  "confirmed": true,
+  "confirmationRun": {
+    "docx-create": 100,
+    "docx-extract": 100
+  }
+}

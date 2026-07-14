@@ -1,0 +1,67 @@
+{
+  "id": "cruise-control",
+  "name": "Adaptive Cruise Control Simulation",
+  "category": "control-systems",
+  "gradingType": "automated",
+  "prompt": "Read scenario.json which contains a cruise control simulation setup. Implement an adaptive cruise control system in Python. The ego vehicle should: (1) accelerate from initial_speed toward target_speed using a PID controller, (2) maintain safe following distance behind the lead vehicle (gap >= min_gap + speed * headway_time), (3) respect max_accel and max_decel limits. Simulate for total_steps timesteps with timestep dt. Lead vehicle speeds are given per-step. Track ego vehicle speed, gap to lead vehicle, and applied acceleration at each step. Write results to control_output.json with keys: ego_speeds (array of floats), gap_distances (array of floats), accelerations (array of floats).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "cruise-control.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "array-length",
+            "weight": 0.15,
+            "description": "Arrays have correct length",
+            "testPattern": "correct length"
+          },
+          {
+            "id": "no-collision",
+            "weight": 0.25,
+            "description": "No collision occurs",
+            "testPattern": "no collision"
+          },
+          {
+            "id": "speed-tracking",
+            "weight": 0.2,
+            "description": "Speed tracks target in steady state",
+            "testPattern": "tracks target"
+          },
+          {
+            "id": "accel-limits",
+            "weight": 0.15,
+            "description": "Acceleration within limits",
+            "testPattern": "within limits"
+          },
+          {
+            "id": "safe-gap",
+            "weight": 0.15,
+            "description": "Safe gap maintained in steady state",
+            "testPattern": "safe gap"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/control-systems",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/control-systems/cruise-control/",
+    "importedAt": "2026-07-07T06:18:30.395Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "iteration_count": 2,
+  "per_task_scores": {
+    "knapsack-optimize": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "confirmation_run": 100
+    },
+    "facility-placement": {
+      "iteration_1": 80,
+      "iteration_2": 100,
+      "confirmation_run": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (6.7KB, theoretical content, no anti-delegation rules)",
+      "result": "knapsack-optimize scored 100/100. facility-placement scored 80/100 — model delegated to a subagent via Task tool, which computed the answer manually instead of writing a Python script. The subagent produced an impossible total_covered_population=325 (max is 196), placed facilities too close together, and failed the population-good criterion."
+    },
+    {
+      "iteration": 2,
+      "description": "Complete SKILL.md rewrite targeting devstral-small weaknesses: (1) Added CRITICAL RULES section telling model to never delegate to subagents/Task tool and always write Python scripts, (2) Provided complete runnable Python templates for 0/1 knapsack DP and facility placement greedy+local search, (3) Emphasized using json.dump() instead of manual JSON construction, (4) Added verification step to read output file back, (5) Removed theoretical content in favor of actionable templates.",
+      "result": "Both tasks scored 100/100. Confirmed with a second run also scoring 100/100."
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "changes": [
+    "Stripped verbose original skill down to task-relevant commands only",
+    "Added explicit patterns for branch-from-tag, cherry-pick by message, history analysis",
+    "Added concrete git commands for counting commits, listing authors, detecting merges",
+    "Added JSON report writing pattern with heredoc",
+    "Added notes about working directory placement for output files",
+    "Fixed task setup bug: git-log-analyze used 'git checkout master' instead of 'git checkout main'"
+  ]
+}

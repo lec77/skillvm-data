@@ -1,0 +1,130 @@
+{
+  "skill_name": "news-summary",
+  "skill_path": "skills/news-summary",
+  "total_files": 2,
+  "total_tokens_estimate": 580,
+  "purposes": [
+    {
+      "id": "fetch-and-summarize-news",
+      "description": "Fetch current news headlines from international RSS feeds (BBC, Reuters, NPR, Al Jazeera), parse the XML, and produce a concise multi-topic text summary",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must run curl to fetch RSS XML, pipe through grep/sed to extract titles, and parse the output"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L3",
+            "evidence": "Must construct complex pipeline: curl | grep | sed | head to extract titles from XML"
+          },
+          {
+            "id": "gen.text.prose",
+            "min_level": "L2",
+            "evidence": "Must synthesize multiple headlines into a structured multi-section news summary grouped by topic/region"
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "Must output in the specified format with topic headers (WORLD, BUSINESS, TECH) and bullet points"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Use Python to fetch and parse RSS XML instead of shell pipeline",
+          "primitives": [
+            {
+              "id": "gen.code.python",
+              "min_level": "L2",
+              "evidence": "Could use xml.etree or feedparser to parse RSS feeds"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L2",
+              "evidence": "Execute the Python script"
+            },
+            {
+              "id": "gen.text.prose",
+              "min_level": "L2",
+              "evidence": "Still must synthesize headlines into summary"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "generate-voice-summary",
+      "description": "Convert a text news summary into an audio file using OpenAI TTS API",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Must run curl POST to OpenAI TTS API endpoint"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Must construct curl command with JSON body, auth header, and output redirection"
+          },
+          {
+            "id": "tool.web",
+            "min_level": "L2",
+            "evidence": "Must make authenticated POST request to OpenAI API with JSON payload"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-9",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:11-39",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:41-54",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:56-63",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:65-80",
+      "purposes": ["generate-voice-summary"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:82-97",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:99-105",
+      "purposes": ["fetch-and-summarize-news"],
+      "type": "instruction"
+    },
+    {
+      "location": "_meta.json:1-6",
+      "purposes": [],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

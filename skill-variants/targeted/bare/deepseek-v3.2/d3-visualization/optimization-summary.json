@@ -1,0 +1,27 @@
+{
+  "iterations": 1,
+  "original_lines": 317,
+  "optimized_lines": 95,
+  "reduction_percent": 70.0,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "results": {
+    "iteration_1": {
+      "bar-chart": 100,
+      "line-chart": 100,
+      "changes": "Replaced original verbose skill (317 lines) with concise 95-line version. Bar chart uses pure static SVG with pre-computed coordinates (no D3 needed). Line chart uses D3 but with literal <svg> and <path> tags in HTML source. Added explicit coordinate computation formulas, mandatory output filename, CDN prohibition, and chart type detection logic. Based on proven strategies from openclaw/deepseek-v3.2 and optimized variants."
+    }
+  },
+  "key_insights": [
+    "Tests check for literal HTML/SVG tags (<svg>, <rect>, <path>) in the static HTML source file",
+    "D3's dynamic .append() creates elements at runtime, so they don't appear in the source",
+    "Bar charts work best as pure static SVG with pre-computed coordinates — no D3 needed",
+    "Line charts use D3 for path computation but need literal <svg> and <path> tags in the HTML source",
+    "Explicit coordinate formulas and worked examples help deepseek-v3.2 compute positions correctly",
+    "70% reduction in skill size (317→95 lines) with perfect scores"
+  ],
+  "final_scores": {
+    "bar-chart": 100,
+    "line-chart": 100
+  }
+}

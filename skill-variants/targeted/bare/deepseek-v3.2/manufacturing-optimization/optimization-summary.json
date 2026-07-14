@@ -1,0 +1,21 @@
+{
+  "iterations": 1,
+  "task_scores": {
+    "fjsp-schedule": {
+      "iteration_0": 100
+    },
+    "job-makespan": {
+      "iteration_0": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 0,
+      "description": "Baseline run with unmodified skill (copy of original). Both tasks achieved 100/100 — no changes needed."
+    }
+  ],
+  "final_scores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "skill": "data-analyst-1.0.0",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 5,
+  "per_task_scores": {
+    "csv-pivot": {
+      "iteration_1": 0,
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "iteration_4": 100,
+      "iteration_5": 100
+    },
+    "data-clean": {
+      "iteration_1": 85,
+      "iteration_2": 65,
+      "iteration_3": 85,
+      "iteration_4": 65,
+      "iteration_5": 100
+    },
+    "multi-dataset-report": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 0,
+      "iteration_5": 60
+    }
+  },
+  "final_scores": {
+    "csv-pivot": 100,
+    "data-clean": 100,
+    "multi-dataset-report": 60,
+    "total": 260
+  },
+  "changes_made": [
+    "Reduced skill from 573 lines (verbose generic content) to ~100 lines of focused, actionable patterns",
+    "Added explicit instruction to IGNORE LSP diagnostics and just run scripts",
+    "Replaced defaultdict patterns with plain dict.get() to avoid Pyright type errors that cause infinite edit loops",
+    "Replaced max(dict, key=dict.get) with sorted(..., key=lambda)[0][0] for type-safety",
+    "Provided complete copy-pasteable Python script patterns for data cleaning with correct date handling logic",
+    "Added instruction to write NEW script files on error instead of editing (avoids infinite edit loops)",
+    "Added rule against f-string + concatenation across lines (prevents SyntaxError)",
+    "Changed dates_standardized counting to use deduplicated rows only (matches test expectations)",
+    "Simplified multi-dataset report pattern to avoid complex string concatenation"
+  ],
+  "key_findings": [
+    "devstral-small frequently degenerates into infinite loops: either repeating output tokens or retrying identical edits",
+    "LSP/Pyright diagnostics in opencode trigger the model to attempt fixes, often getting stuck in edit loops with identical old/new strings",
+    "The model cannot reliably fix its own syntax errors - it reproduces the same bug when rewriting",
+    "Shorter, more prescriptive skills with complete code patterns work better than abstract guidance",
+    "The multi-dataset-report task is unstable: the model consistently introduces a trailing dot in string concatenation that it cannot self-correct"
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "pdf-merge-info": 100,
+    "pdf-text-extract": 100
+  },
+  "history": [
+    {
+      "iteration": 1,
+      "scores": {
+        "pdf-merge-info": 50,
+        "pdf-text-extract": 100
+      },
+      "changes": "Initial skill based on original verbose skill. Added guidance on using pdfminer/pypdf for text extraction, merging, and page counting. Noted LSP errors should be ignored."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "pdf-merge-info": 100,
+        "pdf-text-extract": 100
+      },
+      "changes": "Added explicit warning that PDF metadata fields (/Title, /Author) are almost always empty and must not be relied on. Added section on extracting info from rendered text content using pdfminer + regex. Emphasized two-step workflow: extract and print raw text first, then parse based on actual output. Added rule to never use PDF metadata fields."
+    }
+  ]
+}

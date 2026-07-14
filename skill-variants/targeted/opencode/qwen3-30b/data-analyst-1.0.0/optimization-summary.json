@@ -1,0 +1,44 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "data-analyst-1.0.0",
+  "scores": {
+    "iteration_1_baseline": {
+      "csv-pivot": 0,
+      "data-clean": 65,
+      "multi-dataset-report": 0
+    },
+    "iteration_2": {
+      "csv-pivot": 80,
+      "data-clean": 70,
+      "multi-dataset-report": 0
+    },
+    "iteration_3": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 0
+    },
+    "iteration_4": {
+      "csv-pivot": 100,
+      "data-clean": 65,
+      "multi-dataset-report": 100
+    },
+    "iteration_5_final": {
+      "csv-pivot": 100,
+      "data-clean": 100,
+      "multi-dataset-report": 100
+    }
+  },
+  "changes": [
+    "Replaced 570-line generic SKILL.md with focused CSV analysis guide (~150 lines)",
+    "Added concrete Python/pandas patterns for exact operations needed (revenue calc, groupby, dedup, date standardization, email validation)",
+    "Fixed variable name reuse bug pattern (total_revenue overwritten in loops) by emphasizing unique variable names",
+    "Banned f-strings to prevent syntax errors that caused infinite edit loops on multi-dataset-report",
+    "Added instruction to rewrite entire file on syntax error instead of attempting edits",
+    "Added complete data cleaning workflow showing correct order: dedup first, then count issues on deduped data, then fix dates, then write CSV",
+    "Emphasized single-script approach for multi-file analysis to avoid running out of steps",
+    "Added cross-dataset report pattern using string concatenation instead of f-strings",
+    "Removed unused files: scripts/, WA_Fn-UseC_-Telco-Customer-Churn.csv"
+  ]
+}

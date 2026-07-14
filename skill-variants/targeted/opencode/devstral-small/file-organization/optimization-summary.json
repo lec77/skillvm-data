@@ -1,0 +1,49 @@
+{
+  "skill": "file-organization",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 5,
+  "scores": {
+    "iteration1": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 0,
+      "notes": "Dedup failed: model used md5sum (not available on macOS)"
+    },
+    "iteration2": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 100,
+      "notes": "Added md5 -r instructions for macOS. Both pass."
+    },
+    "iteration3_confirmation": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 0,
+      "notes": "Dedup inconsistent: model got hashes but entered infinite grep loop instead of reporting results"
+    },
+    "iteration4": {
+      "fileorg-messy": 14,
+      "fileorg-dedup": 100,
+      "notes": "Provided single-command dedup pipeline. Messy failed: zsh glob errors when no files match a pattern (e.g. *.jpeg) cause entire mv command to fail"
+    },
+    "iteration5": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 100,
+      "notes": "Replaced glob mv with for-loop + case statement. Both tasks pass consistently."
+    },
+    "iteration5_confirmation": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 100,
+      "notes": "Confirmation run. Both tasks pass."
+    }
+  },
+  "final_scores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  },
+  "changes": [
+    "Compressed 434-line verbose skill to ~40 lines of direct instructions",
+    "Added macOS-specific commands: md5 -q instead of md5sum",
+    "Provided single-command awk pipeline for duplicate detection to avoid multi-step reasoning loops",
+    "Replaced glob-based mv commands with for-loop + case statement to avoid zsh 'no matches found' errors",
+    "Added explicit warnings against common failure modes (md5sum, grep on file contents)"
+  ]
+}

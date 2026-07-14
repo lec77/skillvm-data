@@ -1,0 +1,129 @@
+{
+  "skill_name": "data-analyst",
+  "skill_path": "skills/data-analyst-1.0.0",
+  "total_files": 5,
+  "total_tokens_estimate": 7500,
+  "purposes": [
+    {
+      "id": "sql-query-authoring",
+      "description": "Write and execute SQL queries for data exploration, time-based analysis, cohort analysis, and funnel analysis against relational databases",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.sql", "min_level": "L3", "evidence": "SKILL.md:50-123 includes CTEs (funnel analysis), window functions (LAG for month-over-month), multi-table JOINs (cohort analysis), and PERCENTILE_CONT (outlier removal)"},
+          {"id": "gen.code.shell", "min_level": "L1", "evidence": "scripts/query.sh provides a shell wrapper for executing SQL via sqlite3/psql/mysql CLI tools"},
+          {"id": "tool.exec", "min_level": "L2", "evidence": "Agent must write queries and execute them via query.sh, then parse output"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "data-cleaning",
+      "description": "Detect and resolve data quality issues including missing values, duplicates, outliers, and inconsistent formats",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.sql", "min_level": "L2", "evidence": "SKILL.md:141-168 shows duplicate detection with GROUP BY/HAVING, null analysis with CASE, and IQR outlier removal with PERCENTILE_CONT"},
+          {"id": "gen.code.python", "min_level": "L3", "evidence": "SKILL.md:201-225 uses pandas for drop_duplicates, fillna, to_datetime, groupby.agg"},
+          {"id": "reason.analysis", "min_level": "L1", "evidence": "SKILL.md:129-137 data quality issue table requires identifying which cleaning strategy to apply"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "spreadsheet-analysis",
+      "description": "Load, clean, aggregate, and export CSV/Excel data using pandas operations including filtering, groupby, pivot tables, window functions, and merging",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.python", "min_level": "L3", "evidence": "SKILL.md:201-246 uses pandas for read_csv, read_excel, groupby, pivot_table, merge, cumsum, pct_change, rolling"},
+          {"id": "tool.exec", "min_level": "L2", "evidence": "Agent must write Python scripts and execute them to process data files"},
+          {"id": "tool.file.read", "min_level": "L1", "evidence": "Must read input CSV/Excel files; bundled sample data WA_Fn-UseC_-Telco-Customer-Churn.csv (970KB)"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "data-visualization",
+      "description": "Create charts and visualizations using matplotlib/seaborn (line, bar, heatmap) or ASCII art for terminal output",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.python", "min_level": "L3", "evidence": "SKILL.md:266-298 uses matplotlib.pyplot and seaborn for line charts, bar charts, heatmaps with savefig"},
+          {"id": "tool.exec", "min_level": "L2", "evidence": "Must execute Python visualization scripts and save output PNG files"},
+          {"id": "tool.file.write", "min_level": "L1", "evidence": "Visualization scripts save PNG files to disk via plt.savefig"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "report-generation",
+      "description": "Generate structured analysis reports in Markdown with executive summary, key metrics, insights, and recommendations",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.text.prose", "min_level": "L2", "evidence": "SKILL.md:319-363 report template requires multi-section structured text with executive summary, insights, recommendations"},
+          {"id": "gen.text.structured", "min_level": "L2", "evidence": "Reports include Markdown tables for key metrics with specific column structure"},
+          {"id": "tool.file.write", "min_level": "L1", "evidence": "Reports must be written to files in the reports/ directory"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "statistical-analysis",
+      "description": "Compute descriptive statistics, correlations, and run statistical tests (t-test, chi-square, ANOVA, Pearson) using Python",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.python", "min_level": "L3", "evidence": "SKILL.md:400-423 uses pandas describe/median/mode/skew/kurtosis and scipy.stats for ttest_ind, chi2_contingency, f_oneway, pearsonr"},
+          {"id": "reason.arithmetic", "min_level": "L1", "evidence": "Agent needs to interpret statistical output (p-values, correlation coefficients) to draw conclusions"},
+          {"id": "tool.exec", "min_level": "L2", "evidence": "Must execute Python scripts to compute statistics"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "workspace-initialization",
+      "description": "Set up a data analysis workspace with directory structure, templates, and helper scripts via data-init.sh",
+      "current_path": {
+        "primitives": [
+          {"id": "gen.code.shell", "min_level": "L1", "evidence": "scripts/data-init.sh creates directories with mkdir -p and writes template files via heredocs"},
+          {"id": "tool.exec", "min_level": "L1", "evidence": "Agent runs ./scripts/data-init.sh to initialize workspace"}
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "analysis-workflow-planning",
+      "description": "Follow a structured 6-step analysis process: define question, understand data, clean, explore, analyze, communicate",
+      "current_path": {
+        "primitives": [
+          {"id": "reason.planning", "min_level": "L1", "evidence": "SKILL.md:429-458 defines a 6-step sequential analysis process the agent should follow"},
+          {"id": "follow.procedure", "min_level": "L1", "evidence": "SKILL.md:429-458 lists numbered steps that must be followed in order"}
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-6", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:8-14", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:16-25", "purposes": ["sql-query-authoring", "spreadsheet-analysis", "data-visualization", "report-generation", "data-cleaning", "statistical-analysis"], "type": "instruction"},
+    {"location": "SKILL.md:27-43", "purposes": ["workspace-initialization"], "type": "instruction"},
+    {"location": "SKILL.md:46-123", "purposes": ["sql-query-authoring"], "type": "code_example"},
+    {"location": "SKILL.md:127-193", "purposes": ["data-cleaning"], "type": "code_example"},
+    {"location": "SKILL.md:197-246", "purposes": ["spreadsheet-analysis"], "type": "code_example"},
+    {"location": "SKILL.md:250-313", "purposes": ["data-visualization"], "type": "code_example"},
+    {"location": "SKILL.md:317-381", "purposes": ["report-generation"], "type": "code_example"},
+    {"location": "SKILL.md:385-423", "purposes": ["statistical-analysis"], "type": "code_example"},
+    {"location": "SKILL.md:427-483", "purposes": ["analysis-workflow-planning"], "type": "instruction"},
+    {"location": "SKILL.md:487-518", "purposes": ["workspace-initialization", "sql-query-authoring", "spreadsheet-analysis"], "type": "instruction"},
+    {"location": "SKILL.md:522-538", "purposes": [], "type": "dead_content"},
+    {"location": "SKILL.md:542-562", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:566-573", "purposes": [], "type": "dead_content"},
+    {"location": "scripts/data-init.sh:1-236", "purposes": ["workspace-initialization"], "type": "script"},
+    {"location": "scripts/query.sh:1-129", "purposes": ["sql-query-authoring"], "type": "script"},
+    {"location": "_meta.json:1-6", "purposes": [], "type": "instruction"},
+    {"location": "WA_Fn-UseC_-Telco-Customer-Churn.csv", "purposes": ["spreadsheet-analysis", "data-cleaning"], "type": "instruction"}
+  ],
+  "unmatched_requirements": [
+    "SKILL.md:29-35 references TOOLS.md for data source configuration but no TOOLS.md file exists in the skill",
+    "SKILL.md:372-378 references scripts/extract_data.py, scripts/analyze.py, and scripts/format_report.py but none of these files exist in the skill",
+    "SKILL.md:507-518 references scripts/analyze.py with --type cohort and --report flags but this file does not exist",
+    "SKILL.md:522-538 describes integration with Marketing, Sales, and Business Dev skills but provides no concrete integration mechanism"
+  ]
+}

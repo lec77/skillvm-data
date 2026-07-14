@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Major Breakthrough in Fusion Energy",
+    "source": "Science Daily",
+    "date": "2026-03-10",
+    "content": "Scientists at the National Ignition Facility achieved sustained fusion ignition for 30 seconds, producing 5 megajoules of energy from 2 megajoules of input. This marks the first time a fusion reaction has maintained net energy gain for an extended period. The breakthrough brings commercial fusion power closer to reality, though experts estimate it will still take 10-15 years before fusion plants can be connected to the grid."
+  },
+  {
+    "title": "Global Chip Shortage Finally Easing",
+    "source": "Reuters",
+    "date": "2026-03-09",
+    "content": "The semiconductor supply chain has largely recovered, with chip lead times falling to 8 weeks from a peak of 26 weeks in 2022. TSMC's new Arizona fab is now producing 3nm chips, while Samsung's Texas facility focuses on advanced packaging. Industry analysts predict chip prices will drop 15-20% by year-end, benefiting consumer electronics and automotive manufacturers."
+  },
+  {
+    "title": "Autonomous Vehicle Fleet Launches in Phoenix",
+    "source": "TechCrunch",
+    "date": "2026-03-11",
+    "content": "Waymo has expanded its fully autonomous ride-hailing service to cover the entire Phoenix metropolitan area, operating 500 vehicles around the clock. The fleet has completed 2 million rides with zero at-fault accidents. Passengers report average wait times of 4 minutes and satisfaction ratings of 4.7 out of 5 stars."
+  },
+  {
+    "title": "New Battery Technology Doubles EV Range",
+    "source": "Bloomberg",
+    "date": "2026-03-08",
+    "content": "Toyota unveiled a solid-state battery that achieves 900 Wh/kg energy density, nearly double current lithium-ion batteries. The battery charges to 80% in 10 minutes and maintains 90% capacity after 1000 cycles. Toyota plans to begin mass production in 2028, initially for luxury vehicle models before scaling to mainstream EVs."
+  },
+  {
+    "title": "Remote Work Becomes Permanent at Major Tech Firms",
+    "source": "Wall Street Journal",
+    "date": "2026-03-10",
+    "content": "Microsoft, Salesforce, and Shopify have made fully remote work permanent for all employees, joining a growing list of tech companies abandoning return-to-office mandates. The companies report 12% higher productivity and 30% reduction in real estate costs. A survey of 10,000 tech workers found 78% prefer remote or hybrid arrangements."
+  }
+]

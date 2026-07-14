@@ -1,0 +1,19 @@
+SKU,Product,Warehouse,Quantity,MinLevel,LastRestock
+SKU001,Trail Pack,Oslo,7,20,2024-03-11
+SKU002,Alpine Tent,Oslo,42,25,2024-04-02
+SKU003,Summit Boots,Oslo,118,50,2024-02-19
+SKU004,Trail Pack,Lisbon,33,30,2024-05-06
+SKU005,Alpine Tent,Lisbon,61,35,2024-03-25
+SKU006,Summit Boots,Lisbon,5,15,2024-01-08
+SKU007,Trail Pack,Rotterdam,88,40,2024-04-17
+SKU008,Alpine Tent,Rotterdam,26,20,2024-05-20
+SKU009,Summit Boots,Rotterdam,54,45,2024-03-04
+SKU010,Trail Pack,Riga,19,12,2024-04-29
+SKU011,Alpine Tent,Riga,73,30,2024-02-26
+SKU012,Summit Boots,Riga,40,35,2024-05-13
+SKU013,Trail Pack,Tallinn,29,25,2024-03-18
+SKU014,Alpine Tent,Tallinn,105,60,2024-04-08
+SKU015,Summit Boots,Tallinn,36,20,2024-05-27
+SKU016,Trail Pack,Oslo,11,18,2024-01-22
+SKU017,Alpine Tent,Oslo,67,50,2024-06-03
+SKU018,Summit Boots,Oslo,23,15,2024-05-31

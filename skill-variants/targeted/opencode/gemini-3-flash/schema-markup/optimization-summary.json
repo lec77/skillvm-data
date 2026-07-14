@@ -1,0 +1,18 @@
+{
+  "iterations": 1,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "results": {
+    "iteration1": {
+      "product-schema": 100,
+      "faq-schema": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose original skill (180 lines + separate references file) with condensed template-focused version (80 lines)",
+    "Removed references/schema-examples.md — all needed templates are inline",
+    "Added explicit Product and FAQPage JSON-LD templates with exact field requirements",
+    "Added critical field rules emphasizing numeric types, full schema.org URLs, and brand-as-object",
+    "Simplified workflow to 5 clear steps"
+  ]
+}

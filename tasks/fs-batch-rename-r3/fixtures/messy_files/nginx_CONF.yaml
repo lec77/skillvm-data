@@ -1,0 +1,3 @@
+nginx:
+  workers: 4
+  keepalive: 65

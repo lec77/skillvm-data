@@ -1,0 +1,49 @@
+{
+  "iterations": 2,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "baseline_scores": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  },
+  "final_scores": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  },
+  "changes": [
+    {
+      "iteration": 0,
+      "description": "Baseline run with original verbose skill (identical to skills/document-pdf/)",
+      "scores": { "document-pdf": 100, "pdf-create": 100 }
+    },
+    {
+      "iteration": 1,
+      "description": "Stripped skill to essentials: removed forms.md, reference.md, LICENSE.txt, all scripts/, and irrelevant SKILL.md sections (merge, split, rotate, watermark, OCR, password, CLI tools). Kept only pdfplumber extraction and reportlab creation examples with Table/TableStyle.",
+      "scores": { "document-pdf": 100, "pdf-create": 100 },
+      "files_removed": [
+        "reference.md",
+        "forms.md",
+        "LICENSE.txt",
+        "scripts/fill_fillable_fields.py",
+        "scripts/convert_pdf_to_images.py",
+        "scripts/extract_form_field_info.py",
+        "scripts/check_bounding_boxes.py",
+        "scripts/check_bounding_boxes_test.py",
+        "scripts/create_validation_image.py",
+        "scripts/fill_pdf_form_with_annotations.py",
+        "scripts/check_fillable_fields.py"
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Confirmation run — verified consistent 100/100 scores with optimized skill.",
+      "scores": { "document-pdf": 100, "pdf-create": 100 }
+    }
+  ],
+  "size_reduction": {
+    "original_files": 12,
+    "final_files": 1,
+    "original_skill_md_lines": 295,
+    "final_skill_md_lines": 63
+  }
+}

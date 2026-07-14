@@ -1,0 +1,17 @@
+employee_name,department,department_budget,project_name,project_deadline,hours_worked
+Alice Johnson,Engineering,500000,Alpha,2026-06-30,120
+Alice Johnson,Engineering,500000,Beta,2026-09-15,80
+Bob Smith,Marketing,200000,Gamma,2026-07-31,160
+Bob Smith,Marketing,200000,Alpha,2026-06-30,40
+Carol White,Engineering,500000,Alpha,2026-06-30,200
+Carol White,Engineering,500000,Gamma,2026-07-31,60
+Dave Brown,Sales,300000,Beta,2026-09-15,90
+Dave Brown,Sales,300000,Delta,2026-12-01,110
+Eve Davis,Marketing,200000,Delta,2026-12-01,140
+Eve Davis,Marketing,200000,Gamma,2026-07-31,70
+Frank Miller,Engineering,500000,Beta,2026-09-15,150
+Frank Miller,Engineering,500000,Delta,2026-12-01,30
+Grace Lee,Sales,300000,Alpha,2026-06-30,95
+Grace Lee,Sales,300000,Gamma,2026-07-31,55
+Helen Park,Engineering,500000,Delta,2026-12-01,180
+Helen Park,Engineering,500000,Alpha,2026-06-30,45

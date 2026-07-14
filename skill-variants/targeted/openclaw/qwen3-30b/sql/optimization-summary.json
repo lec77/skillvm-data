@@ -1,0 +1,44 @@
+{
+  "iteration_count": 4,
+  "baseline_scores": {
+    "sql-query": 30,
+    "sql-migrate": 42
+  },
+  "final_scores": {
+    "sql-query": 100,
+    "sql-migrate": 100
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "description": "Baseline with verbose original skill",
+      "scores": { "sql-query": 30, "sql-migrate": 42 }
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote skill: concise SQLite-focused, added --skip 1 CSV import rule, current-directory rule, normalization with DISTINCT, JSON output via write tool",
+      "scores": { "sql-query": 100, "sql-migrate": 100 }
+    },
+    {
+      "iteration": 3,
+      "description": "Clarified two CSV import patterns (Pattern A: --skip 1 for pre-existing tables, Pattern B: no --skip 1 for auto-created temp tables), added CAST for budget",
+      "scores": { "sql-query": 100, "sql-migrate": 100 },
+      "confirmation_run": { "sql-query": 100, "sql-migrate": 5 }
+    },
+    {
+      "iteration": 4,
+      "description": "Added critical rule: never use write tool to create .db files, must use sqlite3 commands via exec",
+      "scores": { "sql-query": 100, "sql-migrate": 100 }
+    }
+  ],
+  "key_changes": [
+    "Replaced verbose multi-DB skill (PostgreSQL, MySQL, SQLite) with concise SQLite-only version",
+    "Added rule: all output files in current directory (model was creating db/ subdirectory)",
+    "Added rule: never use write tool for .db files (model was writing SQL text as company.db)",
+    "Added --skip 1 CSV import pattern for pre-existing typed tables (model got stuck in import loop)",
+    "Added no-skip-1 pattern for auto-created temp tables (model lost header row as column names)",
+    "Added CAST() guidance for temp table normalization (TEXT columns need casting to REAL)",
+    "Added SELECT DISTINCT rule for normalization (model was inserting duplicate employees)",
+    "Added JSON output workflow using write tool from query results"
+  ]
+}

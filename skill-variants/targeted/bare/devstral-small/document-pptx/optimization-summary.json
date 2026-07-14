@@ -1,0 +1,65 @@
+{
+  "iteration_count": 5,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "document-pptx",
+  "baseline_scores": {
+    "pptx-create": [0, 0],
+    "pptx-extract": [0, 0]
+  },
+  "iteration_scores": {
+    "iteration_1": {
+      "description": "Initial rewrite: short SKILL.md with python-pptx code examples, removed html2pptx/ooxml content",
+      "pptx-create": [100, 100],
+      "pptx-extract": [0, 0]
+    },
+    "iteration_2": {
+      "description": "Put code in description field (like successful docx skill), added bundled extract_pptx.py script, emphasized DO NOT call tool",
+      "pptx-create": [100, 100],
+      "pptx-extract": [71, 64]
+    },
+    "iteration_3": {
+      "description": "Shortened to 'pptx' name, simplified description",
+      "pptx-create": [100, 0, 0],
+      "pptx-extract": [0, 0, 93]
+    },
+    "iteration_4": {
+      "description": "Reverted to document-pptx name, refined description emphasis on bundled script",
+      "pptx-create": [100, 100, 100],
+      "pptx-extract": [63, 0, 0]
+    },
+    "iteration_5": {
+      "description": "Final version: added complete extraction code example with financial parsing regex patterns in SKILL.md body, API 503 errors limited results",
+      "pptx-create": [100, 100],
+      "pptx-extract": [0, 0, 0],
+      "note": "Most runs hit Mistral 503 errors; limited valid results"
+    }
+  },
+  "best_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 93
+  },
+  "best_average": {
+    "pptx-create": 100,
+    "pptx-extract": 67.5,
+    "note": "Average of iteration 2 (best consistent results)"
+  },
+  "changes_made": [
+    "Replaced 484-line verbose SKILL.md with ~100-line SLM-optimized version",
+    "Removed all html2pptx, OOXML editing, template workflow content",
+    "Put python-pptx code directly in the description field (always visible in system prompt)",
+    "Added 'Do NOT call document-pptx as a tool' warning",
+    "Bundled scripts/extract_pptx.py for JSON extraction with financial data parsing",
+    "Removed 40+ XSD schema files, html2pptx.js, inventory.py, rearrange.py, replace.py, thumbnail.py, ooxml.md, html2pptx.md",
+    "Added complete extraction code example with regex patterns for parsing $4.2M and 23% formats"
+  ],
+  "key_findings": [
+    "devstral-small frequently garbles tool names with }() suffix, getting stuck in loops",
+    "Model never loads skills via <load-skill> tag — works purely from description",
+    "pptx-create is reliable (100% when API available) due to simpler task structure",
+    "pptx-extract has high variance (~33% success) due to model's inconsistent tool usage",
+    "When extract succeeds, model writes own script rather than using bundled script",
+    "Financial data parsing is the main failure mode — model writes buggy regex",
+    "The 'document-pptx' name gives better create reliability than 'pptx' name"
+  ]
+}

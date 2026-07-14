@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "bar-chart": 60,
+      "line-chart": 60
+    },
+    "iteration_2_optimized": {
+      "bar-chart": 100,
+      "line-chart": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original SKILL.md (identical to verbose skill). Both tasks scored 60/100 — failing has-svg, bar-count, and has-path tests because the model used D3's dynamic DOM manipulation (d3.select().append()) which doesn't produce literal <svg>, <rect>, <path> tags in the HTML source."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to use a server-side generation approach: instead of client-side D3 DOM manipulation, the skill now instructs the model to write a Bun generation script that reads CSV data, computes chart geometry (scales, positions, sizes), and writes a static HTML file with all SVG elements as literal markup. Provided complete bar chart and line chart generation script examples. Both tasks scored 100/100."
+    }
+  ]
+}

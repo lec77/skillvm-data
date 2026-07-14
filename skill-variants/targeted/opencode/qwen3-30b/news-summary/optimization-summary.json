@@ -1,0 +1,44 @@
+{
+  "iterations": 4,
+  "scores": {
+    "iteration_1": {
+      "parse-rss": 100,
+      "summarize-articles": 0,
+      "multi-feed-digest": 5
+    },
+    "iteration_2": {
+      "parse-rss": 88,
+      "summarize-articles": 0,
+      "multi-feed-digest": 0
+    },
+    "iteration_3": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    },
+    "iteration_4_confirmation": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md with explicit JSON schemas, Python script examples, and step-by-step procedures for all 3 tasks. Added date conversion rules and key number extraction guidance."
+    },
+    {
+      "iteration": 2,
+      "description": "Added CRITICAL instruction to always write Python scripts instead of JSON directly, to avoid truncation. Provided full Python scripts in SKILL.md for all 3 tasks."
+    },
+    {
+      "iteration": 3,
+      "description": "Bundled pre-built Python scripts in scripts/ directory (parse_rss.py, make_digest.py, make_briefing.py). Simplified SKILL.md to just reference bundled scripts with one-line commands. This eliminated all SLM code generation issues: truncated JSON, malformed f-strings, empty tool calls."
+    },
+    {
+      "iteration": 4,
+      "description": "Confirmation run — verified 100/100 scores are stable across runs."
+    }
+  ],
+  "key_insight": "qwen3-30b cannot reliably write large JSON files (truncates closing braces) or copy Python scripts from skill instructions (garbles f-strings, fails tool calls). Bundling ready-to-run scripts eliminates these failure modes entirely — the model just needs to run a single bash command."
+}

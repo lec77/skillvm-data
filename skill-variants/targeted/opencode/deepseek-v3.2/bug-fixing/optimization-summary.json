@@ -1,0 +1,21 @@
+{
+  "skill": "bug-fixing",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 1,
+  "maxIterations": 5,
+  "finalScores": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 297-line process-heavy debugging methodology with concise 45-line action-oriented bug-fixing guide. Removed 10 supporting files (condition-based-waiting.md, defense-in-depth.md, root-cause-tracing.md, etc.) not referenced by new SKILL.md. New skill focuses on: concrete bug patterns (off-by-one, race conditions, null access, logic errors), actionable steps (read, identify, fix, test), and includes a ready-to-use mutex pattern for race condition fixes.",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    }
+  ]
+}

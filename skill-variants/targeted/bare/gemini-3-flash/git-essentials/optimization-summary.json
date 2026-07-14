@@ -1,0 +1,21 @@
+{
+  "iterations": 1,
+  "tasks": {
+    "git-branch-ops": {
+      "scores": [100, 100],
+      "final_score": 100
+    },
+    "git-log-analyze": {
+      "scores": [100, 100],
+      "final_score": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose generic git reference (432 lines) with focused, task-relevant skill (~90 lines)",
+    "Added exact commands for git history analysis: rev-list --count, shortlog -sn, log --no-merges --name-only, %as date format",
+    "Added explicit rules about writing JSON output to working directory (not inside repo subdirectory)",
+    "Added branch operations section with cherry-pick by message grep, tag creation, branch listing",
+    "Added JSON writing patterns using node -e and heredoc",
+    "Removed irrelevant sections: remote operations, stashing, rebasing, submodules, clean, aliases, tips, workflows"
+  ]
+}

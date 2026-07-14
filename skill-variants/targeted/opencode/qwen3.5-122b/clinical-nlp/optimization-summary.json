@@ -1,0 +1,34 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "clinical-nlp",
+  "scores": {
+    "iteration_1_baseline": {
+      "medication-reconciliation": 33,
+      "note-extraction": 90
+    },
+    "iteration_2_optimized": {
+      "medication-reconciliation": 60,
+      "note-extraction": 90
+    },
+    "iteration_3_confirmation": {
+      "medication-reconciliation": 60,
+      "note-extraction": 90
+    }
+  },
+  "max_achievable_scores": {
+    "medication-reconciliation": 60,
+    "note-extraction": 90,
+    "explanation": "Both tasks have output-exists criteria whose testPattern matches the describe block name (e.g. 'reconciliation.json exists') but bun test JUnit XML reports only the test function name (e.g. 'reconciliation.json file is present') in the name attribute. This causes the pattern to match zero tests, yielding a permanent 0 for those criteria. medication-reconciliation loses 40 points (output-exists 10% + admission-count 15% + discharge-count 15%) and note-extraction loses 10 points (output-exists 10%) due to similarly unmatched patterns."
+  },
+  "changes_made": [
+    "Restructured medication reconciliation output format: changed nested {admission:{...}, discharge:{...}} objects to flat medication objects with direct name/dose fields, matching test expectations",
+    "Added explicit JSON structure examples for reconciliation.json with exact field names (name, dose, unit, route, frequency) at top level of each change category item",
+    "Specified that change category items use 'from'/'to' naming for dose changes instead of 'admission'/'discharge' nesting",
+    "Added instruction to write JSON directly via write tool instead of creating Python scripts",
+    "Added instruction to strip parenthetical annotations before parsing medication lines",
+    "Condensed skill content: removed verbose implementation algorithm pseudocode, common drug list, and output validation checklist to reduce token usage",
+    "Added explicit negation scope rule for 'or' conjunction (denies X or Y -> both negated)"
+  ]
+}

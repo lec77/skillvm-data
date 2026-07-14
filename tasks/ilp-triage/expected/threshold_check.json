@@ -1,0 +1,10 @@
+{
+  "metrics_checked": 4,
+  "breach_count": 3,
+  "breaches": [
+    "cpu_pct",
+    "error_rate",
+    "p99_ms"
+  ],
+  "fingerprint": "be5453c8bc74aa0d"
+}

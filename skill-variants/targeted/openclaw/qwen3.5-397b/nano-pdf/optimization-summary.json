@@ -1,0 +1,13 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "openclaw",
+  "model": "qwen3.5-397b",
+  "iterations": 1,
+  "finalScores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 100
+  },
+  "changes": [
+    "No changes needed - skill already achieves 100/100 on both tasks"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "skill": "document-pptx",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration_1": {
+      "pptx-create": 95,
+      "pptx-extract": 85,
+      "changes": "Replaced 25K SKILL.md + 30K support files (html2pptx.md, ooxml.md, scripts/, ooxml/) with a focused 2.7K SKILL.md using python-pptx only"
+    },
+    "iteration_2": {
+      "pptx-create": 100,
+      "pptx-extract": 85,
+      "changes": "Added warning to write Python code to .py files instead of python3 -c (fixes shell $-expansion corrupting $4.2B); improved extraction example to skip title shape from bullets"
+    },
+    "iteration_3": {
+      "pptx-create": 95,
+      "pptx-extract": 100,
+      "changes": "Added complete financial data extraction example with working regex for total_revenue, yoy_growth, and regions parsing from specific revenue slide"
+    },
+    "iteration_4": {
+      "pptx-create": 100,
+      "pptx-extract": 93,
+      "changes": "No skill changes (same as iteration 3). Variance from model non-determinism"
+    },
+    "iteration_5": {
+      "pptx-create": 100,
+      "pptx-extract": 0,
+      "changes": "No skill changes. Extract outlier: model ran fixture create_slides.py instead of writing extraction script"
+    }
+  },
+  "best_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "average_scores_excluding_outlier": {
+    "pptx-create": 98.75,
+    "pptx-extract": 90.75
+  },
+  "key_optimizations": [
+    "Reduced skill from 55K+ (SKILL.md + support files) to 3K single SKILL.md",
+    "Removed html2pptx workflow, OOXML editing, template system - unnecessary for tasks",
+    "Focused on python-pptx only - simplest approach for both creation and extraction",
+    "Added explicit warning against python3 -c to avoid shell variable expansion of $ signs",
+    "Provided complete, copy-paste-ready extraction examples with working regex",
+    "Separated title shape from bullet content in extraction examples"
+  ]
+}

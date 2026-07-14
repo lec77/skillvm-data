@@ -1,0 +1,43 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1_baseline": {
+      "html-to-md": 100,
+      "csv-to-md": 92,
+      "notes": "Baseline with unmodified skill (identical to original)"
+    },
+    "iteration_2": {
+      "html-to-md": 100,
+      "csv-to-md": 85,
+      "notes": "Added CSV report guidance with emphasis on exact column names. Score dropped because model computed wrong total value ($27,823.05 instead of $46,993.75) and still failed main-table test"
+    },
+    "iteration_3": {
+      "html-to-md": 100,
+      "csv-to-md": 92,
+      "notes": "Added awk computation hint for calculated values. Total value now correct ($46,993.75). main-table still 0.67 due to test bug"
+    },
+    "iteration_4": {
+      "html-to-md": 100,
+      "csv-to-md": 92,
+      "notes": "Emphasized exact CSV column names. Model used lowercase headers but test still fails due to || bug in test"
+    },
+    "iteration_5": {
+      "html-to-md": 100,
+      "csv-to-md": 92,
+      "notes": "Tried Title Case headers. Model used capitalized headers but test fails on other assertion due to same || bug"
+    }
+  },
+  "final_scores": {
+    "html-to-md": 100,
+    "csv-to-md": 92
+  },
+  "changes_made": [
+    "Added HTML-to-Markdown conversion guidance with specific element mapping rules",
+    "Added CSV/data report creation section with guidance to include all rows and use accurate column headers",
+    "Added awk computation hint for calculated values (prevents arithmetic errors in totals)",
+    "Condensed options section and removed Azure-specific content not relevant to these tasks"
+  ],
+  "known_limitations": "csv-to-md 'table has columns' test has a JavaScript bug: `expect(md).toContain('price') || expect(md).toContain('Price')` — the || operator cannot catch thrown exceptions from expect(), so whichever casing the model uses, the other assertion always fails. Maximum achievable score is 92/100."
+}

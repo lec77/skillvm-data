@@ -1,0 +1,43 @@
+{
+  "skill": "lab-unit-harmonization",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "per_task_scores": {
+    "lab-harmonize": {
+      "iteration_0_baseline": 100,
+      "iteration_1_python_forced": 0,
+      "iteration_2_csv_module": 0,
+      "iteration_3_original_restored": 77,
+      "iteration_4_minimal_additions": 91,
+      "iteration_5_expanded_examples": 71,
+      "best": 100,
+      "final": 71
+    },
+    "lab-quality-report": {
+      "iteration_0_baseline": 19,
+      "iteration_1_python_forced": 0,
+      "iteration_2_csv_module": 0,
+      "iteration_3_original_restored": 2,
+      "iteration_4_minimal_additions": 20,
+      "iteration_5_expanded_examples": 23,
+      "best": 23,
+      "final": 23
+    }
+  },
+  "changes_made": [
+    "Iteration 1: Rewrote skill to force Python script execution — model got stuck calling 'question' tool in loop (0/0)",
+    "Iteration 2: Switched to csv module (no pandas) to avoid dtype errors — same question tool loop (0/0)",
+    "Iteration 3: Restored original skill as baseline verification — high variance (77/2)",
+    "Iteration 4: Added Quick Reference checklist with conversion examples, JSON format guidance, missing row rules to original skill (91/20)",
+    "Iteration 5: Expanded examples for all analytes (calcium, cholesterol, glucose 9.5), added empty cell detection patterns (,,), explicit JSON template with closing braces, total_rows counting rule (71/23)"
+  ],
+  "observations": [
+    "qwen3-30b has extremely high run-to-run variance on opencode (task 1 ranged 0-100, task 2 ranged 0-23)",
+    "Forcing the model to write and run Python scripts caused it to fall into a 'question' tool loop and produce no output",
+    "The model works best when computing conversions in-head and writing output directly via the write tool",
+    "Task 1 (3 analytes, 20 rows) is manageable for in-head computation; task 2 (8 analytes, 30 rows) exceeds the model's reliable capacity",
+    "Persistent task 2 failures: invalid JSON (missing closing brace), wrong total_rows (counts header), wrong excluded_rows, includes missing rows in cleaned output",
+    "Adding more conversion examples improved values-in-range (0→0.75→0.875) but structural output issues remained"
+  ]
+}

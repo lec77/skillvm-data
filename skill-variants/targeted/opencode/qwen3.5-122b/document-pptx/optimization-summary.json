@@ -1,0 +1,27 @@
+{
+  "skill": "document-pptx",
+  "runtime": "opencode",
+  "model": "qwen3.5-122b",
+  "iterations": 2,
+  "scores": {
+    "iteration_1_baseline": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    },
+    "iteration_2_optimized": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    }
+  },
+  "changes": [
+    "Replaced 484-line SKILL.md with 60-line focused version covering only python-pptx creation, reading, and markitdown extraction",
+    "Removed html2pptx.md (625 lines) - complex HTML-to-PPTX workflow unnecessary for these tasks",
+    "Removed ooxml.md (427 lines) - OOXML editing reference unnecessary",
+    "Removed scripts/ directory (html2pptx.js, inventory.py, rearrange.py, replace.py, thumbnail.py)",
+    "Removed ooxml/ directory (schemas and scripts)",
+    "Removed LICENSE.txt",
+    "Added concrete python-pptx code examples for both creation and extraction",
+    "pptx-create cost reduced 64% ($0.0028 -> $0.0010), time reduced 88% (3m31s -> 25s)",
+    "pptx-extract cost reduced 29% ($0.0014 -> $0.0010)"
+  ]
+}

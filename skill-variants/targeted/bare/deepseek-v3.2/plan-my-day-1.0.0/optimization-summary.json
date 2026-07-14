@@ -1,0 +1,30 @@
+{
+  "skill": "plan-my-day-1.0.0",
+  "runtime": "bare",
+  "model": "deepseek-v3.2",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with unmodified verbose skill (identical to original)",
+      "scores": {
+        "schedule-workday": 100,
+        "prioritize-tasks": 100
+      },
+      "changes": "None - baseline run"
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill from 136 lines to 33 lines while preserving key guidance",
+      "scores": {
+        "schedule-workday": 100,
+        "prioritize-tasks": 100
+      },
+      "changes": "Removed verbose output format template, decision-making framework, and tips section. Added concise task prioritization categories and validation checklist. Reduced token usage significantly while maintaining perfect scores. Removed unreferenced _meta.json."
+    }
+  ],
+  "finalScores": {
+    "schedule-workday": 100,
+    "prioritize-tasks": 100
+  }
+}

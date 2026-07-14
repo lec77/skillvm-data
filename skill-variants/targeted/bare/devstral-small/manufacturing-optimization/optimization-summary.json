@@ -1,0 +1,31 @@
+{
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "manufacturing-optimization",
+  "iterations": 2,
+  "scores": {
+    "iteration_0_baseline": {
+      "fjsp-schedule": 60,
+      "job-makespan": 100
+    },
+    "iteration_1": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    },
+    "iteration_2_confirmation": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md to instruct the model to write and execute a Node.js solver script instead of computing schedules by hand. Provided a complete solver template with correct downtime avoidance logic (loop-based shift past overlapping windows). Simplified from pseudocode + theory to a concrete runnable template. Added explicit instruction: 'Never compute schedules by hand.'"
+    }
+  ],
+  "root_cause": "Baseline skill used pseudocode with a buggy downtime check. devstral-small attempted to compute the schedule mentally rather than writing code, causing machine conflicts and downtime violations. Providing a complete Node.js solver template eliminated both issues.",
+  "final_scores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline with full verbose skill (295 lines SKILL.md + forms.md, reference.md, LICENSE.txt, 8 scripts)",
+      "scores": {
+        "document-pdf": 100,
+        "pdf-create": 100
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Streamlined SKILL.md to ~75 lines focused on pdfplumber extraction and reportlab creation. Removed forms.md, reference.md, LICENSE.txt, and scripts/ directory (all unused by tasks). Added structured table-to-data example.",
+      "scores": {
+        "document-pdf": 100,
+        "pdf-create": 100
+      }
+    }
+  ],
+  "changes": [
+    "Condensed SKILL.md from 295 to ~75 lines, focusing on extraction (pdfplumber) and creation (reportlab)",
+    "Removed forms.md (form-filling not needed by tasks)",
+    "Removed reference.md (advanced features not needed)",
+    "Removed LICENSE.txt",
+    "Removed scripts/ directory (8 Python utility scripts not needed)",
+    "Added table-to-structured-data example for extraction tasks",
+    "Added reportlab Table with TableStyle example for creation tasks"
+  ],
+  "finalScores": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  }
+}

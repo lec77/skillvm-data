@@ -1,0 +1,67 @@
+{
+  "id": "sql-query",
+  "name": "Build SQLite DB and answer business queries",
+  "category": "sql",
+  "gradingType": "automated",
+  "prompt": "Import orders.csv into a SQLite database called shop.db with a table named 'orders'. The CSV has columns: order_id, customer_name, product, quantity, unit_price, discount, order_date. Create the table with proper types (INTEGER for quantity, REAL for unit_price and discount) and add an index on a useful column. Then answer these questions by running SQL queries and save the results to query_results.json: (1) total_revenue: the sum of quantity * unit_price * (1 - discount) across all orders, (2) top_customer: the customer_name with the highest total spending, (3) product_ranking: an array of products sorted by total quantity sold in descending order, (4) monthly_revenue: revenue grouped by month (format YYYY-MM), (5) customer_rank: an array of objects with customer_name, total_spent, and rank (1 = highest spender), using a window function or equivalent.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "sql-query.test.ts",
+        "criteria": [
+          {
+            "id": "db-exists",
+            "weight": 0.05,
+            "description": "Database file created",
+            "testPattern": "shop\\.db exists"
+          },
+          {
+            "id": "schema",
+            "weight": 0.15,
+            "description": "Correct table schema and row count",
+            "testPattern": "correct columns|20 rows|proper types"
+          },
+          {
+            "id": "index",
+            "weight": 0.1,
+            "description": "At least one index created",
+            "testPattern": "index exists"
+          },
+          {
+            "id": "results-exist",
+            "weight": 0.05,
+            "description": "Query results file exists",
+            "testPattern": "file exists"
+          },
+          {
+            "id": "basic-queries",
+            "weight": 0.35,
+            "description": "Basic query correctness",
+            "testPattern": "total_revenue|top_customer|product_ranking"
+          },
+          {
+            "id": "advanced-queries",
+            "weight": 0.3,
+            "description": "Advanced queries (monthly + ranking)",
+            "testPattern": "monthly_revenue|customer_rank"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/sql",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/sql/sql-query/",
+    "importedAt": "2026-07-07T06:19:11.560Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

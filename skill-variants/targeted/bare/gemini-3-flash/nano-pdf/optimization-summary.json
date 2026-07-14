@@ -1,0 +1,28 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "bare",
+  "model": "gemini-3-flash",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "pdf-text-extract": 100,
+        "pdf-merge-info": 75
+      },
+      "changes": "Rewrote SKILL.md to cover PDF text extraction (pdfplumber), merging (pypdf), page counting, and JSON output. Original skill only covered nano-pdf edit CLI."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "pdf-text-extract": 100,
+        "pdf-merge-info": 100
+      },
+      "changes": "Added explicit guidance to extract titles/authors from page text content, not PDF metadata. Emphasized that reader.metadata is often empty/anonymous. Added text parsing examples for Author: lines. Confirmed stable with second run."
+    }
+  ],
+  "final_scores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 100
+  }
+}

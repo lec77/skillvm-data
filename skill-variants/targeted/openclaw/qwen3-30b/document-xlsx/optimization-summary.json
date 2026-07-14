@@ -1,0 +1,31 @@
+{
+  "iterations": 3,
+  "per_task_scores": {
+    "document-xlsx": {
+      "baseline": 100,
+      "iteration_1": 93,
+      "iteration_2": 100,
+      "iteration_3": 100
+    },
+    "xlsx-analyze": {
+      "baseline": 0,
+      "iteration_1": 85,
+      "iteration_2": 100,
+      "iteration_3": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md to emphasize never using read tool on xlsx binary files. Added Python/openpyxl analysis workflow and example. Added load_workbook and iter_rows patterns. Removed reference to bundled template script."
+    },
+    {
+      "iteration": 2,
+      "description": "Added guidance to skip non-data rows (TOTAL/summary rows) when analyzing spreadsheets. Updated analysis example to filter out rows with None category or non-numeric amounts. Added currency formatting ($#,##0) and column auto-sizing to creation example for professional presentation."
+    },
+    {
+      "iteration": 3,
+      "description": "Confirmation run. Removed unreferenced files (LICENSE.txt, recalc.py, scripts/create_xlsx.py) from skill directory."
+    }
+  ]
+}

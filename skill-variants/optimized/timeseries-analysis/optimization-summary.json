@@ -1,0 +1,32 @@
+{
+  "skill": "timeseries-analysis",
+  "iterations": 1,
+  "original_lines": 198,
+  "optimized_lines": 45,
+  "compression_ratio": "77%",
+  "per_task_scores": {
+    "anomaly-detection": {
+      "score": 100,
+      "max_score": 100,
+      "model": "qwen3.5-397b",
+      "runtime": "openclaw"
+    },
+    "hp-detrending": {
+      "score": 100,
+      "max_score": 100,
+      "model": "qwen3.5-397b",
+      "runtime": "openclaw"
+    }
+  },
+  "changes_made": [
+    "Removed seasonal decomposition section (not tested by any task)",
+    "Removed Prophet-based anomaly index section (not tested)",
+    "Removed cross-correlation analysis section (not tested)",
+    "Removed redundant hp_detrend_level wrapper function, inlined as 2-line example",
+    "Compressed lambda table into single inline line",
+    "Condensed anomaly classification table into single line",
+    "Reduced pitfalls from 5 to 3 most critical items",
+    "Removed verbose docstrings and comments from code blocks",
+    "Shortened description and frontmatter"
+  ]
+}

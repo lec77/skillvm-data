@@ -1,0 +1,175 @@
+{
+  "skill_name": "document-docx",
+  "skill_path": "skills/document-docx",
+  "total_files": 58,
+  "total_tokens_estimate": 95000,
+  "purposes": [
+    {
+      "id": "create-new-docx",
+      "description": "Create new Word documents from scratch using docx-js (JavaScript), with professional formatting, styles, lists, tables, images, headers/footers, and table of contents",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.javascript",
+            "min_level": "L2",
+            "evidence": "Uses docx npm package with complex API: Document, Paragraph, TextRun, Table, TableRow, TableCell, ImageRun, Header, Footer, numbering configs, styles"
+          },
+          {
+            "id": "gen.text.long",
+            "min_level": "L3",
+            "evidence": "Generated JS file can exceed 5KB for complex documents with tables, lists, images, and multi-section layouts"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Write JS file then execute it with Node.js to generate .docx via Packer.toBuffer()"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L2",
+            "evidence": "Write the JavaScript source file (1-10KB typically)"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L3",
+            "evidence": "Many MUST/NEVER constraints that conflict with training priors: NEVER use \\n for line breaks, NEVER use unicode bullets, ALWAYS use ShadingType.CLEAR, ALWAYS use LevelFormat.BULLET constant not string, PageBreak must be inside Paragraph"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Must read docx-js.md first, then create JS file, then export via Packer.toBuffer()"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "edit-existing-docx",
+      "description": "Edit existing Word documents by unpacking OOXML, manipulating XML using the Python Document library, and repacking, with support for tracked changes and comments",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses Document library from scripts/document.py with defusedxml, constructs OOXML replacement strings with precise XML structure"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Pipeline: unpack.py, PYTHONPATH setup, run Python script, pack.py, pandoc conversion, grep verification"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L3",
+            "evidence": "Chain of execution steps: unpack, run edit script, pack, verify with pandoc+grep, with data flowing between steps"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L2",
+            "evidence": "Read unpacked XML files, grep for text locations, read ooxml.md reference documentation"
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Must analyze XML structure to find how text is split across w:r elements, identify correct nodes, construct minimal tracked changes"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L2",
+            "evidence": "5-7 step redlining workflow with conditional branches: get markdown, identify changes, read docs, unpack, implement in batches, pack, verify"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L3",
+            "evidence": "Constraints conflicting with priors: only mark changed text in del/ins (not full sentences), preserve original RSIDs, never modify another author's tracked changes directly, use nested deletions instead"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "read-analyze-docx",
+      "description": "Extract and analyze text content from Word documents using pandoc conversion or raw XML access for comments, formatting, and metadata",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Run pandoc for markdown conversion, unpack.py for raw XML access"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L2",
+            "evidence": "Read converted markdown, or read multiple XML files (document.xml, comments.xml, media files)"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "pandoc --track-changes=all command, python unpack.py command"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "convert-docx-to-images",
+      "description": "Convert Word documents to images via a two-step DOCX-to-PDF-to-JPEG pipeline using LibreOffice and poppler",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "soffice --headless --convert-to pdf, then pdftoppm with resolution/format/page-range flags"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Two sequential commands with output of first feeding into second"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-5", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:7-11", "purposes": ["create-new-docx", "edit-existing-docx", "read-analyze-docx"], "type": "instruction"},
+    {"location": "SKILL.md:13-30", "purposes": ["create-new-docx", "edit-existing-docx", "read-analyze-docx"], "type": "instruction"},
+    {"location": "SKILL.md:31-52", "purposes": ["read-analyze-docx"], "type": "instruction"},
+    {"location": "SKILL.md:54-62", "purposes": ["create-new-docx"], "type": "instruction"},
+    {"location": "SKILL.md:64-74", "purposes": ["edit-existing-docx"], "type": "instruction"},
+    {"location": "SKILL.md:76-153", "purposes": ["edit-existing-docx"], "type": "instruction"},
+    {"location": "SKILL.md:156-181", "purposes": ["convert-docx-to-images"], "type": "instruction"},
+    {"location": "SKILL.md:183-196", "purposes": ["create-new-docx", "edit-existing-docx"], "type": "instruction"},
+    {"location": "docx-js.md:1-22", "purposes": ["create-new-docx"], "type": "instruction"},
+    {"location": "docx-js.md:24-49", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:51-107", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:109-156", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:158-228", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:229-255", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:257-286", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:288-314", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:316-326", "purposes": ["create-new-docx"], "type": "code_example"},
+    {"location": "docx-js.md:328-350", "purposes": ["create-new-docx"], "type": "instruction"},
+    {"location": "ooxml.md:1-8", "purposes": ["edit-existing-docx"], "type": "instruction"},
+    {"location": "ooxml.md:9-21", "purposes": ["edit-existing-docx"], "type": "instruction"},
+    {"location": "ooxml.md:22-158", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:160-264", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:266-305", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:306-388", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:389-440", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:441-490", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:491-552", "purposes": ["edit-existing-docx"], "type": "code_example"},
+    {"location": "ooxml.md:553-610", "purposes": ["edit-existing-docx"], "type": "instruction"},
+    {"location": "scripts/document.py:1-all", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "scripts/utilities.py:1-all", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "scripts/__init__.py:1-all", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "scripts/templates/*", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "ooxml/scripts/unpack.py:1-all", "purposes": ["edit-existing-docx", "read-analyze-docx"], "type": "script"},
+    {"location": "ooxml/scripts/pack.py:1-all", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "ooxml/scripts/validate.py:1-all", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "ooxml/scripts/validation/*", "purposes": ["edit-existing-docx"], "type": "script"},
+    {"location": "ooxml/schemas/**/*.xsd", "purposes": ["edit-existing-docx"], "type": "script"}
+  ],
+  "unmatched_requirements": []
+}

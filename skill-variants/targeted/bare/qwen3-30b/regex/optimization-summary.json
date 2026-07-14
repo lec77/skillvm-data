@@ -1,0 +1,48 @@
+{
+  "skill": "regex",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration_0_baseline": {
+      "regex-extract": 100,
+      "regex-replace": 90
+    },
+    "iteration_1": {
+      "regex-extract": 100,
+      "regex-replace": 92
+    },
+    "iteration_2": {
+      "regex-extract": 49,
+      "regex-replace": 90
+    },
+    "iteration_3": {
+      "regex-extract": 100,
+      "regex-replace": 100
+    },
+    "iteration_4": {
+      "regex-extract": 100,
+      "regex-replace": 90
+    },
+    "iteration_5": {
+      "regex-extract": 100,
+      "regex-replace": 92
+    }
+  },
+  "best_scores": {
+    "regex-extract": 100,
+    "regex-replace": 100
+  },
+  "best_iteration": 3,
+  "changes_made": [
+    "Reduced SKILL.md from 472 lines (general reference) to ~170 lines (focused guidance)",
+    "Removed generic regex syntax tables, language-specific sections (Go, Python verbose mode, etc.)",
+    "Added concrete log-parsing examples with regex patterns for timestamps, IPs, status codes, durations, and quoted messages with escaped characters",
+    "Added explicit guidance for stripping query strings from URLs using .split('?')[0]",
+    "Added detailed const vs let decision algorithm with worked examples for var replacement",
+    "Added explicit debug artifact removal checklist (console.log+DEBUG, const declaration, TODO comment)",
+    "Removed scripts/regex_tester.py (not referenced by SKILL.md)",
+    "Added 'Important Rules' section summarizing key behaviors for small models"
+  ],
+  "notes": "Scores fluctuate between 90-100 on regex-replace due to inherent variance in qwen3-30b (30B parameter model). The var-replacement and debug-removal criteria each independently fail ~33% of the time. regex-extract is consistently 100/100 except for one outlier run (iteration 2, 49/100)."
+}

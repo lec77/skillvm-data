@@ -1,0 +1,48 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "html-to-md": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    },
+    "csv-to-md": {
+      "iteration_1": 85,
+      "iteration_2": 0,
+      "iteration_3": 85,
+      "iteration_4": 85,
+      "iteration_5": 85
+    }
+  },
+  "final_scores": {
+    "html-to-md": 100,
+    "csv-to-md": 85
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (same as source)"
+    },
+    {
+      "iteration": 2,
+      "description": "Added CSV data processing guidance: don't use markitdown for CSV, compute price*stock per row. Model tried markitdown anyway, uvx not found, scored 0."
+    },
+    {
+      "iteration": 3,
+      "description": "Softened CSV guidance to avoid confusing model. Kept computation hints. Model returned to reading CSV directly and writing markdown manually. Score back to 85."
+    },
+    {
+      "iteration": 4,
+      "description": "Added explicit Python script pattern with csv.DictReader, capitalized header guidance (Price vs price). Model still ignored script advice, did mental math."
+    },
+    {
+      "iteration": 5,
+      "description": "Made instructions MANDATORY with bold emphasis. Shortened skill significantly. Model still reads CSV and writes markdown directly without scripting. Fundamental model limitation."
+    }
+  ],
+  "analysis": "devstral-small consistently ignores skill instructions to use Python scripts for CSV computation. It reads CSV content and writes markdown directly, making arithmetic errors (total value wrong: computes ~$4k instead of $46,993.75 which requires price*stock per row). The 'table has columns' test also fails because the test requires both lowercase 'price' and uppercase 'Price' to be present, but the model only uses lowercase headers. html-to-md achieves perfect score using uvx markitdown. The csv-to-md 85/100 score appears to be a ceiling for this model given its tendency to do mental math rather than use scripts."
+}

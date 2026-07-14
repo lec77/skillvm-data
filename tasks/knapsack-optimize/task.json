@@ -1,0 +1,67 @@
+{
+  "id": "knapsack-optimize",
+  "name": "0/1 Knapsack Optimization",
+  "category": "constraint-optimization",
+  "gradingType": "automated",
+  "prompt": "Read items.json with 12 items each having a weight and value, and a knapsack capacity of 50. Find the optimal subset of items that maximizes total value while keeping total weight ≤ capacity (0/1 knapsack — each item can be taken at most once). Write knapsack_result.json with: selected_items (array of item ids), total_weight (number), total_value (number), value_per_weight (total_value/total_weight rounded to 2 decimal places).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "knapsack-optimize.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "weight-valid",
+            "weight": 0.2,
+            "description": "Total weight does not exceed capacity",
+            "testPattern": "total weight within capacity"
+          },
+          {
+            "id": "value-good",
+            "weight": 0.25,
+            "description": "Total value is near-optimal (>= 1200)",
+            "testPattern": "total value is near-optimal"
+          },
+          {
+            "id": "ids-valid",
+            "weight": 0.15,
+            "description": "All selected item IDs are valid (1-12)",
+            "testPattern": "all item IDs are valid"
+          },
+          {
+            "id": "no-duplicates",
+            "weight": 0.1,
+            "description": "No duplicate item IDs selected",
+            "testPattern": "no duplicate item IDs"
+          },
+          {
+            "id": "efficiency",
+            "weight": 0.2,
+            "description": "value_per_weight ratio is consistent and > 20",
+            "testPattern": "value per weight efficiency"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/constraint-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/constraint-optimization/knapsack-optimize/",
+    "importedAt": "2026-07-07T06:18:30.394Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "iterations": 2,
+  "scores": {
+    "iteration_1_baseline": {
+      "hypothesis-testing": 100,
+      "regression-analysis": 100
+    },
+    "iteration_2_optimized": {
+      "hypothesis-testing": 100,
+      "regression-analysis": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with unmodified verbose skill (identical to skills/statistical-analysis/SKILL.md)",
+      "skill_lines": 206,
+      "result": "100/100 on both tasks"
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill from 206 to ~70 lines. Removed assumption checking, paired t-test, chi-square example, Pearson correlation, APA reporting format, eta-squared, r-as-effect-size benchmarks. Merged ANOVA + post-hoc into single pipeline with inline Bonferroni. Added explicit JSON output templates with exact field names for both task types. Condensed OLS regression + VIF into single pipeline block.",
+      "skill_lines": 70,
+      "result": "100/100 on both tasks"
+    }
+  ],
+  "final_skill_size_bytes": 3079,
+  "original_skill_size_bytes": 5956,
+  "size_reduction_percent": 48.3
+}

@@ -1,0 +1,39 @@
+{
+  "iterations": 4,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1": {
+      "fs-search": 100,
+      "fs-batch-rename": 0,
+      "notes": "Baseline - original Chinese skill too verbose, model loaded skill but produced no response for batch rename"
+    },
+    "iteration_2": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "notes": "Rewrote skill in English, concise format. Batch rename partially working but dot in v3.1 replaced with hyphen"
+    },
+    "iteration_3": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "notes": "Added dot preservation guidance but model skipped skill loading, wrote own regex without dots"
+    },
+    "iteration_4": {
+      "fs-search": 100,
+      "fs-batch-rename": 100,
+      "notes": "Made description urgently recommend loading skill, put dot preservation as top-level IMPORTANT section with wrong/right examples. Confirmed with extra run."
+    }
+  },
+  "final_scores": {
+    "fs-search": 100,
+    "fs-batch-rename": 100
+  },
+  "changes": [
+    "Replaced Chinese skill with concise English version",
+    "Added explicit kebab-case rename section with dot preservation rules",
+    "Made skill description emphasize critical edge cases to encourage skill loading",
+    "Added correct/incorrect examples for dot handling (v3.1)",
+    "Provided copy-paste Python rename script with correct regex [^a-z0-9.]+",
+    "Reduced skill length from ~400 lines to ~50 lines"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "iterations": 3,
+  "scores": {
+    "iteration_1_baseline": {
+      "fjsp-schedule": 100,
+      "job-makespan": 0
+    },
+    "iteration_2_optimized": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    },
+    "iteration_3_confirmation": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    }
+  },
+  "changes": [
+    "Fixed ambiguity around 'duration' field name — model was using 'durations' (plural) causing Python KeyError crashes",
+    "Replaced pseudocode with complete, copy-pasteable Node.js script — eliminates language choice errors and field name confusion",
+    "Added explicit JSON input example showing exact field names and types (duration keys are strings)",
+    "Fixed buggy downtime overlap check in pseudocode — replaced with correct condition: t < w.end && t + duration > w.start",
+    "Added double-pass downtime check to handle cascading window overlaps",
+    "Specified Node.js (.js) instead of allowing Python — avoids JSON key mismatches and ensures consistent runtime",
+    "Simplified structure: removed repair heuristic and constraint-checking sections in favor of a correct-by-construction greedy algorithm",
+    "Added explicit checklist for model to follow"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "iterations": 4,
+  "final_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "per_iteration": [
+    {
+      "iteration": 1,
+      "scores": { "git-branch-ops": 100, "git-log-analyze": 0 },
+      "notes": "Baseline. git-log-analyze failed because model wrote git_report.json inside project/ subdirectory instead of workspace root."
+    },
+    {
+      "iteration": 2,
+      "scores": { "git-branch-ops": 0, "git-log-analyze": 100 },
+      "changes": "Added output file placement guidance, condensed skill to focus on history analysis and branch operations with concrete commands.",
+      "notes": "git-log-analyze fixed. git-branch-ops failed due to index.lock race conditions and model forgetting to cd into repo dir."
+    },
+    {
+      "iteration": 3,
+      "scores": { "git-branch-ops": 100, "git-log-analyze": 100 },
+      "changes": "Added critical rules section: (1) remove stale lock files before git ops, (2) always chain with cd, (3) run operations in single bash call to avoid lock races. Showed cherry-pick with variable chaining pattern.",
+      "notes": "Both tasks pass."
+    },
+    {
+      "iteration": 4,
+      "scores": { "git-branch-ops": 100, "git-log-analyze": 100 },
+      "changes": "No changes, verification run.",
+      "notes": "Confirmed consistent 100/100 on both tasks."
+    }
+  ],
+  "key_changes": [
+    "Added CRITICAL RULES section addressing output file placement, cd chaining, lock file cleanup, and command batching",
+    "Replaced generic git reference with task-focused commands for history analysis and branch/tag operations",
+    "Reduced skill size from 430 lines to ~70 lines of focused, actionable content"
+  ]
+}

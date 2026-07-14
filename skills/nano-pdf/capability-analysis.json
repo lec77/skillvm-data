@@ -1,0 +1,55 @@
+{
+  "skill_name": "nano-pdf",
+  "skill_path": "skills/nano-pdf",
+  "total_files": 2,
+  "total_tokens_estimate": 230,
+  "purposes": [
+    {
+      "id": "edit-pdf-with-natural-language",
+      "description": "Apply edits to a specific page in a PDF file using a natural-language instruction via the nano-pdf CLI",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Must run 'nano-pdf edit deck.pdf 1 \"instruction\"' as a single command"
+          },
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Must construct the shell command with correct positional args: file, page number, instruction string"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-6",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:8-10",
+      "purposes": ["edit-pdf-with-natural-language"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:12-16",
+      "purposes": ["edit-pdf-with-natural-language"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:18-20",
+      "purposes": ["edit-pdf-with-natural-language"],
+      "type": "instruction"
+    },
+    {
+      "location": "_meta.json:1-6",
+      "purposes": [],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

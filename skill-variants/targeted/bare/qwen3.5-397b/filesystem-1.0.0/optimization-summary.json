@@ -1,0 +1,36 @@
+{
+  "iterations": 4,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "filesystem-1.0.0",
+  "scores": {
+    "iteration_1_baseline": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "notes": "Baseline with original Chinese SKILL.md. Model replaced dots with hyphens in kebab-case rename (v3.1 -> v3-1)"
+    },
+    "iteration_2": {
+      "fs-search": 100,
+      "fs-batch-rename": 100,
+      "notes": "Rewrote skill in English, added explicit dot-preservation rule and example Python script. Passed but not consistently."
+    },
+    "iteration_3": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "notes": "Model still wrote its own regex [^a-z0-9] instead of using the provided one. Need stronger guidance."
+    },
+    "iteration_4_final": {
+      "fs-search": 100,
+      "fs-batch-rename": 100,
+      "notes": "Moved batch rename section to top of skill, added CRITICAL RULES with explicit DO NOT use [^a-z0-9] warning, provided exact function to copy. Confirmed 100/100 on two consecutive runs."
+    }
+  },
+  "changes": [
+    "Rewrote skill from Chinese to English for better model comprehension",
+    "Moved batch rename section to top (most important for task performance)",
+    "Added explicit CRITICAL RULES block warning against [^a-z0-9] regex pattern",
+    "Provided exact copy-paste Python function with correct regex [\\s_\\(\\)\\[\\]]+",
+    "Simplified directory analysis section with macOS-compatible commands",
+    "Removed verbose best practices and safety sections to reduce token count"
+  ]
+}

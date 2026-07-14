@@ -1,0 +1,18 @@
+{
+  "iterations": 1,
+  "maxIterations": 5,
+  "finalScores": {
+    "product-schema": 100,
+    "faq-schema": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 180-line original skill with condensed ~80-line version based on proven bare/qwen3.5-122b variant. Key changes: removed irrelevant sections (CMS guidance, validation tools, related skills, interactive assessment), added explicit JSON-LD templates for Product and FAQPage with field-level requirements, added clear rules about numeric types and full URL enumerations, added step-by-step workflow. Removed unused references/ directory.",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    }
+  ]
+}

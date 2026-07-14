@@ -1,0 +1,87 @@
+{
+  "skill_name": "clinical-nlp",
+  "skill_path": "skills/clinical-nlp",
+  "total_files": 1,
+  "total_tokens_estimate": 2800,
+  "purposes": [
+    {
+      "id": "extract-medical-entities",
+      "description": "Extract structured medical entities (conditions, medications, procedures, lab values, vital signs) from unstructured clinical text and output them as JSON objects with type, negation status, section, and position fields",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Skill provides Python regex patterns (MED_PATTERN, LAB_PATTERN) and a full extract_entities() algorithm using re, json stdlib modules"
+          },
+          {
+            "id": "gen.regex",
+            "min_level": "L2",
+            "evidence": "Complex regex patterns for medications, lab values, and vital signs with groups, alternation, and anchors"
+          },
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "Output is a JSON array of entity objects with nested fields (name, dose, unit, route, frequency, start_pos, end_pos)"
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Must detect negation scope within clauses, identify section headers, classify entities by type, and reconcile medication lists"
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "Output must conform to specific JSON schema with exact field names and types per entity type"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Multiple constraints: negation triggers must be respected, entity types must be from allowed values, dose/value must be numbers not strings, boolean negated field"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "medication-reconciliation",
+      "description": "Compare two medication lists (admission vs discharge) and classify changes as continued, increased, decreased, discontinued, new, or switched (including same-class detection)",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Requires implementing comparison logic across two parsed medication lists with drug class groupings"
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Multi-constraint classification: must match drug names, compare doses, detect same-class switches across 6 drug class groupings"
+          },
+          {
+            "id": "gen.text.structured",
+            "min_level": "L1",
+            "evidence": "Output classification of each medication change"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:6-10", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:12-20", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:22-67", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:69-88", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:90-107", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:109-137", "purposes": ["extract-medical-entities"], "type": "code_example"},
+    {"location": "SKILL.md:139-147", "purposes": ["extract-medical-entities"], "type": "code_example"},
+    {"location": "SKILL.md:149-167", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:169-191", "purposes": ["extract-medical-entities"], "type": "instruction"},
+    {"location": "SKILL.md:193-241", "purposes": ["extract-medical-entities"], "type": "code_example"},
+    {"location": "SKILL.md:243-261", "purposes": ["medication-reconciliation"], "type": "instruction"},
+    {"location": "SKILL.md:263-270", "purposes": ["extract-medical-entities"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

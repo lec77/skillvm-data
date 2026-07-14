@@ -1,0 +1,67 @@
+{
+  "id": "economic-dispatch-r1",
+  "name": "Economic Dispatch Optimization",
+  "category": "energy-optimization",
+  "gradingType": "automated",
+  "prompt": "Read generators.json with 4 generators having quadratic cost curves C_i = a_i*P_i^2 + b_i*P_i + c_i. Find the economic dispatch that minimizes total cost while meeting total_demand=500 MW. Each generator must stay within [min, max] limits. Use the equal incremental cost method: at optimum, marginal cost dC/dP = 2*a*P + b = lambda for all unconstrained generators. Write dispatch.json with: dispatch (array of {id, power, cost}), total_cost (number), lambda (the optimal incremental cost).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "economic-dispatch.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "power-balance",
+            "weight": 0.25,
+            "description": "Total dispatched power equals demand",
+            "testPattern": "power balance"
+          },
+          {
+            "id": "within-limits",
+            "weight": 0.2,
+            "description": "All generators within min/max limits",
+            "testPattern": "within min/max limits"
+          },
+          {
+            "id": "cost-correct",
+            "weight": 0.25,
+            "description": "Individual costs computed correctly from dispatch values",
+            "testPattern": "costs are correct"
+          },
+          {
+            "id": "lambda-positive",
+            "weight": 0.1,
+            "description": "Lambda is a positive number",
+            "testPattern": "lambda is positive"
+          },
+          {
+            "id": "cost-reasonable",
+            "weight": 0.1,
+            "description": "Total cost is consistent with dispatch",
+            "testPattern": "total cost consistent"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/energy-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/energy-optimization/economic-dispatch/",
+    "importedAt": "2026-07-07T06:18:52.803Z",
+    "notes": "content variant r1 of economic-dispatch — same task type, same structure, different generator cost curves and output limits"
+  }
+}

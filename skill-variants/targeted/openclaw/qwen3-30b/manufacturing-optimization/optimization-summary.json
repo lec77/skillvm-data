@@ -1,0 +1,47 @@
+{
+  "skill": "manufacturing-optimization",
+  "runtime": "openclaw",
+  "model": "qwen3-30b",
+  "iterations": 3,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline - original skill (identical to verbose)",
+      "scores": {
+        "fjsp-schedule": 50,
+        "job-makespan": 0
+      },
+      "notes": "fjsp-schedule: model wrote empty schedule, then tried Python but timed out partially. job-makespan: full timeout (300s)"
+    },
+    {
+      "iteration": 1,
+      "description": "Added complete copy-paste Python solver script",
+      "scores": {
+        "fjsp-schedule": 100,
+        "job-makespan": 0
+      },
+      "notes": "fjsp-schedule perfect. job-makespan: model garbled Python script when copying - corrupted nested quotes in job['operations'] to nonsensical string replacement expression, then failed to fix the edit"
+    },
+    {
+      "iteration": 2,
+      "description": "Replaced full script with pseudocode algorithm template - avoids nested quote corruption",
+      "scores": {
+        "fjsp-schedule": 100,
+        "job-makespan": 100
+      },
+      "notes": "Both tasks perfect. Confirmed with second run (also 100/100 on both). Key insight: qwen3-30b corrupts complex Python code with nested string quotes when copying from skill markdown - pseudocode lets the model write its own clean implementation"
+    }
+  ],
+  "changes_made": [
+    "Replaced abstract problem formulation with step-by-step algorithm instructions",
+    "Changed from full Python script (which model garbled) to clear pseudocode template",
+    "Simplified constraint descriptions to short bullet points",
+    "Added explicit output format specification with exact JSON structure",
+    "Removed TypeScript constraint-checking code (not needed for solver guidance)",
+    "Removed repair heuristic section (greedy approach avoids needing repairs)"
+  ],
+  "final_scores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "sql",
+  "scores": {
+    "iteration_0_baseline": {
+      "sql-query": 90,
+      "sql-migrate": 100,
+      "notes": "Original verbose skill unchanged. sql-query lost points on schema (CSV import header row included as data)."
+    },
+    "iteration_1": {
+      "sql-query": 77,
+      "sql-migrate": 30,
+      "notes": "Rewrote skill focused on SQLite. sql-query: fixed schema but top_customer saved as object not string. sql-migrate: model created tables via CLI then Python script tried to recreate them causing crash."
+    },
+    "iteration_2": {
+      "sql-query": 90,
+      "sql-migrate": 100,
+      "notes": "Fixed JSON format guidance and normalization approach. sql-query: customer_rank truncated to 2 of 5 entries (model wrote JSON manually instead of using Python)."
+    },
+    "iteration_3_final": {
+      "sql-query": 100,
+      "sql-migrate": 100,
+      "notes": "Added strong guidance to use Python for all JSON output. Confirmed with second run: 100/100 on both tasks."
+    }
+  },
+  "changes_made": [
+    "Stripped PostgreSQL, MySQL content — focused entirely on SQLite",
+    "Added explicit CSV import procedure with --skip 1 to handle header rows",
+    "Added detailed JSON output format rules (scalar vs array-of-strings vs array-of-objects vs dict)",
+    "Added Python pattern for JSON generation with row[0]/row[1] indexing instead of dict(row)",
+    "Emphasized using single Python script for normalization (not mixing CLI and Python)",
+    "Added CREATE TABLE IF NOT EXISTS guidance to prevent duplicate table errors",
+    "Strongly discouraged manual JSON writing via write tool — must use Python to avoid truncation"
+  ]
+}

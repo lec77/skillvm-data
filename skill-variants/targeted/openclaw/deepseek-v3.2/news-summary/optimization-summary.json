@@ -1,0 +1,32 @@
+{
+  "skill": "news-summary",
+  "runtime": "openclaw",
+  "model": "deepseek-v3.2",
+  "iterations": 3,
+  "scores": {
+    "iteration_1": {
+      "skill_version": "original verbose (unmodified)",
+      "parse-rss": 100,
+      "summarize-articles": 100
+    },
+    "iteration_2": {
+      "skill_version": "replaced with optimized skill (more concise, task-relevant)",
+      "parse-rss": 100,
+      "summarize-articles": 88,
+      "notes": "key-numbers criterion scored 0.6 — model missed extracting enough numbers or domain-specific context words"
+    },
+    "iteration_3": {
+      "skill_version": "strengthened key numbers extraction guidance",
+      "parse-rss": 100,
+      "summarize-articles": 100
+    }
+  },
+  "changes_made": [
+    "Replaced original verbose skill with optimized version focused on RSS parsing and article summarization",
+    "Enhanced key numbers extraction section: explicit guidance to extract 2-3 numbers per article, include domain keywords in context, aim for 8+ total"
+  ],
+  "final_scores": {
+    "parse-rss": 100,
+    "summarize-articles": 100
+  }
+}

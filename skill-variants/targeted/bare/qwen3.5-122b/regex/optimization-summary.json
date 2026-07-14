@@ -1,0 +1,51 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "regex",
+  "iterations": 5,
+  "scores": {
+    "iteration1_baseline": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "total": 195,
+      "notes": "Baseline with original verbose SKILL.md. var-replacement criterion scored 83% (model used const for 'valid' instead of let)."
+    },
+    "iteration2_optimized": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "total": 195,
+      "notes": "Compressed SKILL.md from 472 to 88 lines. Removed scripts/regex_tester.py. Added guidance about following task let/const instructions. Same score."
+    },
+    "iteration3_stronger_guidance": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "total": 195,
+      "notes": "Strengthened const/let guidance with IMPORTANT prefix and explicit example. Model still uses const for valid based on own reassignment analysis."
+    },
+    "iteration4_critical_guidance": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "total": 195,
+      "notes": "Used CRITICAL prefix and even more explicit wording. Model behavior unchanged - strong prior about const for non-reassigned variables."
+    },
+    "iteration5_explicit_example_reverted": {
+      "regex-extract": 70,
+      "regex-replace": 95,
+      "total": 165,
+      "notes": "Added detailed worked example of var→let/const transformation. Regressed regex-extract to 70. Reverted to iteration 2 version."
+    }
+  },
+  "final_scores": {
+    "regex-extract": 100,
+    "regex-replace": 95,
+    "average": 97.5
+  },
+  "changes_made": [
+    "Compressed SKILL.md from 472 lines to 88 lines, removing verbose reference material",
+    "Removed scripts/regex_tester.py (not referenced by optimized SKILL.md)",
+    "Added focused log parsing section with query string stripping and escaped quote handling",
+    "Added code cleanup section with const/let guidance",
+    "Kept core syntax reference table, common validation patterns, and key gotchas"
+  ],
+  "remaining_issue": "qwen3.5-122b consistently uses const for 'valid' variable in regex-replace task despite guidance, because the task prompt says 'use const for variables that are never reassigned like result and fullName' and the model interprets 'like' as 'such as' (a general principle) rather than 'specifically these'. This is a task-prompt interpretation issue that skill content cannot reliably override."
+}

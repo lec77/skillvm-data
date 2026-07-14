@@ -1,0 +1,34 @@
+{
+  "iteration_count": 5,
+  "per_task_scores": {
+    "docx-create": {
+      "iteration_1_baseline": 90,
+      "iteration_2": 90,
+      "iteration_3": 90,
+      "iteration_4": 0,
+      "iteration_5": 0,
+      "best": 90
+    },
+    "docx-extract": {
+      "iteration_1_baseline": 55,
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "iteration_4": 26,
+      "iteration_5": 0,
+      "best": 55
+    }
+  },
+  "changes_made": [
+    "Removed ooxml.md (610+ lines) - not needed for create/extract tasks",
+    "Removed ooxml/ directory (35 XSD schemas, scripts) - not needed",
+    "Removed scripts/ directory (document.py, utilities.py, templates) - not needed",
+    "Removed LICENSE.txt",
+    "Condensed docx-js.md from 350+ lines to ~80 lines with complete working example",
+    "Rewrote SKILL.md from 196 lines to ~90 lines focused on create and extract workflows",
+    "Added explicit warnings: never read .docx directly, never use python3 -c for multiline code",
+    "Added two-step extraction workflow: explore.py then extract.py",
+    "Added complete Python extraction script template with common parsing patterns",
+    "Reduced total skill size from 59 files to 2 files"
+  ],
+  "notes": "devstral-small shows extremely high variance on openclaw. The same skill version can score 90 or 0 on the same task across runs. The model frequently: (1) reads .docx files directly despite warnings, (2) uses python3 -c for multiline code causing syntax errors, (3) enters infinite retry loops on failed commands, (4) halluccinates data after seeing binary output. The baseline (unoptimized) skill achieved the best combined score (90+55=145). Optimization focused on reducing context size and adding guardrails, but devstral-small's limited instruction-following ability means it often ignores skill guidance."
+}

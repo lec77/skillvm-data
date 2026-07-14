@@ -1,0 +1,61 @@
+{
+  "id": "git-branch-ops-r3",
+  "name": "Create branches, cherry-pick, and tag a release",
+  "category": "git-essentials",
+  "gradingType": "automated",
+  "prompt": "There is a git repository in the 'repo' directory with a main branch containing several commits. Do the following operations and write a summary to branch_report.json: (1) Create a branch called 'release-1.0' from the commit tagged 'v0.9'. (2) Cherry-pick the commit with message 'Add critical fix' from main onto the release-1.0 branch. (3) Create a lightweight tag 'v1.0' on the tip of release-1.0. (4) Write branch_report.json (in the working directory, NOT inside repo/) with: branches (array of all branch names sorted alphabetically), tags (array of all tag names sorted), release_branch_commits (number of commits on release-1.0), v1_0_message (the commit message at the v1.0 tag), cherry_picked (boolean: true if the 'Add critical fix' commit exists on release-1.0).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "git-branch-ops.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Report file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "branch-creation",
+            "weight": 0.25,
+            "description": "Branch correctly created",
+            "testPattern": "branches list|release-1.0 in branches"
+          },
+          {
+            "id": "cherry-pick",
+            "weight": 0.3,
+            "description": "Cherry-pick successful",
+            "testPattern": "cherry_picked|release_branch_commits"
+          },
+          {
+            "id": "tagging",
+            "weight": 0.25,
+            "description": "Tags correctly created",
+            "testPattern": "tags list|v1.0 tag|v1_0_message"
+          },
+          {
+            "id": "report-complete",
+            "weight": 0.15,
+            "description": "All report fields present",
+            "testPattern": "has all fields"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/git-essentials",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/git-essentials/git-branch-ops/",
+    "importedAt": "2026-07-07T06:18:53.078Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

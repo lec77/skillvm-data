@@ -1,0 +1,36 @@
+{
+  "skill": "weather",
+  "runtime": "openclaw",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration1_baseline": {
+      "weather-compare": 95,
+      "weather-travel": 75
+    },
+    "iteration2_optimized": {
+      "weather-compare": 100,
+      "weather-travel": 100
+    },
+    "iteration3_confirmation": {
+      "weather-compare": 100,
+      "weather-travel": 83
+    },
+    "iteration4_refined": {
+      "weather-compare": 100,
+      "weather-travel": 100
+    },
+    "iteration5_final": {
+      "weather-compare": 100,
+      "weather-travel": 100
+    }
+  },
+  "changes": [
+    "Added explicit instruction to use curl with wttr.in and never use web_search — model was wasting steps on web_search which lacks API key",
+    "Removed JSON output format section to prevent unnecessary extra API calls that consumed context",
+    "Added instruction to use one-line format by default and avoid extra JSON calls",
+    "Added detailed comparison presentation guidelines: require markdown table and explicit temperature difference calculation",
+    "Added specific travel/packing advice template: item-level packing list organized by city, every item must reference weather data (temperature, wind, humidity)",
+    "Streamlined format codes and notes sections"
+  ]
+}

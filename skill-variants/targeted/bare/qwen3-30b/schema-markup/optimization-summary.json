@@ -1,0 +1,43 @@
+{
+  "skill": "schema-markup",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 3,
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline with original verbose v1.1.0 skill (180-line SKILL.md + 399-line references/schema-examples.md)",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill to ~60 lines with inline Product and FAQPage examples, removed references/schema-examples.md",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    },
+    {
+      "iteration": 3,
+      "description": "Verification run confirming consistency of compressed skill",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    }
+  ],
+  "changes": [
+    "Compressed SKILL.md from 180 lines (v1.1.0) to ~60 lines (v2.0.0)",
+    "Removed references/schema-examples.md (399 lines) — inlined only Product and FAQPage examples",
+    "Removed educational sections: Initial Assessment, Core Principles, Quick Reference, Validation and Testing, Task-Specific Questions, Related Skills",
+    "Added concise Rules section with critical pitfalls (enumeration URLs, number types, reviewCount vs ratingCount)",
+    "Added inline JSON-LD templates for Product and FAQPage schemas"
+  ],
+  "finalScores": {
+    "product-schema": 100,
+    "faq-schema": 100
+  }
+}

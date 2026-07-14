@@ -1,0 +1,31 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "document-xlsx",
+  "results": {
+    "iteration_1": {
+      "scores": {
+        "document-xlsx": 93,
+        "xlsx-analyze": 100
+      },
+      "notes": "Baseline run. All automated tests pass. LLM judge gave 0.5/1.0 for overall-quality on document-xlsx due to missing currency formatting and column widths."
+    },
+    "iteration_2": {
+      "scores": {
+        "document-xlsx": 100,
+        "xlsx-analyze": 100
+      },
+      "notes": "Added rule #6 requiring professional formatting (currency format, column widths). Updated worked example to include currency formatting and column width settings. Both tasks now score 100."
+    }
+  },
+  "changes_made": [
+    "Added critical rule #6: always apply professional formatting (currency format $#,##0, column widths, bold headers)",
+    "Updated worked example to include currency formatting on all numeric cells and column width settings",
+    "Removed unreferenced files: recalc.py, LICENSE.txt"
+  ],
+  "final_scores": {
+    "document-xlsx": 100,
+    "xlsx-analyze": 100
+  }
+}

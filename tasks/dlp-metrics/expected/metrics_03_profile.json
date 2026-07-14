@@ -1,0 +1,46 @@
+{
+  "file": "metrics_03.csv",
+  "n_rows": 500,
+  "columns": {
+    "cpu_percent": {
+      "mean": 50.06053,
+      "std": 27.448009,
+      "p95": 92.044,
+      "p99": 94.4331,
+      "ci_lower": 47.692122,
+      "ci_upper": 52.501007
+    },
+    "mem_percent": {
+      "mean": 48.90419,
+      "std": 23.093346,
+      "p95": 85.7157,
+      "p99": 89.3,
+      "ci_lower": 46.936786,
+      "ci_upper": 51.011711
+    },
+    "disk_percent": {
+      "mean": 27.595266,
+      "std": 2.048259,
+      "p95": 30.7791,
+      "p99": 31.425,
+      "ci_lower": 27.417341,
+      "ci_upper": 27.785156
+    },
+    "net_mbps": {
+      "mean": 228.140234,
+      "std": 136.22139,
+      "p95": 469.5859,
+      "p99": 561.6611,
+      "ci_lower": 215.714103,
+      "ci_upper": 240.445493
+    }
+  },
+  "correlations": {
+    "cpu_percent_vs_mem_percent": 0.024498,
+    "cpu_percent_vs_disk_percent": -0.030812,
+    "cpu_percent_vs_net_mbps": 0.912669,
+    "mem_percent_vs_disk_percent": -0.033009,
+    "mem_percent_vs_net_mbps": 0.004519,
+    "disk_percent_vs_net_mbps": -0.030907
+  }
+}

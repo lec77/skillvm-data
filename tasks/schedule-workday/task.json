@@ -1,0 +1,67 @@
+{
+  "id": "schedule-workday",
+  "name": "Generate energy-optimized time-blocked workday schedule",
+  "category": "plan-my-day-1.0.0",
+  "gradingType": "automated",
+  "prompt": "Read input.json which contains a date, wake/end times, fixed commitments, and a list of 8 tasks with priorities and time estimates. Produce daily_plan.json with: (1) date: the date string, (2) primary_goal: a one-sentence description of the day's main focus, (3) top_3_priorities: array of the 3 task names that have priority=1, (4) time_blocks: array of objects each with start_time (HH:MM), end_time (HH:MM), name (block label), and tasks (array of task name strings scheduled in that block) — include the fixed commitments as their own blocks and schedule all 8 tasks into non-overlapping blocks, (5) total_scheduled_minutes: total minutes of task work (excluding fixed commitments), (6) buffer_percentage: percentage of the available work time left as buffer (must be at least 15%).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "schedule-workday.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Output file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "date-field",
+            "weight": 0.1,
+            "description": "Date field present and correct",
+            "testPattern": "date"
+          },
+          {
+            "id": "top-priorities",
+            "weight": 0.2,
+            "description": "Top 3 priorities match priority=1 tasks",
+            "testPattern": "top_3_priorities"
+          },
+          {
+            "id": "time-blocks",
+            "weight": 0.25,
+            "description": "Time blocks are valid and non-overlapping",
+            "testPattern": "no overlap|fixed commitments"
+          },
+          {
+            "id": "all-tasks",
+            "weight": 0.25,
+            "description": "All 8 tasks appear in schedule",
+            "testPattern": "all 8 tasks"
+          },
+          {
+            "id": "buffer",
+            "weight": 0.15,
+            "description": "Buffer percentage is at least 15%",
+            "testPattern": "buffer_percentage"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/plan-my-day-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/plan-my-day-1.0.0/schedule-workday/",
+    "importedAt": "2026-07-07T06:19:11.462Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

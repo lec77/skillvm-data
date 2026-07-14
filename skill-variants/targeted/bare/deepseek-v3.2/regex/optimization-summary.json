@@ -1,0 +1,24 @@
+{
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "skill": "regex",
+  "iterations": 2,
+  "scores": {
+    "iteration_1": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "total": 195
+    },
+    "iteration_2": {
+      "regex-extract": 100,
+      "regex-replace": 100,
+      "total": 200
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Compressed SKILL.md from 472 to ~80 lines. Focused on JavaScript/TypeScript regex usage (removed Python, Go, CLI sections). Added explicit log parsing regex pattern with edge case handling (query strings, escaped quotes). Added critical guidance for var→let/const replacement: only use const for variables explicitly named in requirements, all others become let. Removed unused scripts/regex_tester.py."
+    }
+  ]
+}

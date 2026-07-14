@@ -1,0 +1,5 @@
+INFO  request handled
+ERROR upstream timeout
+WARN  slow query 1200ms
+ERROR upstream timeout
+INFO  request handled

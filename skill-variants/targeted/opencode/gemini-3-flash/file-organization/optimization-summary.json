@@ -1,0 +1,28 @@
+{
+  "iterations": 1,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "fileorg-messy": 100,
+        "fileorg-dedup": 100
+      },
+      "changes": [
+        "Compressed skill from 433 lines to ~70 lines",
+        "Removed all examples, pro tips, best practices, and narrative sections",
+        "Added 'Execute immediately' directive to prevent confirmation-seeking",
+        "Split into two clear procedures: Task A (organize by type) and Task B (find duplicates)",
+        "Added exact directory name table with extension mappings for file organization",
+        "Added explicit bash command example for one-shot file organization",
+        "Added MD5 checksum-based duplicate detection procedure with explicit output format",
+        "Emphasized listing ALL filenames in each duplicate group"
+      ]
+    }
+  ],
+  "finalScores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  }
+}

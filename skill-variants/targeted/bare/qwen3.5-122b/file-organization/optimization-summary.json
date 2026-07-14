@@ -1,0 +1,20 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "file-organization",
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "fileorg-messy": 100,
+        "fileorg-dedup": 100
+      },
+      "changes": "Compressed 434-line verbose skill to ~60-line directive skill. Removed examples, conversational guidance, and 'when to use' sections. Added explicit file-extension-to-folder mappings and exact md5/md5sum commands for duplicate detection. Structured as two clear task templates matching the benchmark scenarios."
+    }
+  ],
+  "finalScores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  }
+}

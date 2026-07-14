@@ -1,0 +1,5 @@
+[
+  {"service":"api","severity":"critical","kind":"latency"},
+  {"service":"api","severity":"warning","kind":"errors"},
+  {"service":"worker","severity":"critical","kind":"oom"}
+]

@@ -1,0 +1,73 @@
+{
+  "id": "hypothesis-testing",
+  "name": "One-way ANOVA with post-hoc tests and effect sizes",
+  "category": "statistical-analysis",
+  "gradingType": "automated",
+  "prompt": "Read experiment_data.csv with columns: group (A/B/C) and score (numeric). Perform a complete statistical analysis: (1) compute descriptive statistics (mean, std, n) per group, (2) run a one-way ANOVA to test if groups differ, (3) if significant, run post-hoc pairwise t-tests with Bonferroni correction, (4) compute Cohen's d effect size for each pairwise comparison, (5) determine required sample size for 80% power to detect the observed A-B difference. Write stats_results.json with: descriptives (array of {group, mean, std, n}), anova ({f_statistic, p_value, significant}), pairwise (array of {group1, group2, t_statistic, p_value, p_adjusted, significant, cohens_d}), power_analysis ({effect_size, required_n_per_group}).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "hypothesis-testing.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "stats_results.json exists and is valid JSON",
+            "testPattern": "file exists"
+          },
+          {
+            "id": "descriptives-correct",
+            "weight": 0.15,
+            "description": "Descriptive statistics per group are correct",
+            "testPattern": "descriptives"
+          },
+          {
+            "id": "anova-significant",
+            "weight": 0.2,
+            "description": "ANOVA is run and reported as significant",
+            "testPattern": "anova"
+          },
+          {
+            "id": "pairwise-ab",
+            "weight": 0.2,
+            "description": "Pairwise A-B is significant after Bonferroni correction",
+            "testPattern": "pairwise A-B"
+          },
+          {
+            "id": "pairwise-ac",
+            "weight": 0.15,
+            "description": "Pairwise A-C is NOT significant after Bonferroni correction",
+            "testPattern": "pairwise A-C"
+          },
+          {
+            "id": "effect-size",
+            "weight": 0.1,
+            "description": "Cohen's d for A-B is in medium-to-large range",
+            "testPattern": "effect size"
+          },
+          {
+            "id": "power-analysis",
+            "weight": 0.1,
+            "description": "Power analysis reports a positive required_n_per_group",
+            "testPattern": "power analysis"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/statistical-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/statistical-analysis/hypothesis-testing/",
+    "importedAt": "2026-07-07T06:19:11.561Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

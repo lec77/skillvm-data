@@ -1,0 +1,25 @@
+{
+  "iterations": 1,
+  "baseline_scores": {
+    "git-branch-ops": 0,
+    "git-log-analyze": 0
+  },
+  "final_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "verification_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md from verbose 430-line reference guide to concise 90-line task-oriented skill. Key changes: (1) Added CRITICAL RULES section addressing devstral-small's failure modes - always write output files, find commit hash before cherry-picking, use 'git log main' when on another branch, write JSON to working directory not repo. (2) Replaced comprehensive git reference with focused sections on branch operations, history analysis, and JSON output writing. (3) Added step-by-step patterns for the two main workflows: repo analysis→JSON and branch+cherry-pick+tag. (4) Included concrete bash examples for every git command needed.",
+      "scores": {
+        "git-branch-ops": 100,
+        "git-log-analyze": 100
+      }
+    }
+  ]
+}

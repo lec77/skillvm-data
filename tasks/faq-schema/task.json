@@ -1,0 +1,61 @@
+{
+  "id": "faq-schema",
+  "name": "Generate JSON-LD FAQPage schema from an HTML FAQ section",
+  "category": "schema-markup",
+  "gradingType": "automated",
+  "prompt": "Read the FAQ page in faq-page.html and generate a valid JSON-LD structured data file called faq-schema.json for the FAQ content. The schema must use schema.org vocabulary and include: @context (schema.org), @type (FAQPage), and mainEntity as an array of Question objects. Each Question must have @type (Question), name (the question text), and acceptedAnswer (with @type Answer and text containing the answer). Extract all 5 questions and their answers from the HTML.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "faq-schema.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.1,
+            "description": "Output file created and valid JSON",
+            "testPattern": "exists|valid JSON"
+          },
+          {
+            "id": "jsonld-structure",
+            "weight": 0.1,
+            "description": "JSON-LD context and FAQPage type",
+            "testPattern": "@context|@type FAQPage"
+          },
+          {
+            "id": "question-structure",
+            "weight": 0.35,
+            "description": "5 Question objects with correct types and answers",
+            "testPattern": "5 questions|@type Question|name property|@type Answer|text content"
+          },
+          {
+            "id": "question-content",
+            "weight": 0.3,
+            "description": "All FAQ questions extracted correctly",
+            "testPattern": "CloudSync Pro|storage|encrypt|share|cancel"
+          },
+          {
+            "id": "answer-accuracy",
+            "weight": 0.15,
+            "description": "Answer content is accurate",
+            "testPattern": "AES-256"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/schema-markup",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/schema-markup/faq-schema/",
+    "importedAt": "2026-07-07T06:19:11.556Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

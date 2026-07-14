@@ -1,0 +1,36 @@
+{
+  "iterations": 4,
+  "per_task_scores": {
+    "sql-migrate": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100
+    },
+    "sql-query": {
+      "iteration_1": 77,
+      "iteration_2": 30,
+      "iteration_3": 100,
+      "iteration_4": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (copied from skills/sql/SKILL.md). sql-migrate scored 100, sql-query scored 77 due to incorrect JSON formatting (top_customer as object instead of string, product_ranking as array of objects instead of array of strings)."
+    },
+    {
+      "iteration": 2,
+      "description": "Over-optimized skill with heavy Python-based JSON generation approach. Trimmed PostgreSQL/MySQL content. sql-migrate scored 100 but sql-query dropped to 30 — model stopped after 2 tool calls without producing query_results.json. The Python-heavy approach confused the model."
+    },
+    {
+      "iteration": 3,
+      "description": "Reverted to balanced approach: kept SQLite-focused content with clear examples, added explicit JSON output formatting rules (scalar vs array of strings vs array of objects vs mapping), added normalization pattern for sql-migrate task, removed PostgreSQL/MySQL sections. Both tasks scored 100."
+    },
+    {
+      "iteration": 4,
+      "description": "Confirmation run with same skill. Both tasks scored 100, confirming consistency."
+    }
+  ],
+  "final_skill_changes_summary": "Replaced verbose multi-database skill with SQLite-focused version. Key additions: (1) explicit JSON output formatting rules distinguishing scalars, string arrays, object arrays, and mappings; (2) denormalized CSV normalization pattern with staging table approach; (3) common query patterns for revenue calculation, ranking with window functions, monthly grouping. Removed: PostgreSQL, MySQL sections, backup/restore for non-SQLite databases."
+}

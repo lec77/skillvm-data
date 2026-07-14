@@ -1,0 +1,21 @@
+{
+  "skill": "humanize-ai-text",
+  "runtime": "bare",
+  "model": "deepseek-v3.2",
+  "iterations": 1,
+  "maxIterations": 5,
+  "finalScores": {
+    "detect-ai-patterns": 100,
+    "rewrite-ai-text": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md from scratch: removed Python script references (unusable in bare adapter), added direct task-oriented guidance with exact JSON output formats, pattern category lists with examples, and word replacement mappings. Removed scripts/ directory and _meta.json as unreferenced.",
+      "scores": {
+        "detect-ai-patterns": 100,
+        "rewrite-ai-text": 100
+      }
+    }
+  ]
+}

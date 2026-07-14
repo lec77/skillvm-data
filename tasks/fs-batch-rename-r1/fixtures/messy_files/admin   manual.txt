@@ -1,0 +1,2 @@
+Step 1: Create an admin account.
+Step 2: Grant permissions.

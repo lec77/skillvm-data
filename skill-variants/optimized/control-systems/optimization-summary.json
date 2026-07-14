@@ -1,0 +1,34 @@
+{
+  "iterations": 2,
+  "original_lines": 211,
+  "optimized_lines": 129,
+  "reduction_percent": 38.9,
+  "per_task_scores": {
+    "temperature-control": {
+      "iteration_1": 0,
+      "iteration_2": 100
+    },
+    "cruise-control": {
+      "iteration_1": 0,
+      "iteration_2": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Compressed original 212-line skill by removing redundant sections: merged 'When to Use' into frontmatter, eliminated Complete Simulation Loop Skeleton (duplicated PID+thermal sections), converted Common Mistakes table to compact bullet list, tightened prose throughout. Reduced to ~80 lines but provided only code fragments, not complete runnable scripts.",
+      "result": "0/100 on both tasks — model (qwen3.5-397b) read scenario.json but failed to generate and execute complete Python scripts. Fragments weren't sufficient."
+    },
+    {
+      "iteration": 2,
+      "description": "Restructured to provide complete, copy-pasteable Python scripts for both thermal and cruise control patterns (matching targeted skill approach), while still compressing PID class, removing duplicate explanations, and tightening critical rules. Key insight: weaker models need near-complete runnable patterns, not conceptual fragments.",
+      "result": "100/100 on both tasks. 39% size reduction from original (211→129 lines) while maintaining full scores."
+    }
+  ],
+  "benchmark_config": {
+    "runtime": "openclaw",
+    "model": "qwen3.5-397b",
+    "variants": "optimized",
+    "runs": 1
+  }
+}

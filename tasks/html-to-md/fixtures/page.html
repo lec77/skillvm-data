@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head><title>API Documentation</title></head>
+<body>
+<h1>REST API Reference</h1>
+<p>This document describes the <strong>User Management API</strong> endpoints.</p>
+
+<h2>Authentication</h2>
+<p>All requests require a Bearer token in the <code>Authorization</code> header.</p>
+<pre><code>Authorization: Bearer &lt;your-api-key&gt;</code></pre>
+
+<h2>Endpoints</h2>
+
+<h3>GET /api/users</h3>
+<p>Returns a list of all users. Supports pagination via <code>page</code> and <code>limit</code> query parameters.</p>
+<ul>
+  <li>Default page size: 20</li>
+  <li>Maximum page size: 100</li>
+  <li>Sort options: <em>name</em>, <em>created_at</em>, <em>email</em></li>
+</ul>
+
+<h3>POST /api/users</h3>
+<p>Creates a new user account.</p>
+<table>
+  <thead>
+    <tr><th>Field</th><th>Type</th><th>Required</th><th>Description</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>name</td><td>string</td><td>Yes</td><td>Full name of the user</td></tr>
+    <tr><td>email</td><td>string</td><td>Yes</td><td>Email address (must be unique)</td></tr>
+    <tr><td>role</td><td>string</td><td>No</td><td>One of: admin, editor, viewer</td></tr>
+    <tr><td>active</td><td>boolean</td><td>No</td><td>Account status (default: true)</td></tr>
+  </tbody>
+</table>
+
+<h3>DELETE /api/users/:id</h3>
+<p>Deletes a user by ID. Returns <code>204 No Content</code> on success.</p>
+
+<h2>Rate Limits</h2>
+<p>API calls are limited to <strong>1000 requests per hour</strong>. Exceeding this limit returns a <code>429</code> status code.</p>
+
+<p>For questions, contact <a href="mailto:api-support@example.com">api-support@example.com</a>.</p>
+</body>
+</html>

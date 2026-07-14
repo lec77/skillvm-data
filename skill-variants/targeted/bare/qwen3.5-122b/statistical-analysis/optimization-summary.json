@@ -1,0 +1,13 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "statistical-analysis",
+  "scores": {
+    "iteration_1": {
+      "hypothesis-testing": 100,
+      "regression-analysis": 100
+    }
+  },
+  "changes": []
+}

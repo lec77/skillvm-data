@@ -1,0 +1,43 @@
+{
+  "skill": "weather",
+  "runtime": "bare",
+  "model": "qwen3-30b",
+  "iterations": 4,
+  "scores": {
+    "iteration_0_baseline": {
+      "weather-travel": 100,
+      "weather-compare": 90,
+      "notes": "Original skill (identical to verbose). weather-compare lost 10 points on presentation-quality (LLM judge). Model used format=1 (temp only), failed on 'New York' URL (space not encoded), fell back to Open-Meteo for NY."
+    },
+    "iteration_1": {
+      "weather-travel": 100,
+      "weather-compare": 65,
+      "notes": "Added explicit URL encoding rules, format=j1 instructions, and example saving to /tmp files. Model wrote comparison to a file instead of response text, losing weather-metrics and per-city-completeness scores."
+    },
+    "iteration_2": {
+      "weather-travel": 100,
+      "weather-compare": 100,
+      "notes": "Added rule: NEVER write results to files, ALWAYS present in response text. Removed /tmp file examples. Both tasks perfect."
+    },
+    "iteration_3_confirmation": {
+      "weather-travel": 100,
+      "weather-compare": 90,
+      "notes": "Model reverted to format=1 and format=4 instead of j1, missing humidity. Strengthened constraints: explicit NEVER list for wrong formats, field-to-meaning table."
+    },
+    "iteration_4_final": {
+      "weather-travel": 100,
+      "weather-compare": 100,
+      "notes": "Both tasks perfect. Confirmed with second consecutive run also scoring 100/100."
+    }
+  },
+  "changes_made": [
+    "Added explicit NEVER list for wrong format parameters (format=1, format=3, format=4) — MUST use format=j1",
+    "Added URL encoding rules: spaces must be '+', explicitly listed WRONG alternatives (%20, raw space)",
+    "Added rule: ALWAYS present data in response text, NEVER write to files",
+    "Added JSON field-to-meaning table for current_condition[0] fields",
+    "Added step-by-step task procedures for comparison and travel tasks",
+    "Added example comparison table template with all 4 required columns",
+    "Removed generic 'When to Use / When NOT to Use' sections to reduce noise",
+    "Removed PNG, airport code, and weekend forecast examples irrelevant to tasks"
+  ]
+}

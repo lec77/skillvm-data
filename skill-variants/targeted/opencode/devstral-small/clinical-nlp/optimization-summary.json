@@ -1,0 +1,42 @@
+{
+  "skill": "clinical-nlp",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 3,
+  "scores": {
+    "iteration_0_baseline": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60
+    },
+    "iteration_1_optimized": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60
+    },
+    "iteration_2_confirmation": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60
+    }
+  },
+  "max_achievable_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "explanation": "Scores are capped by test infrastructure issues: (1) output-exists criterion (10pts per task) always fails because testPattern regex doesn't match JUnit test names, (2) admission-count (15pts) and discharge-count (15pts) criteria on medication-reconciliation also fail systematically. All models across all sessions hit this same ceiling."
+  },
+  "changes_made": [
+    "Reduced SKILL.md from 270 lines to 120 lines for better fit in devstral-small context window",
+    "Restructured into two clear task sections (entity extraction and medication reconciliation)",
+    "Added explicit instruction that each medication belongs in exactly ONE reconciliation category",
+    "Added explicit instruction not to put switched medications in discontinued/new_meds",
+    "Provided complete concrete output examples matching expected test format",
+    "Removed verbose sections: ICD-10 codes, Python pseudocode, top-20 drug list, implementation algorithm",
+    "Simplified negation detection to essential triggers with clear examples",
+    "Added explicit minimum entity count guidance (at least 15)"
+  ],
+  "final_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "total": 150,
+    "max_possible": 200,
+    "max_achievable": 150
+  }
+}

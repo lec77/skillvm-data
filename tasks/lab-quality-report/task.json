@@ -1,0 +1,67 @@
+{
+  "id": "lab-quality-report",
+  "name": "Analyze lab data quality issues and produce harmonized output with quality report",
+  "category": "lab-unit-harmonization",
+  "gradingType": "automated",
+  "prompt": "Read raw_labs.csv with clinical lab data containing various quality issues. Analyze and produce a data quality report. Steps: (1) identify rows with missing values (empty cells) and exclude them from analysis, (2) parse all numeric formats in the remaining rows: scientific notation (e.g. 1.5e0, 1.42e2), European decimals with comma (e.g. '88,4' means 88.4), and values with leading/trailing whitespace, (3) detect values needing unit conversion by checking against expected US conventional ranges — Serum_Creatinine 0.2-20.0 mg/dL (convert µmol/L by multiplying by 0.0113), Glucose 30-500 mg/dL (convert mmol/L by dividing by 0.0555), Hemoglobin 3-20 g/dL (convert g/L by multiplying by 0.1), Total_Cholesterol 50-400 mg/dL (convert mmol/L by dividing by 0.0259), Calcium 4-15 mg/dL (convert mmol/L by dividing by 0.2495), BUN 2-150 mg/dL (convert mmol/L by multiplying by 2.8), (4) convert all out-of-range values to US conventional units and round to 2 decimal places. Write quality_report.json with fields: total_rows (total rows in raw file), excluded_rows (count of rows with any missing value), issues_found (object with counts: mixed_units, scientific_notation, european_decimal, whitespace). Also write cleaned_labs.csv containing only the non-missing rows with all values harmonized.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "lab-quality-report.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "quality_report.json and cleaned_labs.csv both exist",
+            "testPattern": "quality_report.json|cleaned_labs.csv"
+          },
+          {
+            "id": "excluded-correct",
+            "weight": 0.2,
+            "description": "excluded_rows is exactly 3 (P010, P020, P030)",
+            "testPattern": "excluded_rows is 3"
+          },
+          {
+            "id": "cleaned-rows",
+            "weight": 0.15,
+            "description": "cleaned_labs.csv has exactly 27 data rows",
+            "testPattern": "cleaned_labs.csv has exactly|does not contain"
+          },
+          {
+            "id": "issue-counts",
+            "weight": 0.2,
+            "description": "Issue counts are non-zero and within expected ranges",
+            "testPattern": "mixed_units count|scientific_notation count|european_decimal count|whitespace count"
+          },
+          {
+            "id": "values-in-range",
+            "weight": 0.2,
+            "description": "Cleaned lab values are all within US conventional ranges",
+            "testPattern": "all .* values in cleaned_labs|spot-check"
+          },
+          {
+            "id": "format-correct",
+            "weight": 0.15,
+            "description": "quality_report.json has required structure with total_rows=30",
+            "testPattern": "has required fields|total_rows is 30|issues_found has"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/lab-unit-harmonization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/lab-unit-harmonization/lab-quality-report/",
+    "importedAt": "2026-07-07T06:18:53.399Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

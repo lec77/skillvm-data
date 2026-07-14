@@ -1,0 +1,1 @@
+CREATE TABLE clients (id INT);

@@ -1,0 +1,16 @@
+{
+  "skill": "lab-unit-harmonization",
+  "runtime": "bare",
+  "model": "gemini-3-flash",
+  "iterations": 1,
+  "per_task_scores": {
+    "lab-harmonize": {
+      "iteration_1": 100
+    },
+    "lab-quality-report": {
+      "iteration_1": 100
+    }
+  },
+  "changes_made": [],
+  "notes": "Baseline skill scored 100/100 on both tasks. No modifications needed."
+}

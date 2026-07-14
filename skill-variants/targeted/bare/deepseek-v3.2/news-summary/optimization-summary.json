@@ -1,0 +1,49 @@
+{
+  "iterations": 5,
+  "scores": {
+    "iteration_1_baseline": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 85
+    },
+    "iteration_2": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    },
+    "iteration_3": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 85
+    },
+    "iteration_4": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 90
+    },
+    "iteration_5": {
+      "parse-rss": 100,
+      "summarize-articles": 94,
+      "multi-feed-digest": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Major rewrite: Added explicit JSON output format schemas for all 3 task types (parse-rss, multi-feed-digest, summarize-articles). Specified categories must be an array not an object. Added Python xml.etree parsing example. Removed voice summary and irrelevant content."
+    },
+    {
+      "iteration": 3,
+      "description": "Added guidance to fetch feeds individually or in parallel to avoid command timeouts. Added bash example with background curl processes and wait."
+    },
+    {
+      "iteration": 4,
+      "description": "Added emphasis on including every article from every feed without dropping any. Added note about not truncating descriptions."
+    },
+    {
+      "iteration": 5,
+      "description": "Strengthened highlights guidance: must include stories from at least 3 different categories. Updated example highlights to show one from each feed category."
+    }
+  ],
+  "notes": "multi-feed-digest was the main optimization target. Baseline failed 'all-feeds' test because model used categories as nested object instead of array. Also had timeout issues from sequential feed fetching and article count issues from dropping stories. summarize-articles and parse-rss were consistently 100 (one 94 outlier due to model variance in key_numbers context labels)."
+}

@@ -1,0 +1,133 @@
+{
+  "skill_name": "lab-unit-harmonization",
+  "skill_path": "skills/lab-unit-harmonization",
+  "total_files": 1,
+  "total_tokens_estimate": 2200,
+  "purposes": [
+    {
+      "id": "parse-mixed-numeric-formats",
+      "description": "Parse raw lab value strings handling scientific notation, European decimal commas, whitespace, and missing value sentinels into clean floats",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Must generate Python using pandas and numpy to parse mixed numeric formats from CSV data"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Must follow the 4-step harmonization workflow: parse, detect, validate, output"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "convert-units-via-range-detection",
+      "description": "Detect whether lab values are in US conventional or SI units using range-based heuristics and apply the correct conversion factor for each of 10 analytes",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Must implement range-based unit detection with analyte config table using pandas"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Must apply correct conversion factors and rounding for multi-step unit conversions"
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Must implement range-check logic: if value outside US range, apply conversion, then re-validate"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "produce-harmonized-output",
+      "description": "Write a cleaned CSV with all values standardized to US conventional units at 2 decimal places, plus an optional quality report JSON with issue counts",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Must use pandas to write cleaned DataFrame to CSV and generate quality report JSON"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L2",
+            "evidence": "Must write both a cleaned CSV and a quality report JSON file"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must execute the generated Python script to process the data"
+          },
+          {
+            "id": "gen.text.structured",
+            "min_level": "L1",
+            "evidence": "Must produce valid JSON for the quality report"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-11",
+      "purposes": ["parse-mixed-numeric-formats", "convert-units-via-range-detection"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:13-26",
+      "purposes": ["parse-mixed-numeric-formats"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:28-52",
+      "purposes": ["convert-units-via-range-detection"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:54-82",
+      "purposes": ["parse-mixed-numeric-formats", "convert-units-via-range-detection", "produce-harmonized-output"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:84-102",
+      "purposes": ["parse-mixed-numeric-formats"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:104-127",
+      "purposes": ["convert-units-via-range-detection"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:129-157",
+      "purposes": ["convert-units-via-range-detection", "produce-harmonized-output"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:159-178",
+      "purposes": ["produce-harmonized-output"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:180-189",
+      "purposes": ["convert-units-via-range-detection"],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

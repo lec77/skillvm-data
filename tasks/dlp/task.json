@@ -1,0 +1,61 @@
+{
+  "id": "dlp",
+  "name": "Batch Analysis",
+  "category": "parallelism-dlp",
+  "gradingType": "automated",
+  "prompt": "You have 15 CSV files (data_01.csv through data_15.csv) in your workspace. Each has 1000 rows and 5 numeric columns (alpha, beta, gamma, delta, epsilon).\n\nTwo scripts are provided:\n- analyze.py: processes a single CSV file and produces a _report.json\n- summarize.py: reads all *_report.json files and writes summary.json\n\nProcess all 15 CSV files with analyze.py, then run summarize.py to generate the final summary.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "bootstrap.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "report-files-exist",
+            "weight": 0.2,
+            "description": "All 15 per-file report JSON files exist",
+            "testPattern": "all 15 report files exist"
+          },
+          {
+            "id": "ci-accuracy",
+            "weight": 0.2,
+            "description": "Bootstrap confidence intervals match expected values for every file",
+            "testPattern": "CI accuracy for data_"
+          },
+          {
+            "id": "outlier-counts",
+            "weight": 0.2,
+            "description": "Per-column outlier counts match expected values for every file",
+            "testPattern": "outlier counts match for data_"
+          },
+          {
+            "id": "correlations",
+            "weight": 0.2,
+            "description": "Pairwise column correlations match expected values for every file",
+            "testPattern": "correlations match for data_"
+          },
+          {
+            "id": "summary-valid",
+            "weight": 0.2,
+            "description": "summary.json exists with correct aggregates across all 15 files",
+            "testPattern": "summary\\.json exists and is valid|summary aggregates are correct"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/batch-data-quality-auditor",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/dlp",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

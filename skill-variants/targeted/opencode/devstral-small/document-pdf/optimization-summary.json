@@ -1,0 +1,29 @@
+{
+  "iterations": 4,
+  "task_scores": {
+    "document-pdf": {
+      "iteration_1_baseline": "0 (timeout)",
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100
+    },
+    "pdf-create": {
+      "iteration_1_baseline": 100,
+      "iteration_2": 100,
+      "iteration_3": 0,
+      "iteration_3_note": "model stuck in loop using python -c with shell escaping errors",
+      "iteration_4": 100
+    }
+  },
+  "final_scores": {
+    "document-pdf": 100,
+    "pdf-create": 100
+  },
+  "changes": [
+    "Massively reduced SKILL.md from ~300 lines to ~80 lines, removing reference.md, forms.md, and scripts/ references",
+    "Focused skill on two core operations: text extraction (pdftotext) and PDF creation (reportlab)",
+    "Added critical instruction to always write Python to .py files instead of using python -c, which caused shell escaping failures",
+    "Replaced complex multi-library examples with simple, focused patterns matching task requirements",
+    "Removed all form-filling content, advanced library references, and CLI tools not needed for tasks"
+  ]
+}

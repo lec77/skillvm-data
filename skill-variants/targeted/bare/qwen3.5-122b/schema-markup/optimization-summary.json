@@ -1,0 +1,19 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "schema-markup",
+  "results": {
+    "iteration1": {
+      "product-schema": { "score": 100, "maxScore": 100 },
+      "faq-schema": { "score": 100, "maxScore": 100 }
+    }
+  },
+  "changes": [
+    "Condensed verbose skill from 180 lines to ~70 lines focused on actionable instructions",
+    "Removed interactive assessment questions, validation tools, CMS guidance, and related skills references",
+    "Added exact JSON-LD template examples for Product and FAQPage schema types",
+    "Made field requirements explicit: price as number, availability as full URL, etc.",
+    "Added clear 5-step workflow: read HTML, identify type, extract values, write JSON, verify"
+  ]
+}

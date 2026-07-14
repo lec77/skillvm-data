@@ -1,0 +1,30 @@
+{
+  "skill": "document-xlsx",
+  "runtime": "opencode",
+  "model": "gemini-3-flash",
+  "iterations": 3,
+  "scores": {
+    "iteration_1_baseline": {
+      "document-xlsx": 15,
+      "xlsx-analyze": 85
+    },
+    "iteration_2": {
+      "document-xlsx": 85,
+      "xlsx-analyze": 100,
+      "notes": "document-xlsx overall-quality scored 0 due to transient LLM judge socket error; all 7 automated criteria passed"
+    },
+    "iteration_3_confirmation": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    }
+  },
+  "changes": [
+    "Rewrote SKILL.md with streamlined structure optimized for gemini-3-flash",
+    "Added 'Reading/Analyzing Spreadsheets' section with explicit guidance to skip summary/TOTAL rows",
+    "Added approval_rate calculation pattern to prevent off-by-one from formula rows",
+    "Simplified worked example to be more directly reusable",
+    "Added currency formatting ($#,##0) to data cells in the creation example",
+    "Computed last_data_row dynamically to avoid off-by-one errors in formula ranges",
+    "Removed unused files: scripts/create_xlsx.py, recalc.py, LICENSE.txt"
+  ]
+}

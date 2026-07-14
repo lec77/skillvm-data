@@ -1,0 +1,36 @@
+{
+  "iterations": 3,
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "scores": { "power-flow": 85, "economic-dispatch": 80 },
+      "skill_version": "original verbose skill copy",
+      "notes": "power-flow failed angles-reasonable (angles too large due to missing per-unit conversion); economic-dispatch within-limits always 0 due to task criterion pattern bug"
+    },
+    {
+      "iteration": 2,
+      "scores": { "power-flow": 100, "economic-dispatch": 80 },
+      "changes": [
+        "Rewrote SKILL.md with explicit step-by-step instructions for gemini-3-flash",
+        "Added S_BASE=100 MVA per-unit conversion for DC power flow to keep angles small",
+        "Added bold warning: if angles are large, per-unit conversion was forgotten",
+        "Provided near-complete Python code blocks for both tasks",
+        "Added explicit instruction to not round values in economic dispatch output"
+      ],
+      "notes": "power-flow now 100/100; economic-dispatch 80/100 is maximum achievable"
+    },
+    {
+      "iteration": 3,
+      "scores": { "power-flow": 100, "economic-dispatch": 80 },
+      "changes": [],
+      "notes": "Confirmation run - scores stable at maximum achievable values"
+    }
+  ],
+  "known_issues": {
+    "economic-dispatch_within-limits": "Task criterion pattern 'within limits' does not match test name 'all generators within min/max limits' (regex fails due to 'min/max ' between 'within' and 'limits'). This criterion always scores 0 regardless of skill quality. Maximum achievable score for economic-dispatch is 80/100."
+  }
+}

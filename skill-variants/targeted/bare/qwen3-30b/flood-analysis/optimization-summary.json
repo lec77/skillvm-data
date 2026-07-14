@@ -1,0 +1,29 @@
+{
+  "iterations": 3,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1": {
+      "flood-risk": 0,
+      "streamflow-stats": 20
+    },
+    "iteration_2": {
+      "flood-risk": "API_ERROR",
+      "streamflow-stats": 100
+    },
+    "iteration_3": {
+      "flood-risk": 100,
+      "streamflow-stats": 100
+    },
+    "confirmation": {
+      "flood-risk": 100,
+      "streamflow-stats": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Complete rewrite of SKILL.md for qwen3-30b. Key changes: (1) Added strong directive to always use execute_command with Python scripts instead of computing manually or using read_file for large data. (2) Provided complete, copy-pasteable Python scripts for both task types. (3) Removed irrelevant USGS background content and 15-min aggregation instructions. (4) Simplified to a direct workflow: list_directory -> write_file (Python script) -> execute_command. (5) Used csv module instead of pandas for return periods to avoid dependency issues. (6) Computed skewness manually to avoid scipy dependency."
+    }
+  ]
+}

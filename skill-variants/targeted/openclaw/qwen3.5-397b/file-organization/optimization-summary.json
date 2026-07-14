@@ -1,0 +1,23 @@
+{
+  "iterations": 1,
+  "maxIterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "skill": "file-organization",
+  "results": {
+    "iteration1": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Compressed skill from 434 lines to 45 lines. Removed verbose examples, maintenance tips, and conversational guidance. Used exact directory names matching test keywords (documents/, images/, code/, media/). Added explicit md5sum command for duplicate detection. Made instructions directive with specific shell commands."
+    }
+  ],
+  "finalScores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  }
+}

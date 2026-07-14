@@ -1,0 +1,27 @@
+{
+  "iterations": 2,
+  "per_task_scores": {
+    "sql-query": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    },
+    "sql-migrate": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (identical to skills/sql/SKILL.md)",
+      "sql-query": 100,
+      "sql-migrate": 100
+    },
+    {
+      "iteration": 2,
+      "description": "Reduced skill from ~435 lines to ~95 lines. Removed PostgreSQL, MySQL, backup/restore, and migration script sections. Focused on SQLite-only patterns: schema design, CSV import, query patterns (joins, aggregations, window functions, CTEs), normalization workflow, and JSON output guidance. Added composite primary key and foreign key examples matching task requirements.",
+      "sql-query": 100,
+      "sql-migrate": 100
+    }
+  ]
+}

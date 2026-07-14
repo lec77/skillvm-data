@@ -1,0 +1,47 @@
+{
+  "iterations": 4,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "skill": "manufacturing-optimization",
+  "per_task_scores": {
+    "fjsp-schedule": {
+      "iteration_1": 10,
+      "iteration_2": 0,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "verification": 100
+    },
+    "job-makespan": {
+      "iteration_1": 10,
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "iteration_4": 100,
+      "verification": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (pseudocode algorithm, constraint checking, repair heuristic). Model solved by hand producing invalid JSON (missing closing brace) and machine conflicts."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md with complete Node.js solver script (ESM import). Skill became too long, causing qwen3-30b to produce malformed tool calls ({raw: ...} format), breaking all file operations."
+    },
+    {
+      "iteration": 3,
+      "description": "Shortened SKILL.md significantly — concise algorithm description for hand-solving with emphasis on valid JSON and common mistakes. fjsp-schedule scored 100 (model self-corrected tool calls and wrote Python script), but job-makespan scored 0 (tool calls never recovered)."
+    },
+    {
+      "iteration": 4,
+      "description": "Restructured SKILL.md to provide a single execute_command heredoc that writes and runs a Python solver script. This avoids unreliable read_file/write_file tool calls entirely. Both tasks scored 100/100 consistently across two runs."
+    }
+  ],
+  "key_insights": [
+    "qwen3-30b has unreliable tool call formatting — frequently wraps parameters in {raw: ...} format, breaking read_file and write_file",
+    "Using execute_command with heredoc (cat > file << 'EOF' ... EOF) bypasses the tool formatting issue entirely",
+    "Providing a complete Python solver script via heredoc is the most reliable approach for this model",
+    "Shorter skills produce better tool call formatting from the model",
+    "The greedy scheduling algorithm (earliest-ready job first, earliest-finish machine) produces optimal or near-optimal solutions for both test cases"
+  ]
+}

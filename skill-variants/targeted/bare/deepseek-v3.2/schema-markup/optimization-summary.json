@@ -1,0 +1,36 @@
+{
+  "skill": "schema-markup",
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline with original v1.1.0 skill (180 lines + 399-line references file)",
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Compressed to v2.0.0 (~70 lines), removed references/schema-examples.md, inlined Product and FAQPage templates, added explicit rules for numeric types and enumeration URLs",
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      }
+    }
+  ],
+  "changes": [
+    "Compressed SKILL.md from ~180 lines (v1.1.0) to ~70 lines (v2.0.0)",
+    "Removed references/schema-examples.md (399 lines) — relevant examples inlined",
+    "Removed: Initial Assessment, Core Principles, Validation & Testing, Implementation, CMS/WordPress, Output Format, Task-Specific Questions, Related Skills, @graph examples",
+    "Added explicit Rules section (numeric prices/ratings, full schema.org URLs, reviewCount as integer)",
+    "Inlined concrete JSON-LD templates for Product and FAQPage",
+    "Added 5-step Workflow"
+  ],
+  "finalScores": {
+    "faq-schema": 100,
+    "product-schema": 100
+  }
+}

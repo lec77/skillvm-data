@@ -1,0 +1,20 @@
+2026-03-02 14:05:11 INFO 198.51.100.7 GET /v2/accounts 200 52ms
+2026-03-02 14:05:12 ERROR 10.10.4.201 POST /v2/auth/token 401 19ms "Token signature mismatch"
+2026-03-02 14:05:13 INFO 192.0.2.88 GET /v2/catalog 200 74ms
+2026-03-02 14:05:14 WARN 172.31.255.12 POST /v2/media 403 41ms
+2026-03-02 14:05:15 INFO 198.51.100.7 PUT /v2/accounts/731 200 96ms
+2026-03-02 14:05:16 ERROR 10.10.4.201 GET /v2/exports 500 1284ms "Report worker pool exhausted"
+2026-03-02 14:05:17 INFO 192.0.2.88 POST /v2/invoices 201 143ms
+2026-03-02 14:05:18 WARN 172.31.255.12 GET /v2/ping 200 27ms
+2026-03-02 14:05:19 ERROR 198.51.100.7 DELETE /v2/tokens 500 2447ms "Token store unreachable"
+2026-03-02 14:05:20 INFO 10.10.4.201 GET /v2/metrics 200 63ms
+2026-03-02 14:05:21 INFO 192.0.2.88 GET /v2/alerts 200 39ms
+2026-03-02 14:05:22 ERROR 172.31.255.12 POST /v2/billing 500 415ms "Card processor declined request"
+2026-03-02 14:05:23 WARN 10.10.4.201 PUT /v2/preferences 403 33ms
+2026-03-02 14:05:24 INFO 198.51.100.7 DELETE /v2/tmp 204 18ms
+2026-03-02 14:05:25 ERROR 192.0.2.88 POST /v2/callback 500 764ms "Callback target refused connection"
+2026-03-02 14:05:26 INFO 172.31.255.12 GET /v2/lookup?term=blue+sky&limit=25 200 91ms
+2026-03-02 14:05:27 ERROR 10.10.4.201 POST /v2/replica 500 4318ms "Replica \"shard-west\" refused writes"
+2026-03-02 14:05:28 WARN 192.0.2.88 GET /v2/flags?stage=canary&trace=true&rev=7 304 47ms
+2026-03-02 14:05:29 INFO 198.51.100.7 GET /v2/heartbeat 200 29ms
+2026-03-02 14:05:30 ERROR 198.51.100.7 GET /v2/certs 500 2905ms "TLS handshake failed: SAN=*.corp.internal, code=0x3F7C"

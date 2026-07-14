@@ -1,0 +1,66 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "data-analyst-1.0.0",
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline - original verbose 573-line SKILL.md",
+      "scores": {
+        "csv-pivot": 100,
+        "data-clean": 0
+      },
+      "notes": "data-clean: model got stuck in repetition loop, generated 65536 tokens without tool calls. Skill too long for small model."
+    },
+    {
+      "iteration": 2,
+      "description": "Condensed to ~90 lines focused on CSV processing and data cleaning patterns",
+      "scores": {
+        "csv-pivot": 100,
+        "data-clean": 85
+      },
+      "notes": "Major improvement. data-clean report-accuracy 0.5 due to dates_standardized counted on all rows (7) vs expected unique rows (5)."
+    },
+    {
+      "iteration": 3,
+      "description": "Restructured data cleaning into explicit numbered steps with emphasis on counting before dedup",
+      "scores": {
+        "csv-pivot": 100,
+        "data-clean": 0
+      },
+      "notes": "Regression: model failed to load skill, entered repetition loop. Nondeterministic behavior with small models."
+    },
+    {
+      "iteration": 4,
+      "description": "Made skill description more compelling to trigger loading; kept same code patterns",
+      "scores": {
+        "csv-pivot": 100,
+        "data-clean": 85
+      },
+      "notes": "Model loaded skill and copied code verbatim. Still dates_standardized=7 (before dedup) vs expected 5 (unique rows)."
+    },
+    {
+      "iteration": 5,
+      "description": "Changed code to dedup FIRST then count issues on unique rows only",
+      "scores": {
+        "csv-pivot": 100,
+        "data-clean": 85
+      },
+      "notes": "Model loaded skill but wrote its own code instead of using skill pattern. dates_standardized=7, invalid_emails check used endswith('.com'). Model capability limitation."
+    }
+  ],
+  "best_scores": {
+    "csv-pivot": 100,
+    "data-clean": 85
+  },
+  "changes_made": [
+    "Reduced SKILL.md from 573 lines to ~80 lines",
+    "Removed all SQL, visualization, report template, statistical analysis content",
+    "Focused on CSV processing with csv module and JSON output patterns",
+    "Added complete data cleaning code pattern with step-by-step comments",
+    "Changed description to encourage skill loading",
+    "Removed unreferenced files: scripts/, WA_Fn-UseC_-Telco-Customer-Churn.csv"
+  ],
+  "remaining_issue": "data-clean report-accuracy stuck at 0.5: model writes own date counting logic that counts duplicate rows (7) instead of unique rows (5). Model ignores skill code pattern despite loading it."
+}

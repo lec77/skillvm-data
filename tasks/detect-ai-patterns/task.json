@@ -1,0 +1,67 @@
+{
+  "id": "detect-ai-patterns",
+  "name": "Detect AI-generated text patterns",
+  "category": "humanize-ai-text",
+  "gradingType": "automated",
+  "prompt": "Analyze the file ai_samples.txt for patterns that indicate AI-generated text. Write a detection report to detection_report.json with: (1) paragraph_count: number of paragraphs, (2) patterns_found: array of objects with 'pattern_name' (string), 'description' (string), and 'examples' (array of exact phrases found), covering at least these pattern types: filler_phrases (e.g., 'It\\'s important to note', 'It\\'s worth noting'), ai_vocabulary (e.g., 'delving', 'tapestry', 'landscape', 'multifaceted', 'nuanced', 'holistic', 'robust', 'paramount', 'leveraging', 'harnessing'), chatbot_artifacts (phrases like 'As an AI language model'), promotional_language (e.g., 'cutting-edge', 'groundbreaking', 'revolutionize', 'transformative'), (3) ai_probability: a score from 0 to 1 indicating how likely the text is AI-generated (should be high, >0.8), (4) total_pattern_count: total number of individual pattern instances found.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "detect-ai-patterns.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Report file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "structure",
+            "weight": 0.15,
+            "description": "Report structure correct",
+            "testPattern": "paragraph_count|has patterns_found|has ai_probability|has total_pattern_count"
+          },
+          {
+            "id": "filler-detection",
+            "weight": 0.2,
+            "description": "Filler phrases detected",
+            "testPattern": "filler_phrases|important to note|worth noting"
+          },
+          {
+            "id": "vocabulary-detection",
+            "weight": 0.25,
+            "description": "AI vocabulary detected",
+            "testPattern": "ai_vocabulary|delving|tapestry|landscape"
+          },
+          {
+            "id": "artifact-detection",
+            "weight": 0.2,
+            "description": "Chatbot artifacts and promotional language detected",
+            "testPattern": "chatbot_artifacts|As an AI|promotional|cutting-edge|groundbreaking"
+          },
+          {
+            "id": "scoring",
+            "weight": 0.15,
+            "description": "AI probability scoring",
+            "testPattern": "probability above|pattern count"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/humanize-ai-text",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/humanize-ai-text/detect-ai-patterns/",
+    "importedAt": "2026-07-07T06:18:53.396Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

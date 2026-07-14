@@ -1,0 +1,14 @@
+{
+  "name": "example-app",
+  "version": "1.0.0",
+  "dependencies": {
+    "lodash": "4.17.15",
+    "express": "4.17.1",
+    "axios": "0.21.1",
+    "minimist": "1.2.5",
+    "chalk": "4.1.2",
+    "dotenv": "10.0.0",
+    "uuid": "8.3.2",
+    "semver": "7.3.5"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "id": "multi-dataset-report-r2",
+  "name": "Analyze three datasets and produce cross-dataset business report",
+  "category": "data-analyst-1.0.0",
+  "gradingType": "automated",
+  "prompt": "You have three CSV files to analyze:\n\n1. sales.csv — sales transactions with columns: Date, Product, Region, Revenue, Units, Discount. Note: contains some duplicate rows that should be removed before analysis, and one date uses MM/DD/YYYY format instead of YYYY-MM-DD.\n2. inventory.csv — warehouse inventory with columns: SKU, Product, Warehouse, Quantity, MinLevel, LastRestock.\n3. customers.csv — customer data with columns: CustomerID, Segment, SignupDate, LastPurchase, TotalSpend, Active.\n\nFor each dataset, write a separate JSON analysis file:\n\n- sales_analysis.json with fields: total_revenue (sum of Revenue column after removing duplicate rows), top_product (product with highest total revenue), revenue_by_region (object mapping each region name to its total revenue)\n- inventory_analysis.json with fields: total_items (number of inventory rows), low_stock_items (array of SKU strings where Quantity < MinLevel), avg_quantity (mean of Quantity column across all items)\n- customers_analysis.json with fields: retention_rate (percentage of customers where Active is true, as a number like 61.11), churn_count (number of customers where Active is false), avg_spend_by_segment (object mapping each Segment name to average TotalSpend for that segment)\n\nAfter completing all three individual analyses, write report.json containing a cross-dataset business comparison that references specific findings from all three analyses (e.g., correlations between top-selling products and inventory levels, customer segments and revenue patterns).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "multi-dataset-report.test.ts",
+        "criteria": [
+          {
+            "id": "sales-exists",
+            "weight": 0.05,
+            "description": "sales_analysis.json exists and is valid JSON",
+            "testPattern": "sales_analysis.json exists"
+          },
+          {
+            "id": "inventory-exists",
+            "weight": 0.05,
+            "description": "inventory_analysis.json exists and is valid JSON",
+            "testPattern": "inventory_analysis.json exists"
+          },
+          {
+            "id": "customers-exists",
+            "weight": 0.05,
+            "description": "customers_analysis.json exists and is valid JSON",
+            "testPattern": "customers_analysis.json exists"
+          },
+          {
+            "id": "sales-revenue",
+            "weight": 0.15,
+            "description": "Sales total revenue is correct",
+            "testPattern": "total_revenue"
+          },
+          {
+            "id": "inventory-lowstock",
+            "weight": 0.15,
+            "description": "Inventory identifies low-stock items",
+            "testPattern": "low_stock"
+          },
+          {
+            "id": "customer-churn",
+            "weight": 0.15,
+            "description": "Customer churn count is correct",
+            "testPattern": "churn_count"
+          },
+          {
+            "id": "report-exists",
+            "weight": 0.1,
+            "description": "report.json exists with valid JSON",
+            "testPattern": "report.json exists"
+          },
+          {
+            "id": "cross-dataset",
+            "weight": 0.3,
+            "description": "Report references all three datasets",
+            "testPattern": "cross-dataset"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/data-analyst-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/data-analyst-1.0.0/multi-dataset-report/",
+    "importedAt": "2026-07-07T06:18:30.400Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

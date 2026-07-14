@@ -1,0 +1,23 @@
+{
+  "iterations": 2,
+  "perTaskScores": {
+    "fjsp-schedule": {
+      "baseline": 100,
+      "final": 100
+    },
+    "job-makespan": {
+      "baseline": 35,
+      "final": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill content"
+    },
+    {
+      "iteration": 2,
+      "description": "Replaced skill with a concise version containing a complete copy-paste-ready Python greedy scheduler script. Removed pseudocode and abstract explanations. Added explicit step-by-step instructions (read, write script, run, verify). The model previously failed job-makespan by attempting a complex priority-queue approach that hit bugs and context overflow. The new skill guides it to use a simple sequential greedy algorithm that processes jobs one at a time."
+    }
+  ]
+}

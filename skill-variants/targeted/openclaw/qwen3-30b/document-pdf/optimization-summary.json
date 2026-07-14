@@ -1,0 +1,40 @@
+{
+  "iterations": 5,
+  "per_task_scores": {
+    "iteration_1_baseline": {
+      "document-pdf": 85,
+      "pdf-create": 100
+    },
+    "iteration_2": {
+      "document-pdf": 35,
+      "pdf-create": 100
+    },
+    "iteration_3": {
+      "document-pdf": 65,
+      "pdf-create": 100
+    },
+    "iteration_4": {
+      "document-pdf": 20,
+      "pdf-create": 100
+    },
+    "iteration_5_final": {
+      "document-pdf": 100,
+      "pdf-create": 100
+    }
+  },
+  "changes_made": [
+    "Removed forms.md, reference.md, LICENSE.txt, and scripts/ directory (not needed for extraction or creation tasks)",
+    "Rewrote SKILL.md to focus only on pdfplumber extraction and reportlab creation",
+    "Added explicit guidance to capture ALL table columns when converting to JSON",
+    "Added structured summary writing guidance with markdown tables, growth metrics, highlights, and recommendations",
+    "Added quick reference table for common operations",
+    "Kept examples concrete with actual Python code patterns that work reliably"
+  ],
+  "key_findings": [
+    "pdf-create task was already reliable (100/100 across all iterations)",
+    "document-pdf task was sensitive to SKILL.md content - overly generic examples caused the model to fail extraction",
+    "The critical fix was adding explicit guidance to capture ALL columns from extracted tables (model was skipping YTD and YoY columns)",
+    "Summary quality improved from 0.5 to 1.0 with explicit guidance on what to include (growth metrics, highlights, recommendations)",
+    "Smaller models benefit from concrete, specific examples over abstract patterns"
+  ]
+}

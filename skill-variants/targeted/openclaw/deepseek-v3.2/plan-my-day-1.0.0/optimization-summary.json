@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "prioritize-tasks": 100,
+    "schedule-workday": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md with explicit decision trees, exact JSON schemas with field names, categorization examples, and common mistakes section tailored for deepseek-v3.2",
+      "scores": {
+        "prioritize-tasks": 100,
+        "schedule-workday": 100
+      }
+    }
+  ]
+}

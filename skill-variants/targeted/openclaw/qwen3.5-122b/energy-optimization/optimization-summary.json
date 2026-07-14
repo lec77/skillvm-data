@@ -1,0 +1,45 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "energy-optimization",
+  "iterations": 4,
+  "scores": {
+    "iteration_1": {
+      "power-flow": 85,
+      "economic-dispatch": 80,
+      "notes": "Baseline (unmodified skill). power-flow lost 15pts on angles-reasonable: model used MW directly with per-unit reactances, producing angles ~6-11 rad instead of <1.0. economic-dispatch within-limits always scores 0 due to test pattern bug (regex 'within limits' doesn't match test name 'all generators within min/max limits')."
+    },
+    "iteration_2": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "notes": "Added per-unit conversion guidance (divide MW by base_MVA=100). power-flow fixed to 100. economic-dispatch unchanged (capped at 80 by test bug)."
+    },
+    "iteration_3": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "notes": "Added instruction to verify dispatch.json with read tool and write directly if missing. No improvement possible on economic-dispatch."
+    },
+    "iteration_4": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "notes": "Confirmation run. Results consistent."
+    }
+  },
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80
+  },
+  "max_achievable_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80,
+    "note": "economic-dispatch within-limits criterion (20% weight) always scores 0 for ALL models due to test pattern bug: regex 'within limits' cannot match test name 'all generators within min/max limits'"
+  },
+  "changes_made": [
+    "Added CRITICAL per-unit conversion section: divide MW by base_MVA (100) before solving B*theta=P, multiply flows back by base_MVA",
+    "Added complete runnable Python3 scripts for both tasks",
+    "Emphasized using python3 (not python) command",
+    "Added instruction to verify output files exist after exec",
+    "Added validation checklists for both tasks",
+    "Simplified common mistakes table"
+  ]
+}

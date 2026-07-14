@@ -1,0 +1,61 @@
+{
+  "id": "regex-replace",
+  "name": "Clean up code using regex search-and-replace",
+  "category": "regex",
+  "gradingType": "automated",
+  "prompt": "The file dirty-code.ts has several issues that can be fixed with regex-based search-and-replace. Write a cleaned version to cleaned-code.ts that: (1) removes all console.log lines that contain 'DEBUG', (2) replaces all 'var ' declarations with 'let ' (except where const would be better — use const for variables that are never reassigned like 'result' and 'fullName'), (3) replaces all '==' comparisons with '===' and '!=' with '!==', (4) fixes double spaces in string literals to single spaces, (5) removes the 'const DEBUG = true;' line and its comment. Do NOT change any logic or function signatures.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "regex-replace.test.ts",
+        "criteria": [
+          {
+            "id": "file-exists",
+            "weight": 0.05,
+            "description": "Output file created",
+            "testPattern": "exists"
+          },
+          {
+            "id": "debug-removal",
+            "weight": 0.25,
+            "description": "Debug lines and constant removed",
+            "testPattern": "no console.log DEBUG|no DEBUG constant|no TODO comment"
+          },
+          {
+            "id": "var-replacement",
+            "weight": 0.3,
+            "description": "var replaced with let/const correctly",
+            "testPattern": "no var declarations|const for result|const for fullName|let for count|let for i\\b|let for valid"
+          },
+          {
+            "id": "equality-fix",
+            "weight": 0.2,
+            "description": "Loose equality replaced with strict",
+            "testPattern": "no loose equality|uses strict equality|uses strict inequality"
+          },
+          {
+            "id": "whitespace-fix",
+            "weight": 0.2,
+            "description": "Double spaces fixed in strings",
+            "testPattern": "no double space|single space in string"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/regex",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/regex/regex-replace/",
+    "importedAt": "2026-07-07T06:19:11.555Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

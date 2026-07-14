@@ -1,0 +1,46 @@
+{
+  "iterations": 4,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "bug-fixing",
+  "results": {
+    "iteration_0": {
+      "debug-bsearch": 0,
+      "debug-race": 0,
+      "notes": "Baseline with verbose original skill. Model edited buggy file instead of creating output file, generated incomplete code (missing closing braces)."
+    },
+    "iteration_1": {
+      "debug-bsearch": 0,
+      "debug-race": 0,
+      "notes": "Concise skill with common patterns. Model called 'question' tool repeatedly instead of writing code. Wrong test filename search (test-race.ts vs race.test.ts)."
+    },
+    "iteration_2": {
+      "debug-bsearch": 0,
+      "debug-race": 0,
+      "notes": "Added 'DO NOT ask questions' and glob for test files. Model now writes files but consistently drops final closing brace, causing syntax errors. Loops writing same broken content."
+    },
+    "iteration_3": {
+      "debug-bsearch": 100,
+      "debug-race": 0,
+      "notes": "Added read-back verification for closing braces. bsearch fixed but race-fixed.ts got EXTRA closing brace due to overzealous verification instruction."
+    },
+    "iteration_4": {
+      "debug-bsearch": 100,
+      "debug-race": 100,
+      "notes": "Removed brace-checking instructions. Added explicit brace count note to code example. Emphasized test-driven error fixing. Both tasks pass consistently."
+    }
+  },
+  "verification": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  },
+  "changes": [
+    "Replaced verbose 296-line process-heavy skill with concise 60-line action-oriented skill",
+    "Removed all auxiliary files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, etc.)",
+    "Added explicit 'DO NOT ask questions' instruction to prevent question-tool loops",
+    "Added glob step to discover test files instead of guessing filenames",
+    "Included complete corrected code examples for common bug patterns",
+    "Added brace count note to prevent model from adding/omitting braces",
+    "Emphasized test-driven error fixing workflow"
+  ]
+}

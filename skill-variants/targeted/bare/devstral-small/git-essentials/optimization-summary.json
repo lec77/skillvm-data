@@ -1,0 +1,66 @@
+{
+  "iteration_count": 5,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "git-essentials",
+  "per_task_scores": {
+    "git-branch-ops": {
+      "baseline": 100,
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    },
+    "git-log-analyze": {
+      "baseline": 0,
+      "iteration_1": 80,
+      "iteration_2": 0,
+      "iteration_3": 0,
+      "iteration_4": 0,
+      "iteration_5": 0
+    }
+  },
+  "best_iteration": 1,
+  "best_total_score": 180,
+  "final_total_score": 100,
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Reduced 432-line generic skill to ~80 lines focused on task-relevant commands (branches, cherry-pick, tags, history analysis). Added rules about writing output files to workspace root and careful counting.",
+      "git_branch_ops_score": 100,
+      "git_log_analyze_score": 80
+    },
+    {
+      "iteration": 2,
+      "description": "Added --all flag and awk-based alternative for merge commit detection. Model did not load skill this run.",
+      "git_branch_ops_score": 100,
+      "git_log_analyze_score": 0
+    },
+    {
+      "iteration": 3,
+      "description": "Switched to git -C <repo> pattern to avoid cd-ing into subdirectories. Added explicit write_file guidance. Model did not load skill.",
+      "git_branch_ops_score": 100,
+      "git_log_analyze_score": 0
+    },
+    {
+      "iteration": 4,
+      "description": "Packed critical rules into skill description field (always visible in system prompt). Caused model to generate 65536 tokens and timeout.",
+      "git_branch_ops_score": 100,
+      "git_log_analyze_score": 0
+    },
+    {
+      "iteration": 5,
+      "description": "Reverted to iteration 1 approach with improved merge detection using awk-based parent counting. Model did not load skill this run.",
+      "git_branch_ops_score": 100,
+      "git_log_analyze_score": 0
+    }
+  ],
+  "key_findings": [
+    "devstral-small inconsistently loads skills via <load-skill> mechanism - the bare agent requires models to explicitly request skill loading",
+    "When the skill IS loaded, it significantly helps (0 -> 80 on git-log-analyze)",
+    "The primary failure mode is writing output files inside the repo subdirectory instead of workspace root",
+    "Putting instructions in the skill description (always visible) caused the model to generate excessive output and timeout",
+    "git-branch-ops consistently scores 100/100 regardless of skill loading, suggesting the model handles branch/cherry-pick/tag operations well natively"
+  ]
+}

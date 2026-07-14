@@ -1,0 +1,35 @@
+{
+  "iterations": 2,
+  "original_size_bytes": 9097,
+  "optimized_size_bytes": 3164,
+  "size_reduction_percent": 65.2,
+  "original_lines": 269,
+  "optimized_lines": 74,
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "max_possible": 90,
+      "note": "output-exists criterion (weight 0.1) fails due to framework testPattern mismatch, not skill quality"
+    },
+    "medication-reconciliation": {
+      "iteration_1": 60,
+      "iteration_2": 60,
+      "max_possible": 60,
+      "note": "output-exists, admission-count, discharge-count criteria (weight 0.4) fail due to framework testPattern mismatch; all controllable criteria score 1.0"
+    }
+  },
+  "changes_made": [
+    "Removed Python implementation algorithm (50 lines) — models can implement extraction without pseudocode",
+    "Removed Top 20 Most Prescribed drug list (20 lines) — models have this knowledge built-in",
+    "Removed ICD-10 codes and common conditions enumeration — not tested, models know medical terminology",
+    "Removed route/frequency abbreviation expansions — models know medical abbreviations",
+    "Removed regex patterns for medications, labs, vitals — models can derive patterns from examples",
+    "Compressed output format section: removed redundant base entity example, kept medication and lab examples",
+    "Compressed negation section: kept trigger list and key examples, removed verbose explanations",
+    "Compressed section awareness: single line with section names instead of bulleted list with aliases",
+    "Added mutual exclusivity guidance for switched vs discontinued/new_meds categories",
+    "Preserved all drug class groupings needed for switch detection",
+    "Preserved output validation rules (boolean negated, numeric dose/value)"
+  ]
+}

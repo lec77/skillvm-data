@@ -1,0 +1,34 @@
+{
+  "iterations": 4,
+  "scores": {
+    "iteration_1": {
+      "document-xlsx": 93,
+      "xlsx-analyze": 0,
+      "notes": "xlsx-analyze timed out - model fetched web pages instead of doing the task. No analysis guidance in skill."
+    },
+    "iteration_2": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100,
+      "notes": "Added Workflow B (read/analyze) with worked example and bundled script. Both tasks pass."
+    },
+    "iteration_3": {
+      "document-xlsx": 93,
+      "xlsx-analyze": 100,
+      "notes": "Emphasized writing complete scripts in one shot. xlsx-analyze stable at 100. document-xlsx lost 7pts on LLM judge (no currency formatting)."
+    },
+    "iteration_4": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100,
+      "notes": "Added currency formatting ($#,##0) and column widths to create template. Both tasks consistently 100/100."
+    }
+  },
+  "changes": [
+    "Added Workflow B: read/analyze existing spreadsheets (was completely missing)",
+    "Added complete worked example for xlsx analysis with openpyxl",
+    "Emphasized using write tool to create complete .py files in one shot (prevents indentation errors from incremental editing)",
+    "Switched analysis example to use values_only=True for simpler tuple access",
+    "Added currency formatting ($#,##0) and column widths to creation template",
+    "Added rule about always applying currency formatting for professional quality",
+    "Removed unreferenced files: scripts/create_xlsx.py, scripts/analyze_xlsx.py, recalc.py, LICENSE.txt"
+  ]
+}

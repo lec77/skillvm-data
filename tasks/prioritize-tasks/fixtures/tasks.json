@@ -1,0 +1,16 @@
+{
+  "tasks": [
+    { "name": "Submit tax forms", "deadline": "2026-03-16", "effort": "medium", "impact": "high", "category": "personal" },
+    { "name": "Fix production bug", "deadline": "2026-03-16", "effort": "high", "impact": "high", "category": "work" },
+    { "name": "Schedule dentist appointment", "deadline": "2026-03-16", "effort": "low", "impact": "high", "category": "health" },
+    { "name": "Write blog post draft", "deadline": "2026-03-17", "effort": "high", "impact": "medium", "category": "work" },
+    { "name": "Grocery shopping", "deadline": "2026-03-17", "effort": "low", "impact": "medium", "category": "personal" },
+    { "name": "Review team proposals", "deadline": "2026-03-17", "effort": "medium", "impact": "high", "category": "work" },
+    { "name": "Organize garage", "deadline": "2026-03-22", "effort": "high", "impact": "low", "category": "personal" },
+    { "name": "Update LinkedIn profile", "deadline": "2026-03-22", "effort": "low", "impact": "low", "category": "personal" },
+    { "name": "Plan team offsite", "deadline": "2026-03-22", "effort": "medium", "impact": "medium", "category": "work" },
+    { "name": "Morning jog routine", "deadline": "2026-03-16", "effort": "low", "impact": "medium", "category": "health" },
+    { "name": "Clean email inbox", "deadline": "2026-03-22", "effort": "low", "impact": "low", "category": "work" },
+    { "name": "Prepare quarterly budget", "deadline": "2026-03-17", "effort": "high", "impact": "high", "category": "work" }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "sql-migrate",
+  "name": "Normalize denormalized data into a proper schema",
+  "category": "sql",
+  "gradingType": "automated",
+  "prompt": "Import legacy_data.csv into SQLite and normalize it into a proper relational schema in company.db. Create these tables: (1) departments (id INTEGER PRIMARY KEY, name TEXT UNIQUE, budget REAL), (2) employees (id INTEGER PRIMARY KEY, name TEXT, department_id INTEGER REFERENCES departments(id)), (3) projects (id INTEGER PRIMARY KEY, name TEXT UNIQUE, deadline TEXT), (4) assignments (employee_id INTEGER, project_id INTEGER, hours_worked INTEGER, PRIMARY KEY(employee_id, project_id), FOREIGN KEY referencing employees and projects). Populate all tables from the CSV data. Then run queries and save results to migration_report.json: (1) total_employees: count of unique employees, (2) total_projects: count of unique projects, (3) dept_headcount: object mapping department name to employee count, (4) project_hours: array of objects with project_name and total_hours sorted by total_hours descending, (5) top_contributor: the employee name with the most total hours across all projects, (6) engineering_projects: array of unique project names that have at least one Engineering department employee assigned, sorted alphabetically.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "sql-migrate.test.ts",
+        "criteria": [
+          {
+            "id": "db-exists",
+            "weight": 0.05,
+            "description": "Database file created",
+            "testPattern": "company\\.db exists"
+          },
+          {
+            "id": "schema",
+            "weight": 0.25,
+            "description": "Correct normalized schema",
+            "testPattern": "departments table|employees table|projects table|assignments table|foreign key"
+          },
+          {
+            "id": "data-integrity",
+            "weight": 0.2,
+            "description": "Data correctly migrated",
+            "testPattern": "row count|department count|no duplicate"
+          },
+          {
+            "id": "report-exists",
+            "weight": 0.05,
+            "description": "Report file created",
+            "testPattern": "report file exists"
+          },
+          {
+            "id": "basic-queries",
+            "weight": 0.25,
+            "description": "Basic query results correct",
+            "testPattern": "total_employees|total_projects|dept_headcount"
+          },
+          {
+            "id": "advanced-queries",
+            "weight": 0.2,
+            "description": "Advanced query results correct",
+            "testPattern": "project_hours|top_contributor|engineering_projects"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/sql",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/sql/sql-migrate/",
+    "importedAt": "2026-07-07T06:19:11.559Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

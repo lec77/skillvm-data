@@ -1,0 +1,67 @@
+{
+  "id": "anomaly-detection",
+  "name": "Rolling z-score anomaly detection on daily sales",
+  "category": "timeseries-analysis",
+  "gradingType": "automated",
+  "prompt": "Read sales_data.csv (columns: date, sales) with 365 days of daily sales. Detect anomalies by: (1) compute rolling mean (window=14) and rolling std, (2) compute z-score for each day: z = (actual - rolling_mean) / rolling_std, (3) flag days where |z| > 2.5 as anomalies. Write anomaly_report.json with: anomalies (array of {date, sales, z_score, type: 'spike'|'dip'}), total_anomalies (number), mean_sales (number), std_sales (number).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "anomaly-detection.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "anomaly_report.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "minimum-anomalies",
+            "weight": 0.2,
+            "description": "At least 3 anomalies detected",
+            "testPattern": "minimum anomalies"
+          },
+          {
+            "id": "spike-detected",
+            "weight": 0.25,
+            "description": "Spike around day 45 (2025-02-14) is detected",
+            "testPattern": "spike detected"
+          },
+          {
+            "id": "dip-detected",
+            "weight": 0.25,
+            "description": "Dip around day 150 (2025-05-30) is detected",
+            "testPattern": "dip detected"
+          },
+          {
+            "id": "mean-reasonable",
+            "weight": 0.1,
+            "description": "Mean sales is in realistic range 180-240",
+            "testPattern": "mean sales"
+          },
+          {
+            "id": "z-scores-valid",
+            "weight": 0.1,
+            "description": "All flagged anomalies have |z_score| > 2.0",
+            "testPattern": "z_score"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/timeseries-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/timeseries-analysis/anomaly-detection/",
+    "importedAt": "2026-07-07T06:19:11.563Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

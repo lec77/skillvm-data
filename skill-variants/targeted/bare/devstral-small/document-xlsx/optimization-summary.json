@@ -1,0 +1,36 @@
+{
+  "iteration_count": 5,
+  "per_task_scores": {
+    "document-xlsx": {
+      "iteration_1_baseline": 93,
+      "iteration_2": 93,
+      "iteration_3": 78,
+      "iteration_4": 93,
+      "iteration_5": 93
+    },
+    "xlsx-analyze": {
+      "iteration_1_baseline": 0,
+      "iteration_2": 0,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    }
+  },
+  "final_scores": {
+    "document-xlsx": 93,
+    "xlsx-analyze": 100
+  },
+  "changes_made": [
+    "Iteration 1: Baseline run with unmodified skill (identical to verbose original). document-xlsx=93, xlsx-analyze=0.",
+    "Iteration 2: Rewrote SKILL.md - removed template script references, added xlsx reading/analysis example, shortened content. No improvement on xlsx-analyze (model still tries to call 'xlsx' as a tool).",
+    "Iteration 3: Updated skill description to explicitly mention 'write a Python script using openpyxl, then run it with execute_command' and 'Load this skill for code examples'. This fixed xlsx-analyze (0→100) but document-xlsx dropped to 78 due to missing '=' in AVERAGE formula.",
+    "Iteration 4: Added critical rules emphasizing '=' prefix for all formulas, separating data/formula rows, and isinstance checks. document-xlsx recovered to 93, xlsx-analyze stayed at 100.",
+    "Iteration 5: Stability check confirming consistent scores (93, 100)."
+  ],
+  "files_removed": [
+    "recalc.py",
+    "LICENSE.txt",
+    "scripts/create_xlsx.py"
+  ],
+  "key_insight": "The devstral-small model interprets skill names as tool names and tries to call them directly. The skill description (shown before loading) must contain enough actionable guidance to steer the model toward using Python+openpyxl via execute_command, even if the skill is never fully loaded."
+}

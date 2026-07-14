@@ -1,0 +1,34 @@
+{
+  "iterations": 3,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "skill": "lab-unit-harmonization",
+  "per_task_scores": {
+    "lab-harmonize": {
+      "iteration_0": 97,
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100
+    },
+    "lab-quality-report": {
+      "iteration_0": 0,
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md: replaced verbose documentation with concise instructions. Added strategy to use execute_command with cat instead of read_file (model produces malformed tool calls for read_file). Provided complete Python script template instead of separate code snippets. Simplified conversion table. Added explicit usage examples with command-line arguments."
+    },
+    {
+      "iteration": 2,
+      "description": "Replaced f-strings with %-formatting in the Python template. The model was corrupting f-string syntax (dropping closing braces) when reproducing the code, causing SyntaxError loops that consumed all iterations and timed out."
+    },
+    {
+      "iteration": 3,
+      "description": "Confirmation run - no changes. Both tasks scored 100/100 consistently."
+    }
+  ]
+}

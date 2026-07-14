@@ -1,0 +1,23 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "d3-visualization",
+  "original_lines": 317,
+  "final_lines": 105,
+  "reduction_pct": 66.9,
+  "per_task_scores": {
+    "bar-chart": [100],
+    "line-chart": [100]
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote skill based on successful deepseek-v3.2 targeted approach: (1) Pure static SVG for bar charts with no JavaScript — pre-computed coordinates, explicit rect/text elements; (2) Literal HTML svg/path tags for line charts with D3 only filling the path d attribute at runtime; (3) Explicit CDN prohibition; (4) Mandatory chart.html filename; (5) Reduced from 317 to 105 lines (66.9% reduction)",
+      "scores": {
+        "bar-chart": 100,
+        "line-chart": 100
+      }
+    }
+  ]
+}

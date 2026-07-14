@@ -1,0 +1,35 @@
+{
+  "skill": "news-summary",
+  "runtime": "opencode",
+  "model": "devstral-small",
+  "iterations": 2,
+  "results": {
+    "baseline": {
+      "parse-rss": 26,
+      "summarize-articles": 100,
+      "multi-feed-digest": 65,
+      "average": 63.7
+    },
+    "iteration1": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100,
+      "average": 100
+    },
+    "iteration2_verification": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100,
+      "average": 100
+    }
+  },
+  "changes": [
+    "Replaced bash grep/sed RSS parsing with explicit Python xml.etree.ElementTree code",
+    "Added clear instruction to read local XML files instead of downloading from URLs",
+    "Added complete Python code example for parsing RSS with proper date conversion (RFC 2822 to YYYY-MM-DD)",
+    "Specified all 4 feed categories (tech, business, world, science) explicitly for multi-feed tasks",
+    "Added JSON schema for multi-feed digest output with highlights spanning multiple categories",
+    "Removed irrelevant voice summary section",
+    "Added detailed key_numbers extraction guidance for article summarization"
+  ]
+}

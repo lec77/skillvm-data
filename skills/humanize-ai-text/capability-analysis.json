@@ -1,0 +1,198 @@
+{
+  "skill_name": "humanize-ai-text",
+  "skill_path": "skills/humanize-ai-text",
+  "total_files": 6,
+  "total_tokens_estimate": 7200,
+  "purposes": [
+    {
+      "id": "detect-ai-patterns",
+      "description": "Scan input text for AI-generated writing patterns across 16 categories and produce a detection report with issue counts and AI probability rating",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write text to a file and run 'python scripts/detect.py text.txt' then parse the output"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Must read the user's input text file to provide to the detection script"
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L1",
+            "evidence": "Must interpret the detection report output to advise the user on AI probability"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Mentally scan text for AI patterns without running the script",
+          "primitives": [
+            {
+              "id": "reason.analysis",
+              "min_level": "L2",
+              "evidence": "Would need to identify pattern matches across 16 categories without tool assistance"
+            },
+            {
+              "id": "tool.file.read",
+              "min_level": "L1",
+              "evidence": "Still must read the input text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "transform-ai-text",
+      "description": "Rewrite AI-generated text to remove detectable patterns, replacing filler phrases, fixing quotes, stripping markdown, and removing chatbot artifacts",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must run 'python scripts/transform.py text.txt -o clean.txt' and capture change log"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Must read input text file"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L1",
+            "evidence": "Output file is written by the script via -o flag, but may need to save input first"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "compare-before-after",
+      "description": "Run detection on text before and after transformation to show side-by-side improvement metrics",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must run 'python scripts/compare.py text.txt -o clean.txt' which chains detect and transform"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Must read the input file"
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L1",
+            "evidence": "Must interpret the before/after metrics to assess improvement"
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "batch-process-files",
+      "description": "Scan or transform multiple text files in batch using shell loops",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Must generate bash for-loops to iterate over files and run detect/transform scripts"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L3",
+            "evidence": "Must chain multiple execution steps across files with data flowing between them"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-9",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:11-26",
+      "purposes": ["detect-ai-patterns", "transform-ai-text", "compare-before-after"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:30-65",
+      "purposes": ["detect-ai-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:68-84",
+      "purposes": ["detect-ai-patterns"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:86-105",
+      "purposes": ["transform-ai-text"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:107-113",
+      "purposes": ["compare-before-after"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:117-134",
+      "purposes": ["detect-ai-patterns", "transform-ai-text", "compare-before-after"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:138-146",
+      "purposes": ["detect-ai-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:149-157",
+      "purposes": ["detect-ai-patterns"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:161-174",
+      "purposes": ["batch-process-files"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:178-183",
+      "purposes": [],
+      "type": "dead_content"
+    },
+    {
+      "location": "scripts/detect.py:1-161",
+      "purposes": ["detect-ai-patterns"],
+      "type": "script"
+    },
+    {
+      "location": "scripts/transform.py:1-128",
+      "purposes": ["transform-ai-text"],
+      "type": "script"
+    },
+    {
+      "location": "scripts/compare.py:1-58",
+      "purposes": ["compare-before-after"],
+      "type": "script"
+    },
+    {
+      "location": "scripts/patterns.json:1-191",
+      "purposes": ["detect-ai-patterns", "transform-ai-text"],
+      "type": "instruction"
+    },
+    {
+      "location": "_meta.json:1-6",
+      "purposes": [],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

@@ -1,0 +1,26 @@
+{
+  "iteration_count": 1,
+  "original_size_bytes": 6745,
+  "final_size_bytes": 2760,
+  "size_reduction_percent": 59.1,
+  "per_task_scores": {
+    "facility-placement": {
+      "baseline": 100,
+      "final": 100
+    },
+    "knapsack-optimize": {
+      "baseline": 100,
+      "final": 100
+    }
+  },
+  "changes_made": [
+    "Removed Linear Programming section (not tested by any task)",
+    "Removed Assignment Problem section (not tested by any task)",
+    "Removed standalone Local Search / Hill Climbing section (merged into Three-Phase Method)",
+    "Removed standalone Greedy Algorithms section (key warning about 0/1 knapsack moved to pitfalls)",
+    "Condensed Coverage Problems section into Three-Phase Method",
+    "Shortened code examples while preserving key patterns",
+    "Merged Constraint Propagation into Phase 3 code example",
+    "Condensed Common Pitfalls from 6 to 5 items, removing LP-related pitfall"
+  ]
+}

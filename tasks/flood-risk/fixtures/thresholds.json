@@ -1,0 +1,5 @@
+{
+  "station_A": {"action": 1500, "minor": 2000, "moderate": 2500, "major": 3000},
+  "station_B": {"action": 800, "minor": 1000, "moderate": 1200, "major": 1500},
+  "station_C": {"action": 500, "minor": 700, "moderate": 900, "major": 1100}
+}

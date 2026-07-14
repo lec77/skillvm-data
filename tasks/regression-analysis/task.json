@@ -1,0 +1,73 @@
+{
+  "id": "regression-analysis",
+  "name": "Multiple linear regression with VIF and prediction",
+  "category": "statistical-analysis",
+  "gradingType": "automated",
+  "prompt": "Read housing_data.csv with columns: sqft, bedrooms, age, price. Build a multiple linear regression model predicting price from sqft, bedrooms, and age. Steps: (1) compute correlation matrix between all variables, (2) fit an OLS regression model, (3) report coefficients, R-squared, and p-values for each predictor, (4) check for multicollinearity using VIF (variance inflation factor). Write regression_results.json with: correlations (4x4 matrix as object or array), model ({r_squared, adj_r_squared, f_statistic, f_p_value}), coefficients (array of {variable, coefficient, std_error, p_value, significant}), vif (array of {variable, vif_value}), prediction ({predicted_price for sqft=2000, bedrooms=3, age=20}).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "regression-analysis.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "regression_results.json exists and is valid JSON",
+            "testPattern": "file exists"
+          },
+          {
+            "id": "r-squared",
+            "weight": 0.15,
+            "description": "R-squared is greater than 0.8",
+            "testPattern": "r.squared"
+          },
+          {
+            "id": "sqft-coeff",
+            "weight": 0.2,
+            "description": "sqft coefficient is positive and significant",
+            "testPattern": "sqft coefficient"
+          },
+          {
+            "id": "age-coeff",
+            "weight": 0.15,
+            "description": "age coefficient is negative",
+            "testPattern": "age coefficient"
+          },
+          {
+            "id": "vif-present",
+            "weight": 0.15,
+            "description": "VIF values present for all 3 predictors",
+            "testPattern": "vif"
+          },
+          {
+            "id": "prediction",
+            "weight": 0.15,
+            "description": "Prediction for sqft=2000, bedrooms=3, age=20 is in range 200000-350000",
+            "testPattern": "prediction"
+          },
+          {
+            "id": "model-significant",
+            "weight": 0.1,
+            "description": "Overall model F-test is significant",
+            "testPattern": "model significant"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/statistical-analysis",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/statistical-analysis/regression-analysis/",
+    "importedAt": "2026-07-07T06:19:11.562Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

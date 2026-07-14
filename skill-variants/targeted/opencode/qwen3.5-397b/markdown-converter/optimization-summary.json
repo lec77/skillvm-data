@@ -1,0 +1,46 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "markdown-converter",
+  "results": {
+    "iteration_1": {
+      "csv-to-md": 85,
+      "html-to-md": 100,
+      "changes": "Baseline - original skill"
+    },
+    "iteration_2": {
+      "csv-to-md": 85,
+      "html-to-md": 100,
+      "changes": "Added CSV guidance: use original column names, compute values carefully"
+    },
+    "iteration_3": {
+      "csv-to-md": 85,
+      "html-to-md": 100,
+      "changes": "Added instruction to always use Python script for CSV computations"
+    },
+    "iteration_4": {
+      "csv-to-md": 0,
+      "html-to-md": 100,
+      "changes": "Provided complete Python script template - model errored on read tool call"
+    },
+    "iteration_5": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Provided bash python one-liner example for computing totals, instructed to use bash for arithmetic"
+    }
+  },
+  "best_scores": {
+    "csv-to-md": 92,
+    "html-to-md": 100
+  },
+  "final_changes": [
+    "Added bash python one-liner pattern for computing CSV statistics",
+    "Added instruction to keep original CSV column names as table headers",
+    "Added HTML-to-Markdown conversion rules preserving structure",
+    "Simplified markitdown usage section"
+  ],
+  "remaining_issues": [
+    "csv-to-md main-table test 'table has columns' loses 8 points due to JS || operator with void-returning expect() requiring both 'price' and 'Price' substrings - model uses lowercase column names from CSV which only has 'price'"
+  ]
+}

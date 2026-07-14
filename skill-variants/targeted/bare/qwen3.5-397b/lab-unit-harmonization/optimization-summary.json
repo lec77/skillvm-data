@@ -1,0 +1,33 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "scores": {
+    "iteration_0_baseline": {
+      "lab-harmonize": 100,
+      "lab-quality-report": 100,
+      "skill_lines": 189,
+      "skill_bytes": 7976,
+      "note": "Original verbose skill (unmodified copy)"
+    },
+    "iteration_1_optimized": {
+      "lab-harmonize": 100,
+      "lab-quality-report": 100,
+      "skill_lines": 94,
+      "skill_bytes": 3738,
+      "note": "Condensed skill: removed redundant overview/tips sections, consolidated code blocks, kept all conversion factors and ranges"
+    }
+  },
+  "changes": [
+    "Removed Overview and Common Data Quality Issues prose sections (redundant with reference table)",
+    "Removed Harmonization Workflow ASCII diagram (model infers workflow from code)",
+    "Consolidated 3 separate Python code blocks into single unified pipeline",
+    "Removed Tips and Edge Cases section (information already embedded in code/table)",
+    "Shortened description frontmatter",
+    "53.1% size reduction (189 → 94 lines, 7976 → 3738 bytes)"
+  ],
+  "final_scores": {
+    "lab-harmonize": 100,
+    "lab-quality-report": 100
+  }
+}

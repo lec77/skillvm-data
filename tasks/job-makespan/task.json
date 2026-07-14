@@ -1,0 +1,67 @@
+{
+  "id": "job-makespan",
+  "name": "Minimize Makespan for 5-Job Flexible Scheduling",
+  "category": "manufacturing-optimization",
+  "gradingType": "automated",
+  "prompt": "Read jobs.json describing a flexible job-shop scheduling problem with 4 machines and 5 jobs. Each job has 2-3 operations. Each operation can run on specific machines with given durations. Operations within a job must be sequential. Only one operation per machine at a time. Find a schedule minimizing makespan. Write schedule.json with: assignments (array of {op_id, machine, start, end}), makespan (number).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "job-makespan.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "schedule.json file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "all-ops",
+            "weight": 0.15,
+            "description": "All 12 operations are scheduled",
+            "testPattern": "all 12 operations scheduled"
+          },
+          {
+            "id": "precedence",
+            "weight": 0.25,
+            "description": "Precedence constraints satisfied",
+            "testPattern": "precedence constraints"
+          },
+          {
+            "id": "no-conflict",
+            "weight": 0.25,
+            "description": "No machine conflicts",
+            "testPattern": "no machine conflicts"
+          },
+          {
+            "id": "makespan-correct",
+            "weight": 0.1,
+            "description": "Makespan equals max end time",
+            "testPattern": "makespan equals max end time"
+          },
+          {
+            "id": "makespan-quality",
+            "weight": 0.15,
+            "description": "Makespan is competitive (< 25)",
+            "testPattern": "makespan is competitive"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/manufacturing-optimization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/manufacturing-optimization/job-makespan/",
+    "importedAt": "2026-07-07T06:18:53.401Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

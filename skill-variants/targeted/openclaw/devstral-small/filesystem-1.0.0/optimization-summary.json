@@ -1,0 +1,35 @@
+{
+  "iterations": 4,
+  "per_task_scores": {
+    "fs-search": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100
+    },
+    "fs-batch-rename": {
+      "iteration_1": 50,
+      "iteration_2": 50,
+      "iteration_3": 100,
+      "iteration_4": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Initial skill based on haiku version: complete Python scripts for both directory analysis and batch rename tasks, with explicit instructions to use python3 and write output to CWD."
+    },
+    {
+      "iteration": 2,
+      "description": "Made instructions more prescriptive: added CRITICAL headers to force python3 usage (model was using shell commands for fs-search and getting stuck in loops), emphasized EXACT script copying, added explicit python3 command. Fixed fs-search from 0 to 100."
+    },
+    {
+      "iteration": 3,
+      "description": "Split underscore replacement into a separate step using base.replace('_', '-') instead of including _ in a complex regex character class. The model kept dropping the underscore when encoding the regex in JSON tool calls. This fixed fs-batch-rename from 50 to 100."
+    },
+    {
+      "iteration": 4,
+      "description": "Confirmation run - both tasks scored 100/100 consistently."
+    }
+  ]
+}

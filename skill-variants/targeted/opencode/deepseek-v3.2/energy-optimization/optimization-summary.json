@@ -1,0 +1,36 @@
+{
+  "iterations": 3,
+  "model": "deepseek-v3.2",
+  "runtime": "opencode",
+  "skill": "energy-optimization",
+  "scores": {
+    "iteration_1": {
+      "power-flow": { "score": 85, "max": 100, "failures": ["angles-reasonable"] },
+      "economic-dispatch": { "score": 80, "max": 100, "failures": ["within-limits"] }
+    },
+    "iteration_2": {
+      "power-flow": { "score": 100, "max": 100, "failures": [] },
+      "economic-dispatch": { "score": 80, "max": 100, "failures": ["within-limits"] }
+    },
+    "iteration_3": {
+      "power-flow": { "score": 100, "max": 100, "failures": [] },
+      "economic-dispatch": { "score": 80, "max": 100, "failures": ["within-limits"] }
+    }
+  },
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80
+  },
+  "changes": [
+    "Replaced Python code examples with JavaScript (native to opencode+bun runtime, no numpy dependency)",
+    "Added explicit per-unit conversion (BASE_MVA=100) for DC power flow to fix angle magnitudes",
+    "Added Gaussian elimination with partial pivoting for solving linear system in JavaScript",
+    "Increased binary search iterations to 500 with tighter tolerance (1e-10) for economic dispatch",
+    "Added explicit rounding (1e6) to avoid floating-point noise in dispatch output",
+    "Added stronger emphasis on using JavaScript code templates directly",
+    "Added common mistake entry about using Python when JS is available"
+  ],
+  "notes": {
+    "economic-dispatch_within-limits": "The within-limits criterion has a testPattern bug: pattern 'within limits' does not match test name 'all generators within min/max limits' (regex fails due to 'min/max' between 'within' and 'limits'). This makes the criterion impossible to pass, capping the maximum achievable score at 80/100."
+  }
+}

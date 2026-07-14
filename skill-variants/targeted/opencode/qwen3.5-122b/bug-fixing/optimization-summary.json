@@ -1,0 +1,18 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "bug-fixing",
+  "results": {
+    "iteration1": {
+      "debug-bsearch": { "score": 100, "maxScore": 100 },
+      "debug-race": { "score": 100, "maxScore": 100 }
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 9,884-byte systematic debugging methodology with concise 4,035-byte practical bug-fixing guide. Removed all supporting files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, etc.) not referenced by the new SKILL.md. New skill provides step-by-step procedure with worked examples for both off-by-one and race condition bugs, emphasizes no-line-numbers rule for file writing, and includes concrete fix patterns."
+    }
+  ]
+}

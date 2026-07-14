@@ -1,0 +1,16 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "document-pptx",
+  "per_task_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "changes": [
+    "Replaced verbose 25.5KB SKILL.md with compact 3.5KB python-pptx focused version",
+    "Removed unused ooxml.md (10.4KB), html2pptx.md (19.9KB), and supporting files",
+    "Focused entirely on python-pptx workflows: creation, text extraction, structured JSON extraction",
+    "Based on successful qwen3-30b variant pattern with detailed extraction examples including regex parsing"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "pdf-create",
+  "name": "Create a PDF employee report",
+  "category": "document-pdf",
+  "gradingType": "automated",
+  "prompt": "Read the file employees.json which contains data for 12 employees (name, department, salary, startDate). Create a professional PDF report called employee_report.pdf with the following sections: (1) A title page with the report name \"Employee Report\" and the date 2025-01-15. (2) An employee table listing all 12 employees with their name, department, salary, and start date. (3) A summary section showing: headcount per department (Engineering: 5, Marketing: 4, Sales: 3, Total: 12), and the overall average salary across all employees ($84,500).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "pdf-create.test.ts",
+        "criteria": [
+          {
+            "id": "file-valid",
+            "weight": 0.15,
+            "description": "employee_report.pdf exists and is valid",
+            "testPattern": "exists and is a valid PDF"
+          },
+          {
+            "id": "has-pages",
+            "weight": 0.1,
+            "description": "PDF has at least 1 page",
+            "testPattern": "at least 1 page"
+          },
+          {
+            "id": "employee-names",
+            "weight": 0.2,
+            "description": "All employee names are present",
+            "testPattern": "12 employee names"
+          },
+          {
+            "id": "departments",
+            "weight": 0.15,
+            "description": "All 3 departments are present",
+            "testPattern": "3 department names"
+          },
+          {
+            "id": "headcount",
+            "weight": 0.2,
+            "description": "Total headcount of 12 is shown",
+            "testPattern": "total headcount of 12"
+          },
+          {
+            "id": "avg-salary",
+            "weight": 0.2,
+            "description": "Average salary value is present",
+            "testPattern": "average salary value"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/document-pdf",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/document-pdf/pdf-create/",
+    "importedAt": "2026-07-07T06:18:41.479Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

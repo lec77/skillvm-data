@@ -1,0 +1,13 @@
+{
+  "iterations": 1,
+  "per_task_scores": {
+    "csv-pivot": [100],
+    "data-clean": [100]
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote verbose 570-line original skill as a focused 110-line version. Removed SQL, visualization, report template, and statistical analysis sections irrelevant to CSV tasks. Added explicit step-by-step instructions for pivot/aggregation (per-row revenue computation) and data cleaning (unique-row counting rules, date format recognition, empty-vs-invalid email distinction). Included Python code patterns for CSV reading, dedup, and issue counting. Removed unreferenced files (scripts/, WA_Fn-UseC_-Telco-Customer-Churn.csv)."
+    }
+  ]
+}

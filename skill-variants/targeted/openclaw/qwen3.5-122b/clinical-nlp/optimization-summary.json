@@ -1,0 +1,40 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "clinical-nlp",
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "max_possible": 90,
+      "max_score": 100,
+      "criteria_breakdown": {
+        "output-exists": { "score": 0, "max": 10, "note": "testPattern mismatch: pattern 'entities\\.json exists' never matches JUnit testcase names" },
+        "entity-count": { "score": 10, "max": 10 },
+        "conditions-found": { "score": 20, "max": 20 },
+        "negation-correct": { "score": 25, "max": 25 },
+        "medications-parsed": { "score": 20, "max": 20 },
+        "labs-parsed": { "score": 15, "max": 15 }
+      }
+    },
+    "medication-reconciliation": {
+      "iteration_1": 60,
+      "iteration_2": 60,
+      "max_possible": 60,
+      "max_score": 100,
+      "criteria_breakdown": {
+        "output-exists": { "score": 0, "max": 10, "note": "testPattern mismatch: pattern 'reconciliation\\.json exists' never matches JUnit testcase names" },
+        "admission-count": { "score": 0, "max": 15, "note": "testPattern mismatch: pattern 'admission list has 5' doesn't match test name 'admission list has exactly 5 medications'" },
+        "discharge-count": { "score": 0, "max": 15, "note": "testPattern mismatch: pattern 'discharge list has 6' doesn't match test name 'discharge list has exactly 6 medications'" },
+        "continued-correct": { "score": 15, "max": 15 },
+        "changes-detected": { "score": 25, "max": 25 },
+        "switched-detected": { "score": 20, "max": 20 }
+      }
+    }
+  },
+  "changes_made": [
+    "No changes needed - the existing SKILL.md already achieves maximum possible scores on both tasks across both iterations"
+  ],
+  "notes": "Three criteria (output-exists on both tasks, admission-count, discharge-count) have testPattern regex mismatches that prevent them from ever scoring non-zero across ANY model or variant. This is confirmed by checking all historical results across qwen3.5-397b, qwen3-30b, deepseek-v3.2 - all show the same 90/60 ceiling. The model consistently produces correct output (verified via log inspection)."
+}

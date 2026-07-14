@@ -1,0 +1,47 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "per_task_scores": {
+    "note-extraction": {
+      "baseline": 90,
+      "final": 90,
+      "max_achievable": 90,
+      "criteria": {
+        "output-exists": { "score": 0, "note": "framework bug: testPattern matches describe block name but JUnit parser only extracts testcase names" },
+        "entity-count": { "score": 1 },
+        "conditions-found": { "score": 1 },
+        "negation-correct": { "score": 1 },
+        "medications-parsed": { "score": 1 },
+        "labs-parsed": { "score": 1 }
+      }
+    },
+    "medication-reconciliation": {
+      "baseline": 60,
+      "final": 60,
+      "max_achievable": 60,
+      "criteria": {
+        "output-exists": { "score": 0, "note": "framework bug: testPattern 'reconciliation\\.json exists' does not match testcase name 'reconciliation.json file is present'" },
+        "admission-count": { "score": 0, "note": "framework bug: testPattern 'admission list has 5' does not match testcase name 'admission list has exactly 5 medications'" },
+        "discharge-count": { "score": 0, "note": "framework bug: testPattern 'discharge list has 6' does not match testcase name 'discharge list has exactly 6 medications'" },
+        "continued-correct": { "score": 1 },
+        "changes-detected": { "score": 1 },
+        "switched-detected": { "score": 1 }
+      }
+    }
+  },
+  "changes_made": [
+    "Compressed verbose Python code examples — model generates its own implementation",
+    "Made output JSON schemas ultra-explicit with exact field names (admission_meds, discharge_meds, changes)",
+    "Added concrete JSON examples for each medication reconciliation change category",
+    "Emphasized medication count accuracy and negation scope rules",
+    "Removed redundant ICD-10 code references and duplicate drug list entries",
+    "Simplified section header detection guidance"
+  ],
+  "framework_bugs_found": [
+    "testPattern matching uses JUnit <testcase name=...> but patterns were designed for <testsuite name=...> (describe block names). 4 of 12 criteria are impossible to pass: output-exists on both tasks, admission-count, and discharge-count.",
+    "Pattern 'entities\\.json exists' cannot match testcase names 'entities.json file is present' or 'entities.json is a non-empty array'",
+    "Pattern 'admission list has 5' cannot match 'admission list has exactly 5 medications' (word 'exactly' breaks substring match)"
+  ],
+  "consistency": "3 consecutive runs all produced identical scores (90 + 60), confirming model produces correct output reliably"
+}

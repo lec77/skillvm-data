@@ -1,0 +1,31 @@
+{
+  "skill": "bug-fixing",
+  "runtime": "openclaw",
+  "model": "qwen3.5-397b",
+  "iterations": 2,
+  "scores": {
+    "iteration_0_baseline": {
+      "debug-bsearch": 100,
+      "debug-race": 100,
+      "notes": "Verbose original skill (296 lines + 10 auxiliary files)"
+    },
+    "iteration_1_optimized": {
+      "debug-bsearch": 100,
+      "debug-race": 100,
+      "notes": "Condensed to 28-line SKILL.md, removed all auxiliary files"
+    },
+    "iteration_2_stability": {
+      "debug-bsearch": [100, 100],
+      "debug-race": [100, 100],
+      "notes": "2-run stability check, all perfect"
+    }
+  },
+  "changes": [
+    "Replaced 296-line verbose SKILL.md with 28-line targeted version",
+    "Removed 10 auxiliary files (condition-based-waiting.md, defense-in-depth.md, root-cause-tracing.md, test-pressure-*.md, test-academic.md, CREATION-LOG.md, find-polluter.sh, condition-based-waiting-example.ts)",
+    "Added direct procedural instructions (read → identify → write → verify)",
+    "Added explicit 'no line numbers' warning for openclaw write tool",
+    "Added common bug pattern reference (off-by-one, race conditions, overflow, boundaries)",
+    "Added 'do not ask questions' directive for autonomous operation"
+  ]
+}

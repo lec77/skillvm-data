@@ -1,0 +1,50 @@
+{
+  "iterations": 5,
+  "task_scores": {
+    "html-to-md": {
+      "iteration_1_baseline": 0,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    },
+    "csv-to-md": {
+      "iteration_1_baseline": 92,
+      "iteration_2": 85,
+      "iteration_3": 85,
+      "iteration_4": 85,
+      "iteration_5": 85
+    }
+  },
+  "final_scores": {
+    "html-to-md": 100,
+    "csv-to-md": 85
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Replaced verbose original skill with concise, step-by-step format. Added decision tree: markitdown for binary formats, direct Python processing for CSV/JSON/XML. Shortened skill description.",
+      "impact": "html-to-md fixed from 0 to 100 (model now uses uvx markitdown). csv-to-md dropped from 92 to 85."
+    },
+    {
+      "iteration": 3,
+      "description": "Added CRITICAL warnings: never do mental math on CSV data, always use Python. Emphasized writing .py files instead of python3 -c one-liners.",
+      "impact": "No change in scores. Model does not load the skill for CSV tasks."
+    },
+    {
+      "iteration": 4,
+      "description": "Strengthened guidance to write .py script files. Added explicit step-by-step for CSV processing with write_file -> execute_command -> read_file verification pattern.",
+      "impact": "No change in scores. Model still uses python3 -c and falls back to mental math."
+    },
+    {
+      "iteration": 5,
+      "description": "Expanded skill description to include 'create reports from data files' and 'data reports and summaries' to better match CSV task prompts. Restructured skill content with stronger emphasis.",
+      "impact": "No change. Model consistently does not load skill for CSV tasks despite matching description."
+    }
+  ],
+  "analysis": {
+    "html-to-md": "Fully solved. The optimized skill's concise markitdown guidance enables the model to convert HTML reliably.",
+    "csv-to-md": "Capped at 85/100 due to model behavior: qwen3-30b does not load the skill for CSV-to-report tasks, repeatedly tries python3 -c one-liners that fail on with-statement syntax, then falls back to mental arithmetic which produces wrong total inventory values. The 0.75 summary score (wrong total value) and 0.667 main-table score are consistent across all runs.",
+    "key_limitation": "qwen3-30b on bare runtime does not reliably load skills for data processing tasks, limiting the skill's effectiveness for CSV scenarios."
+  }
+}

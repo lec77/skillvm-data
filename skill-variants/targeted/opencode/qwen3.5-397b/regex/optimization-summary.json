@@ -1,0 +1,26 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "regex",
+  "scores": {
+    "regex-extract": [100, 100, 100, 100, 100],
+    "regex-replace": [95, 85, 100, 95, 95]
+  },
+  "best_scores": {
+    "regex-extract": 100,
+    "regex-replace": 100
+  },
+  "average_scores": {
+    "regex-extract": 100,
+    "regex-replace": 94
+  },
+  "changes": [
+    "Condensed SKILL.md from 472 lines to ~100 lines, removing verbose examples not needed for a capable model",
+    "Added log parsing section with regex pattern for structured log extraction",
+    "Added explicit guidance for var→const/let replacement: follow task instructions literally, only use const for explicitly named variables",
+    "Removed scripts/regex_tester.py (unreferenced helper script)",
+    "Retained core quick reference, JS/Python/CLI examples, and common gotchas"
+  ],
+  "notes": "regex-extract consistently scores 100/100. regex-replace var-replacement criterion varies due to LLM non-determinism — the model sometimes applies its own const/let judgment instead of following the task prompt's explicit variable list. Best run achieved 100/100 on both tasks."
+}

@@ -1,0 +1,98 @@
+{
+  "skill_name": "document-xlsx",
+  "skill_path": "skills/document-xlsx",
+  "total_files": 4,
+  "total_tokens_estimate": 4045,
+  "purposes": [
+    {
+      "id": "create-excel-spreadsheet",
+      "description": "Create .xlsx files with headers, data rows, Excel formulas (SUM, AVERAGE), conditional formatting (red fill), currency formatting, and column widths using openpyxl.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires openpyxl (third-party library) for Workbook creation, PatternFill, Font styling, cell formatting, and formula insertion."
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L1",
+            "evidence": "Must write a Python script to a .py file before execution (Critical Rule #2)."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Workflow requires writing script to file then running with python3, verifying output with ls."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "5 critical rules: exact filename, write to .py file (no python3 -c), use openpyxl, use Excel formulas not Python computation, apply PatternFill directly."
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "3-step workflow: write script, run it, verify output file exists."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "read-modify-excel",
+      "description": "Read existing .xlsx workbooks, analyze data, and modify them using openpyxl.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires openpyxl load_workbook for reading existing files, iterating sheets and cells."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write and execute Python script to read/modify Excel files."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L1",
+            "evidence": "Must save to exact requested filename."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "recalculate-formulas",
+      "description": "Recalculate all formulas in an Excel file using LibreOffice and report formula errors.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "recalc.py uses openpyxl, subprocess, platform, pathlib; manages LibreOffice macros, handles cross-platform differences."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Runs recalc.py with the Excel file as argument, parses JSON output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-5", "purposes": ["create-excel-spreadsheet"], "type": "instruction"},
+    {"location": "SKILL.md:6-15", "purposes": ["create-excel-spreadsheet", "read-modify-excel"], "type": "instruction"},
+    {"location": "SKILL.md:16-22", "purposes": ["create-excel-spreadsheet"], "type": "instruction"},
+    {"location": "SKILL.md:23-31", "purposes": ["create-excel-spreadsheet"], "type": "instruction"},
+    {"location": "SKILL.md:33-95", "purposes": ["create-excel-spreadsheet"], "type": "code_example"},
+    {"location": "SKILL.md:97-107", "purposes": ["create-excel-spreadsheet"], "type": "instruction"},
+    {"location": "SKILL.md:109-116", "purposes": ["create-excel-spreadsheet"], "type": "instruction"},
+    {"location": "LICENSE.txt:1-31", "purposes": [], "type": "dead_content"},
+    {"location": "recalc.py:1-178", "purposes": ["recalculate-formulas"], "type": "script"},
+    {"location": "scripts/create_xlsx.py:1-95", "purposes": ["create-excel-spreadsheet"], "type": "script"}
+  ],
+  "unmatched_requirements": []
+}

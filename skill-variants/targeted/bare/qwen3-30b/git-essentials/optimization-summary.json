@@ -1,0 +1,44 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "git-log-analyze": 48,
+      "git-branch-ops": 100,
+      "notes": "Original verbose skill. Model did not load skill. Log-analyze failed: wrong commit count (wc -l bug), wrong files_changed (empty lines counted), swapped dates (head/tail confusion)."
+    },
+    "iteration_2": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 0,
+      "notes": "Rewrote as procedural guide with exact commands and pitfall warnings. Model loaded skill. Log-analyze fixed. Branch-ops broke: skill too long, model lost tool-calling ability after loading skill (output raw JSON as text instead of tool calls)."
+    },
+    "iteration_3": {
+      "git-log-analyze": 0,
+      "git-branch-ops": 100,
+      "notes": "Shortened skill significantly (compact table format). Branch-ops recovered. Log-analyze regressed: model collected all correct values but hallucinated writing the file (never called write_file)."
+    },
+    "iteration_4": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 75,
+      "notes": "Added explicit reminder to use write_file tool. Log-analyze fixed. Branch-ops partial: model named branch 'release-0.9' instead of 'release-1.0' (confused tag name with branch name from prompt). Random SLM error."
+    },
+    "iteration_5_final": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 100,
+      "notes": "Same skill as iteration 4. Both tasks pass. Branch naming error was non-deterministic."
+    }
+  },
+  "changes_made": [
+    "Replaced generic 432-line reference guide with compact 40-line procedural skill",
+    "Added exact commands in table format for all git history analysis operations",
+    "Fixed commit counting: git rev-list --count HEAD instead of wc -l with format strings",
+    "Fixed file counting: added grep -v '^$' to filter empty lines",
+    "Fixed date ordering: explicit tail -1 for earliest, head -1 for latest with explanation",
+    "Fixed merge counting: git rev-list --merges HEAD",
+    "Added --all flag reminder for cross-branch commit searches",
+    "Added explicit write_file reminder to prevent hallucinated file creation",
+    "Made description more assertive to trigger skill loading",
+    "Kept skill short (~40 lines) to avoid overwhelming qwen3-30b context"
+  ]
+}

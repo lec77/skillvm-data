@@ -1,0 +1,27 @@
+{
+  "iterations": 4,
+  "model": "deepseek-v3.2",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "economic-dispatch": {
+      "iteration_1": 0,
+      "iteration_2": 80,
+      "iteration_3": 80,
+      "iteration_4": 80,
+      "final": 80,
+      "note": "80/100 is the ceiling due to testPattern bug: criterion 'within-limits' uses pattern 'within limits' which does not match test name 'all generators within min/max limits'"
+    },
+    "power-flow": {
+      "iteration_1": 100,
+      "iteration_2": 85,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "final": 100
+    }
+  },
+  "changes_made": [
+    "Iteration 2: Rewrote skill from verbose reference to concise, directive format with complete copy-paste Python scripts for both tasks. Fixed economic-dispatch from 0 to 80.",
+    "Iteration 3: Added baseMVA=100 per-unit conversion to power flow script (MW/baseMVA before solving, *baseMVA after). Fixed power-flow angles-reasonable test (angles were ~6-11 rad, now <0.1 rad). Made gen_dispatch configurable from task prompt instead of hardcoded.",
+    "Iteration 4: Confirmed scores stable at economic-dispatch=80, power-flow=100."
+  ]
+}

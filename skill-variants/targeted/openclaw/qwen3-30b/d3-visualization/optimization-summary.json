@@ -1,0 +1,55 @@
+{
+  "iterations": 5,
+  "baseline": {
+    "bar-chart": 60,
+    "line-chart": 60
+  },
+  "iteration_scores": [
+    {
+      "iteration": 1,
+      "bar-chart": 75,
+      "line-chart": 100,
+      "changes": "Replaced verbose D3 skill with DeepSeek-style approach: static SVG for bar charts (no JavaScript), simplified D3 template for line charts with var/function syntax instead of const/arrow functions"
+    },
+    {
+      "iteration": 2,
+      "bar-chart": 75,
+      "line-chart": 100,
+      "changes": "Strengthened bar chart instructions with more explicit CRITICAL warnings, added 3-item example instead of 2, emphasized one rect per CSV row rule"
+    },
+    {
+      "iteration": 3,
+      "bar-chart": 100,
+      "line-chart": 100,
+      "changes": "Switched bar chart to Python gen_chart.py approach - model writes a Python script that generates static SVG HTML, avoiding JavaScript entirely. Changed title from 'D3.js Visualization' to 'Chart Visualization'"
+    },
+    {
+      "iteration": 4,
+      "bar-chart": 75,
+      "line-chart": 100,
+      "changes": "Restructured bar chart with numbered Action steps, moved IMPORTANT warning to end of bar chart section for emphasis"
+    },
+    {
+      "iteration": 5,
+      "bar-chart": 75,
+      "line-chart": 100,
+      "changes": "Changed bar chart to use inline python3 -c command instead of separate gen_chart.py file, simplified instructions"
+    }
+  ],
+  "best_scores": {
+    "bar-chart": 100,
+    "line-chart": 100
+  },
+  "final_scores": {
+    "bar-chart": 75,
+    "line-chart": 100
+  },
+  "key_findings": [
+    "qwen3-30b generates JavaScript with syntax errors (missing braces, broken template literals), causing D3-rendered SVG to fail",
+    "Static SVG approach (no JavaScript) for bar charts avoids syntax error problems entirely",
+    "Python script generation works when the model follows instructions, but qwen3-30b inconsistently ignores 'do not use JavaScript' directives",
+    "Line chart with pre-built HTML template containing <svg> and <path> elements plus simple var/function JS achieves 100% consistently",
+    "Using var instead of const and function() instead of arrow functions reduces syntax errors in the model's JS output",
+    "Model sometimes tries to reimplement D3.js from memory instead of downloading it, producing broken code"
+  ]
+}

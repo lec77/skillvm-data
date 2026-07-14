@@ -1,0 +1,22 @@
+{
+  "iterations": 2,
+  "baseline_scores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 75
+  },
+  "final_scores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Expanded SKILL.md from edit-only instructions to a comprehensive PDF operations cheat-sheet. Added explicit guidance to use pdftotext for extracting text content (titles, authors, data) instead of relying on PDF metadata fields which contain tool defaults like 'anonymous'. Added sections for text extraction, page count, merging, and structured data extraction."
+    },
+    {
+      "iteration": 2,
+      "description": "Confirmation run - scores remained at 100/100 for both tasks, verifying consistency."
+    }
+  ],
+  "root_cause": "gemini-3-flash used pdftk dump_data metadata (which returns 'anonymous') instead of pdftotext to extract author names from the PDF text body. The original skill only documented the edit command and gave no guidance on text extraction."
+}

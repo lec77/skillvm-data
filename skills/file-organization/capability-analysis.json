@@ -1,0 +1,124 @@
+{
+  "skill_name": "file-organization",
+  "skill_path": "skills/file-organization",
+  "total_files": 1,
+  "total_tokens_estimate": 2828,
+  "purposes": [
+    {
+      "id": "analyze-directory-structure",
+      "description": "Analyze a target directory to understand its current state: file counts, type breakdown, size distribution, date ranges, and organizational issues.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Requires pipes and command substitution: find with -exec, du with sort, sed for extension extraction, uniq -c for counting."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L3",
+            "evidence": "Chain multiple shell commands with data flowing between them to build a comprehensive directory analysis."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L2",
+            "evidence": "Must analyze results to identify organization patterns, duplicates, and structural issues across files."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "find-duplicates",
+      "description": "Find duplicate files by hash, name, or size and recommend which copies to keep.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Uses find with -exec md5, piped through sort and uniq -d; find with -printf for name/size matching."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must execute hash computation commands and parse their output."
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Multi-constraint decision: which duplicate to keep based on modification date, path location, and naming quality."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "propose-organization-plan",
+      "description": "Propose a logical folder structure and file organization plan based on analysis, then present it for user approval before execution.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "Must produce a structured Markdown plan with current state, proposed structure (tree diagram), changes list, and files needing decisions."
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L2",
+            "evidence": "Decompose organization into sub-steps: create folders, move files by category, rename, delete duplicates; identify what can be parallelized."
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L2",
+            "evidence": "Multi-constraint grouping: files must be categorized by type, purpose, and date simultaneously."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "execute-file-organization",
+      "description": "Execute the approved organization plan by creating directories, moving/renaming files, and removing duplicates with confirmation.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic mkdir -p, mv, and cp commands to create structure and move files."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L3",
+            "evidence": "Chain multiple execution steps: create directories, move files, verify results, handle conflicts."
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L2",
+            "evidence": "7-step procedure with conditional branches: analyze, identify patterns, find duplicates, propose plan, get approval, execute, summarize."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Multiple constraints: always confirm before deleting, log all moves, preserve modification dates, handle filename conflicts, stop on unexpected situations."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": ["analyze-directory-structure", "find-duplicates", "propose-organization-plan", "execute-file-organization"], "type": "instruction"},
+    {"location": "SKILL.md:5-18", "purposes": ["analyze-directory-structure", "find-duplicates", "propose-organization-plan", "execute-file-organization"], "type": "instruction"},
+    {"location": "SKILL.md:19-68", "purposes": ["analyze-directory-structure", "find-duplicates", "propose-organization-plan", "execute-file-organization"], "type": "instruction"},
+    {"location": "SKILL.md:69-103", "purposes": ["analyze-directory-structure"], "type": "instruction"},
+    {"location": "SKILL.md:104-128", "purposes": ["propose-organization-plan"], "type": "instruction"},
+    {"location": "SKILL.md:129-148", "purposes": ["find-duplicates"], "type": "code_example"},
+    {"location": "SKILL.md:149-195", "purposes": ["propose-organization-plan"], "type": "code_example"},
+    {"location": "SKILL.md:196-217", "purposes": ["execute-file-organization"], "type": "instruction"},
+    {"location": "SKILL.md:218-260", "purposes": ["execute-file-organization"], "type": "instruction"},
+    {"location": "SKILL.md:261-337", "purposes": ["analyze-directory-structure", "propose-organization-plan", "execute-file-organization"], "type": "code_example"},
+    {"location": "SKILL.md:338-396", "purposes": ["analyze-directory-structure", "find-duplicates", "propose-organization-plan", "execute-file-organization"], "type": "code_example"},
+    {"location": "SKILL.md:397-434", "purposes": ["execute-file-organization"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

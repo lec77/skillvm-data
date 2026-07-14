@@ -1,0 +1,37 @@
+{
+  "id": "fileorg-messy-r2",
+  "name": "Organize a messy Downloads folder",
+  "category": "file-organization",
+  "gradingType": "automated",
+  "prompt": "Organize all the files in the downloads/ directory into a clean, well-structured folder hierarchy. Group files by type (documents, images, code, media, archives, etc). Use consistent naming conventions.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "fileorg-messy.test.ts",
+        "criteria": [
+          {
+            "id": "file-organization",
+            "weight": 1,
+            "description": "Files organized into correct category directories",
+            "testPattern": "."
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/file-organization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/file-organization/fileorg-messy/",
+    "importedAt": "2026-07-07T06:24:34.153Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

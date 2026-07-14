@@ -1,0 +1,50 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "openclaw",
+  "skill": "document-xlsx",
+  "baseline_scores": {
+    "document-xlsx": 0,
+    "xlsx-analyze": 85
+  },
+  "final_scores": {
+    "document-xlsx": 93,
+    "xlsx-analyze": 100
+  },
+  "per_iteration": [
+    {
+      "iteration": 0,
+      "description": "Baseline - unmodified copy of original skill",
+      "scores": { "document-xlsx": 0, "xlsx-analyze": 85 }
+    },
+    {
+      "iteration": 1,
+      "description": "Removed template script references, made SKILL.md self-contained with inline code examples, added analysis section with header-based column mapping",
+      "scores": { "document-xlsx": 93, "xlsx-analyze": 85 }
+    },
+    {
+      "iteration": 2,
+      "description": "Added explicit column-name mapping, emphasized 'highest category = highest total spend' and 'approval_rate as number like 75'",
+      "scores": { "document-xlsx": 93, "xlsx-analyze": 25 }
+    },
+    {
+      "iteration": 3,
+      "description": "Switched to data_only=False, added isinstance checks for Amount, explicit True check for Approved",
+      "scores": { "document-xlsx": 93, "xlsx-analyze": 85 }
+    },
+    {
+      "iteration": 4,
+      "description": "Fixed row filtering: skip TOTAL/SUM/AVERAGE summary rows and rows with formula strings, preventing off-by-one in approval_rate calculation",
+      "scores": { "document-xlsx": 93, "xlsx-analyze": 100 }
+    }
+  ],
+  "changes_summary": [
+    "Removed Bundled Template Script section that caused model to loop searching for files at wrong paths",
+    "Made SKILL.md fully self-contained with inline creation and analysis code examples",
+    "Added explicit header-based column mapping for reading spreadsheets",
+    "Added summary row filtering (TOTAL, SUM, AVERAGE) to prevent data corruption",
+    "Added formula string detection to skip rows containing =SUM(), =AVERAGE() etc.",
+    "Emphasized 'highest category = highest total spend' and approval_rate format",
+    "Removed unused files: recalc.py, scripts/create_xlsx.py"
+  ]
+}

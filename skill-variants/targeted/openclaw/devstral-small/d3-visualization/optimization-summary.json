@@ -1,0 +1,50 @@
+{
+  "iterations": 5,
+  "baseline": {
+    "bar-chart": 60,
+    "line-chart": 60
+  },
+  "iteration_scores": [
+    {
+      "iteration": 1,
+      "bar-chart": 100,
+      "line-chart": 60,
+      "changes": "Rewrote skill to use static SVG approach instead of dynamic D3.js. Emphasized reading CSV first, computing positions manually, and writing SVG elements directly in HTML without JavaScript."
+    },
+    {
+      "iteration": 2,
+      "bar-chart": 75,
+      "line-chart": 60,
+      "changes": "Strengthened no-JavaScript instructions with ABSOLUTE RULES section. Added explicit checklist. Made templates more prescriptive."
+    },
+    {
+      "iteration": 3,
+      "bar-chart": 60,
+      "line-chart": 75,
+      "changes": "Added complete working examples for both bar and line charts with full SVG markup. Added computation formulas. Inconsistent - model still reverts to JS for one chart type."
+    },
+    {
+      "iteration": 4,
+      "bar-chart": 100,
+      "line-chart": 60,
+      "changes": "Provided near-complete static SVG examples with exact HTML structure to copy. Made examples more concrete with actual computed values. Model follows bar chart template but still uses JS for line chart."
+    },
+    {
+      "iteration": 5,
+      "bar-chart": 100,
+      "line-chart": 85,
+      "changes": "Moved line chart section before bar chart for prominence. Explicitly addressed the 90-point path concern. Added stronger emphasis that line chart is just one long path string. Added date label computation guidance."
+    }
+  ],
+  "final_scores": {
+    "bar-chart": 100,
+    "line-chart": 85
+  },
+  "total_improvement": {
+    "bar-chart": "+40 (60 -> 100)",
+    "line-chart": "+25 (60 -> 85)"
+  },
+  "remaining_issues": {
+    "line-chart": "date-formatting criterion fails - model omits year '2026' from date labels in some runs. The model has a strong tendency to revert to JavaScript for line charts despite explicit instructions."
+  }
+}

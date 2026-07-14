@@ -1,0 +1,33 @@
+PATIENT: John Doe
+DATE: 2026-01-15
+MRN: 123456
+
+CHIEF COMPLAINT: Chest pain and shortness of breath
+
+HISTORY OF PRESENT ILLNESS:
+62-year-old male presenting with substernal chest pain for 2 hours. Patient has a history of type 2 diabetes mellitus and hypertension. He denies any nausea or vomiting. No prior history of coronary artery disease. Patient reports compliance with current medications.
+
+MEDICATIONS:
+- Metformin 1000mg PO BID
+- Lisinopril 20mg PO daily
+- Aspirin 81mg PO daily
+- Atorvastatin 40mg PO QHS
+
+VITAL SIGNS:
+BP 158/92 mmHg, HR 88 bpm, RR 18, SpO2 96% on room air, Temp 98.6°F
+
+LABORATORY RESULTS:
+- Troponin I: 0.04 ng/mL (normal <0.04)
+- BNP: 450 pg/mL (elevated)
+- Creatinine: 1.3 mg/dL
+- Glucose: 186 mg/dL (elevated)
+- HbA1c: 7.8%
+- WBC: 8.2 x10^3/µL
+- Hemoglobin: 13.5 g/dL
+
+ASSESSMENT AND PLAN:
+1. Acute chest pain - rule out ACS. Serial troponins, continuous monitoring.
+2. Uncontrolled type 2 diabetes - increase Metformin to 1500mg BID, add Glipizide 5mg daily.
+3. Hypertension - poorly controlled. Increase Lisinopril to 40mg daily.
+4. No evidence of heart failure at this time.
+5. Continue Aspirin and Atorvastatin.

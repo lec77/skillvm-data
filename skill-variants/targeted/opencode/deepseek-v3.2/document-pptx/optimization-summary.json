@@ -1,0 +1,19 @@
+{
+  "iterations": 2,
+  "task_scores": {
+    "pptx-create": {
+      "iteration_1": 0,
+      "iteration_2": 100
+    },
+    "pptx-extract": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to prioritize python-pptx for creation instead of html2pptx (which requires Playwright/Chrome). Reduced skill from 484 lines to ~105 lines. Added explicit python-pptx code examples for creation and extraction. Removed html2pptx.md, ooxml.md, scripts/ directory, and ooxml/schemas/ as unreferenced by final SKILL.md."
+    }
+  ]
+}

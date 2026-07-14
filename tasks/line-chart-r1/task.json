@@ -1,0 +1,67 @@
+{
+  "id": "line-chart-r1",
+  "name": "D3.js line chart from 90-day timeseries",
+  "category": "d3-visualization",
+  "gradingType": "automated",
+  "prompt": "Read timeseries.csv with 90 days of date,value data. Create a standalone chart.html with a line chart using D3.js. Requirements: (1) embed D3.js locally - no CDN, (2) SVG 800×400, (3) x-axis with dates (show ~6 ticks), (4) y-axis with values, (5) smooth line connecting all points, (6) title 'Daily Trend'. Self-contained HTML that works offline.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "line-chart.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "chart.html file exists",
+            "testPattern": "chart.html exists"
+          },
+          {
+            "id": "has-svg",
+            "weight": 0.15,
+            "description": "Contains SVG element",
+            "testPattern": "contains SVG element"
+          },
+          {
+            "id": "has-path",
+            "weight": 0.25,
+            "description": "Contains path element for the line",
+            "testPattern": "contains path element"
+          },
+          {
+            "id": "no-cdn",
+            "weight": 0.2,
+            "description": "No CDN URLs used",
+            "testPattern": "no CDN URLs"
+          },
+          {
+            "id": "date-formatting",
+            "weight": 0.15,
+            "description": "Contains date formatting (year 2026)",
+            "testPattern": "contains date formatting"
+          },
+          {
+            "id": "has-title",
+            "weight": 0.15,
+            "description": "Contains chart title",
+            "testPattern": "contains chart title"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/d3-visualization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/d3-visualization/line-chart/",
+    "importedAt": "2026-07-07T06:18:30.397Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

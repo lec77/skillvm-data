@@ -1,0 +1,47 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "scores": {
+    "iteration_0_baseline": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "total": 170
+    },
+    "iteration_1": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "total": 170,
+      "changes": "Replaced full Chinese skill with concise English version focused on two tasks with Python scripts and critical dot-preservation regex"
+    },
+    "iteration_2": {
+      "fs-search": 85,
+      "fs-batch-rename": 70,
+      "total": 155,
+      "changes": "Added stronger directive to use exact provided scripts, added BUG WARNING section against [^a-z0-9] pattern"
+    },
+    "iteration_3": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "total": 170,
+      "changes": "Added verification checklist with expected filenames, explicit DO NOT ADD MORE STEPS comment"
+    },
+    "iteration_4": {
+      "fs-search": 100,
+      "fs-batch-rename": 70,
+      "total": 170,
+      "changes": "Added table of expected results, stronger anti-pattern warnings"
+    },
+    "iteration_5_final": {
+      "fs-search": 100,
+      "fs-batch-rename": 100,
+      "total": 200,
+      "changes": "Moved critical regex and rules into description field so they appear in system prompt even when model skips skill loading. Model was never loading the skill body - it saw only the description in system prompt and wrote its own code."
+    }
+  },
+  "key_insight": "The bare runtime requires models to explicitly request skill loading via <load-skill> tag. qwen3.5-122b consistently skipped this step and wrote its own code. The fix was embedding critical regex patterns and anti-patterns directly in the skill description field, which is always visible in the system prompt.",
+  "final_scores": {
+    "fs-search": 100,
+    "fs-batch-rename": 100
+  }
+}

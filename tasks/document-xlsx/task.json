@@ -1,0 +1,73 @@
+{
+  "id": "document-xlsx",
+  "name": "Create a sales report spreadsheet",
+  "category": "document-xlsx",
+  "gradingType": "automated",
+  "prompt": "Create an xlsx file called sales_report.xlsx with Q1-Q4 revenue data for 5 product lines. Use these exact values (in dollars): Widgets: 62000, 71000, 58000, 80000; Gadgets: 45000, 52000, 48000, 63000; Services: 38000, 42000, 35000, 47000; Licenses: 85000, 91000, 78000, 95000; Support: 28000, 32000, 25000, 36000. Add a row or column with SUM formulas for totals and AVERAGE formulas for averages. Apply conditional formatting (or red fill) to highlight cells with values below $50,000.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "sales-report.test.ts",
+        "criteria": [
+          {
+            "id": "file-valid",
+            "weight": 0.12,
+            "description": "sales_report.xlsx exists and is valid",
+            "testPattern": "exists and is a valid xlsx"
+          },
+          {
+            "id": "product-lines",
+            "weight": 0.12,
+            "description": "All 5 product lines are present",
+            "testPattern": "5 product lines"
+          },
+          {
+            "id": "quarters",
+            "weight": 0.12,
+            "description": "Q1-Q4 columns present",
+            "testPattern": "Q1 through Q4"
+          },
+          {
+            "id": "revenue-values",
+            "weight": 0.17,
+            "description": "Revenue values match specified amounts",
+            "testPattern": "revenue values are present"
+          },
+          {
+            "id": "sum-formulas",
+            "weight": 0.17,
+            "description": "SUM formulas for totals",
+            "testPattern": "SUM formulas"
+          },
+          {
+            "id": "average-formulas",
+            "weight": 0.17,
+            "description": "AVERAGE formulas present",
+            "testPattern": "AVERAGE formulas"
+          },
+          {
+            "id": "conditional-formatting",
+            "weight": 0.13,
+            "description": "Red formatting on cells below $50K",
+            "testPattern": "red conditional formatting"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/document-xlsx",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/document-xlsx/document-xlsx/",
+    "importedAt": "2026-07-07T06:18:52.543Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

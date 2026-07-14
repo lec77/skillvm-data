@@ -1,0 +1,50 @@
+{
+  "skill": "markdown-converter",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 5,
+  "scores": {
+    "iteration1": {
+      "html-to-md": 100,
+      "csv-to-md": 85,
+      "notes": "Baseline skill. csv-to-md lost points on total value calculation (wrong mental math) and column header casing test edge case."
+    },
+    "iteration2": {
+      "html-to-md": 100,
+      "csv-to-md": 85,
+      "notes": "Added CSV guidance with awk examples. Model didn't use them; same result as baseline."
+    },
+    "iteration3": {
+      "html-to-md": 100,
+      "csv-to-md": 0,
+      "notes": "Model copied broken awk syntax from skill and looped 28 times on the same error. Removed awk examples."
+    },
+    "iteration4": {
+      "html-to-md": 100,
+      "csv-to-md": 85,
+      "notes": "Simplified skill with no code examples, explicit mental math guidance. Model still computed wrong total value ($21,769.02 vs $46,993.75)."
+    },
+    "iteration5": {
+      "html-to-md": 100,
+      "csv-to-md": 0,
+      "notes": "Instructed model to write Python script. Model wrote broken f-strings with unclosed braces, timed out. Reverted to iteration 4 version."
+    }
+  },
+  "finalScores": {
+    "html-to-md": 100,
+    "csv-to-md": 85
+  },
+  "changes": [
+    "Simplified skill from verbose to concise format",
+    "Added explicit guidance for CSV data report generation (mental math, capitalized headers)",
+    "Added instructions for counting unique values carefully",
+    "Removed code examples (awk/python) that caused model to loop on syntax errors",
+    "Kept markitdown usage guidance for HTML conversion"
+  ],
+  "limitations": [
+    "qwen3-30b cannot reliably compute price*stock multiplication and summation for 10 rows",
+    "qwen3-30b cannot write valid Python f-strings through JSON serialization (nested curly braces)",
+    "qwen3-30b copies code examples verbatim without fixing syntax errors, leading to infinite retry loops",
+    "The main-table test uses a JavaScript || pattern that evaluates both sides, failing when 'Price' (capitalized) is not in the document even though 'price' (lowercase) is present"
+  ]
+}

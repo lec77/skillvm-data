@@ -1,0 +1,26 @@
+{
+  "iterations": 1,
+  "baseline": {
+    "debug-bsearch": 100,
+    "debug-race": 0
+  },
+  "iteration1": {
+    "debug-bsearch": 100,
+    "debug-race": 100,
+    "confirmation": {
+      "debug-bsearch": 100,
+      "debug-race": 100
+    }
+  },
+  "final_scores": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  },
+  "changes": [
+    "Reduced SKILL.md from ~297 lines to ~45 lines for devstral-small's limited context",
+    "Added explicit instruction to use write tool instead of printing code in chat",
+    "Added concrete mutex pattern using promise chaining for race condition fixes (boolean flag approach doesn't work in async JS)",
+    "Added specific off-by-one binary search fix pattern",
+    "Removed all supporting files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, condition-based-waiting-example.ts, find-polluter.sh, test-*.md, CREATION-LOG.md) as they added noise for a small model"
+  ]
+}

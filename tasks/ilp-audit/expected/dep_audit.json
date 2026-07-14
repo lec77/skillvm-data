@@ -1,0 +1,35 @@
+{
+  "checked": 5,
+  "vulnerable_count": 4,
+  "vulnerable": [
+    {
+      "package": "flask",
+      "version": "0.12.2",
+      "cves": [
+        "CVE-2018-1000656"
+      ]
+    },
+    {
+      "package": "pyyaml",
+      "version": "5.1",
+      "cves": [
+        "CVE-2020-1747"
+      ]
+    },
+    {
+      "package": "requests",
+      "version": "2.19.0",
+      "cves": [
+        "CVE-2018-18074"
+      ]
+    },
+    {
+      "package": "urllib3",
+      "version": "1.24.1",
+      "cves": [
+        "CVE-2019-11324"
+      ]
+    }
+  ],
+  "fingerprint": "5d936c45b329ddd4"
+}

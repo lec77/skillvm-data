@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1_baseline": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    },
+    "iteration_2_optimized": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (484 lines, 25KB)"
+    },
+    {
+      "iteration": 2,
+      "description": "Replaced verbose SKILL.md with focused version (~80 lines, 3KB). Removed html2pptx workflow, color palettes, design principles, template workflows, visual details, layout tips, thumbnail grids, and slide-to-image conversion. Added concise python-pptx examples for creation, reading, and structured extraction. Removed unreferenced files: html2pptx.md, ooxml.md, scripts/html2pptx.js, scripts/thumbnail.py, scripts/rearrange.py, scripts/inventory.py, scripts/replace.py. Kept ooxml scripts (pack/unpack/validate) and schemas for editing workflows. Execution time improved significantly (pptx-create: 4m43s → 54s)."
+    }
+  ]
+}

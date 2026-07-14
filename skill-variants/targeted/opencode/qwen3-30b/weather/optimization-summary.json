@@ -1,0 +1,24 @@
+{
+  "skill": "weather",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 2,
+  "results": {
+    "iteration1_baseline": {
+      "weather-travel": 68,
+      "weather-compare": 95
+    },
+    "iteration2_optimized": {
+      "weather-travel": 100,
+      "weather-compare": 100
+    }
+  },
+  "changes": [
+    "Made skill more directive: explicitly instructs to use bash+curl (not other tools)",
+    "Added step-by-step workflow: fetch → parse → present → quantify → advise",
+    "Added 'Comparing cities' section with instructions to build markdown tables and state numeric differences",
+    "Added 'Travel/packing advice' section with temperature-based item lists and requirement to connect recommendations to data",
+    "Removed non-essential sections (When to Use/Not Use, PNG format, airport codes detail) to reduce noise for smaller model",
+    "Emphasized format=j1 JSON output for better parsing"
+  ]
+}

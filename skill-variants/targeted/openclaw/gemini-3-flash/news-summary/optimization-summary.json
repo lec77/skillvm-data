@@ -1,0 +1,26 @@
+{
+  "iterations": 2,
+  "per_task_scores": {
+    "parse-rss": {
+      "baseline": 100,
+      "final": 100
+    },
+    "summarize-articles": {
+      "baseline": 100,
+      "final": 100
+    },
+    "multi-feed-digest": {
+      "baseline": 45,
+      "final": 100
+    }
+  },
+  "changes": [
+    "Made fetching ALL 4 RSS feeds mandatory instead of optional — the baseline skill said 'Optionally supplement with Reuters/NPR' which caused the agent to only fetch the world feed",
+    "Added explicit JSON output format with categories array structure matching test expectations (name, source, summary, articles per category)",
+    "Added highlights section guidance requiring stories from multiple categories",
+    "Added key_numbers extraction guidance for statistics/data points",
+    "Improved RSS parsing instructions to include pubDate and category extraction",
+    "Added ISO 8601 date format conversion guidance",
+    "Removed voice summary section (irrelevant to tasks, wasted context tokens)"
+  ]
+}

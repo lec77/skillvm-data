@@ -1,0 +1,34 @@
+{
+  "iterations": 3,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "git-essentials",
+  "per_task_scores": {
+    "iteration_1": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 88
+    },
+    "iteration_2": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 100
+    },
+    "iteration_3": {
+      "git-log-analyze": 100,
+      "git-branch-ops": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Replaced 432-line generic git reference with a focused 96-line skill targeting the exact commands needed: branch operations, cherry-pick, tags, log/history analysis, and JSON report writing. Added specific guidance on data types (numbers not strings, booleans not strings), date formats, file placement, and counting semantics."
+    },
+    {
+      "iteration": 2,
+      "description": "Added instruction to rename default branch from 'master' to 'main' when encountered. The git-branch-ops task references 'main branch' but git init creates 'master' by default. This fixed the branch-creation criterion from 50% to 100%."
+    },
+    {
+      "iteration": 3,
+      "description": "Confirmation run - no changes. Both tasks scored 100/100, confirming stability."
+    }
+  ]
+}

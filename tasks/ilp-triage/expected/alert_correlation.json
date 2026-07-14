@@ -1,0 +1,9 @@
+{
+  "alerts": 3,
+  "critical": 2,
+  "services_affected": [
+    "api",
+    "worker"
+  ],
+  "fingerprint": "4ad858046ae0fb0a"
+}

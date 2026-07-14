@@ -1,0 +1,223 @@
+{
+  "skill_name": "document-pdf",
+  "skill_path": "skills/document-pdf",
+  "total_files": 11,
+  "total_tokens_estimate": 20000,
+  "purposes": [
+    {
+      "id": "extract-pdf-text-tables",
+      "description": "Extract text and tables from PDF documents using pypdf, pdfplumber, or command-line tools (pdftotext), with support for layout preservation and structured table output",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses third-party libraries: pypdf (PdfReader), pdfplumber, pandas for table extraction and Excel export"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run Python script or pdftotext command to extract content"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L1",
+            "evidence": "Read the source PDF file"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Command-line extraction using pdftotext from poppler-utils",
+          "primitives": [
+            {
+              "id": "gen.code.shell",
+              "min_level": "L1",
+              "evidence": "pdftotext -layout input.pdf output.txt or with page range flags"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L1",
+              "evidence": "Run single pdftotext command"
+            }
+          ]
+        },
+        {
+          "description": "OCR path for scanned PDFs using pytesseract + pdf2image",
+          "primitives": [
+            {
+              "id": "gen.code.python",
+              "min_level": "L3",
+              "evidence": "Uses pytesseract and pdf2image (convert_from_path) for OCR pipeline"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L2",
+              "evidence": "Convert to images then OCR each page"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "create-pdf",
+      "description": "Create new PDF documents from scratch using reportlab (Python) or pdf-lib (JavaScript), with text, tables, multi-page layouts, and styling",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses reportlab library: canvas.Canvas, SimpleDocTemplate, Paragraph, Table, TableStyle, Platypus layout engine"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Write and execute Python script that generates PDF"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L2",
+            "evidence": "Write the Python script file (1-10KB)"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "JavaScript path using pdf-lib for PDF creation",
+          "primitives": [
+            {
+              "id": "gen.code.javascript",
+              "min_level": "L2",
+              "evidence": "Uses pdf-lib: PDFDocument.create(), embedFont, addPage, drawText, drawRectangle with async/await"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L2",
+              "evidence": "Write and execute JS script"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "merge-split-manipulate-pdf",
+      "description": "Merge, split, rotate, crop, watermark, encrypt, and decrypt PDF documents using pypdf or qpdf command-line tools",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses pypdf PdfReader/PdfWriter for merge, split, rotate, watermark, encrypt operations"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Execute Python script or qpdf commands"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Command-line path using qpdf/pdftk",
+          "primitives": [
+            {
+              "id": "gen.code.shell",
+              "min_level": "L2",
+              "evidence": "qpdf with --pages, --split-pages, --rotate, --encrypt flags; pdftk merge/split/rotate commands"
+            },
+            {
+              "id": "tool.exec",
+              "min_level": "L1",
+              "evidence": "Run qpdf or pdftk command"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fill-pdf-form",
+      "description": "Fill PDF forms by detecting fillable fields or visually identifying form areas, creating field mappings, validating bounding boxes, and producing filled output",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Uses provided scripts (check_fillable_fields, extract_form_field_info, fill_fillable_fields) with JSON field configuration"
+          },
+          {
+            "id": "gen.text.structured",
+            "min_level": "L2",
+            "evidence": "Must create field_values.json or fields.json with nested objects: field_id, page, value, bounding boxes, entry_text with font properties"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L3",
+            "evidence": "Multi-step chain: check_fillable_fields -> extract_form_field_info -> convert_pdf_to_images -> create field JSON -> fill script, with iterative validation"
+          },
+          {
+            "id": "tool.file.read",
+            "min_level": "L2",
+            "evidence": "Read PDF images for visual analysis, read extracted field_info.json, read validation images"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L2",
+            "evidence": "Write field_values.json or fields.json with precise bounding box coordinates"
+          },
+          {
+            "id": "reason.spatial",
+            "min_level": "L2",
+            "evidence": "Must determine bounding boxes for form fields from visual analysis: label vs entry areas, checkbox squares vs text, non-intersecting rectangles"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L3",
+            "evidence": "Complex 4-step procedure with loops: visual analysis, create JSON + validation images, validate bounding boxes (iterate until correct), fill form. CRITICAL ordering enforced"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Label and entry bounding boxes MUST NOT intersect, red rectangles must only cover input areas, must visually inspect validation images before proceeding"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-5", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:7-11", "purposes": ["extract-pdf-text-tables", "create-pdf", "merge-split-manipulate-pdf", "fill-pdf-form"], "type": "instruction"},
+    {"location": "SKILL.md:13-26", "purposes": ["extract-pdf-text-tables"], "type": "code_example"},
+    {"location": "SKILL.md:28-78", "purposes": ["extract-pdf-text-tables", "merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "SKILL.md:79-119", "purposes": ["extract-pdf-text-tables"], "type": "code_example"},
+    {"location": "SKILL.md:121-167", "purposes": ["create-pdf"], "type": "code_example"},
+    {"location": "SKILL.md:169-209", "purposes": ["merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "SKILL.md:211-257", "purposes": ["extract-pdf-text-tables", "merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "SKILL.md:259-275", "purposes": ["merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "SKILL.md:276-294", "purposes": ["extract-pdf-text-tables", "create-pdf", "merge-split-manipulate-pdf", "fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:1-4", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:6-76", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:78-129", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:130-177", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:178-199", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "forms.md:200-206", "purposes": ["fill-pdf-form"], "type": "instruction"},
+    {"location": "reference.md:1-8", "purposes": ["extract-pdf-text-tables", "create-pdf", "merge-split-manipulate-pdf"], "type": "instruction"},
+    {"location": "reference.md:9-44", "purposes": ["extract-pdf-text-tables"], "type": "code_example"},
+    {"location": "reference.md:46-168", "purposes": ["create-pdf", "merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "reference.md:170-263", "purposes": ["extract-pdf-text-tables"], "type": "code_example"},
+    {"location": "reference.md:265-341", "purposes": ["merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "reference.md:343-461", "purposes": ["extract-pdf-text-tables"], "type": "code_example"},
+    {"location": "reference.md:462-527", "purposes": ["merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "reference.md:528-565", "purposes": ["merge-split-manipulate-pdf"], "type": "code_example"},
+    {"location": "reference.md:567-612", "purposes": ["merge-split-manipulate-pdf", "extract-pdf-text-tables"], "type": "instruction"},
+    {"location": "scripts/check_fillable_fields.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/extract_form_field_info.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/convert_pdf_to_images.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/create_validation_image.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/check_bounding_boxes.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/check_bounding_boxes_test.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/fill_fillable_fields.py", "purposes": ["fill-pdf-form"], "type": "script"},
+    {"location": "scripts/fill_pdf_form_with_annotations.py", "purposes": ["fill-pdf-form"], "type": "script"}
+  ],
+  "unmatched_requirements": []
+}

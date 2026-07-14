@@ -1,0 +1,56 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "data-analyst-1.0.0",
+  "scores": {
+    "iteration_1": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 85,
+      "data-clean": 85,
+      "average": 90
+    },
+    "iteration_2": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85,
+      "average": 95
+    },
+    "iteration_3": {
+      "csv-pivot": 100,
+      "multi-dataset-report": "ERROR (runtime SQLite lock)",
+      "data-clean": 85,
+      "average": "N/A"
+    },
+    "iteration_4": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 85,
+      "data-clean": 85,
+      "average": 90
+    },
+    "iteration_5": {
+      "csv-pivot": 100,
+      "multi-dataset-report": 100,
+      "data-clean": 85,
+      "average": 95
+    }
+  },
+  "best_scores": {
+    "csv-pivot": 100,
+    "multi-dataset-report": 100,
+    "data-clean": 85,
+    "average": 95
+  },
+  "changes_made": [
+    "Replaced verbose generic SKILL.md (573 lines) with compact targeted version (~120 lines)",
+    "Added mandatory rule: always use Python scripts for ALL numeric computations (fixed multi-dataset-report mental math error)",
+    "Added complete Python script templates for data cleaning, pivot analysis, and multi-dataset analysis",
+    "Added American date convention rule (MM/DD/YYYY) with explicit format table",
+    "Added instruction to deduplicate before counting cleaning metrics (partially effective)",
+    "Added instruction to never write JSON output files directly (use Python script to write them)",
+    "Removed unreferenced files: scripts/data-init.sh, scripts/query.sh, WA_Fn-UseC_-Telco-Customer-Churn.csv"
+  ],
+  "remaining_issues": [
+    "data-clean: model follows task prompt 'counted before dedup' over skill instruction to deduplicate first, resulting in dates_standardized=7 (expected 5) and missing_values=5 (expected 4, within tolerance). The task prompt creates an irreconcilable conflict with the test expectations."
+  ]
+}

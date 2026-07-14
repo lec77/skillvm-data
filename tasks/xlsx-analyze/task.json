@@ -1,0 +1,73 @@
+{
+  "id": "xlsx-analyze",
+  "name": "Analyze an expense spreadsheet and produce summary JSON",
+  "category": "document-xlsx",
+  "gradingType": "automated",
+  "prompt": "Read the file expenses.xlsx in the current directory. It contains a sheet called 'Expenses' with columns: Month, Category, Amount, Approved. Analyze the data and produce a file called expense_analysis.json with the following fields: \"total_by_category\" (object mapping each category name to its total spend), \"total_by_month\" (object mapping each month name to its total spend), \"grand_total\" (sum of all expenses), \"highest_category\" (name of the category with the highest total spend), \"approval_rate\" (percentage of expenses where Approved is true, as a number like 75 for 75%).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "xlsx-analyze.test.ts",
+        "criteria": [
+          {
+            "id": "file-valid",
+            "weight": 0.1,
+            "description": "expense_analysis.json exists and is valid JSON",
+            "testPattern": "exists and is valid JSON"
+          },
+          {
+            "id": "categories-present",
+            "weight": 0.15,
+            "description": "All 4 categories in total_by_category",
+            "testPattern": "all 4 categories"
+          },
+          {
+            "id": "travel-total",
+            "weight": 0.15,
+            "description": "Travel total is correct",
+            "testPattern": "Travel total"
+          },
+          {
+            "id": "grand-total",
+            "weight": 0.15,
+            "description": "Grand total is correct",
+            "testPattern": "grand_total"
+          },
+          {
+            "id": "highest-category",
+            "weight": 0.15,
+            "description": "Highest category identified correctly",
+            "testPattern": "highest_category"
+          },
+          {
+            "id": "approval-rate",
+            "weight": 0.15,
+            "description": "Approval rate is correct",
+            "testPattern": "approval_rate"
+          },
+          {
+            "id": "months-present",
+            "weight": 0.15,
+            "description": "All 6 months in total_by_month",
+            "testPattern": "all 6 months"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/document-xlsx",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/document-xlsx/xlsx-analyze/",
+    "importedAt": "2026-07-07T06:18:52.802Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

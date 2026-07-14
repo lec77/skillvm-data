@@ -1,0 +1,17 @@
+{
+  "skill": "geospatial-analysis",
+  "runtime": "opencode",
+  "model": "gemini-3-flash",
+  "iterations": 1,
+  "scores": {
+    "city-distance": {
+      "iteration_1": 100
+    },
+    "plate-boundary": {
+      "iteration_1": 100
+    }
+  },
+  "changes": [
+    "No changes needed — baseline skill achieved 100/100 on both tasks in iteration 1"
+  ]
+}

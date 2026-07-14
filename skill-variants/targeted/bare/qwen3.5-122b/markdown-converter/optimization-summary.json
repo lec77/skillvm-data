@@ -1,0 +1,42 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "markdown-converter",
+  "iterations": 5,
+  "scores": {
+    "iteration_0_baseline": {
+      "csv-to-md": 92,
+      "html-to-md": 100
+    },
+    "iteration_1": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Rewrote skill to emphasize Python scripts for CSV, original column names, markitdown for HTML"
+    },
+    "iteration_2": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Made description more inclusive for CSV report tasks to trigger skill loading"
+    },
+    "iteration_3": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Added guidance for capitalized labels in summary sections alongside lowercase column headers"
+    },
+    "iteration_4": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Made description extremely explicit about loading skill and formatting rules"
+    },
+    "iteration_5": {
+      "csv-to-md": 92,
+      "html-to-md": 100,
+      "changes": "Final attempt with prescriptive templates in skill body and aggressive load instruction in description"
+    }
+  },
+  "final_scores": {
+    "csv-to-md": 92,
+    "html-to-md": 100
+  },
+  "notes": "Model consistently achieves 100 on html-to-md (uses uvx markitdown correctly). The 8-point loss on csv-to-md comes from the 'table has columns' test which uses expect(md).toContain('product_id') || expect(md).toContain('Product') — the || does not work as logical OR with expect() (first expect throws before || is evaluated), so the test effectively requires BOTH 'product_id' AND 'Product' AND 'price' AND 'Price' simultaneously. The model either uses lowercase headers (has 'price' but not 'Price') or capitalized headers (has 'Price' but not 'product_id'). Additionally, qwen3.5-122b does not load the skill for CSV data tasks — it processes them directly without consulting the skill body, so only the description text (visible in system prompt) influences behavior."
+}

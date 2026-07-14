@@ -1,0 +1,10 @@
+{
+  "events": 6,
+  "shipped": 4,
+  "by_type": {
+    "cancel": 1,
+    "refund": 1,
+    "ship": 4
+  },
+  "fingerprint": "ed8e4e217d38a059"
+}

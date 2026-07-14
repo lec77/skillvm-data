@@ -1,0 +1,27 @@
+{
+  "iterations": 2,
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "iteration_3": 90,
+      "max_achievable": 90,
+      "note": "output-exists criterion pattern 'entities\\.json exists' does not match any bun JUnit test name, capping max at 90"
+    },
+    "medication-reconciliation": {
+      "iteration_1": 20,
+      "iteration_2": 60,
+      "iteration_3": 60,
+      "max_achievable": 60,
+      "note": "3 criteria patterns (output-exists, admission-count, discharge-count) do not match bun JUnit test names, capping max at 60"
+    }
+  },
+  "changes_made": [
+    "Condensed SKILL.md from 270 lines to ~80 lines, removing verbose Python code and implementation details",
+    "Added explicit JSON examples for medication reconciliation showing objects (not strings) in changes arrays",
+    "Added CRITICAL note that continued/increased/discontinued/new_meds arrays must contain medication objects with name field",
+    "Streamlined negation detection rules with concrete examples",
+    "Simplified drug class listing to essential classes for switch detection"
+  ],
+  "key_improvement": "medication-reconciliation improved from 20 to 60 by ensuring changes arrays use medication objects instead of plain strings"
+}

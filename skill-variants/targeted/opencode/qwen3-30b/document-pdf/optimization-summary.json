@@ -1,0 +1,32 @@
+{
+  "iterations": 4,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "document-pdf",
+  "tasks": {
+    "document-pdf": {
+      "iteration1": { "score": 100, "maxScore": 100, "notes": "Passed with original verbose skill" },
+      "iteration2": { "score": 0, "maxScore": 100, "notes": "Timeout - model tried to read PDF with text tool after skill rewrite" },
+      "iteration3": { "score": 85, "maxScore": 100, "notes": "All bun-tests pass, summary-quality LLM judge 0.5/1.0" },
+      "iteration4": { "score": 85, "maxScore": 100, "notes": "Consistent - same LLM judge variance" }
+    },
+    "pdf-create": {
+      "iteration1": { "score": 0, "maxScore": 100, "notes": "Timeout - model asked question about which library to use" },
+      "iteration2": { "score": 100, "maxScore": 100, "notes": "Passed after directive skill telling model to use reportlab" },
+      "iteration3": { "score": 100, "maxScore": 100, "notes": "Consistent pass" },
+      "iteration4": { "score": 100, "maxScore": 100, "notes": "Consistent pass" }
+    }
+  },
+  "finalScores": {
+    "document-pdf": 85,
+    "pdf-create": 100
+  },
+  "changes": [
+    "Replaced verbose multi-file skill (SKILL.md + forms.md + reference.md + scripts/) with single concise SKILL.md",
+    "Added prominent warning that PDF files are binary and cannot be read with text tools",
+    "Made library choices directive: pdfplumber for extraction, reportlab for creation, pypdf for merge/split",
+    "Added explicit instruction to never ask user which library to use",
+    "Removed forms.md, reference.md, scripts/ directory, LICENSE.txt as unreferenced by final skill",
+    "Reduced skill from ~600+ lines across multiple files to ~80 lines in single file"
+  ]
+}

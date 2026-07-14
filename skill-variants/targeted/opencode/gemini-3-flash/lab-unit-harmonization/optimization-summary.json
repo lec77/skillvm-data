@@ -1,0 +1,14 @@
+{
+  "iterations": 1,
+  "per_task_scores": {
+    "lab-harmonize": {
+      "iteration_1": 100
+    },
+    "lab-quality-report": {
+      "iteration_1": 100
+    }
+  },
+  "changes_made": [
+    "No changes needed — the initial skill (copied from verbose original) achieved 100/100 on both tasks on the first run."
+  ]
+}

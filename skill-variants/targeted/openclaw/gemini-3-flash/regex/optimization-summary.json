@@ -1,0 +1,41 @@
+{
+  "iterations": 3,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "regex-replace": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100
+    },
+    "regex-extract": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 472-line original SKILL.md with concise task-focused skill. Added explicit instructions for log parsing (query string handling, escaped quotes, type casting, conditional message field) and code cleanup (var→let/const decision guide, equality fixes, whitespace fixes). Removed unused regex_tester.py script.",
+      "regex_replace_score": 100,
+      "regex_extract_score": 0,
+      "issue": "Model manually wrote JSON for 20 log entries and introduced a malformed entry (stray key 'api/settings' broke JSON parsing), causing 0/100 on regex-extract"
+    },
+    {
+      "iteration": 2,
+      "description": "Changed log extraction approach from 'write JSON directly' to 'write a Node.js parsing script'. Added complete code snippets for regex, path query-string stripping, escaped quote handling, and conditional message inclusion. This eliminates manual JSON errors.",
+      "regex_replace_score": 100,
+      "regex_extract_score": 100,
+      "issue": null
+    },
+    {
+      "iteration": 3,
+      "description": "Confirmation run — no changes. Both tasks scored 100/100 consistently.",
+      "regex_replace_score": 100,
+      "regex_extract_score": 100,
+      "issue": null
+    }
+  ],
+  "key_insight": "gemini-3-flash correctly parsed all log entries but made a typo when manually constructing JSON for 20 entries. Instructing it to write a parsing script instead of manual JSON eliminated the error entirely."
+}

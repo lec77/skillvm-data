@@ -1,0 +1,19 @@
+{
+  "iteration_count": 2,
+  "per_task_scores": {
+    "pdf-text-extract": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    },
+    "pdf-merge-info": {
+      "iteration_1": 50,
+      "iteration_2": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Expanded SKILL.md beyond just nano-pdf edit to cover full PDF workflow: pdftotext for text extraction, pdfunite for merging, pdfinfo for page counts. Added critical note that pdfinfo metadata (often 'untitled'/'anonymous') differs from actual page content — must use pdftotext for titles/authors/data. Added common workflow sections for structured data extraction and merge+info tasks."
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "iterations": 4,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "plan-my-day-1.0.0",
+  "per_task_scores": {
+    "prioritize-tasks": {
+      "baseline": 95,
+      "iteration_1": 95,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 88,
+      "iteration_3": 100,
+      "iteration_4_confirmation": 100,
+      "final": 100
+    },
+    "schedule-workday": {
+      "baseline": 100,
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 100,
+      "iteration_3": 100,
+      "iteration_4_confirmation": 100,
+      "final": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md: condensed verbose planning guide into concise, structured rules. Added explicit classification rules for task prioritization with strict ordering. Added JSON output format examples for both tasks."
+    },
+    {
+      "iteration": 2,
+      "description": "Strengthened deferred classification rule: emphasized that ALL tasks with far-future deadline AND low impact go to deferred regardless of effort level. Added IMPORTANT note about checking rule 2 before rule 3."
+    },
+    {
+      "iteration": 3,
+      "description": "Added instruction to use exact task names from input — do not rename, rephrase, or abbreviate. Fixed issue where model was renaming tasks (e.g., 'Prepare quarterly budget' -> 'Prepare quarterly budget report')."
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "temperature-control",
+  "name": "Thermal PI Controller Simulation",
+  "category": "control-systems",
+  "gradingType": "automated",
+  "prompt": "Read scenario.json which describes a thermal control system. The plant is a first-order system: dT/dt = (1/plant_tau) * (-T + ambient_temp + plant_gain * u), where u is the control signal (heater power, 0 to max_power) and T is the temperature. Design a PI controller using IMC tuning rules (choose lambda = plant_tau/2 for moderate response) to maintain the temperature at setpoint. Simulate for total_steps with timestep dt. At step disturbance_start, ambient_temp drops by disturbance_magnitude. Write results to thermal_output.json with keys: temperatures (array), control_signals (array), errors (array of setpoint - temperature).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "temperature-control.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "Output file exists",
+            "testPattern": "output file exists"
+          },
+          {
+            "id": "array-length",
+            "weight": 0.1,
+            "description": "Arrays have correct length",
+            "testPattern": "correct length"
+          },
+          {
+            "id": "steady-state",
+            "weight": 0.25,
+            "description": "Steady state error is small before disturbance",
+            "testPattern": "steady state error"
+          },
+          {
+            "id": "disturbance-recovery",
+            "weight": 0.25,
+            "description": "Recovers from disturbance",
+            "testPattern": "recovers from"
+          },
+          {
+            "id": "overshoot",
+            "weight": 0.15,
+            "description": "No excessive overshoot",
+            "testPattern": "overshoot"
+          },
+          {
+            "id": "control-bounds",
+            "weight": 0.15,
+            "description": "Control signal within bounds",
+            "testPattern": "within bounds"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/control-systems",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/control-systems/temperature-control/",
+    "importedAt": "2026-07-07T06:18:30.396Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

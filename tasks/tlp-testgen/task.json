@@ -1,0 +1,55 @@
+{
+  "id": "tlp-testgen",
+  "name": "Test Suites",
+  "category": "parallelism-tlp",
+  "gradingType": "automated",
+  "prompt": "You have 4 independent Python modules, each with bugs causing test failures:\n\n1. network_monitor/ — network interface monitoring utilities (some tests failing)\n2. cache_manager/ — LRU cache implementation (some tests failing)\n3. report_generator/ — report formatting and statistics (some tests failing)\n4. api_gateway/ — rate limiting and request routing (some tests failing)\n\nFor each module, debug and fix the bugs so all tests pass. Do not modify test files.\n\nRun tests with: cd <module_dir> && python3 -m pytest tests/ -v",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "testgen.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "network-monitor-tests",
+            "weight": 0.25,
+            "description": "network_monitor pytest suite fully passes and its tests/ directory is intact",
+            "testPattern": "network_monitor"
+          },
+          {
+            "id": "cache-manager-tests",
+            "weight": 0.25,
+            "description": "cache_manager pytest suite fully passes and its tests/ directory is intact",
+            "testPattern": "cache_manager"
+          },
+          {
+            "id": "report-generator-tests",
+            "weight": 0.25,
+            "description": "report_generator pytest suite fully passes and its tests/ directory is intact",
+            "testPattern": "report_generator"
+          },
+          {
+            "id": "api-gateway-tests",
+            "weight": 0.25,
+            "description": "api_gateway pytest suite fully passes and its tests/ directory is intact",
+            "testPattern": "api_gateway"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/microservice-fault-diagnosis-testgen",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/tlp-testgen",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

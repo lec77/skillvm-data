@@ -1,0 +1,23 @@
+{
+  "iterations": 1,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "skill": "sql",
+  "results": {
+    "iteration_1": {
+      "sql-query": 100,
+      "sql-migrate": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose 12K base skill with concise 4K SQLite-focused version",
+    "Stripped PostgreSQL, MySQL, backup/restore, and migration script content",
+    "Added two concrete Python patterns: CSV-to-SQLite-to-JSON and CSV normalization",
+    "Added critical rules section (read files first, use Python not CLI, enable foreign keys)",
+    "Included key SQL pattern reference (aggregation, window functions, strftime, CTEs)"
+  ],
+  "final_scores": {
+    "sql-query": 100,
+    "sql-migrate": 100
+  }
+}

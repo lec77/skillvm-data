@@ -1,0 +1,38 @@
+{
+  "skill": "sql",
+  "runtime": "openclaw",
+  "model": "devstral-small",
+  "iterations": 4,
+  "scores": {
+    "iteration_1": {
+      "sql-query": 20,
+      "sql-migrate": 100,
+      "notes": "Baseline with verbose skill. sql-query stuck in loop: .import caused 'datatype mismatch' on CSV header row with typed table. Never produced query_results.json."
+    },
+    "iteration_2": {
+      "sql-query": 72,
+      "sql-migrate": 93,
+      "notes": "Added CSV import guidance (Approach 1: INSERT, Approach 2: temp table). sql-query now works but: header row still imported as data via .import (contaminated results), top_customer saved as object instead of string, product_ranking saved as array of objects instead of strings. sql-migrate: project_hours array not sorted correctly in JSON output."
+    },
+    "iteration_3": {
+      "sql-query": 100,
+      "sql-migrate": 93,
+      "notes": "Strengthened to 'CRITICAL: Do NOT use .import'. Added JSON output format rules (plain strings vs objects vs arrays). sql-query now perfect. sql-migrate: engineering_projects missing 'Gamma' due to broken nested json_group_array/json_object query."
+    },
+    "iteration_4": {
+      "sql-query": 100,
+      "sql-migrate": 100,
+      "notes": "Added guidance to run simple queries separately instead of complex nested JSON in SQLite. Added DISTINCT join query pattern for filtered lists. Both tasks now perfect."
+    }
+  },
+  "changes": [
+    "Replaced verbose multi-database skill (SQLite/PostgreSQL/MySQL) with SQLite-only focused skill",
+    "Added CRITICAL warning against using .import (causes header row contamination)",
+    "Added step-by-step workflow at top of skill",
+    "Added JSON output format rules (string vs object vs array of strings vs array of objects)",
+    "Added write tool string-only content requirement",
+    "Added guidance to run queries separately instead of complex nested JSON in SQLite",
+    "Added DISTINCT filtered join query pattern for normalization tasks",
+    "Removed all PostgreSQL, MySQL, migration scripts, backup/restore, and EXPLAIN content"
+  ]
+}

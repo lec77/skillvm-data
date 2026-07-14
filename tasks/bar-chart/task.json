@@ -1,0 +1,67 @@
+{
+  "id": "bar-chart",
+  "name": "D3.js bar chart from CSV sales data",
+  "category": "d3-visualization",
+  "gradingType": "automated",
+  "prompt": "Read sales.csv with 8 products and their revenue values. Create a standalone chart.html file that displays a bar chart using D3.js. Requirements: (1) Download or embed D3.js v7 locally - do NOT use CDN links, (2) SVG dimensions 800×500 with margins {top:40, right:30, bottom:60, left:80}, (3) vertical bars with product names on x-axis, (4) y-axis labeled 'Revenue ($)', (5) chart title 'Product Revenue', (6) each bar should have a different color. The HTML file must be self-contained and work offline.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "bar-chart.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "chart.html file exists",
+            "testPattern": "chart.html exists"
+          },
+          {
+            "id": "has-svg",
+            "weight": 0.15,
+            "description": "Contains SVG element",
+            "testPattern": "contains SVG element"
+          },
+          {
+            "id": "bar-count",
+            "weight": 0.25,
+            "description": "Has 8 bars for 8 products",
+            "testPattern": "has 8 bars"
+          },
+          {
+            "id": "no-cdn",
+            "weight": 0.2,
+            "description": "No CDN URLs used",
+            "testPattern": "no CDN URLs"
+          },
+          {
+            "id": "axis-labels",
+            "weight": 0.15,
+            "description": "Contains axis labels",
+            "testPattern": "contains axis labels"
+          },
+          {
+            "id": "product-names",
+            "weight": 0.15,
+            "description": "Contains product names",
+            "testPattern": "contains product names"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/d3-visualization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/d3-visualization/bar-chart/",
+    "importedAt": "2026-07-07T06:18:30.396Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

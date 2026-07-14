@@ -1,0 +1,19 @@
+{
+  "skill": "timeseries-analysis",
+  "runtime": "opencode",
+  "model": "gemini-3-flash",
+  "iterations": 1,
+  "tasks": {
+    "anomaly-detection": {
+      "scores": [100],
+      "final_score": 100
+    },
+    "hp-detrending": {
+      "scores": [100],
+      "final_score": 100
+    }
+  },
+  "changes": [
+    "No changes needed — the original SKILL.md achieved 100/100 on both tasks in the first iteration"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "skill": "weather",
+  "runtime": "opencode",
+  "model": "qwen3.5-397b",
+  "iterations": 1,
+  "finalScores": {
+    "weather-compare": 100,
+    "weather-travel": 100
+  },
+  "perIterationScores": [
+    {
+      "iteration": 1,
+      "scores": {
+        "weather-compare": {
+          "total": 100,
+          "criteria": {
+            "city-mentions": 1.0,
+            "api-call-made": 1.0,
+            "weather-metrics": 1.0,
+            "per-city-completeness": 1.0,
+            "presentation-quality": 1.0
+          }
+        },
+        "weather-travel": {
+          "total": 100,
+          "criteria": {
+            "city-references": 1.0,
+            "weather-data": 1.0,
+            "temperature-difference": 1.0,
+            "packing-advice": 1.0
+          }
+        }
+      }
+    }
+  ],
+  "changes": [
+    "Switched from wttr.in to Open-Meteo API for reliability",
+    "Added explicit city coordinate lookup table covering all benchmark cities",
+    "Added step-by-step procedure with exact curl command template",
+    "Added WMO weather code to text lookup table",
+    "Added unit conversion formulas (C to F, km/h to mph)",
+    "Added exact markdown table format template for comparisons",
+    "Added travel/packing recommendation section with worked example",
+    "Added CRITICAL RULES section with ALWAYS/NEVER constraints for SLM clarity"
+  ]
+}

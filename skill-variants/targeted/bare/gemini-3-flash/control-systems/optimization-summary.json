@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "max_iterations": 5,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "control-systems",
+  "per_task_scores": {
+    "cruise-control": {
+      "iteration_1": 100
+    },
+    "temperature-control": {
+      "iteration_1": 100
+    }
+  },
+  "changes_made": [],
+  "notes": "Baseline skill (identical to original verbose skill) achieved 100/100 on both tasks on the first iteration. No optimization needed."
+}

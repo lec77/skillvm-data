@@ -1,0 +1,67 @@
+{
+  "id": "note-extraction",
+  "name": "Extract medical entities from a clinical encounter note",
+  "category": "clinical-nlp",
+  "gradingType": "automated",
+  "prompt": "Read clinical_note.txt containing a clinical encounter note. Extract all medical entities into structured format. For each entity identify: (1) the text as it appears in the note, (2) the entity type (condition, medication, lab_result, vital_sign, procedure), (3) whether it is negated (e.g. 'denies nausea' → negated=true, 'no heart failure' → negated=true), (4) for medications: extract dose, unit, route, frequency as additional fields, (5) for lab results: extract value and unit as additional fields. Write entities.json as an array of entity objects.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "note-extraction.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "entities.json file created",
+            "testPattern": "entities\\.json exists"
+          },
+          {
+            "id": "entity-count",
+            "weight": 0.1,
+            "description": "At least 15 entities extracted",
+            "testPattern": "at least 15 entities"
+          },
+          {
+            "id": "conditions-found",
+            "weight": 0.2,
+            "description": "Key conditions identified with correct type",
+            "testPattern": "diabetes.*condition|condition.*diabetes"
+          },
+          {
+            "id": "negation-correct",
+            "weight": 0.25,
+            "description": "Negation correctly detected for negated entities",
+            "testPattern": "nausea.*negated|negated.*nausea|heart failure.*negated|negated.*heart failure"
+          },
+          {
+            "id": "medications-parsed",
+            "weight": 0.2,
+            "description": "Medications extracted with dose attributes",
+            "testPattern": "Metformin.*medication|medication.*Metformin"
+          },
+          {
+            "id": "labs-parsed",
+            "weight": 0.15,
+            "description": "Lab results extracted with numeric values",
+            "testPattern": "Troponin.*lab_result|lab_result.*Troponin"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/clinical-nlp",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/clinical-nlp/note-extraction/",
+    "importedAt": "2026-07-07T06:18:30.391Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

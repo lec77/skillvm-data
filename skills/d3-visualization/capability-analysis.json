@@ -1,0 +1,65 @@
+{
+  "skill_name": "d3-visualization",
+  "skill_path": "skills/d3-visualization",
+  "total_files": 1,
+  "total_tokens_estimate": 2500,
+  "purposes": [
+    {
+      "id": "create-d3-chart",
+      "description": "Build standalone, offline-capable HTML files containing SVG data visualizations (bar charts, line charts, scatter plots) using D3.js v7 with vendored local library, margins convention, scales, axes, and deterministic output",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.javascript",
+            "min_level": "L3",
+            "evidence": "D3.js v7 API with DOM manipulation (d3.select, .append, .join), async data loading, complex SVG coordinate math, scale/axis composition"
+          },
+          {
+            "id": "gen.code.html",
+            "min_level": "L3",
+            "evidence": "Complete standalone HTML with embedded CSS, inline SVG generation via D3, computed coordinates for bars/lines/axes, responsive margin convention"
+          },
+          {
+            "id": "gen.text.long",
+            "min_level": "L2",
+            "evidence": "Complete HTML file with embedded styles and full D3 script (typically 1-5KB) must be output without truncation"
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Must download d3.min.js via curl before creating the HTML file"
+          },
+          {
+            "id": "tool.file.write",
+            "min_level": "L2",
+            "evidence": "Write complete HTML file (1-10KB) with all closing tags intact"
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Multiple constraints: never use CDN, fixed SVG dimensions, no CSS animations, explicit tick counts, deterministic output"
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:6-15", "purposes": ["create-d3-chart"], "type": "instruction"},
+    {"location": "SKILL.md:17-36", "purposes": ["create-d3-chart"], "type": "instruction"},
+    {"location": "SKILL.md:38-62", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:64-80", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:82-105", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:107-131", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:133-146", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:148-168", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:170-191", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:193-202", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:204-215", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:217-239", "purposes": ["create-d3-chart"], "type": "code_example"},
+    {"location": "SKILL.md:241-248", "purposes": ["create-d3-chart"], "type": "instruction"},
+    {"location": "SKILL.md:250-316", "purposes": ["create-d3-chart"], "type": "code_example"}
+  ],
+  "unmatched_requirements": []
+}

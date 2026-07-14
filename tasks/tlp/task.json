@@ -1,0 +1,49 @@
+{
+  "id": "tlp",
+  "name": "Multi-Service Debug",
+  "category": "parallelism-tlp",
+  "gradingType": "automated",
+  "prompt": "You have 3 independent Python services, each with bugs causing test failures:\n\n1. auth_service/ — JWT authentication service (some tests failing)\n2. data_pipeline/ — Data processing pipeline (some tests failing)\n3. task_scheduler/ — Task scheduling system (some tests failing)\n\nFor each service, debug and fix the bugs so all tests pass. Do not modify test files.\n\nRun tests with: cd <service_dir> && python3 -m pytest tests/ -v",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "bugfix.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "auth-service-tests",
+            "weight": 0.34,
+            "description": "auth_service pytest suite fully passes (all tests, previously-failing tests included)",
+            "testPattern": "auth_service"
+          },
+          {
+            "id": "data-pipeline-tests",
+            "weight": 0.33,
+            "description": "data_pipeline pytest suite fully passes (all tests, previously-failing tests included)",
+            "testPattern": "data_pipeline"
+          },
+          {
+            "id": "task-scheduler-tests",
+            "weight": 0.33,
+            "description": "task_scheduler pytest suite fully passes (all tests, previously-failing tests included)",
+            "testPattern": "task_scheduler"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/microservice-fault-diagnosis",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/tlp",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

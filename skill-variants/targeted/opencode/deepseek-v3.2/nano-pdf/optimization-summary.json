@@ -1,0 +1,34 @@
+{
+  "skill": "nano-pdf",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 5,
+  "scores": {
+    "iteration_1_baseline": {
+      "pdf-merge-info": 50,
+      "pdf-text-extract": 100
+    },
+    "iteration_2": {
+      "pdf-merge-info": 100,
+      "pdf-text-extract": 100
+    },
+    "iteration_3": {
+      "pdf-merge-info": 75,
+      "pdf-text-extract": 100
+    },
+    "iteration_4": {
+      "pdf-merge-info": 100,
+      "pdf-text-extract": "timeout"
+    },
+    "iteration_5_final": {
+      "pdf-merge-info": 100,
+      "pdf-text-extract": 100
+    }
+  },
+  "changes": [
+    "Expanded skill from edit-only to cover merge, text extraction, and page count operations",
+    "Added CRITICAL guidance to extract titles/authors from page text content, not PDF metadata properties",
+    "Added example code showing case-insensitive matching with original case preservation for extracted values",
+    "Added pypdf code examples for merging, text extraction, and page counting"
+  ]
+}

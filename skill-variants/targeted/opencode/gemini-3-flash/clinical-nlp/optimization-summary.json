@@ -1,0 +1,38 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "skill": "clinical-nlp",
+  "iterations": 3,
+  "scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "iteration_3": 90,
+      "theoretical_max": 90,
+      "unreachable_criteria": {
+        "output-exists": "testPattern 'entities\\.json exists' does not match any test name in JUnit output (10 points)"
+      }
+    },
+    "medication-reconciliation": {
+      "iteration_1": 60,
+      "iteration_2": 60,
+      "iteration_3": 60,
+      "theoretical_max": 60,
+      "unreachable_criteria": {
+        "output-exists": "testPattern 'reconciliation\\.json exists' does not match any test name in JUnit output (10 points)",
+        "admission-count": "testPattern 'admission list has 5' does not match test name 'admission list has exactly 5 medications' (15 points)",
+        "discharge-count": "testPattern 'discharge list has 6' does not match test name 'discharge list has exactly 6 medications' (15 points)"
+      }
+    }
+  },
+  "changes_made": [
+    "Replaced verbose 270-line original SKILL.md with concise 75-line targeted version",
+    "Removed Python regex patterns and pseudo-code implementation algorithm (unnecessary for LLM)",
+    "Removed common drug list (not needed for entity extraction tasks)",
+    "Added explicit JSON output schema examples matching test expectations",
+    "Emphasized negation detection with concrete clinical note examples",
+    "Added exact reconciliation.json output structure template",
+    "Added validation checklist for common errors (string vs number types, boolean negated field)"
+  ],
+  "notes": "Model achieves theoretical maximum on all reachable criteria across 3 consecutive runs. The unreachable criteria have testPattern bugs in the task definitions where the pattern matches the describe() block name rather than the test() name in JUnit XML output."
+}

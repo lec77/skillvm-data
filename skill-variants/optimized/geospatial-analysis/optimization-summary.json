@@ -1,0 +1,31 @@
+{
+  "iterations": 1,
+  "original_size_bytes": 4671,
+  "optimized_size_bytes": 1796,
+  "compression_ratio": "61.6% reduction",
+  "per_task_scores": {
+    "city-distance": {
+      "score": 100,
+      "max_score": 100
+    },
+    "plate-boundary": {
+      "score": 100,
+      "max_score": 100
+    }
+  },
+  "changes_made": [
+    "Removed Python implementation (tasks use JS/TS via bun-test)",
+    "Removed K-Nearest Neighbors section (not tested by any task)",
+    "Removed Nearest Point code implementation, kept description",
+    "Removed Distance Matrix code implementation, kept description",
+    "Condensed Haversine formula section (removed math notation, kept TS code)",
+    "Condensed bearing section (merged formula description into code)",
+    "Compressed pitfalls to bullet points"
+  ],
+  "benchmark": {
+    "runtime": "openclaw",
+    "model": "qwen3.5-397b",
+    "variants": "optimized",
+    "session": "openclaw_geospatial-analysis/*_qwen3.5-397b_2026-03-20_07-50-35"
+  }
+}

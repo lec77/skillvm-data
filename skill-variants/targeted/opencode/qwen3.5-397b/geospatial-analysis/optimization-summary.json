@@ -1,0 +1,14 @@
+{
+  "skill": "geospatial-analysis",
+  "runtime": "opencode",
+  "model": "qwen3.5-397b",
+  "iterations": 1,
+  "results": {
+    "iteration_1": {
+      "city-distance": { "score": 100, "max_score": 100 },
+      "plate-boundary": { "score": 100, "max_score": 100 }
+    }
+  },
+  "changes_made": [],
+  "notes": "Baseline skill (identical to original) achieved 100/100 on both tasks. No optimization was needed."
+}

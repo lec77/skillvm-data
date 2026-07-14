@@ -1,0 +1,56 @@
+{
+  "skill": "clinical-nlp",
+  "runtime": "opencode",
+  "model": "qwen3-30b",
+  "iterations": 4,
+  "scores": {
+    "baseline": {
+      "note-extraction": 90,
+      "medication-reconciliation": 0,
+      "total": 90
+    },
+    "iteration_1": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150
+    },
+    "iteration_2": {
+      "note-extraction": 90,
+      "medication-reconciliation": "timeout",
+      "total": 90
+    },
+    "iteration_3": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150
+    },
+    "iteration_4": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150
+    }
+  },
+  "max_achievable": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "total": 150,
+    "explanation": "Three criteria (output-exists, admission-count, discharge-count) have testPattern regex mismatches in the evaluation framework — they match describe block names but the JUnit XML parser extracts test case names. These criteria always score 0 regardless of skill quality."
+  },
+  "changes_made": [
+    "Reduced skill from 270 lines (verbose original) to ~100 lines optimized for qwen3-30b",
+    "Removed Python regex patterns, implementation algorithm, drug list, ICD-10 codes — model has this knowledge built-in",
+    "Added explicit JSON validity reminder (IMPORTANT: write complete, valid JSON)",
+    "Added concrete output format examples for entities.json and reconciliation.json",
+    "Added reconciliation algorithm as numbered steps for smaller model to follow",
+    "Added worked example showing correct reconciliation output including switched vs discontinued distinction",
+    "Emphasized switched is mutually exclusive with discontinued/new_meds with bold IMPORTANT callout",
+    "Added negation examples covering 'or' conjunction (denies nausea or vomiting → both negated)"
+  ],
+  "key_findings": [
+    "Baseline verbose skill (270 lines) caused qwen3-30b to produce malformed JSON (missing closing brace) for medication-reconciliation",
+    "Smaller models benefit from concise skills with worked examples over comprehensive reference material",
+    "Model consistently dispatches subagents for reconciliation task — worked example helps it produce correct output regardless",
+    "Note-extraction task is well-handled by qwen3-30b with minimal guidance — consistent 90/100 across all runs",
+    "Framework bug: JUnit XML parser extracts testcase name attributes but testPatterns match describe block classnames, causing 3 criteria to always score 0"
+  ]
+}

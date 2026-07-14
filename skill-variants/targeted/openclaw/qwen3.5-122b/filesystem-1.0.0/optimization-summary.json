@@ -1,0 +1,28 @@
+{
+  "iterations": 4,
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "filesystem-1.0.0",
+  "per_task_scores": {
+    "fs-batch-rename": {
+      "iteration_1_baseline": 70,
+      "iteration_2_optimized": 100,
+      "iteration_3_verification": 100,
+      "iteration_4_depth_fix": 100
+    },
+    "fs-search": {
+      "iteration_1_baseline": 100,
+      "iteration_2_optimized": 100,
+      "iteration_3_verification": 85,
+      "iteration_4_depth_fix": 100
+    }
+  },
+  "changes_made": [
+    "Rewrote skill from Chinese to English for better model comprehension",
+    "Reduced skill size from 342 lines to ~75 lines, removing redundant examples",
+    "Added explicit guidance to preserve dots in filenames during kebab-case rename (fixed v3.1 -> v3-1 bug)",
+    "Provided a complete bash code template for kebab-case rename with correct sed pattern [^a-z0-9.] instead of [^a-z0-9]",
+    "Added explicit directory depth counting formula using awk -F'/' '{print NF}' with explanation that component count equals depth",
+    "Added structured directory analysis checklist with specific commands for each metric"
+  ]
+}

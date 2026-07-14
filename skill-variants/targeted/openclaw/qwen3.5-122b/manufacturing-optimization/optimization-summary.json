@@ -1,0 +1,27 @@
+{
+  "model": "qwen3.5-122b",
+  "runtime": "openclaw",
+  "skill": "manufacturing-optimization",
+  "iterations": 2,
+  "scores": {
+    "iteration_1_baseline": {
+      "fjsp-schedule": 0,
+      "job-makespan": 100
+    },
+    "iteration_2_optimized": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    },
+    "iteration_3_verification": {
+      "fjsp-schedule": 100,
+      "job-makespan": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to strongly direct the model to write and execute a Python solver script instead of solving manually. Added a CRITICAL instruction at the top ('Never solve FJSP problems manually'), included a complete copy-paste-ready Python solver template with correct downtime handling (while-loop for iterative conflict resolution), simplified the overall document by removing verbose pseudocode sections (repair heuristic, constraint checking functions), and kept the output format specification concise."
+    }
+  ],
+  "root_cause": "The model attempted to solve the fjsp-schedule problem by manually tracing through the greedy algorithm in text, generating only 167 output tokens before being cut off. The job-makespan task succeeded because the model independently chose to write a Python script. The fix was to make script-writing the explicit default approach in the skill."
+}

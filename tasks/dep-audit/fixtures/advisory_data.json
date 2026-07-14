@@ -1,0 +1,44 @@
+{
+  "advisories": [
+    {
+      "id": "GHSA-p6mc-m468-83gw",
+      "module_name": "lodash",
+      "severity": "critical",
+      "title": "Prototype Pollution in lodash",
+      "vulnerable_versions": "<4.17.21",
+      "patched_versions": ">=4.17.21"
+    },
+    {
+      "id": "GHSA-jf85-cpcp-j695",
+      "module_name": "express",
+      "severity": "high",
+      "title": "Open Redirect in express",
+      "vulnerable_versions": "<4.19.0",
+      "patched_versions": ">=4.19.0"
+    },
+    {
+      "id": "GHSA-cph5-m8f7-6c5x",
+      "module_name": "axios",
+      "severity": "moderate",
+      "title": "Server-Side Request Forgery in axios",
+      "vulnerable_versions": "<0.21.2",
+      "patched_versions": ">=0.21.2"
+    },
+    {
+      "id": "GHSA-xvch-5gv4-984h",
+      "module_name": "minimist",
+      "severity": "low",
+      "title": "Prototype Pollution in minimist",
+      "vulnerable_versions": "<1.2.6",
+      "patched_versions": ">=1.2.6"
+    },
+    {
+      "id": "GHSA-0000-safe-chalk",
+      "module_name": "chalk",
+      "severity": "none",
+      "title": "No known vulnerabilities in chalk 4.x",
+      "vulnerable_versions": "<0.0.0",
+      "patched_versions": ">=0.0.0"
+    }
+  ]
+}

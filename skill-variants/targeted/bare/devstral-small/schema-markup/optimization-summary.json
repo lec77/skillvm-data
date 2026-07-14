@@ -1,0 +1,35 @@
+{
+  "skill": "schema-markup",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 5,
+  "per_task_scores": {
+    "faq-schema": {
+      "iteration_1": [100, 0],
+      "iteration_2": [33, 100, 33],
+      "iteration_3": [100, 33, "ERROR", 100, 100],
+      "iteration_4": [100, 100, 100, 100, 100],
+      "iteration_5": [0, 100, 100, 100, 100]
+    },
+    "product-schema": {
+      "iteration_1": [100, 100],
+      "iteration_2": [5, 100, 100],
+      "iteration_3": [100, 5, 5, 100, 100],
+      "iteration_4": [100, 5, 5, 100, 81],
+      "iteration_5": [100, 5, 100, 100, 100]
+    }
+  },
+  "final_success_rate": {
+    "faq-schema": "80% (4/5 runs at 100)",
+    "product-schema": "80% (4/5 runs at 100)"
+  },
+  "changes_made": [
+    "Replaced verbose general-purpose SKILL.md (180 lines) with minimal script-focused version (20 lines)",
+    "Removed references/schema-examples.md (399 lines) — no longer needed",
+    "Added scripts/html2jsonld.py — Python script that extracts FAQ and Product schema from HTML automatically",
+    "Simplified skill description to encourage skill loading by devstral-small",
+    "Fixed HTML parser bugs: brand extraction from <strong> tags, SKU from <span> tags, description from nested divs"
+  ],
+  "failure_analysis": "Remaining failures (~20%) are model-level issues: devstral-small sometimes corrupts tool names by appending '}()' to function names, produces empty responses, or hits API timeouts. These are not addressable through skill optimization.",
+  "key_insight": "Bundling a Python script is the highest-leverage optimization for SLMs. When devstral-small loads the skill and runs the script, it achieves 100/100 every time. The script eliminates JSON truncation issues and write_file type errors that plagued manual JSON generation."
+}

@@ -1,0 +1,42 @@
+{
+  "skill": "flood-analysis",
+  "runtime": "openclaw",
+  "model": "devstral-small",
+  "iterations": 4,
+  "final_scores": {
+    "flood-risk": 100,
+    "streamflow-stats": 100
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "scores": { "flood-risk": 88, "streamflow-stats": 100 },
+      "changes": "Initial optimized SKILL.md with complete Python scripts, explicit output formats, and step-by-step instructions tailored for devstral-small",
+      "notes": "Station C scored 0.5 — model read CSV directly instead of running Python, missed some flood days"
+    },
+    {
+      "iteration": 2,
+      "scores": { "flood-risk": 53, "streamflow-stats": 100 },
+      "changes": "Added stronger directive to always write and execute Python scripts instead of manually analyzing data",
+      "notes": "Score dropped — model still read CSV directly (truncated at ~130 lines), missed station_A peak at 2800 and all station_C flood days"
+    },
+    {
+      "iteration": 3,
+      "scores": { "flood-risk": 100, "streamflow-stats": 100 },
+      "changes": "Restructured skill with CRITICAL warning about CSV truncation, explicit 2-step workflow (write .py file then exec), removed theory and focused on actionable steps",
+      "notes": "Both tasks score 100. Model correctly writes Python scripts and executes them via exec tool"
+    },
+    {
+      "iteration": 4,
+      "scores": { "flood-risk": 100, "streamflow-stats": 100 },
+      "changes": "Confirmation run with no changes",
+      "notes": "Stable 100/100 on both tasks"
+    }
+  ],
+  "key_optimization_insights": [
+    "devstral-small tries to manually analyze CSV files instead of writing Python scripts when the task seems simple",
+    "openclaw's read tool truncates large files (~130 lines), causing the model to miss data points in long CSVs",
+    "Explicit CRITICAL warning about CSV truncation and mandatory write-then-exec workflow was the key fix",
+    "Providing complete copy-paste Python scripts in the skill ensures correct implementation"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "iterations": 1,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "skill": "file-organization",
+  "tasks": {
+    "fileorg-dedup": {
+      "scores": [100],
+      "final": 100
+    },
+    "fileorg-messy": {
+      "scores": [100],
+      "final": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Compressed verbose 434-line SKILL.md to ~40 lines with precise, actionable instructions. Removed all examples, tips, best practices, and conversational content. Added explicit category-to-extension mappings matching test expectations (documents/, images/, code/, media/, archives/, other/). Added concrete shell commands for both organize and dedup tasks."
+    }
+  ]
+}

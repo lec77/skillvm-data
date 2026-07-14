@@ -1,0 +1,46 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1_baseline": {
+      "regex-replace": 82,
+      "regex-extract": 36,
+      "notes": "Original verbose skill. Extract failed: regex only matched ERROR lines (7/20). Replace: missed some debug removal and var replacement."
+    },
+    "iteration_2": {
+      "regex-replace": 80,
+      "regex-extract": 59,
+      "notes": "Added focused log parsing recipe with optional message group. Extract improved but model changed \\S+ to restrictive char class, missing query string lines."
+    },
+    "iteration_3": {
+      "regex-replace": 65,
+      "regex-extract": 22,
+      "notes": "Over-specified skill confused model. Extract got stuck in 38-message loop. Replace: model commented out lines instead of deleting."
+    },
+    "iteration_4": {
+      "regex-replace": 62,
+      "regex-extract": 100,
+      "notes": "Simplified skill back. Extract perfect. Replace: model ignored var->let/const instruction entirely."
+    },
+    "iteration_5_final": {
+      "regex-replace": 92,
+      "regex-extract": 100,
+      "notes": "Added explicit Python script recipe for code cleanup with step-by-step var replacement. Both tasks score high."
+    }
+  },
+  "final_scores": {
+    "regex-replace": 92,
+    "regex-extract": 100,
+    "total": 192,
+    "max": 200
+  },
+  "changes_made": [
+    "Replaced verbose generic regex cookbook with concise, task-focused recipes",
+    "Added log parsing Python recipe with \\S+ for paths and optional message group",
+    "Added code cleanup Python recipe with explicit var->let->const pipeline",
+    "Emphasized writing scripts to files (not inline) to avoid shell quoting issues",
+    "Added critical rules: parse ALL lines, verify counts, remove means delete",
+    "Removed unreferenced scripts/regex_tester.py"
+  ]
+}

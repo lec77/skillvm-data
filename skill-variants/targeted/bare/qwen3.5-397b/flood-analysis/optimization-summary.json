@@ -1,0 +1,44 @@
+{
+  "skill": "flood-analysis",
+  "runtime": "bare",
+  "model": "qwen3.5-397b",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline — original verbose SKILL.md (identical to source)",
+      "scores": {
+        "flood-risk": 100,
+        "streamflow-stats": 100
+      },
+      "costs": {
+        "flood-risk": 0.0341,
+        "streamflow-stats": 0.0125
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Compressed skill — removed USGS data section, aggregation examples, and verbose explanations; kept only classification logic, LP3 formulas, and critical rules",
+      "scores": {
+        "flood-risk": 100,
+        "streamflow-stats": 100
+      },
+      "costs": {
+        "flood-risk": 0.0246,
+        "streamflow-stats": 0.0103
+      }
+    }
+  ],
+  "changes": [
+    "Removed USGS Streamflow Data section (unnecessary background)",
+    "Removed NWS flood stage table (model already knows these)",
+    "Removed aggregation-to-daily-values code example",
+    "Removed complete LP3 example (redundant with step-by-step)",
+    "Consolidated Common Pitfalls into Critical Rules section",
+    "Reduced skill from 136 lines to 42 lines"
+  ],
+  "final_scores": {
+    "flood-risk": 100,
+    "streamflow-stats": 100
+  }
+}

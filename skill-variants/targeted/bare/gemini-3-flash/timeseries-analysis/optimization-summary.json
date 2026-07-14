@@ -1,0 +1,19 @@
+{
+  "skill": "timeseries-analysis",
+  "runtime": "bare",
+  "model": "gemini-3-flash",
+  "iterations": 1,
+  "results": {
+    "iteration_1": {
+      "anomaly-detection": 100,
+      "hp-detrending": 100
+    }
+  },
+  "changes_made": [
+    "No changes needed — baseline skill already achieves 100/100 on both tasks"
+  ],
+  "final_scores": {
+    "anomaly-detection": 100,
+    "hp-detrending": 100
+  }
+}

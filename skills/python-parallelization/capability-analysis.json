@@ -1,0 +1,124 @@
+{
+  "skill_name": "python-parallelization",
+  "skill_path": "skills/python-parallelization",
+  "total_files": 1,
+  "total_tokens_estimate": 1700,
+  "purposes": [
+    {
+      "id": "transform-sequential-to-parallel",
+      "description": "Convert sequential Python loops and batch operations into parallel implementations using multiprocessing, concurrent.futures, or asyncio, choosing the right API based on workload type (CPU-bound vs I/O-bound).",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Skill requires generating Python code using standard library modules: multiprocessing.Pool, concurrent.futures.ProcessPoolExecutor, os.cpu_count. All examples use stdlib, no third-party libraries."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L1",
+            "evidence": "Agent must identify the workload type (CPU-bound vs I/O-bound) from user's sequential code to select the right parallelization strategy from the decision framework table."
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L1",
+            "evidence": "Agent must plan the transformation: identify the loop body, extract it into a worker function, choose pool.map vs apply_async vs executor.map, and handle result collection order."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Multiple constraints: avoid shared mutable state, use context managers for resource cleanup, use __name__ guard on Windows/macOS, preserve output ordering when required, handle errors per-item."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "tune-parallel-performance",
+      "description": "Optimize parallel code by selecting worker count, chunk_size, and choosing between process vs thread pools based on workload characteristics.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Generating Python code with os.cpu_count(), chunksize parameter tuning, and Pool(processes=N) configuration."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L1",
+            "evidence": "Computing chunk_size = max(1, len(items) // (n_workers * 4)) and reasoning about IPC overhead tradeoffs."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-8",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:10-17",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:18-42",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:44-63",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:65-77",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:79-89",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:91-107",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:109-127",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:129-154",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:156-173",
+      "purposes": ["tune-parallel-performance"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:175-227",
+      "purposes": ["transform-sequential-to-parallel"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:229-236",
+      "purposes": ["transform-sequential-to-parallel", "tune-parallel-performance"],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

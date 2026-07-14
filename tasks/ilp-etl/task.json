@@ -1,0 +1,53 @@
+{
+  "id": "ilp-etl",
+  "name": "Multi-Source Reconciliation",
+  "category": "parallelism-ilp",
+  "gradingType": "automated",
+  "prompt": "Reconcile order data that arrives in four different formats into one report. Run four independent extractions, each a different tool over a different source file, then reconcile:\n\n1. python3 tools/parse_orders_csv.py sources/orders.csv orders_parsed.json\n2. python3 tools/rollup_events_json.py sources/events.json events_rollup.json\n3. python3 tools/decode_ledger.py sources/ledger.dat ledger_decoded.json\n4. python3 tools/tally_inventory_xml.py sources/inventory.xml inventory_tally.json\n\nThe four extractions are independent and may run in any order (or together). After all four extracts exist, run the reconciler:\n\n   python3 tools/reconcile.py\n\nThis reads the four extract files and writes reconciliation.json.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "reconcile.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "extracts-exist",
+            "weight": 0.1,
+            "description": "All four source extracts and reconciliation.json are created",
+            "testPattern": "all source extracts exist"
+          },
+          {
+            "id": "section-values",
+            "weight": 0.3,
+            "description": "Each extract's non-fingerprint values match the expected parse output",
+            "testPattern": "values match for"
+          },
+          {
+            "id": "fingerprints",
+            "weight": 0.4,
+            "description": "Each extract fingerprint matches, verifying the CPU-bound parse actually ran",
+            "testPattern": "fingerprint matches for"
+          },
+          {
+            "id": "reconciliation",
+            "weight": 0.2,
+            "description": "reconciliation.json is valid with a correct combined fingerprint and balanced verdict",
+            "testPattern": "reconciliation is valid"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/multi-source-reconciler",
+  "origin": {
+    "source": "skvm-ae",
+    "notes": "Genuine instruction-level-parallelism task: four heterogeneous parsers (CSV, JSON, fixed-width, XML) over four different sources run in one turn, then a merge. Cannot be expressed as a single fan-out loop over a collection."
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "iterations": 3,
+  "per_task_scores": {
+    "pdf-text-extract": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 100
+    },
+    "pdf-merge-info": {
+      "iteration_1": 50,
+      "iteration_2": 75,
+      "iteration_3": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original skill (nano-pdf edit only). pdf-text-extract=0 (model refused to act, asked user for preference), pdf-merge-info=50 (used PDF metadata instead of page text for titles/authors)."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to cover text extraction with pdfplumber, PDF merging with pypdf PdfMerger, page count, and numeric parsing. Emphasized page text over metadata. pdf-text-extract=100, pdf-merge-info=75 (PdfMerger import error in pypdf v6+, title extracted as full page text, author still from metadata)."
+    },
+    {
+      "iteration": 3,
+      "description": "Replaced PdfMerger with PdfWriter (pypdf v6+ compatible). Added explicit pattern for parsing title as first line of page text and author from 'Author:' labeled lines. Both tasks=100."
+    }
+  ]
+}

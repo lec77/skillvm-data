@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose skill (432 lines)",
+      "scores": {
+        "git-branch-ops": 100,
+        "git-log-analyze": 100
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Compressed skill from 432 to ~95 lines. Removed redundant sections (setup, remote ops, submodules, clean, workflows, aliases, tips, common issues, documentation links). Consolidated commands into compact reference format. Added task-relevant patterns section with useful one-liners for log analysis (rev-list counts, shortlog, date extraction, unique files).",
+      "scores": {
+        "git-branch-ops": 100,
+        "git-log-analyze": 100
+      }
+    }
+  ]
+}

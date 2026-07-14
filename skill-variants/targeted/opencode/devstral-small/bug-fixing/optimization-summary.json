@@ -1,0 +1,31 @@
+{
+  "iterations": 2,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "bug-fixing",
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline with verbose skill (296 lines, 11 auxiliary files)",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Optimized: condensed SKILL.md to 45 lines, removed all auxiliary files, added explicit mutex pattern and test-import-checking guidance",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    }
+  ],
+  "changes": [
+    "Reduced SKILL.md from 296 lines to 45 lines — removed philosophical content, rationalizations tables, and process phases",
+    "Removed 10 auxiliary files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, etc.) not needed for these tasks",
+    "Kept direct, actionable guidance: step-by-step process, common bug patterns with code examples, and clear rules",
+    "Added explicit step to check test file imports for correct output filename",
+    "Preserved mutex/lock pattern code snippet for race condition fixes"
+  ]
+}

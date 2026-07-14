@@ -1,0 +1,22 @@
+{
+  "skill": "sql",
+  "runtime": "openclaw",
+  "model": "deepseek-v3.2",
+  "iterations": 3,
+  "tasks": {
+    "sql-query": {
+      "scores": [100, 100, 100],
+      "description": "Build SQLite DB from CSV and answer business queries"
+    },
+    "sql-migrate": {
+      "scores": [100, 100, 100],
+      "description": "Normalize denormalized CSV into proper relational schema"
+    }
+  },
+  "changes": [
+    "Iteration 1: Baseline run with unmodified verbose skill (435 lines) — both tasks scored 100/100",
+    "Iteration 2: Optimized skill to ~90 lines — removed PostgreSQL/MySQL sections, added Python-first approach, explicit normalization patterns, JSON format rules. Both tasks scored 100/100 with faster execution.",
+    "Iteration 3: Verification run — confirmed consistent 100/100 scores"
+  ],
+  "summary": "Reduced skill from 435 to ~90 lines (~80% reduction). Dropped PostgreSQL/MySQL content (not needed for SQLite tasks). Added Python-first CSV import pattern, data normalization template, and explicit JSON output format rules. deepseek-v3.2 is capable enough to score perfectly with minimal guidance."
+}

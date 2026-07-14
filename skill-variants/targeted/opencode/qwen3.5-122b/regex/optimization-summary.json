@@ -1,0 +1,52 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "scores": {
+    "iteration_1_baseline": {
+      "regex-extract": 100,
+      "regex-replace": 90,
+      "details": {
+        "regex-replace": {
+          "var-replacement": 0.667,
+          "note": "Model used let for result (should be const) and const for valid (should be let)"
+        }
+      }
+    },
+    "iteration_2": {
+      "regex-extract": 100,
+      "regex-replace": 95,
+      "details": {
+        "regex-replace": {
+          "var-replacement": 0.833,
+          "note": "Model fixed valid→let but still uses let for result instead of const"
+        }
+      }
+    },
+    "iteration_3": {
+      "regex-extract": 100,
+      "regex-replace": 95
+    },
+    "iteration_4": {
+      "regex-extract": 100,
+      "regex-replace": 95
+    },
+    "iteration_5_final": {
+      "regex-extract": 100,
+      "regex-replace": 95
+    }
+  },
+  "final_scores": {
+    "regex-extract": 100,
+    "regex-replace": 95
+  },
+  "changes": [
+    "Compressed 472-line verbose skill to ~100-line focused version",
+    "Removed scripts/regex_tester.py (not referenced by optimized SKILL.md)",
+    "Added targeted log parsing section with named capture groups and tips for query string stripping, escaped quotes, optional fields",
+    "Added detailed var→let/const section with explicit const-for-arrays rule and worked examples",
+    "Added code search-and-replace patterns for debug removal, equality fixes, whitespace fixes",
+    "Multiple iterations attempted to fix model's persistent preference for let over const on array variables — model (qwen3.5-122b) has strong prior that overrides skill guidance"
+  ],
+  "residual_issue": "qwen3.5-122b consistently writes 'let result = []' instead of 'const result = []' despite extensive skill guidance about const being correct for arrays that are only mutated (not reassigned). This appears to be a model-level bias."
+}

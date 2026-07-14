@@ -1,0 +1,17 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "flood-risk": 100,
+    "streamflow-stats": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md from 135-line original to 75-line targeted version. Added explicit JSON output schemas for both tasks, step-by-step algorithm for LP3, clarified > vs >= for flood day counting vs severity classification, specified exact output key names (rp_10, rp_50, rp_100), and emphasized sample statistics (ddof=1, bias=False).",
+      "scores": {
+        "flood-risk": 100,
+        "streamflow-stats": 100
+      }
+    }
+  ]
+}

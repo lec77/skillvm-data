@@ -1,0 +1,25 @@
+{
+  "iterations": 3,
+  "per_task_scores": {
+    "hypothesis-testing": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 100
+    },
+    "regression-analysis": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to emphasize 'write a single Python script file, then execute it' workflow. Added complete copy-paste-ready script templates for both hypothesis testing (ANOVA + post-hoc + power analysis) and regression (OLS + VIF + prediction). Removed verbose explanation sections in favor of actionable code patterns. This fixed the hypothesis-testing task where gemini-3-flash was getting stuck in a tool-calling loop instead of writing and running a script."
+    }
+  ],
+  "final_scores": {
+    "hypothesis-testing": 100,
+    "regression-analysis": 100
+  }
+}

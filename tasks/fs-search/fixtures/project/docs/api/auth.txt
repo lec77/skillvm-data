@@ -1,0 +1,3 @@
+Authentication uses JWT tokens.
+Tokens expire after 24 hours.
+Refresh tokens are supported.

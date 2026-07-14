@@ -1,0 +1,67 @@
+{
+  "id": "parallel-checksum",
+  "name": "Parallel SHA-256 checksum computation for 30 binary files",
+  "category": "python-parallelization",
+  "gradingType": "automated",
+  "prompt": "There are 30 binary files (data_00.bin through data_29.bin) in the current directory. Write a Python script parallel_checksum.py that computes SHA-256 checksums for all files using multiprocessing for parallel execution. Write checksums.json as an object mapping filenames to their hex digest strings, sorted by filename. The script MUST use multiprocessing or concurrent.futures. Run the script after writing it.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "parallel-checksum.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "checksums.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "entry-count",
+            "weight": 0.15,
+            "description": "checksums.json has exactly 30 entries",
+            "testPattern": "entry count"
+          },
+          {
+            "id": "checksums-correct",
+            "weight": 0.3,
+            "description": "All checksums match reference SHA-256 values",
+            "testPattern": "checksums correct"
+          },
+          {
+            "id": "sorted-order",
+            "weight": 0.1,
+            "description": "Output keys are sorted by filename",
+            "testPattern": "sorted order"
+          },
+          {
+            "id": "uses-parallel",
+            "weight": 0.2,
+            "description": "Script uses multiprocessing or concurrent.futures",
+            "testPattern": "uses parallel"
+          },
+          {
+            "id": "all-files-present",
+            "weight": 0.15,
+            "description": "All 30 filenames present in output",
+            "testPattern": "all files present"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/python-parallelization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/python-parallelization/parallel-checksum/",
+    "importedAt": "2026-07-07T06:19:11.494Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

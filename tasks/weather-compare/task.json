@@ -1,0 +1,26 @@
+{
+  "id": "weather-compare",
+  "name": "Compare weather across 3 cities",
+  "category": "weather",
+  "gradingType": "automated",
+  "prompt": "Get the current weather for Tokyo, London, and New York. Present the results as a comparison table including temperature, humidity, wind speed, and conditions.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "python-grade",
+      "id": "python-grade",
+      "name": "Automated Grade",
+      "weight": 1.0
+    }
+  ],
+  "skill": "../../skills/weather",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/weather/weather-compare/",
+    "importedAt": "2026-07-06T15:55:00.000Z",
+    "notes": "hand-ported: legacy inline custom evaluate closures rewritten as python-grade grade.py"
+  }
+}

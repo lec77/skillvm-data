@@ -1,0 +1,44 @@
+{
+  "iterations": 5,
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80
+  },
+  "score_progression": {
+    "power-flow": [85, 85, 100, 100, 100],
+    "economic-dispatch": [45, 80, 80, 80, 80]
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original skill (identical to verbose)"
+    },
+    {
+      "iteration": 2,
+      "description": "Added CRITICAL rules: always write+run Python script, never guess values. Added complete runnable code for both tasks. Emphasized cost formula correctness.",
+      "power_flow_change": "no change (85)",
+      "economic_dispatch_change": "45 -> 80 (model now runs script instead of guessing)"
+    },
+    {
+      "iteration": 3,
+      "description": "Fixed per-unit conversion bug in DC power flow: powers must be divided by BASE_MVA=100 before solving, then flows multiplied back. Strengthened instruction to write .py file first, never write JSON directly.",
+      "power_flow_change": "85 -> 100 (angles now < 1.0 rad)",
+      "economic_dispatch_change": "no change (80)"
+    },
+    {
+      "iteration": 4,
+      "description": "No skill changes, verification run",
+      "power_flow_change": "no change (100)",
+      "economic_dispatch_change": "no change (80)"
+    },
+    {
+      "iteration": 5,
+      "description": "Final verification run, no skill changes",
+      "power_flow_change": "no change (100)",
+      "economic_dispatch_change": "no change (80)"
+    }
+  ],
+  "notes": {
+    "economic_dispatch_within_limits": "The 'within-limits' criterion (weight=0.2) always scores 0 for ALL models due to a task definition bug: the test pattern 'within limits' does not match the test name 'all generators within min/max limits' (the word 'min/max' breaks the contiguous match). The actual test passes with correct values. Maximum achievable score is 80/100."
+  }
+}

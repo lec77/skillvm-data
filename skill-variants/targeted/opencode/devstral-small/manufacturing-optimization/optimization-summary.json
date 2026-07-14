@@ -1,0 +1,56 @@
+{
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "manufacturing-optimization",
+  "iterations": 3,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline - original verbose skill (identical to skills/manufacturing-optimization/SKILL.md)",
+      "scores": {
+        "fjsp-schedule": 60,
+        "job-makespan": 75
+      },
+      "issues": [
+        "Model tried to solve scheduling mentally instead of writing code",
+        "fjsp-schedule: precedence violations (job 2 ops out of order) and downtime overlap on machine 2",
+        "job-makespan: machine conflicts (multiple ops assigned to machine 0 at overlapping times)"
+      ]
+    },
+    {
+      "iteration": 1,
+      "description": "Added directive to write Python script with template - but template had bugs",
+      "scores": {
+        "fjsp-schedule": 0,
+        "job-makespan": 0
+      },
+      "issues": [
+        "Template had buggy comparison logic causing LSP type errors",
+        "Model copied template verbatim, got stuck in infinite LSP error fix loop",
+        "fjsp-schedule: model produced no output (0 tokens)",
+        "job-makespan: model spent all steps trying to fix type errors, never ran script"
+      ]
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote with clean, correct, minimal Python solver template",
+      "scores": {
+        "fjsp-schedule": 100,
+        "job-makespan": 100
+      },
+      "changes": [
+        "Simplified greedy algorithm: iterate total_ops times, pick operation with earliest completion",
+        "Used simple arrays (job_ready, next_op_idx) instead of dicts to avoid type issues",
+        "Removed confusing comparison logic - just compare end times directly",
+        "Eliminated all potential unbound variable issues",
+        "Added explicit step-by-step process: read, write script, run script, verify"
+      ]
+    }
+  ],
+  "finalScores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  },
+  "confirmedConsistency": true,
+  "keyInsight": "devstral-small cannot reliably solve FJSP scheduling mentally - it makes arithmetic and constraint errors. Providing a clean, correct Python solver template that it can copy and run via python3 yields perfect scores. The template must be free of type issues since opencode's LSP will flag them and the model gets stuck in fix loops."
+}

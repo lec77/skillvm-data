@@ -1,0 +1,32 @@
+{
+  "iterations": 3,
+  "model": "qwen3-30b",
+  "runtime": "bare",
+  "skill": "document-pdf",
+  "results": {
+    "iteration1_baseline": {
+      "document-pdf": 100,
+      "pdf-create": 80,
+      "notes": "pdf-create failed employee-names criterion (0/20) because model called doc.build() multiple times, overwriting previous content"
+    },
+    "iteration2_optimized": {
+      "document-pdf": 100,
+      "pdf-create": 100,
+      "notes": "Both tasks pass after SKILL.md optimization"
+    },
+    "iteration3_consistency": {
+      "document-pdf": 100,
+      "pdf-create": 100,
+      "notes": "Confirmed consistent 100/100 scores"
+    }
+  },
+  "changes": [
+    "Stripped SKILL.md from ~295 lines to ~80 lines, removing all content irrelevant to extraction and creation tasks",
+    "Added CRITICAL warning about calling doc.build() exactly once with all content in a single list (fixed the pdf-create failure)",
+    "Removed reference.md (advanced features not needed)",
+    "Removed forms.md (form filling not needed)",
+    "Removed scripts/ directory (8 Python scripts not needed)",
+    "Focused skill on three core libraries: pdfplumber (extraction), reportlab (creation), pypdf (simple text reading)",
+    "Added practical code examples showing the single-build pattern with PageBreak for multi-section PDFs"
+  ]
+}

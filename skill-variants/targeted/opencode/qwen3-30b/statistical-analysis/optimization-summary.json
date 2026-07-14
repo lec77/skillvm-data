@@ -1,0 +1,65 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "statistical-analysis",
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline - original skill (no changes)",
+      "scores": {
+        "regression-analysis": 100,
+        "hypothesis-testing": 95
+      },
+      "notes": "power-analysis criterion got 0.5/1.0 — effect_size was negative (-0.8741) because Cohen's d was computed as (mean_A - mean_B)/pooled_sd without abs()"
+    },
+    {
+      "iteration": 2,
+      "description": "Added abs() for power analysis effect_size, use python3, VIF guidance",
+      "scores": {
+        "regression-analysis": "timeout",
+        "hypothesis-testing": 100
+      },
+      "notes": "hypothesis-testing fixed to 100. regression-analysis timed out — model got stuck in LSP error loop trying to fix false-positive pyright type warnings on statsmodels/pandas"
+    },
+    {
+      "iteration": 3,
+      "description": "Same skill as iteration 2, re-run",
+      "scores": {
+        "regression-analysis": 0,
+        "hypothesis-testing": "timeout"
+      },
+      "notes": "Both tasks failed due to LSP error loop — model spent all steps trying to fix pyright false positives instead of running the script"
+    },
+    {
+      "iteration": 4,
+      "description": "Added strong LSP ignore instruction, complete regression template with numpy array prediction",
+      "scores": {
+        "regression-analysis": 100,
+        "hypothesis-testing": 0
+      },
+      "notes": "regression fixed. hypothesis-testing still hit LSP loop on this run"
+    },
+    {
+      "iteration": 5,
+      "description": "Added complete ANOVA template with list() conversion to avoid LSP-triggering patterns, reinforced LSP ignore instruction",
+      "scores": {
+        "regression-analysis": 100,
+        "hypothesis-testing": 100
+      },
+      "notes": "Both tasks score 100/100. Fast completion (~28s each). Model used templates directly without LSP issues."
+    }
+  ],
+  "changes_made": [
+    "Added CRITICAL instruction to ignore LSP/pyright false positives and just run the script",
+    "Added abs() requirement for effect_size in power analysis (was returning negative Cohen's d)",
+    "Provided complete copy-paste ANOVA+post-hoc+power analysis template using list() and np.array() to avoid pandas type inference issues",
+    "Provided complete regression template using np.array for prediction instead of DataFrame to avoid column ordering issues",
+    "Used X_raw.values for VIF calculation instead of DataFrame to prevent add_constant type confusion",
+    "Condensed test selection and removed unnecessary sections (APA format, eta-squared, chi-square details)"
+  ],
+  "final_scores": {
+    "regression-analysis": 100,
+    "hypothesis-testing": 100
+  }
+}

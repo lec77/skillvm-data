@@ -1,0 +1,34 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "openclaw",
+  "skill": "regex",
+  "results": {
+    "iteration_1": {
+      "regex-extract": 100,
+      "regex-replace": 75,
+      "changes": "Rewrote skill from verbose reference to concise recipe-driven format with two focused recipes: log parsing → JSON and code cleanup with search-and-replace. Added explicit code examples and critical rules."
+    },
+    "iteration_2": {
+      "regex-extract": 100,
+      "regex-replace": 85,
+      "changes": "Made var→let/const replacement instructions more emphatic with explicit examples for each variable type and bold emphasis on changing every var."
+    },
+    "iteration_3": {
+      "regex-extract": 100,
+      "regex-replace": 100,
+      "changes": "Changed var replacement guidance to follow prompt-specified const variables exactly — only variables explicitly named in the prompt get const, all others get let. Added instruction to go through each function carefully."
+    }
+  },
+  "final_scores": {
+    "regex-extract": 100,
+    "regex-replace": 100
+  },
+  "key_insights": [
+    "Original verbose reference skill was too large for devstral-small — model ignored most content",
+    "Recipe-driven format with concrete code examples works much better for small models",
+    "Model preferred manual file editing over running scripts — skill must guide the manual approach",
+    "var→let/const replacement needed very explicit rules about which variables get const (only prompt-named ones)",
+    "The model tends to skip transformations if not strongly emphasized — bold emphasis and repetition helps"
+  ]
+}

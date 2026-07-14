@@ -1,0 +1,50 @@
+{
+  "iterations": 2,
+  "per_task_scores": {
+    "note-extraction": {
+      "baseline": 90,
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "max_achievable": 90,
+      "note": "output-exists criterion testPattern 'entities\\.json exists' does not match any JUnit test name, capping score at 90/100"
+    },
+    "medication-reconciliation": {
+      "baseline": 20,
+      "iteration_1": 60,
+      "iteration_2": 60,
+      "max_achievable": 60,
+      "note": "3 criteria have broken testPatterns that never match JUnit test names: output-exists, admission-count, discharge-count. All underlying bun tests pass (12/12)."
+    }
+  },
+  "changes_made": [
+    "Condensed skill from 270 lines to ~120 lines, removing verbose implementation algorithm and redundant Python regex examples",
+    "Added explicit JSON output format examples matching what test assertions expect (flat objects with top-level 'name' field for continued/discontinued/new_meds, 'from'/'to' objects for switched)",
+    "Added 'CRITICAL' instruction to write JSON directly using write_file instead of creating Python scripts — reduced runtime from 5-6 minutes to ~1 minute per task",
+    "Added complete entities.json example showing correct negation handling for conditions preceded by 'denies' and 'no prior history of'",
+    "Added note that 'denies any X or Y' negates both X and Y (important for nausea/vomiting test case)",
+    "Specified that dose and value must be numbers (not strings) and negated must be boolean"
+  ],
+  "scoring_framework_issues": {
+    "description": "Three testPattern values in the task definitions do not match the actual bun test JUnit test names, making those criteria impossible to score",
+    "affected_criteria": [
+      {
+        "id": "output-exists",
+        "testPattern": "entities\\.json exists OR reconciliation\\.json exists",
+        "actual_test_names": ["entities.json file is present", "entities.json is a non-empty array", "reconciliation.json file is present", "reconciliation.json has required top-level keys"],
+        "reason": "Pattern matches describe block name but testcase name attribute contains only the test() name, not the describe() name"
+      },
+      {
+        "id": "admission-count",
+        "testPattern": "admission list has 5",
+        "actual_test_name": "admission list has exactly 5 medications",
+        "reason": "Word 'exactly' between 'has' and '5' prevents contiguous substring match"
+      },
+      {
+        "id": "discharge-count",
+        "testPattern": "discharge list has 6",
+        "actual_test_name": "discharge list has exactly 6 medications",
+        "reason": "Word 'exactly' between 'has' and '6' prevents contiguous substring match"
+      }
+    ]
+  }
+}

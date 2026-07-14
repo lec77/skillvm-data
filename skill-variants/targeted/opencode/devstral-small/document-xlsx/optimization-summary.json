@@ -1,0 +1,37 @@
+{
+  "iterations": 5,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "document-xlsx",
+  "scores": {
+    "iteration_1_baseline": {
+      "document-xlsx": 0,
+      "xlsx-analyze": 85
+    },
+    "iteration_2": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    },
+    "iteration_3": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 85
+    },
+    "iteration_4": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    },
+    "iteration_5_final": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    }
+  },
+  "changes": [
+    "Removed YAML frontmatter with 'name: xlsx' that caused devstral-small to enter infinite loop calling skill(name='xlsx') tool",
+    "Replaced title with plain markdown heading '# Excel Spreadsheet Instructions' to avoid skill tool confusion",
+    "Added explicit 'Do NOT call any skill tool' instruction at the top",
+    "Added Reading/Analyzing section with TOTAL/summary row filtering pattern",
+    "Added SKIP_LABELS set to filter out TOTAL, SUM, AVERAGE, GRAND TOTAL rows when reading spreadsheets",
+    "Added explicit instruction to use len(data) (filtered rows) as denominator for rate calculations",
+    "Removed unreferenced files: scripts/create_xlsx.py, recalc.py, LICENSE.txt"
+  ]
+}

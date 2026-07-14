@@ -1,0 +1,54 @@
+{
+  "skill": "document-docx",
+  "runtime": "bare",
+  "model": "devstral-small",
+  "iterations": 5,
+  "results": {
+    "iteration_1": {
+      "docx-create": 0,
+      "docx-extract": 0,
+      "notes": "Model could not produce <load-skill> XML tag correctly (output 'docx}'), degenerated into repetitive text with zero tool calls"
+    },
+    "iteration_2": {
+      "docx-create": 0,
+      "docx-extract": 0,
+      "notes": "Changed skill name from 'docx' to 'document-docx'. Still failed - model output 'document-docx}' garbled tag, no tool calls"
+    },
+    "iteration_3": {
+      "docx-create": 100,
+      "docx-extract": 0,
+      "notes": "Key breakthrough: packed complete python-docx procedure into description field (always visible in system prompt). Create succeeded without loading skill body. Extract had API error (2s, 0 tool calls)"
+    },
+    "iteration_4": {
+      "docx-create": 100,
+      "docx-extract": 0,
+      "notes": "Create consistent at 100. Extract failed again with concurrency=4 (model degenerates when both tasks run simultaneously). Solo extract run scored 68/100"
+    },
+    "iteration_5": {
+      "docx-create": 100,
+      "docx-extract": 53,
+      "notes": "Ran with concurrency=1. Create perfect. Extract works (53/100) - file created, headers mostly correct, line items partial, totals partial, payment correct. Variance is high for extract (53-68 range)"
+    }
+  },
+  "best_scores": {
+    "docx-create": 100,
+    "docx-extract": 68
+  },
+  "changes_made": [
+    "Replaced verbose 197-line SKILL.md with focused 90-line version using python-docx instead of docx-js",
+    "Removed all irrelevant sections (redlining, tracked changes, image conversion, raw XML access)",
+    "Packed complete python-docx procedure into description field so model can work without loading skill body",
+    "Inlined concrete code examples for document creation, text extraction, and JSON extraction",
+    "Included number parsing guidance (strip $ and commas, convert percentages to decimals)",
+    "Removed all unreferenced bundled files (docx-js.md, ooxml.md, ooxml/, scripts/)",
+    "Changed skill name from 'docx' to 'document-docx' for clearer identification"
+  ],
+  "key_findings": [
+    "devstral-small cannot reliably produce <load-skill> XML tags - skill body often not loaded",
+    "The description field (always in system prompt) is the primary guidance mechanism for this model",
+    "python-docx is simpler and more reliable than docx-js for small models",
+    "Model degenerates (repetitive text, no tool calls) when running docx tasks concurrently",
+    "Document creation is highly reliable (100/100 consistently), extraction is variable (53-68/100)",
+    "Main extraction failures: numeric parsing from formatted strings ($12,170.00 -> 12170.0) and percentage parsing (8% -> 0.08)"
+  ]
+}

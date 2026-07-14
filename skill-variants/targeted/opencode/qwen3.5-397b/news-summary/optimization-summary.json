@@ -1,0 +1,26 @@
+{
+  "iterations": 2,
+  "scores": {
+    "iteration_1": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 85
+    },
+    "iteration_2": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    },
+    "iteration_3_confirmation": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Restructured SKILL.md output format: changed multi-feed digest `categories` from an object-of-arrays to an array-of-objects with `name`, `source`, and `articles` fields. Added explicit JSON template showing the expected structure. Added `highlights` as top-level array for cross-category stories. Removed unnecessary RSS feeds (Reuters, NPR, Al Jazeera) and voice summary section to reduce token count. Added sections for single-article parsing and article summarization tasks."
+    }
+  ]
+}

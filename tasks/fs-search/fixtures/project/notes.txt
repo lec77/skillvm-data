@@ -1,0 +1,4 @@
+Sprint planning notes.
+
+TODO: review pull requests by Friday.
+TODO: update dependencies.

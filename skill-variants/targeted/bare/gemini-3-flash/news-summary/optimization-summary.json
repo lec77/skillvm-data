@@ -1,0 +1,32 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 65
+    },
+    "iteration_2_optimized": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    },
+    "iteration_3_verification": {
+      "parse-rss": 100,
+      "summarize-articles": 100,
+      "multi-feed-digest": 100
+    }
+  },
+  "changes": [
+    "Rewrote skill description to focus on RSS/XML parsing and structured JSON output",
+    "Added concurrent feed fetching pattern using background processes with `wait` to handle slow feeds",
+    "Replaced grep/sed-based XML parsing with Python xml.etree.ElementTree example",
+    "Added explicit guidance to always fetch ALL 4 feed categories (Technology, Business, World, Science)",
+    "Added structured JSON output template with required `highlights` array spanning multiple categories",
+    "Added key numbers extraction guidance (at least 8, with value and context)",
+    "Removed irrelevant voice summary / OpenAI TTS section",
+    "Removed duplicate feed URLs (Reuters, NPR, Al Jazeera duplicated BBC endpoints)"
+  ]
+}

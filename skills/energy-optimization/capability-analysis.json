@@ -1,0 +1,105 @@
+{
+  "skill_name": "energy-optimization",
+  "skill_path": "skills/energy-optimization",
+  "total_files": 1,
+  "total_tokens_estimate": 1412,
+  "purposes": [
+    {
+      "id": "dc-power-flow",
+      "description": "Compute bus voltage angles and line flows using the DC power flow approximation (B-matrix linear system solve).",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires numpy (np.linalg.solve, np.zeros, np.concatenate) to build and solve the B-matrix linear system."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Multi-step computation: susceptance from reactance, building B-matrix with off-diagonal terms, computing net injections."
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "Output must conform to specific JSON schema (power_flow.json with bus_angles, line_flows, generation arrays)."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write and execute Python script to perform numerical computation."
+          },
+          {
+            "id": "follow.constraint",
+            "min_level": "L2",
+            "evidence": "Multiple constraints: slack bus angle must be 0, remove slack row/column, correct sign convention for flows, correct B-matrix indexing."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "economic-dispatch",
+      "description": "Solve economic dispatch to minimize total generation cost using lambda iteration (equal incremental cost method) with generator limits.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires numpy for numerical computation; implements bisection-based lambda iteration algorithm."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L3",
+            "evidence": "Compound reasoning: quadratic cost curves, marginal costs, bisection search, clamping to generator limits, total cost aggregation."
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L3",
+            "evidence": "Optimization under constraints: minimize cost subject to power balance and generator min/max limits."
+          },
+          {
+            "id": "follow.format",
+            "min_level": "L2",
+            "evidence": "Output must conform to dispatch.json schema with per-generator dispatch, total_cost, and lambda."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Must write and execute Python script for iterative numerical optimization."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "check-line-limits",
+      "description": "Verify that computed line flows do not exceed thermal limits and identify overloaded lines.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L2",
+            "evidence": "Simple loop comparing absolute flow values against limits using standard Python."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L1",
+            "evidence": "Single-step comparison: absolute value of flow vs. limit."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": ["dc-power-flow", "economic-dispatch"], "type": "instruction"},
+    {"location": "SKILL.md:5-13", "purposes": ["dc-power-flow", "economic-dispatch", "check-line-limits"], "type": "instruction"},
+    {"location": "SKILL.md:14-93", "purposes": ["dc-power-flow"], "type": "code_example"},
+    {"location": "SKILL.md:94-106", "purposes": ["check-line-limits"], "type": "code_example"},
+    {"location": "SKILL.md:107-175", "purposes": ["economic-dispatch"], "type": "code_example"},
+    {"location": "SKILL.md:176-203", "purposes": ["dc-power-flow", "economic-dispatch"], "type": "instruction"},
+    {"location": "SKILL.md:204-217", "purposes": ["dc-power-flow", "economic-dispatch", "check-line-limits"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

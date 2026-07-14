@@ -1,0 +1,46 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "document-docx",
+  "results": [
+    {
+      "iteration": 1,
+      "description": "Baseline (original skill)",
+      "scores": { "docx-create": 100, "docx-extract": 100 }
+    },
+    {
+      "iteration": 2,
+      "description": "Baseline verification - found pandoc line-wrapping issue and module-not-found failures",
+      "scores": { "docx-create": 90, "docx-extract": 100 },
+      "notes": "docx-create lost 10pts on content criterion due to pandoc wrapping 'March 2026' across lines"
+    },
+    {
+      "iteration": 3,
+      "description": "Added --wrap=none to pandoc commands, added npm install docx instruction",
+      "scores": { "docx-create": 0, "docx-extract": 100 },
+      "notes": "Model installed docx but stopped without running the script (early termination)"
+    },
+    {
+      "iteration": 4,
+      "description": "Compressed docx-js.md from 350 to ~90 lines, streamlined SKILL.md, inlined complete docx-js working example with correct API patterns",
+      "scores": { "docx-create": 100, "docx-extract": 100 }
+    },
+    {
+      "iteration": 5,
+      "description": "Final verification runs (3 consecutive 100/100)",
+      "scores": { "docx-create": 100, "docx-extract": 100 }
+    }
+  ],
+  "changes": [
+    "Compressed SKILL.md from ~200 lines to ~137 lines, removing verbose sections",
+    "Inlined complete docx-js working example directly in SKILL.md to prevent model from using non-existent API classes (BulletList, ListItem)",
+    "Added --wrap=none to ALL pandoc commands to prevent line wrapping that splits text across lines",
+    "Added explicit instruction to combine npm install + node execution in one command to prevent early termination",
+    "Added text extraction (pandoc) inside the docx creation script example using child_process.execSync",
+    "Compressed docx-js.md from ~350 lines to ~90 lines with only essential patterns",
+    "Added CRITICAL warning that docx package has no BulletList/ListItem classes",
+    "Emphasized using a single .js file for both creation and extraction to minimize tool calls"
+  ],
+  "finalScores": { "docx-create": 100, "docx-extract": 100 }
+}

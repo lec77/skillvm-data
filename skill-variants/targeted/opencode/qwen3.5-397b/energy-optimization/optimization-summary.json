@@ -1,0 +1,47 @@
+{
+  "skill": "energy-optimization",
+  "runtime": "opencode",
+  "model": "qwen3.5-397b",
+  "iterations": 4,
+  "scores": {
+    "iteration1_baseline": {
+      "power-flow": 85,
+      "economic-dispatch": 80,
+      "average": 82.5
+    },
+    "iteration2_typescript_rewrite": {
+      "power-flow": 85,
+      "economic-dispatch": 80,
+      "average": 82.5
+    },
+    "iteration3_perunit_fix": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "average": 90
+    },
+    "iteration4_confirmation": {
+      "power-flow": 100,
+      "economic-dispatch": 80,
+      "average": 90
+    }
+  },
+  "final_scores": {
+    "power-flow": 100,
+    "economic-dispatch": 80,
+    "average": 90
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Rewrote skill with TypeScript code examples (matching opencode runtime), added CRITICAL warnings about susceptance vs reactance, added verification checklists, explicit clamping instructions for economic dispatch"
+    },
+    {
+      "iteration": 3,
+      "description": "Added per-unit system base (Sbase=100 MVA) scaling to B-matrix construction. Changed B-matrix entry from b=1/x to b=Sbase/x. Added prominent warning that angles > 1.0 rad indicate missing Sbase scaling. Updated line flow formula to include Sbase multiplier. This fixed the angles-reasonable criterion."
+    }
+  ],
+  "notes": {
+    "power-flow": "All 6 criteria pass. Key fix was adding Sbase=100 MVA scaling to the DC power flow B-matrix and line flow formulas. Without this, angles were ~100x too large because per-unit reactance was used with MW power values.",
+    "economic-dispatch": "5 of 6 criteria pass. The 'within-limits' criterion (weight 0.2) cannot pass due to a test pattern mismatch in the task definition: testPattern 'within limits' does not match test name 'all generators within min/max limits' (regex substring match fails because 'min/max ' interrupts the pattern). Maximum achievable score is 80/100."
+  }
+}

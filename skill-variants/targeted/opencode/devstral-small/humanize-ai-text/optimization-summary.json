@@ -1,0 +1,27 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "opencode",
+  "skill": "humanize-ai-text",
+  "tasks": {
+    "detect-ai-patterns": {
+      "baseline_score": 100,
+      "final_score": 100,
+      "scores_by_iteration": [100, 100, 100]
+    },
+    "rewrite-ai-text": {
+      "baseline_score": 95,
+      "final_score": 100,
+      "scores_by_iteration": [95, 100, 100]
+    }
+  },
+  "changes": [
+    "Rewrote SKILL.md to be shorter and more focused for a small model",
+    "Removed script references (detect.py, transform.py, compare.py) that the agent doesn't use",
+    "Added explicit guidance about Write tool requiring string content for JSON files",
+    "Added detailed word counting guidance with examples to fix undercounting (75 vs actual 94)",
+    "Simplified pattern categories into a flat reference format",
+    "Added concrete buzzword-to-plain-word replacement mappings",
+    "Removed scripts/ directory and _meta.json as unreferenced by final SKILL.md"
+  ]
+}

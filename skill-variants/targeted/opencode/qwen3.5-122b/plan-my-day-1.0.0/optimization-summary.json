@@ -1,0 +1,35 @@
+{
+  "iterations": 4,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "plan-my-day-1.0.0",
+  "scores": {
+    "iteration1": {
+      "prioritize-tasks": 85,
+      "schedule-workday": 100,
+      "notes": "Initial optimization: restructured skill for JSON output. Deferred criterion scored 0.25 — model put 0 tasks in deferred."
+    },
+    "iteration2": {
+      "prioritize-tasks": 95,
+      "schedule-workday": 100,
+      "notes": "Clarified deferred rule: low-impact + non-today deadline. Deferred improved to 0.75 (2/3 correct)."
+    },
+    "iteration3": {
+      "prioritize-tasks": 90,
+      "schedule-workday": 100,
+      "notes": "Added classification priority order. Regressed to 0.5 deferred — model still mixing deferred/nice_to_have."
+    },
+    "iteration4": {
+      "prioritize-tasks": 100,
+      "schedule-workday": 100,
+      "notes": "Added explicit decision tree and rule that nice_to_have never contains low-impact tasks. Perfect scores."
+    }
+  },
+  "changes": [
+    "Rewrote verbose skill as concise, task-type-specific guide with exact JSON output schemas",
+    "Added explicit decision tree for task categorization (must_do_today → deferred → should_do → nice_to_have)",
+    "Made deferred rule unambiguous: ALL low-impact non-today tasks go to deferred, never nice_to_have",
+    "Added detailed time_blocks rules for scheduling: HH:MM format, no overlaps, fixed commitments as blocks",
+    "Added buffer_percentage calculation formula"
+  ]
+}

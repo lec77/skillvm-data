@@ -1,0 +1,27 @@
+{
+  "iteration_count": 2,
+  "per_task_scores": {
+    "knapsack-optimize": {
+      "iteration_1": 10,
+      "iteration_2": 100,
+      "confirmation_run": 100
+    },
+    "facility-placement": {
+      "iteration_1": 10,
+      "iteration_2": 100,
+      "confirmation_run": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose-style SKILL.md",
+      "result": "Both tasks scored 10/100. Model delegated to subagents which returned wrong answers, wrote malformed JSON (missing closing braces), and failed to compute correct optimization results."
+    },
+    {
+      "iteration": 2,
+      "description": "Complete SKILL.md rewrite targeting qwen3-30b weaknesses: (1) Added CRITICAL RULES section telling model to never delegate to subagents and always write Python scripts, (2) Provided complete runnable Python templates for 0/1 knapsack DP and facility placement greedy+local search, (3) Emphasized using json.dump() instead of manual JSON string construction, (4) Added verification step to read output file back, (5) Removed theoretical content in favor of actionable templates.",
+      "result": "Both tasks scored 100/100. Confirmed with a second run also scoring 100/100."
+    }
+  ]
+}

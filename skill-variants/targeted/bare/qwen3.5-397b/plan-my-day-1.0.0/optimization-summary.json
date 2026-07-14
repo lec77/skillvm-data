@@ -1,0 +1,24 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "plan-my-day-1.0.0",
+  "scores": {
+    "prioritize-tasks": {
+      "iteration1": 100
+    },
+    "schedule-workday": {
+      "iteration1": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with unmodified skill — both tasks scored 100/100. No changes needed."
+    }
+  ],
+  "finalScores": {
+    "prioritize-tasks": 100,
+    "schedule-workday": 100
+  }
+}

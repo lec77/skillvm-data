@@ -1,0 +1,34 @@
+{
+  "skill": "clinical-nlp",
+  "runtime": "openclaw",
+  "model": "deepseek-v3.2",
+  "iterations": 3,
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1": 90,
+      "iteration_2": 90,
+      "iteration_3": 90,
+      "max_achievable": 90,
+      "ceiling_note": "output-exists criterion (10% weight) always scores 0 due to testPattern 'entities\\.json exists' not matching JUnit testcase name 'entities.json file is present'"
+    },
+    "medication-reconciliation": {
+      "iteration_1": "timeout",
+      "iteration_2": 60,
+      "iteration_3": 60,
+      "max_achievable": 60,
+      "ceiling_note": "Three criteria (output-exists 10%, admission-count 15%, discharge-count 15%) always score 0 due to testPattern mismatch: describe block names don't appear in JUnit testcase names (e.g., pattern 'admission list has 5' doesn't match testcase 'admission list has exactly 5 medications')"
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Compressed SKILL.md from 270 lines to ~50 lines. Removed verbose Python code examples, ICD-10 codes, Top 20 drug list, and redundant pattern documentation. Added direct instruction to construct JSON manually instead of writing complex Python scripts. Focused on exact output format specifications for both tasks.",
+      "impact": "medication-reconciliation went from timeout to 60/100; note-extraction completion time dropped from 5m to 1m"
+    }
+  ],
+  "final_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60
+  },
+  "notes": "Both tasks achieve their maximum possible scores given systematic test evaluation ceiling. The eval framework parses JUnit XML testcase names but the task criteria testPatterns reference describe block names, causing 3 criteria in medication-reconciliation and 1 in note-extraction to always return rawScore=0 regardless of actual test pass/fail status."
+}

@@ -1,0 +1,59 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "openclaw",
+  "skill": "document-pptx",
+  "baseline_scores": {
+    "pptx-create": 0,
+    "pptx-extract": 100
+  },
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 94
+  },
+  "iteration_history": [
+    {
+      "iteration": 0,
+      "description": "Baseline (unmodified skill, identical to original)",
+      "scores": { "pptx-create": 0, "pptx-extract": 100 }
+    },
+    {
+      "iteration": 1,
+      "description": "Rewrote SKILL.md to prioritize python-pptx over html2pptx for text-only presentations. Added python-pptx examples for both creation and extraction.",
+      "scores": { "pptx-create": 100, "pptx-extract": 0 },
+      "notes": "Create task fixed. Extract broke because model tried python-pptx as python -c one-liner (indentation failures)."
+    },
+    {
+      "iteration": 2,
+      "description": "Added critical rule: always write Python to .py files, never use python -c. Fixed zsh pip install quoting. Added markitdown extraction guidance.",
+      "scores": { "pptx-create": 100, "pptx-extract": 78 },
+      "notes": "Model writes .py file now but financial regex fails on region parsing (name extraction wrong)."
+    },
+    {
+      "iteration": 3,
+      "description": "Emphasized markitdown + manual JSON as recommended approach for extraction. Kept python-pptx extraction as alternative.",
+      "scores": { "pptx-create": 100, "pptx-extract": 78 },
+      "notes": "Model still used python-pptx extraction. Same regex issues with regions."
+    },
+    {
+      "iteration": 4,
+      "description": "Removed python-pptx extraction example entirely. Made markitdown-only extraction MANDATORY with explicit 3-step workflow.",
+      "scores": { "pptx-create": 100, "pptx-extract": 70 },
+      "notes": "Model tried web search, then fell back to python-pptx extraction. Lower score due to additional failures."
+    },
+    {
+      "iteration": 5,
+      "description": "Strengthened extraction guidance with explicit DO NOT instructions. Made markitdown workflow the only documented extraction approach with clear step-by-step instructions.",
+      "scores": { "pptx-create": 100, "pptx-extract": 94 },
+      "notes": "Model followed markitdown approach. Minor slide structure issue (0.75) but financial data perfect (1.0)."
+    }
+  ],
+  "key_changes": [
+    "Replaced complex html2pptx workflow with simple python-pptx for text-only presentations",
+    "Added critical rule to always write Python to .py files (never python -c)",
+    "Fixed zsh pip install bracket quoting guidance",
+    "Made markitdown the mandatory extraction approach with explicit DO NOT use regex scripts",
+    "Removed python-pptx extraction code examples that misled the model into writing buggy regex parsers",
+    "Simplified SKILL.md from 484 lines to ~90 lines focused on what qwen3-30b needs"
+  ]
+}

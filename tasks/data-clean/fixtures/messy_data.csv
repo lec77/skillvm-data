@@ -1,0 +1,16 @@
+name,email,phone,signup_date,revenue
+Alice Johnson,alice@example.com,555-0101,2026-01-15,1200.50
+Bob Smith,bob@example.com,555-0102,01/20/2026,850.00
+Charlie Brown,charlie@example,555-0103,2026-01-25,430.75
+Alice Johnson,alice@example.com,555-0101,2026-01-15,1200.50
+Diana Prince,diana@example.com,,02-05-2026,920.00
+Eve Davis,eve@example.com,555-0105,2026/02/10,670.30
+Frank Miller,frank@example.com,555-0106,2026-02-14,
+Bob Smith,bob@example.com,555-0102,01/20/2026,850.00
+Grace Lee,,555-0108,March 3 2026,540.00
+Henry Wilson,henry@example.com,555-0109,2026-03-10,780.25
+Ivy Chen,ivy@example,555-0110,2026-03-15,310.50
+Jack Taylor,jack@example.com,555-0111,,1150.00
+Kate Brown,kate@example.com,555-0112,2026-04-01,890.75
+Diana Prince,diana@example.com,,02-05-2026,920.00
+Leo Garcia,leo@example.com,555-0114,04/12/2026,425.00

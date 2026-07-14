@@ -1,0 +1,20 @@
+2026-01-15 08:23:41 INFO 192.168.1.100 GET /api/users 200 45ms
+2026-01-15 08:23:42 ERROR 10.0.0.55 POST /api/login 401 12ms "Invalid credentials"
+2026-01-15 08:23:43 INFO 172.16.0.1 GET /api/products 200 67ms
+2026-01-15 08:23:44 WARN 203.0.113.42 POST /api/upload 403 34ms
+2026-01-15 08:23:45 INFO 192.168.1.100 PUT /api/users/42 200 89ms
+2026-01-15 08:23:46 ERROR 10.0.0.55 GET /api/reports 500 1503ms "Database connection timeout"
+2026-01-15 08:23:47 INFO 172.16.0.1 POST /api/orders 201 156ms
+2026-01-15 08:23:48 WARN 203.0.113.42 GET /api/health 200 23ms
+2026-01-15 08:23:49 ERROR 192.168.1.100 DELETE /api/sessions 500 2010ms "Session store unreachable"
+2026-01-15 08:23:50 INFO 10.0.0.55 GET /api/dashboard 200 78ms
+2026-01-15 08:23:51 INFO 172.16.0.1 GET /api/notifications 200 45ms
+2026-01-15 08:23:52 ERROR 203.0.113.42 POST /api/payment 500 340ms "Payment gateway error"
+2026-01-15 08:23:53 WARN 10.0.0.55 PUT /api/settings 403 28ms
+2026-01-15 08:23:54 INFO 192.168.1.100 DELETE /api/cache 204 15ms
+2026-01-15 08:23:55 ERROR 172.16.0.1 POST /api/webhook 500 892ms "Webhook endpoint not found"
+2026-01-15 08:23:56 INFO 203.0.113.42 GET /api/search?q=hello+world&page=2 200 88ms
+2026-01-15 08:23:57 ERROR 10.0.0.55 POST /api/db 500 5023ms "Connection to \"db-primary\" failed"
+2026-01-15 08:23:58 WARN 172.16.0.1 GET /api/config?env=prod&debug=true&v=3 304 42ms
+2026-01-15 08:23:59 INFO 203.0.113.42 GET /api/status 200 31ms
+2026-01-15 08:24:00 ERROR 192.168.1.100 GET /api/ssl 500 3501ms "SSL cert expired: CN=*.example.com, serial=0x1A2B"

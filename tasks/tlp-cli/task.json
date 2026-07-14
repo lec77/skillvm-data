@@ -1,0 +1,55 @@
+{
+  "id": "tlp-cli",
+  "name": "CLI Debug",
+  "category": "parallelism-tlp",
+  "gradingType": "automated",
+  "prompt": "You have 4 independent Python CLI tools in subdirectories: csv_cleaner/, log_filter/, data_merger/, and stats_reporter/. Each tool has failing tests. For each tool: run python3 -m pytest tests/ -v to see what fails, read the source code, find the bug, fix it without modifying test files, and verify all tests pass.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "cli_debug.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "csv-cleaner-tests",
+            "weight": 0.25,
+            "description": "csv_cleaner pytest suite fully passes",
+            "testPattern": "csv_cleaner"
+          },
+          {
+            "id": "log-filter-tests",
+            "weight": 0.25,
+            "description": "log_filter pytest suite fully passes",
+            "testPattern": "log_filter"
+          },
+          {
+            "id": "data-merger-tests",
+            "weight": 0.25,
+            "description": "data_merger pytest suite fully passes",
+            "testPattern": "data_merger"
+          },
+          {
+            "id": "stats-reporter-tests",
+            "weight": 0.25,
+            "description": "stats_reporter pytest suite fully passes",
+            "testPattern": "stats_reporter"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/cli-tool-debugger",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/tlp-cli",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

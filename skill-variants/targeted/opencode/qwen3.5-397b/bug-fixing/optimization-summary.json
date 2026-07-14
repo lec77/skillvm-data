@@ -1,0 +1,29 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "bug-fixing",
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (296 lines + 5 reference files)",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to ~50 lines: removed all reference files, cut philosophical prose, added concrete bug-pattern table with common fixes, streamlined 4-phase process to 4 direct steps. Reduced token overhead significantly.",
+      "scores": {
+        "debug-bsearch": 100,
+        "debug-race": 100
+      }
+    }
+  ],
+  "final_scores": {
+    "debug-bsearch": 100,
+    "debug-race": 100
+  },
+  "notes": "Model achieved 100/100 on both tasks from iteration 1. Optimization focused on reducing skill size from 296 lines + 5 reference files to ~50 lines with no reference files, cutting cost (~14% cheaper) and time (~50% faster) while maintaining perfect scores."
+}

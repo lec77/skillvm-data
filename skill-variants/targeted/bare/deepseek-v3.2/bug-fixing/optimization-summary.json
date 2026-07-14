@@ -1,0 +1,34 @@
+{
+  "iterations": 2,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "skill": "bug-fixing",
+  "per_task_scores": {
+    "debug-bsearch": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    },
+    "debug-race": {
+      "iteration_1": 100,
+      "iteration_2": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original verbose SKILL.md (297 lines). Both tasks scored 100/100.",
+      "cost": {
+        "debug-bsearch": 0.141,
+        "debug-race": 0.0266
+      }
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md from 297 lines to ~50 lines. Removed all unreferenced support files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, etc.) that the bare runtime cannot load. Cut process-heavy methodology prose. Added concise bug pattern table and race condition fix template. Maintained 100/100 on both tasks while reducing token cost ~85%.",
+      "cost": {
+        "debug-bsearch": 0.0212,
+        "debug-race": 0.0082
+      }
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "cases": [
+    {
+      "id": "weather-current",
+      "purposeId": "fetch-current-weather",
+      "skill": "../../skills/weather",
+      "prompts": [
+        "What is the current weather in London?",
+        "What is the current weather in Paris?",
+        "What is the current weather in Tokyo?",
+        "What is the current weather in Berlin?",
+        "What is the current weather in Rome?",
+        "What is the current weather in Madrid?",
+        "What is the current weather in Sydney?",
+        "What is the current weather in Cairo?"
+      ]
+    },
+    {
+      "id": "weather-forecast",
+      "purposeId": "fetch-forecast",
+      "skill": "../../skills/weather",
+      "prompts": [
+        "Show me the weather forecast for London",
+        "Show me the weather forecast for Paris",
+        "Show me the weather forecast for Tokyo",
+        "Show me the weather forecast for Berlin",
+        "Show me the weather forecast for Rome",
+        "Show me the weather forecast for Madrid",
+        "Show me the weather forecast for Sydney",
+        "Show me the weather forecast for Cairo"
+      ]
+    },
+    {
+      "id": "pdf-extract",
+      "purposeId": "extract-pdf-text-tables",
+      "skill": "../../skills/document-pdf",
+      "fixturesDir": "./fixtures-pdf",
+      "prompts": [
+        "Extract all text from sample1.pdf",
+        "Extract text and tables from sample2.pdf",
+        "Extract the text content of sample3.pdf",
+        "Extract all text from sample1.pdf and save it",
+        "Extract text from sample2.pdf",
+        "Extract the text from sample3.pdf",
+        "Extract all text content from sample1.pdf",
+        "Extract text from sample2.pdf and print it"
+      ]
+    },
+    {
+      "id": "pdf-merge",
+      "purposeId": "merge-split-manipulate-pdf",
+      "skill": "../../skills/document-pdf",
+      "fixturesDir": "./fixtures-pdf",
+      "prompts": [
+        "Merge sample1.pdf and sample2.pdf into merged_12.pdf",
+        "Merge sample2.pdf and sample3.pdf into merged_23.pdf",
+        "Merge sample1.pdf and sample3.pdf into merged_13.pdf",
+        "Merge sample1.pdf, sample2.pdf, and sample3.pdf into merged_all.pdf",
+        "Merge sample3.pdf and sample1.pdf into merged_31.pdf",
+        "Merge sample2.pdf and sample1.pdf into merged_21.pdf",
+        "Merge sample1.pdf and sample2.pdf into combined.pdf",
+        "Merge sample3.pdf and sample2.pdf into merged_32.pdf"
+      ]
+    }
+  ]
+}

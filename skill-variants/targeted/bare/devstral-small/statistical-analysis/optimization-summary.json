@@ -1,0 +1,26 @@
+{
+  "iterations": 3,
+  "model": "devstral-small",
+  "runtime": "bare",
+  "skill": "statistical-analysis",
+  "per_task_scores": {
+    "hypothesis-testing": {
+      "iteration_1_baseline": 0,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 100
+    },
+    "regression-analysis": {
+      "iteration_1_baseline": 0,
+      "iteration_2": 100,
+      "iteration_3_confirmation": 100
+    }
+  },
+  "changes_made": [
+    "Removed verbose explanations and generic patterns that overwhelmed the small model",
+    "Added explicit instruction: 'Do NOT run pip install' - model was stuck in infinite pip install loop",
+    "Added clear 4-step workflow: read CSV, write Python script, execute it, verify output",
+    "Replaced generic code snippets with two complete, ready-to-run Python scripts for each task type (ANOVA and regression)",
+    "Scripts include all required output fields matching the exact JSON schema expected by tests",
+    "Reduced skill from ~200 lines of reference material to ~120 lines of actionable, copy-paste-ready code"
+  ]
+}

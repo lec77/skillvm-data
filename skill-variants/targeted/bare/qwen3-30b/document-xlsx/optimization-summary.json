@@ -1,0 +1,35 @@
+{
+  "iterations": 5,
+  "scores": {
+    "iteration1_baseline": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    },
+    "iteration2_confirmation": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 85,
+      "notes": "approval-rate and months-present failed — model didn't load skill, used pandas, included TOTAL row in analysis"
+    },
+    "iteration3_optimized_skill_body": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 85,
+      "notes": "Added reading/analyzing section and formula-row guidance to SKILL.md body; model still didn't load skill"
+    },
+    "iteration4_optimized_description": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100,
+      "notes": "Changed description to 'REQUIRED for any task involving .xlsx' — model now loads skill consistently"
+    },
+    "iteration5_confirmation": {
+      "document-xlsx": 100,
+      "xlsx-analyze": 100
+    }
+  },
+  "changes": [
+    "Rewrote skill description from generic to urgently directive ('REQUIRED for any task involving .xlsx or Excel files. Load this skill FIRST...') to ensure qwen3-30b always loads it",
+    "Added 'Reading/Analyzing Spreadsheets' section with template for reading xlsx with openpyxl",
+    "Added guidance to skip TOTAL/SUM/formula rows when analyzing spreadsheet data",
+    "Condensed creating-spreadsheets section — removed full worked example, kept key patterns table",
+    "Removed unreferenced files: recalc.py, LICENSE.txt"
+  ]
+}

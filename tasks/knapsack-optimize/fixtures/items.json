@@ -1,0 +1,17 @@
+{
+  "capacity": 50,
+  "items": [
+    {"id": 1, "name": "Diamond Ring", "weight": 3, "value": 150},
+    {"id": 2, "name": "Gold Bar", "weight": 15, "value": 300},
+    {"id": 3, "name": "Silver Set", "weight": 10, "value": 180},
+    {"id": 4, "name": "Pearl Necklace", "weight": 5, "value": 120},
+    {"id": 5, "name": "Bronze Statue", "weight": 20, "value": 200},
+    {"id": 6, "name": "Jade Figurine", "weight": 8, "value": 160},
+    {"id": 7, "name": "Ruby Brooch", "weight": 2, "value": 90},
+    {"id": 8, "name": "Emerald Pendant", "weight": 4, "value": 130},
+    {"id": 9, "name": "Platinum Watch", "weight": 6, "value": 170},
+    {"id": 10, "name": "Sapphire Ring", "weight": 3, "value": 110},
+    {"id": 11, "name": "Crystal Vase", "weight": 12, "value": 140},
+    {"id": 12, "name": "Opal Bracelet", "weight": 4, "value": 100}
+  ]
+}

@@ -1,0 +1,20 @@
+2026-09-07 22:13:44 INFO 100.64.0.3 GET /iot/devices 200 61ms
+2026-09-07 22:13:45 ERROR 198.18.7.44 POST /iot/auth 401 27ms "Device certificate revoked"
+2026-09-07 22:13:46 INFO 10.44.1.9 GET /iot/telemetry 200 88ms
+2026-09-07 22:13:47 ERROR 192.168.250.77 GET /iot/firmware 500 1642ms "Firmware bundle checksum mismatch"
+2026-09-07 22:13:48 WARN 100.64.0.3 POST /iot/provision 403 44ms
+2026-09-07 22:13:49 INFO 198.18.7.44 PUT /iot/devices/905 200 79ms
+2026-09-07 22:13:50 ERROR 10.44.1.9 POST /iot/pairing 500 2894ms "Pairing broker did not respond"
+2026-09-07 22:13:51 INFO 192.168.250.77 POST /iot/events 201 154ms
+2026-09-07 22:13:52 INFO 100.64.0.3 GET /iot/query?metric=temp&window=1h 200 97ms
+2026-09-07 22:13:53 WARN 198.18.7.44 GET /iot/uptime 200 33ms
+2026-09-07 22:13:54 ERROR 10.44.1.9 DELETE /iot/registry 500 3377ms "Registry lock held by another node"
+2026-09-07 22:13:55 INFO 192.168.250.77 GET /iot/alerts 200 42ms
+2026-09-07 22:13:56 ERROR 100.64.0.3 POST /iot/ingest 500 936ms "Ingest buffer overflow"
+2026-09-07 22:13:57 WARN 198.18.7.44 GET /iot/limits?tier=gold&strict=true&rev=2 304 51ms
+2026-09-07 22:13:58 INFO 10.44.1.9 DELETE /iot/staging 204 21ms
+2026-09-07 22:13:59 INFO 192.168.250.77 GET /iot/health 200 30ms
+2026-09-07 22:14:00 ERROR 100.64.0.3 POST /iot/mirror 500 5218ms "Mirror \"eu-north-2\" rejected the batch"
+2026-09-07 22:14:01 WARN 198.18.7.44 PUT /iot/policies 403 38ms
+2026-09-07 22:14:02 INFO 10.44.1.9 GET /iot/sessions 200 56ms
+2026-09-07 22:14:03 ERROR 192.168.250.77 GET /iot/tls 500 989ms "Handshake aborted: SNI=*.edge.iot-hub.io, err=0x5B21"

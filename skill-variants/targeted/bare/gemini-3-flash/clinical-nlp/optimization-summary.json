@@ -1,0 +1,39 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "clinical-nlp",
+  "iterations": 4,
+  "scores": {
+    "iteration_1_baseline": {
+      "note-extraction": 90,
+      "medication-reconciliation": 20,
+      "total": 110,
+      "changes": "Unmodified skill (identical to original verbose skill)"
+    },
+    "iteration_2": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "changes": "Rewrote SKILL.md: compressed content, added explicit JSON output format for reconciliation with object examples in changes arrays (not plain strings), added negation scope for conjunctions, removed Python code and drug lists"
+    },
+    "iteration_3": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "changes": "Used placeholder drug names (DrugA, DrugB) in examples to prevent model from copying example data; added emphasis on parsing ALL medications from input files"
+    },
+    "iteration_4_confirmation": {
+      "note-extraction": 90,
+      "medication-reconciliation": 60,
+      "total": 150,
+      "changes": "No changes — consistency verification run"
+    }
+  },
+  "final_scores": {
+    "note-extraction": 90,
+    "medication-reconciliation": 60,
+    "average": 75
+  },
+  "notes": "Scores are at theoretical maximum given broken test pattern matching in task definitions. Three criteria use describe-block names as testPattern (e.g., 'reconciliation\\.json exists', 'admission list has 5', 'discharge list has 6') but the evaluator matches against individual test names (e.g., 'reconciliation.json file is present', 'admission list has exactly 5 medications'). These patterns never match any test, so rawScore=0 regardless of output quality. Max achievable: note-extraction=90 (10% unreachable), medication-reconciliation=60 (40% unreachable).",
+  "key_optimization": "The critical fix was changing the medication reconciliation output format guidance. The original skill showed changes arrays with implicit string format, causing gemini-3-flash to output plain strings like 'Aspirin' instead of objects with name fields. The optimized skill explicitly shows object format with {\"name\": ...} and marks it as CRITICAL."
+}

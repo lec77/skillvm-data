@@ -1,0 +1,22 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "skill": "flood-analysis",
+  "tasks": {
+    "flood-risk": {
+      "scores": [100],
+      "final_score": 100
+    },
+    "streamflow-stats": {
+      "scores": [100],
+      "final_score": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Rewrote skill from verbose original to concise, directive format optimized for smaller models. Key changes: (1) removed redundant explanatory text, (2) added explicit JSON output schemas with example values, (3) highlighted critical distinction between strict > for flood day counting vs >= for severity classification, (4) emphasized sample statistics (ddof=1, bias=False), (5) specified exact required key names for output JSON."
+    }
+  ]
+}

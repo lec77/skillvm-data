@@ -1,0 +1,41 @@
+{
+  "iterations": 3,
+  "model": "qwen3.5-122b",
+  "runtime": "bare",
+  "per_task_scores": {
+    "pdf-text-extract": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3_run0": 100,
+      "iteration_3_run1": 100
+    },
+    "pdf-merge-info": {
+      "iteration_1": 75,
+      "iteration_2": 100,
+      "iteration_3_run0": 100,
+      "iteration_3_run1": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Initial skill rewrite: replaced nano-pdf CLI-focused skill with comprehensive PyPDF2-based instructions covering text extraction, merging, page counts, metadata extraction, and JSON output. Added explicit procedures and code examples for SLM guidance.",
+      "scores": { "pdf-text-extract": 100, "pdf-merge-info": 75 }
+    },
+    {
+      "iteration": 2,
+      "description": "Added CRITICAL warning about never using PDF metadata for author/title extraction (metadata shows 'anonymous'/'untitled'). Added explicit procedure to extract from page text instead. Strengthened rules against using pdftk/pdftotext. Result was inconsistent (100 then 75 on merge task).",
+      "scores": { "pdf-text-extract": 100, "pdf-merge-info": "100 then 75 (inconsistent)" }
+    },
+    {
+      "iteration": 3,
+      "description": "Packed critical instructions into the skill description field (visible in system prompt) since qwen3.5-122b cannot reliably load skill bodies via <load-skill> mechanism. Description now contains: use PyPDF2, never use PDF metadata for authors, extract from page text. Confirmed stable with 2 runs: all 100/100.",
+      "scores": { "pdf-text-extract": 100, "pdf-merge-info": 100 }
+    }
+  ],
+  "final_scores": {
+    "pdf-text-extract": 100,
+    "pdf-merge-info": 100
+  },
+  "key_insight": "qwen3.5-122b cannot load skill bodies via the <load-skill> text mechanism (it tries to call load-skill as a tool). Critical instructions must be embedded in the description field, which is always visible in the system prompt."
+}

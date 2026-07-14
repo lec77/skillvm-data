@@ -1,0 +1,13 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "fjsp-schedule": 100,
+    "job-makespan": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original skill (identical to verbose). Both tasks scored 100/100. No changes needed."
+    }
+  ]
+}

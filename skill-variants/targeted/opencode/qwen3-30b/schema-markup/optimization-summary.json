@@ -1,0 +1,42 @@
+{
+  "iterations": 5,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "schema-markup",
+  "scores": {
+    "iteration1": {
+      "product-schema": 0,
+      "faq-schema": 0,
+      "notes": "Baseline with original unoptimized skill. Model generated correct content but write tool truncated JSON - missing closing braces."
+    },
+    "iteration2": {
+      "product-schema": 0,
+      "faq-schema": 0,
+      "notes": "Condensed skill with compact JSON templates and verification step. Same truncation issue - model still lost closing braces."
+    },
+    "iteration3": {
+      "product-schema": 0,
+      "faq-schema": 0,
+      "notes": "Compact single-line JSON templates. Product missing final }, FAQ missing } on Question objects. Model cannot track brace nesting in compact format."
+    },
+    "iteration4": {
+      "product-schema": 5,
+      "faq-schema": 33,
+      "notes": "Instructed python3 -c approach for JSON generation. Model tried but failed due to quoting issues in bash, retried same broken command 28 times. FAQ got partial credit from write tool fallback."
+    },
+    "iteration5": {
+      "product-schema": 100,
+      "faq-schema": 100,
+      "notes": "Write-a-Python-script approach: model writes gen.py file then runs it with python3. Avoids both write-tool truncation and bash quoting issues. Perfect scores."
+    }
+  },
+  "changes": [
+    "Replaced original verbose skill (180 lines) with task-focused version",
+    "Removed irrelevant sections: Initial Assessment, CMS/WordPress, Related Skills, validation tools",
+    "Added explicit instruction to write a Python helper script (gen.py) instead of using write tool for JSON",
+    "Added Product and FAQPage Python script templates with clear placeholder values",
+    "Added 5-step workflow: read HTML, extract values, write gen.py, run python3, verify output",
+    "Removed references/schema-examples.md (not referenced by final skill)"
+  ],
+  "key_insight": "qwen3-30b truncates JSON output when using the write tool directly, and cannot handle complex quoting in python3 -c. The reliable workaround is writing a Python script file and executing it, which guarantees valid JSON output via json.dump()."
+}

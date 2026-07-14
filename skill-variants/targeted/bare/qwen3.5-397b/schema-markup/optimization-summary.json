@@ -1,0 +1,36 @@
+{
+  "skill": "schema-markup",
+  "runtime": "bare",
+  "model": "qwen3.5-397b",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 0,
+      "description": "Baseline (unmodified original skill)",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    },
+    {
+      "iteration": 1,
+      "description": "Compressed skill: removed verbose sections, inlined key Product/FAQPage examples, removed references file, cut from ~580 lines to ~75 lines",
+      "scores": {
+        "product-schema": 100,
+        "faq-schema": 100
+      }
+    }
+  ],
+  "changes": [
+    "Removed Initial Assessment, Core Principles, Validation/Testing, Implementation, Output Format, Task-Specific Questions, and Related Skills sections",
+    "Inlined concrete Product and FAQPage JSON-LD examples directly in SKILL.md",
+    "Added explicit Key Rules section for JSON-LD correctness",
+    "Added simple Workflow section (read HTML → identify type → extract → write)",
+    "Removed references/schema-examples.md (399 lines) — relevant examples now inline",
+    "Reduced total skill content from ~580 lines to ~75 lines"
+  ],
+  "finalScores": {
+    "product-schema": 100,
+    "faq-schema": 100
+  }
+}

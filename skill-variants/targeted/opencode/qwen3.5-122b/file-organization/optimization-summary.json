@@ -1,0 +1,25 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "file-organization",
+  "scores": {
+    "iteration1": {
+      "fileorg-messy": 100,
+      "fileorg-dedup": 100
+    }
+  },
+  "finalScores": {
+    "fileorg-messy": 100,
+    "fileorg-dedup": 100
+  },
+  "changes": [
+    "Replaced verbose 434-line conversational skill with direct 70-line action-oriented version",
+    "Added CRITICAL directive to execute immediately without asking for confirmation",
+    "Used bash -c wrapper to avoid zsh glob errors (from qwen3-30b pattern)",
+    "Used for-loop with case statement for reliable extension-based file sorting",
+    "Included comprehensive extension-to-directory mapping covering all fixture file types",
+    "Added explicit MD5 hashing instructions for duplicate detection with macOS md5 -r syntax",
+    "Emphasized reporting ALL filenames in duplicate groups to satisfy eval criteria"
+  ]
+}

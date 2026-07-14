@@ -1,0 +1,53 @@
+{
+  "id": "ilp-audit",
+  "name": "Release Readiness Audit",
+  "category": "parallelism-ilp",
+  "gradingType": "automated",
+  "prompt": "Audit the code in `service/` for release readiness by running four independent analyses, then synthesize a report. The four analyses are different tools with different inputs and outputs:\n\n1. python3 tools/scan_secrets.py service secrets_scan.json\n2. python3 tools/measure_complexity.py service complexity_metrics.json\n3. python3 tools/audit_deps.py service/requirements.txt cve_db.json dep_audit.json\n4. python3 tools/probe_perf.py service perf_probe.json\n\nThe four analyses are independent of each other and may run in any order (or together). After all four reports exist, run the synthesizer:\n\n   python3 tools/build_report.py\n\nThis reads the four section reports and writes release_report.json.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "audit.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "reports-exist",
+            "weight": 0.1,
+            "description": "All four section reports and release_report.json are created",
+            "testPattern": "all section reports exist"
+          },
+          {
+            "id": "section-values",
+            "weight": 0.3,
+            "description": "Each section report's non-fingerprint values match the expected analysis output",
+            "testPattern": "values match for"
+          },
+          {
+            "id": "fingerprints",
+            "weight": 0.4,
+            "description": "Each section fingerprint matches, verifying the CPU-bound analysis actually ran",
+            "testPattern": "fingerprint matches for"
+          },
+          {
+            "id": "release-report",
+            "weight": 0.2,
+            "description": "release_report.json is valid with a correct combined fingerprint and readiness verdict",
+            "testPattern": "release_report is valid"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/release-auditor",
+  "origin": {
+    "source": "skvm-ae",
+    "notes": "Genuine instruction-level-parallelism task: four heterogeneous, independent analyzers (distinct commands, inputs, and outputs) run in one turn, then a merge step. Unlike ilp/ilp-dep/ilp-lint (same command over a collection = data-level parallelism), this cannot be expressed as a single fan-out loop."
+  }
+}

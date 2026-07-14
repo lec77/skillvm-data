@@ -1,0 +1,19 @@
+{
+  "skill": "weather",
+  "runtime": "bare",
+  "model": "qwen3.5-397b",
+  "iterations": 1,
+  "tasks": {
+    "weather-compare": {
+      "scores": [100],
+      "final": 100
+    },
+    "weather-travel": {
+      "scores": [100],
+      "final": 100
+    }
+  },
+  "changes": [
+    "No changes needed — the original wttr.in-based skill already achieves 100/100 on both tasks with qwen3.5-397b on bare runtime."
+  ]
+}

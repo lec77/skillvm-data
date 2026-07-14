@@ -1,0 +1,35 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "pdf-merge-info": 100,
+    "pdf-text-extract": 100
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "changes": "Replaced minimal nano-pdf CLI-only skill with comprehensive PDF operations guide covering pypdf for text extraction, merging, page counting, structured data extraction, and metadata. Added explicit examples for JSON output and number parsing.",
+      "scores": {
+        "pdf-merge-info": 50,
+        "pdf-text-extract": 100
+      }
+    },
+    {
+      "iteration": 2,
+      "changes": "Added explicit WARNING against using reader.metadata for titles/authors (returns 'untitled'/'anonymous'). Added detailed instructions to extract titles and authors from visible page text instead, with concrete example.",
+      "scores": {
+        "pdf-merge-info": 100,
+        "pdf-text-extract": 100
+      }
+    }
+  ],
+  "confirmation_run": {
+    "pdf-merge-info": 100,
+    "pdf-text-extract": 100
+  },
+  "key_changes": [
+    "Expanded skill from nano-pdf CLI-only to full PDF operations including pypdf",
+    "Added structured data extraction workflow with Python examples",
+    "Added explicit warning: never use reader.metadata for titles/authors, always parse visible page text",
+    "Added rules for number formatting (remove $ and , for JSON output)"
+  ]
+}

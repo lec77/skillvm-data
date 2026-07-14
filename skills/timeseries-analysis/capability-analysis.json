@@ -1,0 +1,132 @@
+{
+  "skill_name": "timeseries-analysis",
+  "skill_path": "skills/timeseries-analysis",
+  "total_files": 1,
+  "total_tokens_estimate": 1550,
+  "purposes": [
+    {
+      "id": "hp-filter-detrending",
+      "description": "Decompose time series into trend and cyclical components using the Hodrick-Prescott filter with appropriate lambda selection by observation frequency, including log-transformation for level variables.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "HP filter implementation uses numpy (third-party) for matrix operations: np.zeros, np.eye, np.linalg.solve, matrix transposition and multiplication (D.T @ D). Also np.log for log-transformation."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Understanding the HP filter minimization problem, selecting lambda (100/1600/14400) by frequency, and interpreting cycle values as percentage deviations from trend."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "seasonal-decomposition",
+      "description": "Decompose time series with periodic patterns into trend, seasonal, and residual components using additive or multiplicative models.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses statsmodels.tsa.seasonal.seasonal_decompose (third-party) with model='additive'/'multiplicative' and period parameter. Also uses pandas Series."
+          },
+          {
+            "id": "reason.analysis",
+            "min_level": "L1",
+            "evidence": "Choosing between additive (constant seasonal amplitude) and multiplicative (amplitude grows with level) models based on data characteristics."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "anomaly-detection",
+      "description": "Detect anomalies in time series data using rolling z-score method and normalized anomaly index, classifying as spike, dip, or level shift.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses pandas (third-party) for rolling window statistics (s.rolling().mean(), s.rolling().std()), numpy for np.tanh in anomaly index computation."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Z-score computation: (value - rolling_mean) / rolling_std, threshold comparison, and anomaly_index = 100 * tanh(deviation / std_residual) normalization."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "cross-correlation-analysis",
+      "description": "Compute cross-correlations between cyclical components of related time series at multiple lags to identify lead-lag relationships.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Uses numpy np.corrcoef for correlation at each lag, scipy.stats.pearsonr for significance testing. Array slicing for lag alignment."
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Interpreting cross-correlations at different lags: positive lag means y leads x, understanding co-movement vs correlation distinction."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {
+      "location": "SKILL.md:1-4",
+      "purposes": [],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:6-17",
+      "purposes": ["hp-filter-detrending", "seasonal-decomposition", "anomaly-detection", "cross-correlation-analysis"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:18-31",
+      "purposes": ["hp-filter-detrending"],
+      "type": "instruction"
+    },
+    {
+      "location": "SKILL.md:33-54",
+      "purposes": ["hp-filter-detrending"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:56-91",
+      "purposes": ["hp-filter-detrending", "cross-correlation-analysis"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:93-109",
+      "purposes": ["seasonal-decomposition"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:111-170",
+      "purposes": ["anomaly-detection"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:171-189",
+      "purposes": ["cross-correlation-analysis"],
+      "type": "code_example"
+    },
+    {
+      "location": "SKILL.md:191-198",
+      "purposes": ["hp-filter-detrending", "anomaly-detection"],
+      "type": "instruction"
+    }
+  ],
+  "unmatched_requirements": []
+}

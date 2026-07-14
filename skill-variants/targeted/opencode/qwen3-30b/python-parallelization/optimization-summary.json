@@ -1,0 +1,35 @@
+{
+  "iterations": 4,
+  "model": "qwen3-30b",
+  "runtime": "opencode",
+  "skill": "python-parallelization",
+  "per_task_scores": {
+    "parallel-checksum": {
+      "iteration_1": 93,
+      "iteration_2": 93,
+      "iteration_3_run0": 93,
+      "iteration_3_run1": 93,
+      "iteration_4": 93,
+      "best": 93,
+      "ceiling": 93,
+      "ceiling_reason": "Test uses toHaveProperty('data_00.bin') which Bun interprets as nested path (data_00 -> bin). This always fails regardless of output correctness. Max achievable is 93/100."
+    },
+    "parallel-wordcount": {
+      "iteration_1": 93,
+      "iteration_2": 93,
+      "iteration_3_run0": 100,
+      "iteration_3_run1": 93,
+      "iteration_4": 100,
+      "best": 100,
+      "ceiling": 100,
+      "ceiling_reason": "Score varies 93-100 due to JS sort instability with tied word counts (3 words at count 124 compete for 2 top-10 slots). Model output is always correct."
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md: removed verbose sections (error handling, performance tuning, asyncio details), added explicit checksum and word-count patterns as concrete examples, added Common Mistakes section emphasizing bare filenames, __main__ guard, sort_keys=True, and Counter merge pattern. Reduced skill size by ~40% to decrease cognitive load for smaller model."
+    }
+  ],
+  "final_notes": "Model produces correct output on every run. The 93/100 ceiling on parallel-checksum is a test framework bug (Bun toHaveProperty treats dots as path separators). The wordcount task achieves 100 when JS sort happens to place the expected words in top-10 positions."
+}

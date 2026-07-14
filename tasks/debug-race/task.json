@@ -1,0 +1,67 @@
+{
+  "id": "debug-race",
+  "name": "Fix a race condition",
+  "category": "bug-fixing",
+  "gradingType": "automated",
+  "prompt": "The file buggy-race.ts has an async withdraw function with a race condition. Find the bug and write the corrected implementation to race-fixed.ts. The fix should ensure concurrent withdrawals never overdraw the balance.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "race.test.ts",
+        "criteria": [
+          {
+            "id": "basic-withdrawal",
+            "weight": 0.1,
+            "description": "Single withdrawal works",
+            "testPattern": "single withdrawal"
+          },
+          {
+            "id": "concurrent-safety",
+            "weight": 0.25,
+            "description": "Concurrent withdrawals don't overdraw",
+            "testPattern": "concurrent withdrawals don't overdraw"
+          },
+          {
+            "id": "exact-balance",
+            "weight": 0.2,
+            "description": "Concurrent withdrawals of exact balance",
+            "testPattern": "exact balance"
+          },
+          {
+            "id": "insufficient",
+            "weight": 0.1,
+            "description": "Rejects insufficient balance",
+            "testPattern": "insufficient balance"
+          },
+          {
+            "id": "stress-test",
+            "weight": 0.2,
+            "description": "Stress test with many concurrent withdrawals",
+            "testPattern": "stress test"
+          },
+          {
+            "id": "never-negative",
+            "weight": 0.15,
+            "description": "Balance never goes negative under concurrency",
+            "testPattern": "never goes negative"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/bug-fixing",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/bug-fixing/debug-race/",
+    "importedAt": "2026-07-07T06:18:30.389Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

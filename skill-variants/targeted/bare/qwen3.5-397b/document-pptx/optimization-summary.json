@@ -1,0 +1,31 @@
+{
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "document-pptx",
+  "iterations": 2,
+  "scores": {
+    "baseline": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    },
+    "iteration_1": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    },
+    "iteration_2": {
+      "pptx-create": 100,
+      "pptx-extract": 100
+    }
+  },
+  "changes": [
+    "Replaced 484-line verbose SKILL.md with focused 90-line version using python-pptx directly",
+    "Removed html2pptx workflow (HTML→JS→PPTX) in favor of direct python-pptx creation",
+    "Removed 18 color palettes, visual design options, typography treatments, layout innovations",
+    "Removed template-based workflow (rearrange.py, inventory.py, replace.py)",
+    "Removed all XSD schemas (26 files), validation scripts, and unused reference files (html2pptx.md, ooxml.md)",
+    "Added concrete python-pptx code examples for creation, extraction, and editing",
+    "Added number/percentage parsing helpers for structured data extraction",
+    "Kept only ooxml/scripts/pack.py and unpack.py for advanced XML editing use case",
+    "Reduced bundled files from 40+ to 4 (SKILL.md, LICENSE.txt, pack.py, unpack.py)"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "dep-audit",
+  "name": "Cross-reference dependencies against vulnerability advisories",
+  "category": "vulnerability-audit",
+  "gradingType": "automated",
+  "prompt": "Read package.json and advisory_data.json. The advisory_data.json contains known vulnerability advisories for npm packages. Cross-reference the dependencies in package.json against the advisories to find vulnerable packages. For each vulnerable dependency, determine: severity, vulnerable version range, whether a patched version exists. Write audit_report.json with: vulnerable (array of {package, installed_version, severity, advisory_id, patched_version or null}), safe (array of package names with no known vulns), risk_summary ({critical, high, medium, low, total_vulnerable, total_safe}).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "dep-audit.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "audit_report.json is created with valid JSON",
+            "testPattern": "output file exists|valid JSON"
+          },
+          {
+            "id": "vulnerable-count",
+            "weight": 0.2,
+            "description": "Exactly 4 vulnerable packages identified",
+            "testPattern": "4 vulnerable packages|vulnerable count"
+          },
+          {
+            "id": "safe-count",
+            "weight": 0.15,
+            "description": "Exactly 4 safe packages identified",
+            "testPattern": "4 safe packages|safe count|safe list"
+          },
+          {
+            "id": "severity-correct",
+            "weight": 0.25,
+            "description": "Severity levels correctly assigned per advisory",
+            "testPattern": "severity correct|critical lodash|high express|medium axios|low minimist"
+          },
+          {
+            "id": "patched-versions",
+            "weight": 0.15,
+            "description": "Patched version recorded for each vulnerability",
+            "testPattern": "patched versions|patched_version"
+          },
+          {
+            "id": "risk-summary",
+            "weight": 0.15,
+            "description": "risk_summary counts are correct",
+            "testPattern": "risk summary|risk_summary|total_vulnerable|total_safe"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/vulnerability-audit",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/vulnerability-audit/dep-audit/",
+    "importedAt": "2026-07-07T06:19:11.566Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

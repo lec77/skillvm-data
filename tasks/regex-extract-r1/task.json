@@ -1,0 +1,61 @@
+{
+  "id": "regex-extract-r1",
+  "name": "Extract structured data from server logs",
+  "category": "regex",
+  "gradingType": "automated",
+  "prompt": "Parse server.log and extract structured data from each line. Each log line contains a timestamp, log level, IP address, HTTP method, path, status code, and response time. Some lines also have an error message in quotes. Some paths include query strings (e.g. /v2/lookup?term=blue) — extract just the path without the query string. Write the results to extracted.json as an array of objects with fields: timestamp, level, ip, method, path (without query string), status (number), duration_ms (number), and message (string, only if present). The message field should only exist on ERROR entries.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "server-log.test.ts",
+        "criteria": [
+          {
+            "id": "structure",
+            "weight": 0.1,
+            "description": "Output structure and field types",
+            "testPattern": "is an array|correct number|required fields|status is a number|duration_ms is a number"
+          },
+          {
+            "id": "ip-level-counts",
+            "weight": 0.2,
+            "description": "Correct IP and log level counts",
+            "testPattern": "unique IPs|ERROR entries$|INFO entries|WARN entries|missing level"
+          },
+          {
+            "id": "message-handling",
+            "weight": 0.1,
+            "description": "Error message field handling",
+            "testPattern": "have message|do not have message"
+          },
+          {
+            "id": "exact-parsing",
+            "weight": 0.3,
+            "description": "Exact entry parsing and completeness",
+            "testPattern": "first entry|error message is parsed|HTTP methods|status codes"
+          },
+          {
+            "id": "edge-cases",
+            "weight": 0.3,
+            "description": "Edge case parsing (query strings, escaped quotes, special chars)",
+            "testPattern": "query string|escaped quotes|special characters|high duration"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/regex",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/regex/regex-extract/",
+    "importedAt": "2026-07-07T06:19:11.554Z",
+    "notes": "content variant r1 of regex-extract — same task type, same structure, different log content"
+  }
+}

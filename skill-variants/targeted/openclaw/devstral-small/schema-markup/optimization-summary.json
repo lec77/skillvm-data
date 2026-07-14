@@ -1,0 +1,21 @@
+{
+  "iterations": 1,
+  "model": "devstral-small",
+  "runtime": "openclaw",
+  "skill": "schema-markup",
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "faq-schema": 100,
+        "product-schema": 100
+      },
+      "changes": "No changes needed - baseline skill already achieves perfect scores on both tasks"
+    }
+  ],
+  "finalScores": {
+    "faq-schema": 100,
+    "product-schema": 100
+  },
+  "summary": "The existing targeted skill (identical to the verbose original) already achieves 100/100 on both schema-markup tasks with devstral-small on openclaw. No optimization was necessary."
+}

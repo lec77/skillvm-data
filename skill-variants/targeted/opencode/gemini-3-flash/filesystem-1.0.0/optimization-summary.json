@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "scores": {
+    "iteration1": {
+      "fs-search": 100,
+      "fs-batch-rename": 70
+    },
+    "iteration2": {
+      "fs-search": 100,
+      "fs-batch-rename": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original Chinese-language SKILL.md (342 lines)"
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md in English, reduced to ~50 lines. Added explicit kebab-case rules with dot-preservation guidance (v3.1 stays as v3.1, not v3-1). Added concrete rename examples matching task edge cases. Added directory analysis recipe with exact shell commands. Removed _meta.json."
+    }
+  ]
+}

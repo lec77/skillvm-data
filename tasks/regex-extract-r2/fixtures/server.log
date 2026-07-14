@@ -1,0 +1,20 @@
+2026-05-18 09:41:02 INFO 203.0.113.9 GET /edge/zones 200 58ms
+2026-05-18 09:41:03 ERROR 10.20.30.40 POST /edge/session 401 22ms "Signing key rotated"
+2026-05-18 09:41:04 WARN 192.168.44.5 GET /edge/purge?scope=all&async=true 304 46ms
+2026-05-18 09:41:05 INFO 172.16.99.201 POST /edge/assets 201 167ms
+2026-05-18 09:41:06 ERROR 203.0.113.9 GET /edge/analytics 500 1876ms "Aggregation shard timed out"
+2026-05-18 09:41:07 INFO 10.20.30.40 GET /edge/regions 200 71ms
+2026-05-18 09:41:08 INFO 192.168.44.5 PUT /edge/zones/18 200 84ms
+2026-05-18 09:41:09 ERROR 172.16.99.201 POST /edge/origin 500 3644ms "Origin \"eu-west-cache\" returned malformed body"
+2026-05-18 09:41:10 WARN 203.0.113.9 POST /edge/rules 403 37ms
+2026-05-18 09:41:11 INFO 10.20.30.40 GET /edge/status 200 26ms
+2026-05-18 09:41:12 ERROR 192.168.44.5 DELETE /edge/cache 500 2233ms "Cache invalidation queue full"
+2026-05-18 09:41:13 INFO 172.16.99.201 GET /edge/certs 200 49ms
+2026-05-18 09:41:14 INFO 203.0.113.9 GET /edge/search?tag=video&region=apac 200 102ms
+2026-05-18 09:41:15 WARN 10.20.30.40 PUT /edge/limits 403 31ms
+2026-05-18 09:41:16 ERROR 192.168.44.5 POST /edge/hooks 500 588ms "Hook delivery rejected by peer"
+2026-05-18 09:41:17 INFO 172.16.99.201 DELETE /edge/logs 204 17ms
+2026-05-18 09:41:18 WARN 203.0.113.9 GET /edge/health 200 24ms
+2026-05-18 09:41:19 ERROR 10.20.30.40 GET /edge/keys 500 812ms "Key vault unreachable"
+2026-05-18 09:41:20 INFO 192.168.44.5 POST /edge/reports 201 133ms
+2026-05-18 09:41:21 ERROR 172.16.99.201 GET /edge/tls 500 3018ms "Certificate chain invalid: CN=*.cdn.example.net, id=0x9C4D"

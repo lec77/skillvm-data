@@ -1,0 +1,42 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "per_task_scores": {
+    "note-extraction": {
+      "iteration_1_baseline": 90,
+      "iteration_2_optimized": 90,
+      "max_achievable": 90,
+      "criteria_breakdown": {
+        "output-exists": { "raw": 0, "weight": 0.1, "note": "testPattern mismatch - pattern never matches any test name (infrastructure bug)" },
+        "entity-count": { "raw": 1, "weight": 0.1 },
+        "conditions-found": { "raw": 1, "weight": 0.2 },
+        "negation-correct": { "raw": 1, "weight": 0.25 },
+        "medications-parsed": { "raw": 1, "weight": 0.2 },
+        "labs-parsed": { "raw": 1, "weight": 0.15 }
+      }
+    },
+    "medication-reconciliation": {
+      "iteration_1_baseline": 60,
+      "iteration_2_optimized": 60,
+      "max_achievable": 60,
+      "criteria_breakdown": {
+        "output-exists": { "raw": 0, "weight": 0.1, "note": "testPattern 'reconciliation\\.json exists' never matches test names" },
+        "admission-count": { "raw": 0, "weight": 0.15, "note": "testPattern 'admission list has 5' never matches 'admission list has exactly 5 medications'" },
+        "discharge-count": { "raw": 0, "weight": 0.15, "note": "testPattern 'discharge list has 6' never matches 'discharge list has exactly 6 medications'" },
+        "continued-correct": { "raw": 1, "weight": 0.15 },
+        "changes-detected": { "raw": 1, "weight": 0.25 },
+        "switched-detected": { "raw": 1, "weight": 0.2 }
+      }
+    }
+  },
+  "changes_made": [
+    "Reduced SKILL.md from ~270 lines to ~100 lines (63% reduction) while preserving all critical information",
+    "Removed verbose Python code examples (unnecessary for 397B model)",
+    "Added explicit JSON templates for both output formats (entities.json and reconciliation.json)",
+    "Consolidated negation rules with clearer examples including 'or' scope extension",
+    "Emphasized boolean/number type requirements for negated, dose, and value fields",
+    "Streamlined drug class groupings and abbreviation tables"
+  ],
+  "score_ceiling_note": "Three criteria (output-exists for both tasks, admission-count, discharge-count) have testPattern regex bugs in the task definitions that prevent them from ever matching any test name. The testPatterns use literal strings (e.g. 'admission list has 5') that don't match the actual test names (e.g. 'admission list has exactly 5 medications'). This creates hard score ceilings of 90/100 and 60/100. All achievable criteria score 1.0 consistently across all runs."
+}

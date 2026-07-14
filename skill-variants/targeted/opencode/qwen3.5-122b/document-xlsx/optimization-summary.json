@@ -1,0 +1,26 @@
+{
+  "iterations": 1,
+  "model": "qwen3.5-122b",
+  "runtime": "opencode",
+  "skill": "document-xlsx",
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "document-xlsx": 100,
+        "xlsx-analyze": 100
+      },
+      "changes": [
+        "Added rule #6: mandatory currency formatting ($#,##0) for all dollar cells",
+        "Added 'Reading & Analyzing Spreadsheets' section with guidance on skipping summary rows, counting all data rows including zeros, boolean column aggregation, and JSON output",
+        "Added 'Output JSON' guidance for analysis tasks",
+        "Added 'Filtering zero-value rows' to Common Mistakes",
+        "Removed unused recalc.py and LICENSE.txt files"
+      ]
+    }
+  ],
+  "final_scores": {
+    "document-xlsx": 100,
+    "xlsx-analyze": 100
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "iterations": 5,
+  "model": "deepseek-v3.2",
+  "runtime": "opencode",
+  "tasks": {
+    "html-to-md": {
+      "scores": [100, 100, 100, 100, 100],
+      "final": 100
+    },
+    "csv-to-md": {
+      "scores": [92, 92, 85, 94, 100],
+      "final": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with original skill"
+    },
+    {
+      "iteration": 2,
+      "description": "Added HTML-to-Markdown section with structure preservation details and CSV section recommending original column headers"
+    },
+    {
+      "iteration": 3,
+      "description": "Changed to Title Case headers with traceability — score regressed (summary computation error)"
+    },
+    {
+      "iteration": 4,
+      "description": "Reverted to exact CSV headers, added capitalized labels in prose sections — main-table now 100 but summary dropped"
+    },
+    {
+      "iteration": 5,
+      "description": "Emphasized ALWAYS using Python scripts for CSV computation (prevents mental math errors), combined exact CSV headers with capitalized prose labels — both tasks 100/100"
+    }
+  ],
+  "key_findings": [
+    "deepseek-v3.2 makes arithmetic errors when computing CSV aggregates without a script — requiring Python prevents this",
+    "Test expects both lowercase CSV field names (product_id, price) and capitalized versions (Product, Price) in the output — skill guides model to use both",
+    "HTML conversion via markitdown works perfectly without additional guidance"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "iterations": 3,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "scores": {
+    "iteration_1_baseline": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 0
+    },
+    "iteration_2": {
+      "csv-pivot": 100,
+      "data-clean": 85,
+      "multi-dataset-report": 100
+    },
+    "iteration_3_final": {
+      "csv-pivot": 100,
+      "data-clean": 100,
+      "multi-dataset-report": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose 570-line generic skill with focused 170-line skill targeting CSV analysis with Python",
+    "Removed all SQL, visualization, report template, and statistical analysis sections (unused by tasks)",
+    "Added explicit CSV Analysis Pattern using Python csv module with deduplication",
+    "Added Data Cleaning Pattern with clear order-of-operations: deduplicate first, then count issues on unique rows only",
+    "Added Multi-Dataset Analysis Pattern showing how to process multiple CSVs in one script and write all JSON outputs",
+    "Added strong guidance: 'count before dedup' means count on unique rows only, not duplicates",
+    "Added key rule: 'Do not overthink — write the script and run it immediately' to prevent gemini-3-flash reasoning loops",
+    "Removed unused scripts/ directory, _meta.json references, and sample CSV file"
+  ]
+}

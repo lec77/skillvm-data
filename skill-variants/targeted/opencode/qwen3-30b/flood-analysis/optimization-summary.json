@@ -1,0 +1,38 @@
+{
+  "iterations": 4,
+  "per_task_scores": {
+    "flood-risk": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 0,
+      "iteration_4_final": 100,
+      "iteration_5_verification": 100
+    },
+    "streamflow-stats": {
+      "iteration_1": 0,
+      "iteration_2": 100,
+      "iteration_3": 0,
+      "iteration_4_final": 100,
+      "iteration_5_verification": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 1,
+      "description": "Baseline run with unmodified skill (copy of original). Both tasks scored 0. flood-risk: model produced no output (0 tokens). streamflow-stats: model computed stats in its head (wrong values: mean=3.099 vs expected 2.95) and produced malformed JSON."
+    },
+    {
+      "iteration": 2,
+      "description": "Rewrote SKILL.md to be task-oriented with complete Python scripts, explicit output formats, and instruction to always run scripts. Added 'IMPORTANT: Always write and run a script. Never do math in your head.' Both tasks scored 100."
+    },
+    {
+      "iteration": 3,
+      "description": "Verification run with iteration 2 skill. streamflow-stats scored 100 but flood-risk scored 0 again — model still used write tool directly instead of running a script, misclassified severity (called 2800 'major' instead of 'moderate') and miscounted flood days."
+    },
+    {
+      "iteration": 4,
+      "description": "Strengthened CRITICAL RULE section: 'Do NOT use the write/edit tool to create the output JSON — let the script create it.' Added explicit workflow: (1) write .py file, (2) run with bash, (3) verify output. Removed verbose explanatory content. Both tasks scored 100 on two consecutive runs."
+    }
+  ],
+  "key_insight": "qwen3-30b tends to skip script execution and compute results mentally using the write tool, producing wrong arithmetic and malformed JSON. The fix was adding an explicit prohibition against using write/edit for output files, forcing the model to write and execute Python scripts instead."
+}

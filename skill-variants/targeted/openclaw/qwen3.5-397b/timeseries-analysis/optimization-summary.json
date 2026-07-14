@@ -1,0 +1,10 @@
+{
+  "iterations": 1,
+  "final_scores": {
+    "anomaly-detection": 100,
+    "hp-detrending": 100
+  },
+  "changes": [
+    "No changes needed - skill achieved 100/100 on both tasks on the first iteration"
+  ]
+}

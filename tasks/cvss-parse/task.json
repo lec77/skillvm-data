@@ -1,0 +1,67 @@
+{
+  "id": "cvss-parse",
+  "name": "Extract CVSS scores from Trivy scan results",
+  "category": "vulnerability-audit",
+  "gradingType": "automated",
+  "prompt": "Read scan_results.json containing Trivy vulnerability scan output. For each vulnerability, extract the CVSS score using source priority: NVD V3 > GHSA V3 > RedHat V3 > NVD V2 > 0.0 (unknown). Classify severity: Critical (>=9.0), High (7.0-8.9), Medium (4.0-6.9), Low (0.1-3.9), None (0). Write vulnerability_report.json with: vulnerabilities (array of {cve_id, package, version, score, severity, source}), summary ({total, critical, high, medium, low}), packages (array of {name, vuln_count, max_severity}).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "cvss-parse.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "vulnerability_report.json is created with valid JSON",
+            "testPattern": "output file exists|valid JSON"
+          },
+          {
+            "id": "vuln-count",
+            "weight": 0.1,
+            "description": "All 12 vulnerabilities are present",
+            "testPattern": "12 vulnerabilities|vuln count"
+          },
+          {
+            "id": "severity-counts",
+            "weight": 0.25,
+            "description": "Correct severity counts in summary",
+            "testPattern": "critical count|high count|medium count|low count|severity counts"
+          },
+          {
+            "id": "source-priority",
+            "weight": 0.25,
+            "description": "NVD V3 preferred over GHSA when both exist",
+            "testPattern": "source priority|NVD preferred|CVE-2024-0001 source|CVE-2024-0006 source|CVE-2024-0010 source"
+          },
+          {
+            "id": "v2-fallback",
+            "weight": 0.15,
+            "description": "V2 score used when no V3 available",
+            "testPattern": "V2 fallback|CVE-2024-0007"
+          },
+          {
+            "id": "packages-summary",
+            "weight": 0.15,
+            "description": "packages array has 3 entries with correct data",
+            "testPattern": "packages array|3 packages|package entries"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/vulnerability-audit",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/vulnerability-audit/cvss-parse/",
+    "importedAt": "2026-07-07T06:19:11.565Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "iterations": 5,
+  "model": "gemini-3-flash",
+  "runtime": "openclaw",
+  "skill": "document-docx",
+  "per_task_scores": {
+    "docx-create": {
+      "iteration_1": 100,
+      "iteration_2": 90,
+      "iteration_3": 93,
+      "iteration_4": 100,
+      "iteration_5": 100
+    },
+    "docx-extract": {
+      "iteration_1": 100,
+      "iteration_2": 100,
+      "iteration_3": 100,
+      "iteration_4": 100,
+      "iteration_5": 100
+    }
+  },
+  "changes_made": [
+    {
+      "iteration": 3,
+      "description": "Added --wrap=none flag to all pandoc text extraction commands to prevent line wrapping that splits sentences across lines (was causing 'March 2026' to be split across two lines, failing content tests)"
+    },
+    {
+      "iteration": 4,
+      "description": "Added python-docx text extraction method as recommended approach (more reliable than pandoc -t plain which omits Title-style headings). Added python-docx as alternative for document creation with guidance to use heading level 1 instead of 0 for main titles. Updated text extraction step in creation workflow to reference python-docx method."
+    }
+  ],
+  "final_scores": {
+    "docx-create": 100,
+    "docx-extract": 100
+  }
+}

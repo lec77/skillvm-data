@@ -1,0 +1,22 @@
+{
+  "iterations": 2,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "skill": "bug-fixing",
+  "scores": {
+    "iteration_1": {
+      "debug-bsearch": 100,
+      "debug-race": 100
+    },
+    "iteration_2": {
+      "debug-bsearch": 100,
+      "debug-race": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced verbose 297-line skill with 11 supporting files with a concise 80-line procedural skill. Added explicit race condition fix pattern with complete worked example (promise queue serialization). Added off-by-one fix example. Emphasized output filename rules, no-line-numbers rule, and export preservation. Removed all narrative, pressure tests, rationalizations table, and supporting technique files."
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "model": "gemini-3-flash",
+  "runtime": "bare",
+  "skill": "document-docx",
+  "iterations": 3,
+  "scores": {
+    "iteration_0_baseline": {
+      "docx-create": 0,
+      "docx-extract": 0
+    },
+    "iteration_1": {
+      "docx-create": 93,
+      "docx-extract": 100
+    },
+    "iteration_2": {
+      "docx-create": 100,
+      "docx-extract": 100
+    },
+    "iteration_3_confirmation": {
+      "docx-create": 100,
+      "docx-extract": 100
+    }
+  },
+  "changes": [
+    "Replaced verbose original SKILL.md (10KB + 40KB referenced files) with concise self-contained version focused on python-docx",
+    "Removed docx-js.md, ooxml.md, ooxml/, scripts/, LICENSE.txt — not referenced by optimized skill",
+    "Changed creation approach from docx-js (npm, not available in bare runtime) to python-docx (always available)",
+    "Changed text extraction from pandoc -t plain (drops Title headings) to python-docx paragraph iteration",
+    "Added explicit 'always run the script' rule — baseline model wrote code but never executed it",
+    "Simplified description to help model trigger skill loading more reliably",
+    "Provided inline working examples instead of referencing external files"
+  ]
+}

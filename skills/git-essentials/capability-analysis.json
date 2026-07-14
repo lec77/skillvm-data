@@ -1,0 +1,160 @@
+{
+  "skill_name": "git-essentials",
+  "skill_path": "skills/git-essentials",
+  "total_files": 2,
+  "total_tokens_estimate": 1769,
+  "purposes": [
+    {
+      "id": "basic-version-control",
+      "description": "Perform fundamental git operations: init/clone repos, stage files, commit changes, view diffs and status.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic git commands: git init, git add, git commit, git status, git diff."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run single git commands and use their output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "branch-and-merge",
+      "description": "Create, switch, delete, and rename branches; merge branches and resolve conflicts.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic git branch/checkout/merge commands with simple flags."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Multi-step workflow: create branch, make changes, merge back, delete branch."
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Feature branch workflow is a 3-step sequential process: branch, commit, merge."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "remote-collaboration",
+      "description": "Manage remotes, fetch/pull/push changes, push new branches, sync forks with upstream.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic git remote, fetch, pull, push commands."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Multi-step sync workflow: add upstream, fetch, merge, push."
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Fork sync is a sequential procedure: add remote, fetch, checkout main, merge, push."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "history-and-search",
+      "description": "View commit history with various filters (author, date, file), search commit messages and code changes, use blame and bisect.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Uses git log with multiple flags (--graph, --oneline, --author, --since, --grep, -S), git blame, git bisect."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run history/search commands and interpret output."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "undo-and-recover",
+      "description": "Undo changes at working directory, staging, and commit levels; recover deleted branches using reflog.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L1",
+            "evidence": "Basic git restore, git reset, git revert commands."
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L1",
+            "evidence": "Must choose correct undo strategy based on where the change is (working dir, staging, committed)."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L1",
+            "evidence": "Run undo commands."
+          }
+        ]
+      },
+      "alternative_paths": []
+    },
+    {
+      "id": "advanced-workflows",
+      "description": "Perform advanced operations: interactive rebase, stashing, cherry-pick, tagging, submodules, and cleaning.",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.shell",
+            "min_level": "L2",
+            "evidence": "Commands with multiple options: git rebase -i, git stash with named saves, git cherry-pick, git tag -a with messages, git submodule, git clean with various flags."
+          },
+          {
+            "id": "tool.exec",
+            "min_level": "L2",
+            "evidence": "Multi-step operations: stash, switch branch, apply stash; or rebase with conflict resolution."
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L2",
+            "evidence": "Must decompose complex workflows into steps and handle conditional branches (e.g., rebase conflict resolution)."
+          }
+        ]
+      },
+      "alternative_paths": []
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-6", "purposes": ["basic-version-control"], "type": "instruction"},
+    {"location": "SKILL.md:7-25", "purposes": ["basic-version-control"], "type": "code_example"},
+    {"location": "SKILL.md:26-63", "purposes": ["basic-version-control"], "type": "code_example"},
+    {"location": "SKILL.md:64-105", "purposes": ["branch-and-merge"], "type": "code_example"},
+    {"location": "SKILL.md:106-143", "purposes": ["remote-collaboration"], "type": "code_example"},
+    {"location": "SKILL.md:144-187", "purposes": ["history-and-search"], "type": "code_example"},
+    {"location": "SKILL.md:188-224", "purposes": ["undo-and-recover"], "type": "code_example"},
+    {"location": "SKILL.md:225-252", "purposes": ["advanced-workflows"], "type": "code_example"},
+    {"location": "SKILL.md:253-271", "purposes": ["advanced-workflows"], "type": "code_example"},
+    {"location": "SKILL.md:272-297", "purposes": ["advanced-workflows"], "type": "code_example"},
+    {"location": "SKILL.md:298-338", "purposes": ["advanced-workflows"], "type": "code_example"},
+    {"location": "SKILL.md:339-375", "purposes": ["branch-and-merge", "remote-collaboration"], "type": "code_example"},
+    {"location": "SKILL.md:376-401", "purposes": ["basic-version-control", "branch-and-merge", "remote-collaboration", "advanced-workflows"], "type": "instruction"},
+    {"location": "SKILL.md:402-432", "purposes": ["undo-and-recover", "branch-and-merge"], "type": "code_example"},
+    {"location": "_meta.json:1-6", "purposes": [], "type": "dead_content"}
+  ],
+  "unmatched_requirements": []
+}

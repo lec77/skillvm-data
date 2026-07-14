@@ -1,0 +1,34 @@
+{
+  "iterations": 2,
+  "final_scores": {
+    "pptx-create": 100,
+    "pptx-extract": 100
+  },
+  "iteration_history": [
+    {
+      "iteration": 1,
+      "scores": {
+        "pptx-create": 0,
+        "pptx-extract": 100
+      },
+      "notes": "pptx-create timed out (300s). Model tried html2pptx workflow: CSS gradients failed, pptxgenjs not found locally, wrong layout name LAYOUT_16_9, switched to python-pptx but used wrong API (RgbColor instead of RGBColor). Too many errors to recover within timeout."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "pptx-create": 100,
+        "pptx-extract": 100
+      },
+      "notes": "Rewrote SKILL.md to use python-pptx directly for creation instead of html2pptx workflow. Removed html2pptx.md reference. Added correct python-pptx API examples (RGBColor, layout indices, placeholder access). Both tasks pass consistently."
+    }
+  ],
+  "changes_made": [
+    "Replaced html2pptx workflow with direct python-pptx creation (simpler, already installed, synchronous)",
+    "Added correct python-pptx code example with RGBColor, layout 0/1, placeholders",
+    "Added markitdown output format documentation for extraction tasks",
+    "Added guidance to include title slide in slides array for extraction",
+    "Removed html2pptx.md, scripts/html2pptx.js (unreferenced by final SKILL.md)",
+    "Dramatically reduced SKILL.md from ~484 lines to ~82 lines",
+    "Kept ooxml.md and template-based workflow for editing tasks"
+  ]
+}

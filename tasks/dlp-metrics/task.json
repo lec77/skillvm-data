@@ -1,0 +1,55 @@
+{
+  "id": "dlp-metrics",
+  "name": "Metrics Profiler",
+  "category": "parallelism-dlp",
+  "gradingType": "automated",
+  "prompt": "You have 25 system metrics CSV files (metrics_01.csv to metrics_25.csv), each recording CPU, memory, disk, and network utilization at one-minute intervals. Profile each file using profile_metrics.py to generate a JSON report, then generate an overall summary using summarize_metrics.py.",
+  "timeoutMs": 1200000,
+  "maxSteps": 60,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "metrics_profile.test.ts",
+        "testFileFrom": "task",
+        "criteria": [
+          {
+            "id": "profile-files-exist",
+            "weight": 0.25,
+            "description": "All 25 per-file profile JSON files exist",
+            "testPattern": "all 25 profile files exist"
+          },
+          {
+            "id": "ci-accuracy",
+            "weight": 0.25,
+            "description": "Bootstrap confidence intervals match expected values for every metrics file",
+            "testPattern": "CI accuracy for metrics_"
+          },
+          {
+            "id": "column-stats",
+            "weight": 0.25,
+            "description": "Per-column mean, p95, and p99 match expected values for every metrics file",
+            "testPattern": "column stats match for metrics_"
+          },
+          {
+            "id": "summary-valid",
+            "weight": 0.25,
+            "description": "metrics_summary.json exists with total_files, avg_cpu_mean, avg_mem_mean, and peak_cpu_files",
+            "testPattern": "metrics_summary\\.json is valid"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/metrics-profiler",
+  "origin": {
+    "source": "skillos-paper",
+    "file": "experiments/e4/tasks/dlp-metrics",
+    "importedAt": "2026-07-10",
+    "notes": "imported from SkillOS paper E4 parallelism experiment"
+  }
+}

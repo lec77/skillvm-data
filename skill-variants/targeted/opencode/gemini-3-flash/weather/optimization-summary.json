@@ -1,0 +1,64 @@
+{
+  "skill": "weather",
+  "runtime": "opencode",
+  "model": "gemini-3-flash",
+  "iterations": 5,
+  "results": [
+    {
+      "iteration": 1,
+      "changes": "Baseline — original skill (identical to verbose)",
+      "scores": {
+        "weather-travel": 100,
+        "weather-compare": 95
+      },
+      "notes": "weather-compare lost 5pts on weather-metrics: emoji-only conditions not matched by text pattern checks"
+    },
+    {
+      "iteration": 2,
+      "changes": "Added %C format code for condition text, added Output Guidelines section requiring text descriptions, streamlined skill by removing When to Use/Not Use sections, added JSON format guidance",
+      "scores": {
+        "weather-travel": 100,
+        "weather-compare": 85
+      },
+      "notes": "weather-metrics fixed (1.0), but api-call-made=0 — model hallucinated API calls instead of executing them (5s completion)"
+    },
+    {
+      "iteration": 3,
+      "changes": "Added 'Important' section emphasizing MUST execute curl commands, never fabricate data",
+      "scores": {
+        "weather-travel": 100,
+        "weather-compare": 100
+      },
+      "notes": "Perfect scores on both tasks"
+    },
+    {
+      "iteration": 4,
+      "changes": "No changes — confirmation run",
+      "scores": {
+        "weather-travel": 93,
+        "weather-compare": 100
+      },
+      "notes": "weather-travel lost 7pts on weather-data (0.75): adapter intermittently fails to capture tool calls in structured format"
+    },
+    {
+      "iteration": 5,
+      "changes": "No changes — final confirmation run",
+      "scores": {
+        "weather-travel": 100,
+        "weather-compare": 100
+      },
+      "notes": "Perfect scores on both tasks"
+    }
+  ],
+  "finalScores": {
+    "weather-travel": "100 (best), 93-100 range",
+    "weather-compare": "100 (best), 85-100 range"
+  },
+  "keyOptimizations": [
+    "Added %C format code for text condition descriptions (fixes conditions pattern matching)",
+    "Added explicit instruction to always use text words for conditions, not just emojis",
+    "Added mandatory curl execution instruction to prevent hallucinated API responses",
+    "Streamlined skill by removing When to Use/Not to Use sections",
+    "Added markdown table guidance for multi-city comparisons"
+  ]
+}

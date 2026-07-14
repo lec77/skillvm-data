@@ -1,0 +1,33 @@
+{
+  "skill": "document-xlsx",
+  "runtime": "opencode",
+  "model": "deepseek-v3.2",
+  "iterations": 2,
+  "results": [
+    {
+      "iteration": 1,
+      "scores": {
+        "document-xlsx": 85,
+        "xlsx-analyze": 100
+      },
+      "notes": "All automated criteria pass (7/7 for document-xlsx, 7/7 for xlsx-analyze). The 85 score on document-xlsx is due to LLM judge socket error on overall-quality criterion (weight=0.15), not a skill issue."
+    },
+    {
+      "iteration": 2,
+      "scores": {
+        "document-xlsx": 85,
+        "xlsx-analyze": 100
+      },
+      "notes": "Consistent results. Same LLM judge infrastructure error. All automated criteria pass on both tasks."
+    }
+  ],
+  "changes": [
+    "Removed unreferenced files: recalc.py, LICENSE.txt",
+    "No SKILL.md changes needed — skill already achieves perfect automated scores on both tasks"
+  ],
+  "final_scores": {
+    "document-xlsx": 85,
+    "xlsx-analyze": 100
+  },
+  "notes": "The skill performs excellently for deepseek-v3.2 on opencode. All bun-test criteria pass perfectly across both iterations. The only score loss (15 points on document-xlsx) is from an LLM judge infrastructure error (socket connection closed), not a skill quality issue. The effective automated score is 100/100 for both tasks."
+}

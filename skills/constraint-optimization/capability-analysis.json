@@ -1,0 +1,72 @@
+{
+  "skill_name": "constraint-optimization",
+  "skill_path": "skills/constraint-optimization",
+  "total_files": 1,
+  "total_tokens_estimate": 2100,
+  "purposes": [
+    {
+      "id": "solve-constraint-optimization",
+      "description": "Solve combinatorial optimization problems (facility placement, knapsack, assignment, scheduling) by formulating variables/objectives/constraints, pruning search space, scoring candidates, and applying greedy + local search",
+      "current_path": {
+        "primitives": [
+          {
+            "id": "gen.code.python",
+            "min_level": "L3",
+            "evidence": "Requires scipy.optimize (linprog, linear_sum_assignment, milp), numpy, and implementing DP, greedy, and local search algorithms"
+          },
+          {
+            "id": "reason.logic",
+            "min_level": "L3",
+            "evidence": "Optimization under constraints, scheduling, resource allocation with constraint propagation and multi-restart strategies"
+          },
+          {
+            "id": "reason.arithmetic",
+            "min_level": "L2",
+            "evidence": "Multi-step scoring computations: marginal coverage gains, value/weight ratios, Manhattan/Euclidean distance calculations"
+          },
+          {
+            "id": "reason.planning",
+            "min_level": "L2",
+            "evidence": "Three-phase method (prune, score, anchor-based search) requires decomposing goal into ordered sub-steps with iterative refinement"
+          },
+          {
+            "id": "follow.procedure",
+            "min_level": "L1",
+            "evidence": "Must follow the three-phase method in sequence: prune, score, then anchor-based search"
+          }
+        ]
+      },
+      "alternative_paths": [
+        {
+          "description": "Dynamic programming path for exact 0/1 knapsack solutions when n < 10000",
+          "primitives": [
+            {
+              "id": "gen.code.python",
+              "min_level": "L2",
+              "evidence": "DP table construction and traceback using only standard Python (no third-party libs needed)"
+            },
+            {
+              "id": "reason.logic",
+              "min_level": "L2",
+              "evidence": "Multi-constraint satisfaction for DP state transitions"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "content_map": [
+    {"location": "SKILL.md:1-4", "purposes": [], "type": "instruction"},
+    {"location": "SKILL.md:6-16", "purposes": ["solve-constraint-optimization"], "type": "instruction"},
+    {"location": "SKILL.md:18-49", "purposes": ["solve-constraint-optimization"], "type": "instruction"},
+    {"location": "SKILL.md:51-67", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:69-92", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:94-110", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:112-124", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:126-141", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:143-159", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:161-172", "purposes": ["solve-constraint-optimization"], "type": "code_example"},
+    {"location": "SKILL.md:174-182", "purposes": ["solve-constraint-optimization"], "type": "instruction"}
+  ],
+  "unmatched_requirements": []
+}

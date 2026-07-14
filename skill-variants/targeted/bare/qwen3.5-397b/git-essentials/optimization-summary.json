@@ -1,0 +1,25 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "git-essentials",
+  "tasks": {
+    "git-branch-ops": {
+      "scores": [88, 88],
+      "final_score": 88,
+      "notes": "12-point deduction is due to test expecting 'main' as default branch name while environment creates 'master'. Model correctly reports actual branch name. All other criteria score 100%."
+    },
+    "git-log-analyze": {
+      "scores": [100, 100],
+      "final_score": 100,
+      "notes": "Perfect score on all criteria: commit counting, author extraction, file tracking, date extraction, merge detection."
+    }
+  },
+  "changes": [
+    "Compressed skill from ~430 lines to ~100 lines, removing verbose examples and sections not relevant to benchmark tasks",
+    "Added concise command reference for branching, tagging, cherry-pick, log analysis, and history inspection",
+    "Added practical notes on using git log --format for structured data extraction, rev-list --count for counting, and --merges for merge detection",
+    "Added guidance to use actual branch names from git output rather than assuming names",
+    "Removed sections: Initial Setup, Rebasing, Submodules, Clean, Aliases, Common Workflows, Common Issues, Documentation links"
+  ]
+}

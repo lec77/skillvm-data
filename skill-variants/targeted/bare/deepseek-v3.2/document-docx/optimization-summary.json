@@ -1,0 +1,35 @@
+{
+  "iterations": 3,
+  "model": "deepseek-v3.2",
+  "runtime": "bare",
+  "scores": {
+    "iteration_1_baseline": {
+      "docx-create": 100,
+      "docx-extract": 100,
+      "notes": "Original verbose skill with OOXML editing, redlining, etc. Baseline scores perfect but skill very large."
+    },
+    "iteration_2_trimmed": {
+      "docx-create": 90,
+      "docx-extract": 78,
+      "notes": "Aggressively trimmed SKILL.md. docx-extract dropped due to model using pandoc plain text for table parsing (unreliable). docx-create had partial content match failure."
+    },
+    "iteration_3_optimized": {
+      "docx-create": 100,
+      "docx-extract": 100,
+      "notes": "Added python-docx table extraction guidance and complete extraction pattern. Both tasks back to 100/100."
+    }
+  },
+  "final_scores": {
+    "docx-create": 100,
+    "docx-extract": 100
+  },
+  "changes": [
+    "Removed OOXML editing workflow, redlining workflow, tracked changes content (not needed for tasks)",
+    "Removed document-to-image conversion section",
+    "Removed ooxml.md, ooxml/ directory (schemas, scripts), scripts/ directory (document.py, utilities.py, templates), LICENSE.txt",
+    "Added python-docx table extraction guidance with complete code pattern for structured data extraction",
+    "Added numeric string conversion guidance (remove $, commas, convert to proper types)",
+    "Kept docx-js.md reference for document creation",
+    "Reduced SKILL.md from ~200 lines to ~100 lines, focusing on creation and extraction workflows"
+  ]
+}

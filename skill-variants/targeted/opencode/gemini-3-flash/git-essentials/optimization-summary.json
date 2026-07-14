@@ -1,0 +1,15 @@
+{
+  "iterations": 1,
+  "model": "gemini-3-flash",
+  "runtime": "opencode",
+  "per_task_scores": {
+    "git-branch-ops": 100,
+    "git-log-analyze": 100
+  },
+  "changes": [
+    {
+      "iteration": 1,
+      "description": "Replaced full 432-line verbose skill with focused 85-line version. Removed generic git reference content (setup, remote ops, stashing, rebasing, submodules, clean, aliases, tips, common issues, workflows). Added task-relevant sections: history analysis commands (rev-list, shortlog, merge counting, file tracking with --no-merges), branch creation from tags, cherry-picking by message search, lightweight tagging, and JSON report writing pattern with correct type handling. Added critical notes about cd-ing into repo dir and writing output to working directory not repo."
+    }
+  ]
+}

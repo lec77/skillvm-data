@@ -1,0 +1,61 @@
+{
+  "id": "data-clean",
+  "name": "Clean messy CSV and produce cleaning report",
+  "category": "data-analyst-1.0.0",
+  "gradingType": "automated",
+  "prompt": "Read messy_data.csv (columns: name, email, phone, signup_date, revenue) which contains data quality issues including duplicate rows, missing values, inconsistent date formats, and malformed emails (missing TLD). Clean the data and produce two output files: (1) cleaned_data.csv — deduplicated rows, all dates standardized to YYYY-MM-DD format, with the same columns as the original. Keep rows that have missing values but do not fabricate data for missing fields (leave them empty). Keep rows with invalid emails but do not alter the email values. (2) cleaning_report.json — a JSON object with these counts: 'duplicates_removed' (number of duplicate rows removed), 'missing_values' (total number of empty/missing cells found across all rows and columns before dedup), 'dates_standardized' (number of date values that were converted to YYYY-MM-DD format, not counting ones already in that format, counted before dedup), 'invalid_emails' (number of email values that are malformed e.g. missing TLD, counted before dedup).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "data-clean.test.ts",
+        "criteria": [
+          {
+            "id": "files-exist",
+            "weight": 0.1,
+            "description": "Output files exist",
+            "testPattern": "files exist"
+          },
+          {
+            "id": "row-count",
+            "weight": 0.2,
+            "description": "Cleaned CSV has correct row count",
+            "testPattern": "row count"
+          },
+          {
+            "id": "no-duplicates",
+            "weight": 0.2,
+            "description": "No duplicate rows remain",
+            "testPattern": "no duplicates"
+          },
+          {
+            "id": "dates-standardized",
+            "weight": 0.2,
+            "description": "All dates in YYYY-MM-DD format",
+            "testPattern": "dates standardized"
+          },
+          {
+            "id": "report-accuracy",
+            "weight": 0.3,
+            "description": "Cleaning report counts are correct",
+            "testPattern": "report counts"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/data-analyst-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/data-analyst-1.0.0/data-clean/",
+    "importedAt": "2026-07-07T06:18:30.399Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

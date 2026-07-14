@@ -1,0 +1,18 @@
+{
+  "iterations": 1,
+  "max_iterations": 5,
+  "final_scores": {
+    "schedule-workday": 100,
+    "prioritize-tasks": 100
+  },
+  "per_iteration": [
+    {
+      "iteration": 1,
+      "changes": "Rewrote SKILL.md from generic productivity advice to precise task-specific instructions. Added exact JSON field specifications for both schedule-workday and prioritize-tasks outputs. Included explicit classification rules for prioritization (must_do_today = deadline today + high impact, deferred = far deadline + low impact). Added constraints for time blocks (non-overlapping, 15% buffer, exact task name matching).",
+      "scores": {
+        "schedule-workday": 100,
+        "prioritize-tasks": 100
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "parallel-wordcount-r1",
+  "name": "Parallel word frequency count across 20 text files",
+  "category": "python-parallelization",
+  "gradingType": "automated",
+  "prompt": "There are 20 text files (text_00.txt through text_19.txt) in the current directory. Write a Python script parallel_wordcount.py that uses multiprocessing to count word frequencies across all files in parallel. Each worker should process one file and return its word counts. Merge all results into a single frequency dictionary. Write the result to word_counts.json as a JSON object mapping words to their total counts across all files. The script MUST use multiprocessing (Pool or ProcessPoolExecutor). Run the script after writing it.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "parallel-wordcount.test.ts",
+        "criteria": [
+          {
+            "id": "output-exists",
+            "weight": 0.1,
+            "description": "word_counts.json exists and is valid JSON",
+            "testPattern": "output exists"
+          },
+          {
+            "id": "total-count",
+            "weight": 0.15,
+            "description": "Total word count equals 10000",
+            "testPattern": "total word count"
+          },
+          {
+            "id": "top-words-match",
+            "weight": 0.3,
+            "description": "Top 10 words match reference",
+            "testPattern": "top 10 words"
+          },
+          {
+            "id": "all-words-match",
+            "weight": 0.2,
+            "description": "All word counts match reference",
+            "testPattern": "all word counts"
+          },
+          {
+            "id": "uses-multiprocessing",
+            "weight": 0.25,
+            "description": "Script source uses multiprocessing or ProcessPoolExecutor",
+            "testPattern": "uses multiprocessing"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/python-parallelization",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/python-parallelization/parallel-wordcount/",
+    "importedAt": "2026-07-07T06:19:11.552Z",
+    "notes": "content variant r1 of parallel-wordcount \u2014 same task type, same structure (20 files x 500 words, 90-word vocabulary), different text corpus"
+  }
+}

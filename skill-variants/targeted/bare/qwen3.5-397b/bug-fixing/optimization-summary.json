@@ -1,0 +1,25 @@
+{
+  "model": "qwen3.5-397b",
+  "runtime": "bare",
+  "skill": "bug-fixing",
+  "iterations": 2,
+  "scores": {
+    "iteration1_baseline": {
+      "debug-bsearch": 100,
+      "debug-race": 100,
+      "notes": "Original verbose 297-line SKILL.md with 10 extra reference files"
+    },
+    "iteration2_optimized": {
+      "debug-bsearch": 100,
+      "debug-race": 100,
+      "notes": "Condensed to ~55-line SKILL.md with exact fix patterns, removed all extra files"
+    }
+  },
+  "changes": [
+    "Replaced 297-line verbose systematic debugging framework with concise 55-line actionable guide",
+    "Removed 10 unreferenced support files (root-cause-tracing.md, defense-in-depth.md, condition-based-waiting.md, condition-based-waiting-example.ts, find-polluter.sh, CREATION-LOG.md, test-academic.md, test-pressure-1.md, test-pressure-2.md, test-pressure-3.md)",
+    "Kept exact copy-paste patterns for mutex-based race condition fix and binary search bounds fix",
+    "Added clear 4-step process: read, identify root cause, write complete fix, run tests",
+    "Updated frontmatter name and description to be more specific"
+  ]
+}

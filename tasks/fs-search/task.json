@@ -1,0 +1,61 @@
+{
+  "id": "fs-search",
+  "name": "Search and analyze a directory tree",
+  "category": "filesystem-1.0.0",
+  "gradingType": "automated",
+  "prompt": "Analyze the project/ directory tree and produce search_results.json with the following fields: total_files (number: count of all files recursively), by_extension (object: mapping each file extension like \".ts\" to its count), largest_file (string: name of the file with the most content, just the filename not the path), files_containing_TODO (array of strings: filenames of files whose content contains the string \"TODO\", just filenames not paths), nested_depth (number: the maximum directory nesting depth, where project/ itself is depth 1, project/sub/ is depth 2, etc).",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "junit-grade",
+      "id": "junit-grade",
+      "name": "Automated Grade",
+      "weight": 1,
+      "payload": {
+        "testFile": "fs-search.test.ts",
+        "criteria": [
+          {
+            "id": "structure",
+            "weight": 0.15,
+            "description": "Output file exists and has correct structure",
+            "testPattern": "exists|has all required fields"
+          },
+          {
+            "id": "counts",
+            "weight": 0.3,
+            "description": "Correct total file count and extension breakdown",
+            "testPattern": "total_files|by_extension"
+          },
+          {
+            "id": "largest",
+            "weight": 0.2,
+            "description": "Correctly identifies the largest file",
+            "testPattern": "largest_file"
+          },
+          {
+            "id": "todo-search",
+            "weight": 0.2,
+            "description": "Finds all files containing TODO",
+            "testPattern": "files_containing_TODO"
+          },
+          {
+            "id": "depth",
+            "weight": 0.15,
+            "description": "Correct max directory depth",
+            "testPattern": "nested_depth"
+          }
+        ]
+      }
+    }
+  ],
+  "skill": "../../skills/filesystem-1.0.0",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/filesystem-1.0.0/fs-search/",
+    "importedAt": "2026-07-07T06:18:52.816Z",
+    "notes": "auto-converted from legacy skill-bench TaskDefinition by tools/convert-from-skill-bench.ts"
+  }
+}

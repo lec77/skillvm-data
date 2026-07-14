@@ -1,0 +1,21 @@
+{
+  "iterations": 2,
+  "model": "qwen3.5-397b",
+  "runtime": "openclaw",
+  "scores": {
+    "iteration_1": {
+      "docx-extract": 100,
+      "docx-create": 90
+    },
+    "iteration_2": {
+      "docx-extract": 100,
+      "docx-create": 100
+    }
+  },
+  "changes": [
+    {
+      "iteration": 2,
+      "description": "Added --wrap=none to all pandoc commands in SKILL.md. Pandoc wraps lines at ~72 chars by default, which split 'March 2026' across lines causing the content test to fail. Also added an IMPORTANT note explaining why --wrap=none is needed, and added a plain text extraction example."
+    }
+  ]
+}

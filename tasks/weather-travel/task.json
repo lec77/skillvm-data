@@ -1,0 +1,34 @@
+{
+  "id": "weather-travel",
+  "name": "Travel packing recommendation",
+  "category": "weather",
+  "gradingType": "hybrid",
+  "prompt": "I'm traveling from Chicago to Miami next week. What's the weather difference between the two cities and what should I pack? Check the actual current weather for both cities.",
+  "timeoutMs": 300000,
+  "maxSteps": 30,
+  "eval": [
+    {
+      "method": "custom",
+      "evaluatorId": "python-grade",
+      "id": "python-grade",
+      "name": "Automated Grade",
+      "weight": 0.65
+    },
+    {
+      "method": "llm-judge",
+      "id": "packing-advice",
+      "name": "Actionable packing recommendations tied to weather data",
+      "weight": 0.35,
+      "maxScore": 1,
+      "rubric": "Context: The agent was asked to compare weather between Chicago and Miami, quantify the difference, and provide specific packing recommendations. The agent should have fetched real weather data from an API and tied its packing advice to the actual conditions (temperatures, precipitation, UV).\n\nScoring:\n1.0: Specific item-level packing list covering both the departure city (warm layers, jacket) and destination (light clothing, sun protection). Items should be informed by the weather comparison — e.g., noting the temperature gap, mentioning sun protection because of higher UV, or suggesting rain gear based on precipitation data. The connection between weather data and packing items can be implicit (describing the climate difference) or explicit (citing specific numbers).\n0.5: Generic packing advice (e.g., 'pack light clothes') without connection to the weather data, or recommendations for only one city.\n0.0: No packing guidance provided."
+    }
+  ],
+  "skill": "../../skills/weather",
+  "origin": {
+    "source": "skill-bench",
+    "repo": "https://github.com/lec77/skillvm-data",
+    "file": "tasks/weather/weather-travel/",
+    "importedAt": "2026-07-06T15:55:00.000Z",
+    "notes": "hand-ported: 3 legacy custom criteria (weights 0.2/0.3/0.15, renormalized inside grade.py) as python-grade with outer weight 0.65; packing-advice llm-judge kept at 0.35"
+  }
+}
